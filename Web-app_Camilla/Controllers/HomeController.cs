@@ -4,6 +4,7 @@ namespace Web_app_Camilla.Controllers;
 
 public class HomeController : Controller
 {
+    [Route("/")]
     public IActionResult Index()
     {
         return View();
