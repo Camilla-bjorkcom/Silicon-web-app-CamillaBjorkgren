@@ -408,6 +408,14 @@ a:hover {
   color: #33354D;
 }
 
+form .form-check {
+  align-items: center;
+  justify-content: center;
+}
+form .form-check #RememberMe {
+  margin-right: 15px;
+}
+
 header {
   padding: 15px 0;
 }
@@ -1198,4 +1206,8 @@ footer .container .social-media {
 }
 .account-details .container .address .form-address .postalcode-city .city {
   width: 100%;
+}
+
+.errorpage .container .content img {
+  width: 50%;
 }
