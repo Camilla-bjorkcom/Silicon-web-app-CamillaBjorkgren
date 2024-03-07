@@ -12,6 +12,7 @@ https://youtu.be/mhe49sLUb78?t=3970 *@
             <h1>Create Account</h1>
             <p>Already have an account? <a asp-controller="auth" asp-action="SignIn">Sign in here.</a></p>
         </div>
+
         @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
         {
             <div class="errormessage">
@@ -25,14 +26,14 @@ https://youtu.be/mhe49sLUb78?t=3970 *@
                     <label asp-for="FirstName" class="form-label">First name</label>
                     <div class="mb-3">
                         <span asp-validation-for="FirstName"></span>
-                        <input asp-for="FirstName" class="form-control">
+                        <input asp-for="FirstName" class="form-control" />
                     </div>
                 </div>
                 <div class="last-name">
                     <label asp-for="LastName" class="form-label">Last name</label>
                     <div class="mb-3">
                         <span asp-validation-for="LastName"></span>
-                        <input asp-for="LastName" class="form-control" >
+                        <input asp-for="LastName" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -41,20 +42,20 @@ https://youtu.be/mhe49sLUb78?t=3970 *@
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email</label>
                 <span asp-validation-for="Email"></span>
-                <input asp-for="Email" class="form-control >
+                <input asp-for="Email" class="form-control />
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Password</label>
                 <span asp-validation-for="Password"></span>
-                <input asp-for="Password" class="form-control" >
+                <input asp-for="Password" class="form-control" />
             </div>
             <div class="mb-3">
                 <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
                 <span asp-validation-for="ConfirmPassword"></span>
-                <input asp-for="ConfirmPassword" class="form-control" >
+                <input asp-for="ConfirmPassword" class="form-control" />
             </div>
             <div class="mb-3 form-check">
-                <input asp-for="TermsAndConditions" type="checkbox" class="form-check-input" >
+                <input asp-for="TermsAndConditions" type="checkbox" class="form-check-input" />
                 <label asp-for="TermsAndConditions" class="form-check-label">I agree to the <a asp-controller="About" asp-action="Terms">Terms & Conditions</a> </label>   
             </div>
             <button type="submit" class="btn-theme-s">Sign Up</button>
