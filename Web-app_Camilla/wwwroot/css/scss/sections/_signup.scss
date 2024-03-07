@@ -1,0 +1,77 @@
+.sign-up {
+    height: 100%;
+
+    .container {
+        padding: 40px;
+        max-width: fit-content;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        .errormessage {
+            background: $danger;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+
+        form {
+            @include standard-heading;
+
+            .name {
+                display: flex;
+                gap: 1rem;
+
+                .label-name {
+                    display: flex;
+                }
+
+                .name {
+                    display: flex;
+                }
+            }
+
+            span {
+                &.field-validation-error {
+                    display: inline;
+                    @include text-s;
+                    color: $danger;
+                    text-align: right;
+                }
+            }
+
+            input {
+                padding: 1rem;
+
+                &.input-validation-errror {
+                    border: 0.1rem solid $danger !important;
+                    border-radius: 0.5rem !important;
+                    color: $danger;
+                }
+
+                &::placeholder {
+                    color: $gray-400;
+                }
+            }
+
+
+            .form-check-label {
+                @include standard-text;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/*https://youtu.be/IttJNH0vLJs?t=3113
+    https://youtu.be/IttJNH0vLJs?t=6822
+    https://youtu.be/DQ7nMT-fUek?t=3484
+*/

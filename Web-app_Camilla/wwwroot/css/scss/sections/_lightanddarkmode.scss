@@ -1,0 +1,51 @@
+.lightanddark
+{
+    background-color: $gray-900;
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .titles {
+            position: relative;
+            margin: 0 auto;
+
+            h1 {
+                padding: 50px;
+            }
+    
+            #darkmode-title {
+                color: $white;
+                z-index: 10;
+            }
+    
+            #lightmode-title {
+                color: $gray-900;
+                z-index: -1;
+                position: absolute;
+                top: 0;
+            }
+        }
+        
+        .images {
+            position: relative;
+            margin: auto;
+            padding-bottom:80px;
+
+            .darkmode-img {
+                z-index: 10;
+            }
+   
+            .lightmode-img {
+                width: 100%;
+                position: absolute;
+                top: 0;
+                z-index: -1;
+                
+            }
+        }
+       
+
+    }
+}

@@ -1,0 +1,43 @@
+.download-app {
+    background-color: $gray-100;
+
+    .container {
+        background-color: $gray-200;
+        padding: 50px;
+        display: flex; 
+        justify-content: space-around;
+
+        .right {
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 20px;
+            .title {
+                width: 60%;
+                h1 {
+                    @include h2;
+                }
+            }
+
+            .app-store {
+                display: flex; 
+                gap: 50px;
+                align-items: end;
+
+                p {
+                    margin:0;
+                }
+            }
+
+            .google-play {
+                display: flex; 
+                gap: 50px;
+                align-items: end;
+
+                p {
+                    margin:0;
+                }
+            }
+        }
+    }
+}

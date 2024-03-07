@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-app_Camilla", "Web-app_Camilla\Web-app_Camilla.csproj", "{32A98810-6E92-483B-A5D9-05E96644C9AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{DFBD63CF-DD9B-4343-93C1-FD9E8CFA4565}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32A98810-6E92-483B-A5D9-05E96644C9AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A98810-6E92-483B-A5D9-05E96644C9AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A98810-6E92-483B-A5D9-05E96644C9AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A98810-6E92-483B-A5D9-05E96644C9AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFBD63CF-DD9B-4343-93C1-FD9E8CFA4565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFBD63CF-DD9B-4343-93C1-FD9E8CFA4565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFBD63CF-DD9B-4343-93C1-FD9E8CFA4565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFBD63CF-DD9B-4343-93C1-FD9E8CFA4565}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E9C98D8-33DD-4E44-A44C-DE67D7BF0A47}
+	EndGlobalSection
+EndGlobal
