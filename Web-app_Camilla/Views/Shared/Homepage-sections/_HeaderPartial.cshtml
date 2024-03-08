@@ -31,7 +31,7 @@
         <div class="account-buttons hide">
            @if (_signInManager.IsSignedIn(User))
             {
-                <a class="btn-theme" asp-controller="Auth" asp-action="Details"><i class="fa-light fa-user"></i>My Account</a>
+                <a class="btn-theme" asp-controller="Account" asp-action="Index"><i class="fa-light fa-user"></i>My Account</a>
                 <a class="btn-gray" asp-controller="Auth" asp-action="SignOut"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign out</a>    
             }
             else

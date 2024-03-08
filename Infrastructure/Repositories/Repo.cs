@@ -4,6 +4,7 @@ using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -63,17 +64,17 @@ namespace Infrastructure.Repositories
                 return ResponseFactory.Error(ex.Message);
             }
         }
-
-        public virtual async Task<ResponseResult> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity updatedEntity)
+   
+        public virtual async Task<ResponseResult> UpdateAsync(TEntity entity)
         {
             try
             {
-                var result = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-                if (result != null)
+                var entityToUpdate = await _context.Set<TEntity>().FindAsync(entity);
+                if (entityToUpdate != null)
                 {
-                    _context.Entry(result).CurrentValues.SetValues(updatedEntity);
+                    _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
                     await _context.SaveChangesAsync();
-                    return ResponseFactory.Ok(result);
+                    return ResponseFactory.Ok(entity);
                 }
                 return ResponseFactory.NotFound();
             }
