@@ -1,15 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Account";
+﻿
+@model AccountDetailsViewModel 
+@{
+    ViewData["Title"] = $"{Model.User.FirstName} {Model.User.LastName}";
 }
 
-@* <section class="account-details">
+<section class="account-details">
     <div class="container">
         <div class="user">
             <div class="user-img">
-                <img src="@Model.BasicInfo.ProfileImage" alt="@($"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}")">
+                <img src="" alt="@($"{Model.User.FirstName} {Model.User.LastName}")">
             </div>
-            <h6 class="name">@($"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}")</h6>
-            <p class="email">@Model.BasicInfo.Email</p>
+            <h6 class="name">@($"{Model.User.FirstName} {Model.User.LastName}")</h6>
+            <p class="email">@Model.User.Email</p>
             <div class="btn-user">
                 <a asp-controller="Account" asp-action="Details"><button class="button btn-theme"><i class="fa-light fa-gear"></i> Account Details</button></a>
                 <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
@@ -22,31 +24,31 @@
             <form class="form-basicinfo" method="post" asp-controller="Account" asp-action="Basicinfo">
                 <div class="name">
                     <div class="first-name">
-                        <label asp-for="UserEntity.FirstName" class="form-label">First name</label>
+                        <label asp-for="User.FirstName" class="form-label">First name</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfo.FirstName" type="text" class="form-control" id="firstName" placeholder="John">
+                            <input asp-for="User.FirstName" type="text" class="form-control" id="firstName" placeholder="John">
                         </div>
                     </div>
                     <div class="last-name">
-                        <label asp-for="BasicInfo.LastName" class="form-label">Last name</label>
-                        <input asp-for="BasicInfo.LastName" type="text" class="form-control" id="lastName" placeholder="Doe">
+                        <label asp-for="User.LastName" class="form-label">Last name</label>
+                        <input asp-for="User.LastName" type="text" class="form-control" id="lastName" placeholder="Doe">
                     </div>
                 </div>
                 <div class="contact-info">
                     <div class="email">
-                        <label asp-for="BasicInfo.Email" class="form-label">Email address</label>
+                        <label asp-for="User.Email" class="form-label">Email address</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfo.Email" type="text" class="form-control" id="email" placeholder="john.doe@domain.com">
+                            <input asp-for="User.Email" type="text" class="form-control" id="email" placeholder="john.doe@domain.com">
                         </div>
                     </div>
                     <div class="phone">
-                        <label asp-for="BasicInfo.Phone" class="form-label">Phone</label>
-                        <input asp-for="BasicInfo.Phone" type="text" class="form-control" id="phone" placeholder="Enter your phone">
+                        <label asp-for="User.PhoneNumber" class="form-label">Phone</label>
+                        <input asp-for="User.PhoneNumber" type="text" class="form-control" id="phone" placeholder="Enter your phone">
                     </div>
                 </div>
                 <div class="bio">
-                    <label asp-for="BasicInfo.Biography" class="form-label">Bio <div class="optional">(optional) </div></label>
-                    <textarea asp-for="BasicInfo.Biography" type="text" class="form-control" id="bio" placeholder="Add a short bio..."></textarea>
+                    <label asp-for="User.Bio" class="form-label">Bio <div class="optional">(optional) </div></label>
+                    <textarea asp-for="User.Bio" type="text" class="form-control" id="bio" placeholder="Add a short bio..."></textarea>
                 </div>
                 <div class="buttons">
                     <a><button type="reset" class="button btn-gray">Cancel</button></a>
@@ -54,7 +56,7 @@
                 </div>
             </form>
             <hr>
-
+@* 
             <div class="address">
                 <h6>Address</h6>
                 <form class="form-address" method="post" asp-controller="Account" asp-action="Addressinfo">
@@ -84,10 +86,8 @@
                         <a><button type="reset" class="button btn-gray">Cancel</button></a>
                         <a><button type="submit" class="button btn-theme">Save changes</button></a>
                     </div>
-
-
                 </form>
             </div>
-
+ *@
         </div>
-</section> *@
+</section>

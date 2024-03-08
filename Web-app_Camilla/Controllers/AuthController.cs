@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     [Route("/signin")]
     public IActionResult SignIn()
     {
+        if (_signInManager.IsSignedIn(User))
+            return RedirectToAction("Details", "Account");
         return View();
     }
 
@@ -28,7 +31,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Details", "Account");
+                return RedirectToAction("Index", "Account");
             }
         }
         ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
@@ -40,7 +43,9 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     [Route("/signup")]
     public IActionResult SignUp()
     {
-        ViewData["Title"] = "Sign Up";
+        if (_signInManager.IsSignedIn(User))
+            return RedirectToAction("Details", "Account");
+            
         return View();
     }
 
@@ -48,8 +53,6 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     [Route("/signup")]
     public async Task<ActionResult> SignUp(SignUpModel model)
     {
-        ViewData["Title"] = "Sign Up";
-
         if (ModelState.IsValid)
         {
             var exists = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
@@ -74,6 +77,13 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         }
         ViewData["ErrorMessage"] = "Email and password is required";
         return View(model);
+    }
 
+    [HttpGet]
+    [Route("/signout")]
+    public new async Task<IActionResult> SignOut() 
+    {
+        await _signInManager.SignOutAsync();
+        return View(); 
     }
 }
