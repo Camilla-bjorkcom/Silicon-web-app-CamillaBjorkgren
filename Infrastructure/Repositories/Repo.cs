@@ -21,103 +21,99 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public virtual async Task<ResponseResult> CreateAsync(TEntity entity)
+        public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             try
             {
                 _context.Set<TEntity>().Add(entity);
-                await _context.SaveChangesAsync();
-                return ResponseFactory.Ok(entity);
+               await _context.SaveChangesAsync();
+                return entity;
             }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return null!;
+
         }
 
-        public virtual async Task<ResponseResult> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             try
             {
-                IEnumerable<TEntity> result = await _context.Set<TEntity>().ToListAsync();
-                return ResponseFactory.Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
-        }
-
-        public virtual async Task<ResponseResult> GetOneAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            try
-            {
-                var result = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-                if (result == null)
+                var entities = await _context.Set<TEntity>().ToListAsync();
+                if (entities.Count != 0)
                 {
-                    return ResponseFactory.NotFound();
+                    return entities;
                 }
-                return ResponseFactory.Ok(result);
             }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return null!;
         }
-   
-        public virtual async Task<ResponseResult> UpdateAsync(TEntity entity)
+
+        public virtual async Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            try
+            {
+                var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+                if (entity != null)
+                {
+                    return entity;
+                }
+            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return null!;
+        }
+
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             try
             {
                 var entityToUpdate = await _context.Set<TEntity>().FindAsync(entity);
                 if (entityToUpdate != null)
                 {
-                    _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+                    entityToUpdate = entity;
+                    _context.Set<TEntity>().Update(entityToUpdate);
                     await _context.SaveChangesAsync();
-                    return ResponseFactory.Ok(entity);
+
+                    return entityToUpdate;
                 }
-                return ResponseFactory.NotFound();
             }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return null!;
         }
 
-        public virtual async Task<ResponseResult> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
         {
             try
             {
-                var result = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-                if (result != null)
+                var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+                if (entity != null)
                 {
-                    _context.Set<TEntity>().Remove(result);
+
+                    _context.Set<TEntity>().Remove(entity);
                     await _context.SaveChangesAsync();
-                    return ResponseFactory.Ok("Successfully Removed");
+
+                    return true;
                 }
-                return ResponseFactory.NotFound();
             }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return false;
         }
 
-        public virtual async Task<ResponseResult> ExistsAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
         {
             try
             {
-                var result = await _context.Set<TEntity>().AnyAsync(predicate);
-                if (result)
-                {
-                    return ResponseFactory.Exists();
-                }
-                return ResponseFactory.NotFound();
+                var exisiting = await _context.Set<TEntity>().AnyAsync(predicate);
+
+                return exisiting;
             }
-            catch (Exception ex)
-            {
-                return ResponseFactory.Error(ex.Message);
-            }
+            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+            return false;
         }
     }
 }

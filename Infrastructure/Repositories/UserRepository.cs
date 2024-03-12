@@ -11,23 +11,22 @@ public class UserRepository(DataContext context) : Repo<UserEntity>(context)
 {
     private readonly DataContext _context = context;
 
-    public override async Task<ResponseResult> GetAllAsync()
+    public override async Task<IEnumerable<UserEntity>> GetAllAsync()
     {
         try
         {
             IEnumerable<UserEntity> result = await _context.Set<UserEntity>()
                 .Include(i => i.Address)
                 .ToListAsync();
-
-            return ResponseFactory.Ok(result);
+            return result;
         }
         catch (Exception ex)
         {
-            return ResponseFactory.Error(ex.Message);
+            return null!;
         }
     }
 
-    public override async Task<ResponseResult> GetOneAsync(Expression<Func<UserEntity, bool>> predicate)
+    public override async Task<UserEntity> GetOneAsync(Expression<Func<UserEntity, bool>> predicate)
     {
         try
         {
@@ -35,15 +34,12 @@ public class UserRepository(DataContext context) : Repo<UserEntity>(context)
                 .Include(i => i.Address)
                 .FirstOrDefaultAsync(predicate);
 
-            if (result == null)
-            {
-                return ResponseFactory.NotFound();
-            }
-            return ResponseFactory.Ok(result);
+
+            return result!;
         }
         catch (Exception ex)
         {
-            return ResponseFactory.Error(ex.Message);
+            return null!;
         }
     }
 }
