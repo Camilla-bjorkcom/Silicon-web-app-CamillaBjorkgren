@@ -67,6 +67,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
                 LastName = model.LastName,
                 Email = model.Email,
                 UserName = model.Email,
+                Created = DateTime.Now,
             };
            var result = await _userManager.CreateAsync(userEntity, model.Password); 
             if (result.Succeeded)

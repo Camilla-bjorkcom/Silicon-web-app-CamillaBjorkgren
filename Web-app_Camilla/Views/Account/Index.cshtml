@@ -18,8 +18,8 @@
             <div class="user-img">
                 <img src="~/images/@Model.ProfileView.ProfileImageUrl" alt="">
             </div>
-            <h6 class=@Model.ProfileView.FirstName @Model.ProfileView.LastName></h6>
-            <p class=@Model.ProfileView?.Email></p>
+            <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
+            <p class="email">@Model.ProfileView?.Email</p>
             <div class="btn-user">
                 <a asp-controller="Account" asp-action="Details"><button class="button btn-theme"><i class="fa-light fa-gear"></i> Account Details</button></a>
                 <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>

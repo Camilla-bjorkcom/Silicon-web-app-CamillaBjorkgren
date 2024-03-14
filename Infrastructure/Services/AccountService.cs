@@ -40,18 +40,12 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             if (result != null)
             {
                 user.AddressId = address.Id;
+                user.Modified = DateTime.Now;
                 var updating = await _userRepository.UpdateAsync(user);
                 if (updating != null)
                     return true;
                 return false;
             }
-
-
-            //      _userRepository.UpdateAsync(
-            //{
-            //    Email = customerRegistrationDto.Email,
-            //    CustomerId = customerEntity.Id,
-            //});
 
             return false;
         }
@@ -61,7 +55,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
     }
-    public async Task<bool> UpdateAddressAsync(AddressEntity address)
+    public async Task<bool> UpdateAddressAsync(AddressEntity address, UserEntity user)
     {
         try
         {
@@ -69,7 +63,10 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             if (exisiting != null)
             {
                 var result = await _addressRepository.UpdateAsync(address);
-                return true;
+                user.Modified = DateTime.Now;
+                var updating = await _userRepository.UpdateAsync(user);
+                if (updating != null) 
+                    return true;
             }
             return false;
         }

@@ -3,8 +3,6 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Web_app_Camilla.ViewModels;
 
 namespace Web_app_Camilla.Controllers;
@@ -22,9 +20,10 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             return RedirectToAction("SignIn", "Auth");
 
         var viewModel = new AccountDetailsViewModel();
+        viewModel.ProfileView ??= await PopulateProfileViewAsync();
         viewModel.BasicInfoForm ??= await PopulateBasicInfoFormAsync();
         viewModel.AddressInfoForm ??= await PopulateAddressInfoAsync();
-        viewModel.ProfileView ??= await PopulateProfileViewAsync();
+
 
 
         return View(viewModel);
@@ -47,6 +46,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                     user.UserName = viewModel.BasicInfoForm.Email;
                     user.Bio = viewModel.BasicInfoForm.Bio;
                     user.PhoneNumber = viewModel.BasicInfoForm.Phone;
+                    user.Modified = DateTime.Now;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (!result.Succeeded)
@@ -73,7 +73,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                         address.PostalCode = viewModel.AddressInfoForm.PostalCode!;
                         address.City = viewModel.AddressInfoForm.City!;
 
-                        var result = await _accountService.UpdateAddressAsync(address);
+                        var result = await _accountService.UpdateAddressAsync(address, user);
                         if (!result)
                         {
                             ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
