@@ -13,3 +13,6 @@ public class HomeController : Controller
     [Route("/error")]
     public IActionResult Error404(int statusCode) => View();
 }
+
+//Authorize courses-sida? 
+//https://youtu.be/OGjePJrqUa4?t=3678

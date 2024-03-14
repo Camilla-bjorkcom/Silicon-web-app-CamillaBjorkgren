@@ -17,7 +17,7 @@
             </div>
         }
 
-        <form method="post" asp-controller="Auth" asp-action="Signin" novalidate>
+        <form method="post" asp-controller="Auth" asp-action="Signin" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
 
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email</label>

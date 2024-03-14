@@ -1,5 +1,6 @@
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Helpers.Middlewares;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,18 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<AddressRepository>();
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    //webbläsaren kan inte komma åt cookien, minimerar risk för crossside-scripting
+    x.Cookie.HttpOnly = true;
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
+    x.LoginPath = "/signin";
+    x.LogoutPath = "/signout";
+    x.AccessDeniedPath = "/denied";
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    x.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 app.UseHsts();
@@ -24,10 +37,15 @@ app.UseStatusCodePagesWithReExecute("/error", "? statusCode ={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseUserSessionValidation();
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();
 
-//Use autentication https://youtu.be/bUdCONPJuFc?t=710
+
+//Gör en denied-sida? 
