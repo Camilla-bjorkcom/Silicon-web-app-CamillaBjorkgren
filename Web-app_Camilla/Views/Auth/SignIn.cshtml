@@ -9,6 +9,7 @@
             <h1>Welcome Back</h1>
             <p>Don't have an account yet? <a asp-controller="auth" asp-action="signup">Sign up here.</a></p>
         </div>
+
         @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
         {
             <div class="errormessage">
@@ -16,18 +17,18 @@
             </div>
         }
 
-        <form method="post" asp-controller="auth" asp-action="Signin" novalidate>
+        <form method="post" asp-controller="Auth" asp-action="Signin" novalidate>
 
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email</label>
-                <input asp-for="Email" type="email" class="form-control">
+                <input asp-for="Email" type="email" class="form-control" />
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Password</label>
-                <input asp-for="Password" type="password" class="form-control" id="userPassword" placeholder="******">
+                <input asp-for="Password" type="password" class="form-control" />
             </div>
             <div class="mb-3 form-check">
-                <input asp-for="RememberMe" type="checkbox" class="form-check-input">
+                <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
                 <label asp-for="RememberMe" class="form-check-label">Remember me</label>
             </div>
             <button type="submit" class="button btn-theme">Sign in</button>
