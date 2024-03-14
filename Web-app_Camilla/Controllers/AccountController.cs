@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web_app_Camilla.ViewModels;
 
 namespace Web_app_Camilla.Controllers;
+
 [Authorize]
 public class AccountController(SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager, AccountService accountService) : Controller
 {
@@ -24,10 +25,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         viewModel.BasicInfoForm ??= await PopulateBasicInfoFormAsync();
         viewModel.AddressInfoForm ??= await PopulateAddressInfoAsync();
 
-
-
         return View(viewModel);
-
     }
 
     [HttpPost]

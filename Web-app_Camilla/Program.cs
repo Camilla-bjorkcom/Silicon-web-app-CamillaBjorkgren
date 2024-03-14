@@ -20,10 +20,15 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.ConfigureApplicationCookie(x =>
 {
-    //webbläsaren kan inte komma åt, minimerar risk för crossside-scripting
+    //webbläsaren kan inte komma åt cookien, minimerar risk för crossside-scripting
     x.Cookie.HttpOnly = true;
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
     x.LoginPath = "/signin";
     x.LogoutPath = "/signout";
+    x.AccessDeniedPath = "/denied";
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    x.SlidingExpiration = true;
 });
 
 var app = builder.Build();
@@ -41,5 +46,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();
-//https://youtu.be/OGjePJrqUa4?t=1400
-//Use autentication https://youtu.be/bUdCONPJuFc?t=710
+
+
+//Gör en denied-sida? 
