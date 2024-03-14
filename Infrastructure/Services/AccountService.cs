@@ -24,26 +24,38 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
         return null!;
     }
 
-    public async Task<AddressEntity> GetAddressAsync(int id)
+    public async Task<AddressEntity> GetAddressAsync(string userId)
     {
-        var addressEntity = await _addressRepository.GetOneAsync(x => x.Id == id);
+        var addressEntity = await _addressRepository.GetOneAsync(x => x.UserId == userId);
         return addressEntity!;
-
-        //https://youtu.be/PKfSRf9VZrw?t=5365
     }
 
-    
 
-    public async Task<bool> CreateAddressAsync(AddressEntity address)
+
+    public async Task<bool> CreateAddressAsync(AddressEntity address, UserEntity user)
     {
         try
         {
             var result = await _addressRepository.CreateAsync(address);
             if (result != null)
-                return true;
+            {
+                user.AddressId = address.Id;
+                var updating = await _userRepository.UpdateAsync(user);
+                if (updating != null)
+                    return true;
+                return false;
+            }
+
+
+            //      _userRepository.UpdateAsync(
+            //{
+            //    Email = customerRegistrationDto.Email,
+            //    CustomerId = customerEntity.Id,
+            //});
+
             return false;
         }
-        
+
         catch (Exception ex)
         {
             return false;
@@ -53,7 +65,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
     {
         try
         {
-            var exisiting = await _addressRepository.GetOneAsync(x => x.Id == address.Id);
+            var exisiting = await _addressRepository.GetOneAsync(x => x.UserId == address.UserId);
             if (exisiting != null)
             {
                 var result = await _addressRepository.UpdateAsync(address);

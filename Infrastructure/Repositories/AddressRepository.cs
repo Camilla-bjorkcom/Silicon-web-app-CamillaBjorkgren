@@ -1,8 +1,6 @@
 ﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
-using Infrastructure.Migrations;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
@@ -16,7 +14,7 @@ public class AddressRepository(DataContext context) : Repo<AddressEntity>(contex
         try
         {
             IEnumerable<AddressEntity> result = await _context.Set<AddressEntity>()
-                .Include(i => i.Users)
+                .Include(i => i.User)
                 .ToListAsync();
             return result;
         }
@@ -31,7 +29,7 @@ public class AddressRepository(DataContext context) : Repo<AddressEntity>(contex
         try
         {
             var result = await _context.Set<AddressEntity>()
-                .Include(i => i.Users)
+                .Include(i => i.User)
                 .FirstOrDefaultAsync(predicate);
 
 

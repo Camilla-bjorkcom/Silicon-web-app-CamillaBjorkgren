@@ -69,11 +69,13 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                var entityToUpdate = await _context.Set<TEntity>().FindAsync(entity);
+                var entityToUpdate = await _context.Set<TEntity>().FindAsync(GetKeyValues(entity));
                 if (entityToUpdate != null)
                 {
-                    entityToUpdate = entity;
-                    _context.Set<TEntity>().Update(entityToUpdate);
+                    _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+
+                    //entityToUpdate = entity;
+                    //_context.Set<TEntity>().Update(entityToUpdate);
                     await _context.SaveChangesAsync();
 
                     return entityToUpdate;
@@ -114,6 +116,17 @@ namespace Infrastructure.Repositories
             catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
             return false;
+        }
+
+        private object[] GetKeyValues(TEntity entity)
+        {
+            var keyProperties = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties;
+            var keyValues = new object[keyProperties.Count];
+            for (var i = 0; i < keyProperties.Count; i++)
+            {
+                keyValues[i] = entity.GetType().GetProperty(keyProperties[i].Name)?.GetValue(entity);
+            }
+            return keyValues;
         }
     }
 }
