@@ -1,5 +1,6 @@
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Helpers.Middlewares;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ app.UseStatusCodePagesWithReExecute("/error", "? statusCode ={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseUserSessionValidation();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
