@@ -14,10 +14,6 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
 }).AddEntityFrameworkStores<DataContext>();
-
-builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<AddressRepository>();
 builder.Services.ConfigureApplicationCookie(x =>
 {
     //webbläsaren kan inte komma åt cookien, minimerar risk för crossside-scripting
@@ -30,6 +26,23 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     x.SlidingExpiration = true;
 });
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "1890598498064693";
+    x.AppSecret = "6dd553045023489c06894a3855f1c50a";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
+});
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "396448238264-ki05vobsns45a7rif0kl4fe2aqpqqp9c.apps.googleusercontent.com";
+    x.ClientSecret = "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";
+});
+
+builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<AddressRepository>();
+
 
 var app = builder.Build();
 app.UseHsts();
