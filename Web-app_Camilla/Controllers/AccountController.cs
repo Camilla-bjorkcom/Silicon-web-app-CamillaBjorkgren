@@ -161,30 +161,16 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         return new AddressInfoFormViewModel();
     }
 
-    private async Task<AccountDetailsViewModel> PopulateAccountDetailsViewModelAsync()
+    [HttpGet]
+   public IActionResult AccountSecurity()
     {
-        var user = await _userManager.GetUserAsync(User);
-        if (user != null)
-        {
-            var viewModel = new AccountDetailsViewModel
-            {
-                BasicInfoForm = new BasicInfoFormViewModel
-                {
+        return View();
+    }
 
-                },
-                AddressInfoForm = new AddressInfoFormViewModel
-                {
-
-                },
-                ProfileView = new ProfileViewModel
-                {
-                    
-                },
-            };
-            return viewModel;
-        }
-        return new AccountDetailsViewModel() { BasicInfoForm = new BasicInfoFormViewModel { }, AddressInfoForm = new AddressInfoFormViewModel { }, ProfileView = new ProfileViewModel { } };
-
+    [HttpPost]
+    public IActionResult AccountSecurity()
+    {
+        return View();
     }
 }
 
