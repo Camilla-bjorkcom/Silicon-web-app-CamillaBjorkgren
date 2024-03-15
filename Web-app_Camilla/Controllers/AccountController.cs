@@ -3,8 +3,6 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Runtime.CompilerServices;
 using Web_app_Camilla.ViewModels;
 
 namespace Web_app_Camilla.Controllers;
