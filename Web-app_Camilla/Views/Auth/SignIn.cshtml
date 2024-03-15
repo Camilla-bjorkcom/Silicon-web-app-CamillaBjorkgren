@@ -33,6 +33,15 @@
             </div>
             <button type="submit" class="button btn-theme">Sign in</button>
             <div class="form-text"><a asp-controller="account" asp-action="forgot">Forgot your password?</a></div>
+
+            <div class="external-providers">
+                <h6>Or sign in with your social account</h6>
+                <div class="providers">
+                    <a class="btn-gray" asp-action="Google" asp-controller="Auth"><i class="fa-brands fa-google"></i>Google</a>
+                    <a class="btn-gray" asp-action="Facebook" asp-controller="Auth"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                </div>
+            </div>
+
         </form>
     </div>
 </section>

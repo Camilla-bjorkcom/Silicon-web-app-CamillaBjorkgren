@@ -10,6 +10,7 @@ public class UserEntity : IdentityUser
     [ProtectedPersonalData]
     public string LastName { get; set; } = null!;
 
+    public bool IsExternalAccount { get; set; } = false;
 
     //Behöver inte fylla i vid create
     public string? Bio { get; set; }

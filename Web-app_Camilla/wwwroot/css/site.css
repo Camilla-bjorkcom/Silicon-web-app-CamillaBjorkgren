@@ -992,6 +992,18 @@ footer .container .social-media {
 .sign-in .container form .form-text {
   text-align: center;
 }
+.sign-in .container form .external-providers {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in .container form .external-providers .providers {
+  gap: 15px;
+  display: flex;
+}
 
 /*https://youtu.be/IttJNH0vLJs?t=3113*/
 .sign-up {

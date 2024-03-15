@@ -1,5 +1,4 @@
-﻿
-@model AccountDetailsViewModel 
+﻿@model AccountDetailsViewModel 
 @{
     ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
 }
@@ -34,22 +33,47 @@
                     <div class="first-name">
                         <label asp-for="BasicInfoForm.FirstName" class="form-label">First name</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control">
-                            <span asp-validation-for="BasicInfoForm.FirstName"></span>
+                            @if(Model.BasicInfoForm.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" disabled/>
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" hidden/>
+                                <input asp-for="BasicInfoForm.IsExternalAccount" type="text" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" />
+                                <span asp-validation-for="BasicInfoForm.FirstName"></span>
+                            }
                         </div>
                     </div>
                     <div class="last-name">
                         <label asp-for="BasicInfoForm.LastName" class="form-label">Last name</label>
-                        <input asp-for="BasicInfoForm.LastName" type="text" class="form-control">
-                        <span asp-validation-for="BasicInfoForm.LastName"></span>
+                        @if (Model.BasicInfoForm.IsExternalAccount)
+                        {
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" disabled />
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" hidden />
+                        }
+                        else
+                        {
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" />
+                            <span asp-validation-for="BasicInfoForm.LastName"></span>
+                        }
                     </div>
                 </div>
                 <div class="contact-info">
                     <div class="email">
                         <label asp-for="BasicInfoForm.Email" class="form-label">Email address</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfoForm.Email" type="text" class="form-control" >
-                            <span asp-validation-for="BasicInfoForm.Email"></span>
+                            @if (Model.BasicInfoForm.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" disabled />
+                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" />
+                                <span asp-validation-for="BasicInfoForm.Email"></span>
+                            }                       
                         </div>
                     </div>
                     <div class="phone">

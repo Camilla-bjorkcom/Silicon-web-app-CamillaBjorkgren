@@ -41,6 +41,19 @@
             .form-text {
                 text-align: center;
             }
+
+            .external-providers {
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                .providers {
+                    gap: 15px;
+                    display: flex; 
+                }
+            }
         }
     }
 }
