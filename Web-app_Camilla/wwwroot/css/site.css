@@ -265,6 +265,42 @@ a:hover {
   color: #FFFFFF;
 }
 
+.btn {
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border: none;
+}
+.btn.active {
+  background: #6366F1;
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-red {
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+}
+.btn-red:hover {
+  text-decoration: none;
+  background: #565973;
+  color: #FFFFFF;
+}
+
 .btn-theme-s {
   border-radius: 6px;
   text-align: center;
@@ -387,25 +423,6 @@ a:hover {
   text-decoration: none;
   background: #565973;
   color: #FFFFFF;
-}
-
-.btn-mobile {
-  border-radius: 6px;
-  text-align: center;
-  font-size: 14px;
-  padding: 8px 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  color: #33354D;
-  border: none;
-  font-size: 1.7rem;
-}
-.btn-mobile:hover {
-  text-decoration: none;
-  color: #33354D;
 }
 
 form .form-check {
@@ -1222,4 +1239,121 @@ footer .container .social-media {
 
 .errorpage .container .content img {
   width: 50%;
+}
+
+#account-security {
+  height: 100%;
+  width: 100%;
+}
+#account-security .container {
+  padding: 40px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "userinfo content";
+  gap: 1rem 5rem;
+}
+#account-security .container h6 {
+  color: #6366F1;
+}
+#account-security .container .buttons {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+#account-security .container .user {
+  grid-area: userinfo;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  border-right: 1px solid #EFF2FC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+#account-security .container .user .btn-user {
+  width: 70%;
+  margin-top: 1rem;
+}
+#account-security .container .user .btn-user .button {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+}
+#account-security .container .user .btn-user .button i {
+  margin-right: 1rem;
+}
+#account-security .container .user .btn-user .signout {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+#account-security .container .user .user-img {
+  cursor: pointer;
+  width: 80px;
+  margin-bottom: 1rem;
+}
+#account-security .container .user .name {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 16px !important;
+}
+#account-security .container .user .email {
+  text-align: center;
+}
+#account-security .container .content {
+  grid-area: content;
+}
+#account-security .container .content .password-form {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+}
+#account-security .container .content .password-form input::placeholder {
+  color: #D4D7E5;
+}
+#account-security .container .content .password-form .title {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 32px !important;
+}
+#account-security .container .content .password-form .form-password .current-password {
+  width: 50%;
+}
+#account-security .container .content .password-form .form-password .create-new-password {
+  display: flex;
+  gap: 1rem;
+}
+#account-security .container .content .password-form .form-password .create-new-password .new-password {
+  width: 100%;
+}
+#account-security .container .content .password-form .form-password .create-new-password .confirm-password {
+  width: 100%;
+}
+#account-security .container .content .delete-account form .checkbox-group {
+  margin-bottom: 15px;
 }

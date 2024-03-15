@@ -1,0 +1,119 @@
+#account-security {
+    height: 100%;
+    width: 100%;
+
+    .container {
+        padding: 40px;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "userinfo content";
+        gap: 1rem 5rem;
+
+        h6 {
+            color: $theme;
+        }
+
+        .buttons {
+            display: flex;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .user {
+            grid-area: userinfo;
+            @include standard-text;
+            border-right: 1px solid $gray-200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            .btn-user {
+                width: 70%;
+                margin-top: 1rem;
+
+                .button {
+                    width: 100%;
+                    display: inline-block;
+                    text-align: left;
+                    padding: 10px;
+
+                    i {
+                        margin-right: 1rem;
+                    }
+                }
+
+                .signout {
+                    @include standard-heading;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: left;
+                    margin-top: 1rem;
+                    margin-left: 1rem;
+                }
+            }
+
+            .user-img {
+                cursor: pointer;
+                width: 80px;
+                margin-bottom: 1rem;
+            }
+
+            .name {
+                @include h6;
+            }
+
+            .email {
+                text-align: center;
+            }
+        }
+
+        .content {
+            grid-area: content;
+
+            .password-form {
+                @include standard-heading;
+
+
+                input::placeholder {
+                    color: $gray-400;
+                }
+
+                .title {
+                    @include h2;
+                }
+
+
+                .form-password {
+                    .current-password {
+                        width: 50%;
+                    }
+
+                    .create-new-password {
+                        display: flex;
+                        gap: 1rem;
+
+                        .new-password {
+                            width: 100%;
+                        }
+
+                        .confirm-password {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .delete-account {
+                form {
+                    .checkbox-group {
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
