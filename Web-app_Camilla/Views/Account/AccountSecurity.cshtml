@@ -1,0 +1,64 @@
+﻿<section id="account-security">
+    <div class="container">
+        <div class="user">
+            <div class="user-img">
+                <img src="images/profile-image.svg" alt="profile image">
+            </div>
+            <h6 class="name">John Doe</h6>
+            <p class="email">john.doe@domain.com</p>
+            <div class="btn-user">
+                <a href=""><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
+                <a href=""><button class="button btn active"><i class="fa-light fa-lock"></i> Security</button></a>
+                <a href=""><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
+                <a href="#" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="password-form">
+                <h2 class="title">Security</h2>
+                <h6>Password</h6>
+                <form class="form-password" method="post" asp-controller="Account" asp-action="Index">
+
+                    <div class="current-password">
+                        <label for="currentPassword" class="form-label">Current password</label>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="firstName" placeholder="****">
+                        </div>
+                    </div>
+
+                    <div class="create-new-password">
+                        <div class="new-password">
+                            <label for="newPassword" class="form-label">New password</label>
+                            <input type="password" class="form-control" id="firstName" placeholder="****">
+                        </div>
+
+                        <div class="confirm-password">
+                            <label for="confirm-password" class="form-label">Confirm new password</label>
+                            <input type="password" class="form-control" id="lastName" placeholder="****">
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <a href=""><button class="button btn-gray">Cancel</button></a>
+                        <a href=""><button class="button btn-theme">Change Password</button></a>
+                    </div>
+
+                </form>
+                <hr>
+            </div>
+
+            <div class="delete-account">
+                <h6>Delete account</h6>
+                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                <form>
+                    <div class="checkbox-group">
+                        <input type="checkbox" />
+                        <label>Yes, I want to delete my account.</label>
+                    </div>
+                    <a href=""><button type="submit" class="button btn-red">Delete</button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
