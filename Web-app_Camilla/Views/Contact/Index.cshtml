@@ -1,0 +1,66 @@
+﻿@model ContactViewModel
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<section id="contact">
+    <div class="container">
+        <div class="left-content">
+            <div class="pagnation">
+                <a><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a>Contact</a>
+            </div>
+            <h1 class="title">Contact Us</h1>
+            <div class="contactus">
+                <i class="fa-sharp fa-light fa-envelope"></i>
+                <h3>Email us</h3>
+                <p>Please feel free to drop us a line. We will respond as soon as possible.</p>
+                <div class ="message">Leave a message<i class="fa-sharp fa-light fa-arrow-right"></i></div>
+            </div>
+            <div class="contactus">
+                <i class="fa-light fa-user-plus"></i>
+                <h3>Careers</h3>
+                <p>Sit ac ipsum leo lorem magna nunc mattis maecenas non vestibulum.</p>
+                <div class="message">Send an application<i class="fa-sharp fa-light fa-arrow-right"></i></div>
+            </div>
+        </div>
+        <div class="right-content">
+            <form method="post" asp-controller="Contact" asp-action="Contactform">
+                <h2>Get In Contact With Us</h2>
+                <div class="mb-3">
+                    <label asp-for="ContactForm.FullName" class="form-label">Full name</label>
+                    <input asp-for="ContactForm.FullName" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactForm.Email" class="form-label">Email address</label>
+                    <input asp-for="ContactForm.Email" type="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactForm.ServiceOption" class="form-label">Service (optional)</label>
+                    <select asp-for="ContactForm.ServiceOption" list="browsers" class="form-select" id="floatingSelect" aria-label="Choose the service you are interested in">
+                        <option selected disabled>Choose the service you are interested in</option>
+                        <option value="Edge">Edge</option>
+                        <option value="Firefox">Firefox</option>
+                        <option value="Chrome">
+                            Chrome
+                        </option>
+                        <option value="Opera">
+                            Opera
+                        </option>
+                        <option value="Safari">
+                            Safari
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactForm.Message" class="form-label">Message</label>
+                    <textarea asp-for="ContactForm.Message">Enter your message here...</textarea>
+                </div>
+                <a><button type="submit" class="btn-theme">Send Contact Request</button></a>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3852.2156679096943!2d14.914008248662764!3d59.23874336473407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssv!2sse!4v1710689690438!5m2!1ssv!2sse" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

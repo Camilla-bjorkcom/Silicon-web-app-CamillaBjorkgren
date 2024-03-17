@@ -504,6 +504,77 @@ header .container .btn-mobile {
   }
 }
 
+.background-color {
+  background-color: #F3F6FF;
+}
+.background-color .container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "logo mobile";
+  gap: 40px;
+}
+@media (min-width: 992px) {
+  .background-color .container {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: "logo switch mobile";
+  }
+}
+@media (min-width: 1200px) {
+  .background-color .container {
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: "logo menu switch buttons";
+  }
+}
+.background-color .container .hide {
+  display: none;
+}
+.background-color .container #logo {
+  grid-area: logo;
+  width: fit-content;
+}
+.background-color .container #menu {
+  grid-area: menu;
+  display: none;
+}
+@media (min-width: 1200px) {
+  .background-color .container #menu {
+    display: block;
+  }
+}
+.background-color .container #menu nav {
+  display: flex;
+  gap: 15px;
+}
+.background-color .container .btn-switch {
+  grid-area: switch;
+  display: none;
+}
+@media (min-width: 992px) {
+  .background-color .container .btn-switch {
+    display: block;
+  }
+}
+.background-color .container .account-buttons {
+  grid-area: buttons;
+  display: none;
+  gap: 15px;
+}
+@media (min-width: 1200px) {
+  .background-color .container .account-buttons {
+    display: flex;
+  }
+}
+.background-color .container .btn-mobile {
+  grid-area: mobile;
+  display: block;
+}
+@media (min-width: 1200px) {
+  .background-color .container .btn-mobile {
+    display: none;
+  }
+}
+
 footer {
   padding: 50px 0 30px 0;
   line-height: 160%;
@@ -1356,4 +1427,151 @@ footer .container .social-media {
 }
 #account-security .container .content .delete-account form .checkbox-group {
   margin-bottom: 15px;
+}
+
+#contact {
+  background-color: #F3F6FF;
+}
+#contact .container {
+  display: flex;
+  column-gap: 10rem;
+}
+#contact .container .left-content {
+  /* .careers {
+          display: grid;
+          grid-template-columns: min-content auto;
+          grid-template-areas: "icon title" ". text" ". link";
+          align-items: center;
+          column-gap: 1.5rem;
+          padding: 20px;
+
+          i {
+              grid-area: icon;
+              background-color: white;
+              padding: 15px;
+              border-radius: 25px;
+          }
+
+          .message {
+              @include standard-heading;
+              color: $theme;
+
+              i {
+                  background-color: transparent;
+              }
+          }
+
+          h3 {
+              grid-area: title;
+          }
+
+          p {
+              width: 60%;
+              grid-area: text;
+          }
+
+          a {
+              grid-area: link;
+          }
+      }
+  }*/
+}
+#contact .container .left-content .pagnation {
+  display: inline-block;
+  margin-top: 25px;
+}
+#contact .container .left-content .pagnation a {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+#contact .container .left-content .pagnation a i {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+#contact .container .left-content .title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#contact .container .left-content h3 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 20px !important;
+}
+#contact .container .left-content .contactus {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-areas: "icon title" ". text" ". link";
+  align-items: center;
+  column-gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 20px;
+}
+#contact .container .left-content .contactus i {
+  grid-area: icon;
+  background-color: white;
+  padding: 15px;
+  border-radius: 25px;
+}
+#contact .container .left-content .contactus .message {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  color: #6366F1;
+  grid-area: link;
+}
+#contact .container .left-content .contactus .message i {
+  background-color: transparent;
+}
+#contact .container .left-content .contactus h3 {
+  grid-area: title;
+}
+#contact .container .left-content .contactus p {
+  grid-area: text;
+  width: 60%;
+}
+#contact .container .right-content form {
+  background-color: white;
+  padding: 55px;
+  position: absolute;
+  top: 25%;
+  border-radius: solid 0, 5px black;
+  font-weight: 700;
+  color: black;
+}
+#contact .container .right-content form h2 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 28px !important;
+}
+#contact .container .right-content form select {
+  color: #9a9999;
+}
+#contact .container .right-content form textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ebeaea;
+  border-radius: 10px;
+  resize: none;
+  height: 150px;
+  color: #9a9999;
+}
+
+.map {
+  max-height: 100%;
+}
+.map iframe {
+  width: 100%;
+  max-height: max-content;
 }

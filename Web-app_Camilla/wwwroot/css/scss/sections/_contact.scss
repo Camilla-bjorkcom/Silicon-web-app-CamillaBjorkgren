@@ -1,0 +1,149 @@
+#contact {
+    background-color: $gray-100;
+
+    .container {
+        display: flex;
+        column-gap: 10rem;
+
+        .left-content {
+            .pagnation {
+                display: inline-block;
+                margin-top: 25px;
+
+                a {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+
+                    i {
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+
+            .title {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            h3 {
+                @include h5;
+            }
+
+            .contactus {
+                display: grid;
+                grid-template-columns: min-content auto;
+                grid-template-areas:
+                    'icon title' '. text' '. link';
+                align-items: center;
+                column-gap: 1.5rem;
+                margin-bottom: 2rem;
+                padding: 20px;
+
+                i {
+                    grid-area: icon;
+                    background-color: white;
+                    padding: 15px;
+                    border-radius: 25px;
+                }
+
+                .message {
+                    @include standard-heading;
+                    color: $theme;
+                    grid-area: link;
+
+                    i {
+                        background-color: transparent;
+                    }
+                }
+
+                h3 {
+                    grid-area: title;
+                }
+
+                p {
+                    grid-area: text;
+                    width: 60%;
+                }
+            }
+            /* .careers {
+                display: grid;
+                grid-template-columns: min-content auto;
+                grid-template-areas: "icon title" ". text" ". link";
+                align-items: center;
+                column-gap: 1.5rem;
+                padding: 20px;
+
+                i {
+                    grid-area: icon;
+                    background-color: white;
+                    padding: 15px;
+                    border-radius: 25px;
+                }
+
+                .message {
+                    @include standard-heading;
+                    color: $theme;
+
+                    i {
+                        background-color: transparent;
+                    }
+                }
+
+                h3 {
+                    grid-area: title;
+                }
+
+                p {
+                    width: 60%;
+                    grid-area: text;
+                }
+
+                a {
+                    grid-area: link;
+                }
+            }
+        }*/
+        }
+
+        .right-content {
+            form {
+                background-color: white;
+                padding: 55px;
+                position: absolute;
+                top: 25%;
+                border-radius: solid 0, 5px black;
+                font-weight: 700;
+                color: black;
+
+                h2 {
+                    @include h3;
+                }
+
+                select {
+                    color: #9a9999;
+                }
+
+                textarea {
+                    display: block;
+                    width: 100%;
+                    box-sizing: border-box;
+                    border: 2px solid #ebeaea;
+                    border-radius: 10px;
+                    resize: none;
+                    height: 150px;
+                    color: #9a9999;
+                }
+            }
+        }
+    }
+}
+
+.map {
+    max-height: 100%;
+
+    iframe {
+        width: 100%;
+        max-height: max-content;
+    }
+}
