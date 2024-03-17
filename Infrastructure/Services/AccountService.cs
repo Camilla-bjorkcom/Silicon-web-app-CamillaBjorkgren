@@ -65,11 +65,59 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                 var result = await _addressRepository.UpdateAsync(address);
                 user.Modified = DateTime.Now;
                 var updating = await _userRepository.UpdateAsync(user);
-                if (updating != null) 
+                if (updating != null)
                     return true;
             }
             return false;
         }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+    public async Task<bool> UpdatePasswordAsync(UserEntity user, string newPassword)
+    {
+        try
+        {
+            var exisitingUser = await _userManager.FindByEmailAsync(user.Email!);
+            if (exisitingUser != null)
+            {
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, newPassword);
+                var result = await _userRepository.UpdateAsync(user);
+                if (result != null)
+                {
+                    user.Modified = DateTime.Now;
+                    return true;
+                }             
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> DeleteUserAsync(UserEntity user, bool CheckDelete)
+    {
+        try
+        {
+            var existingUser = await _userManager.FindByEmailAsync(user.Email!);
+            if (existingUser != null)
+            {
+                if (CheckDelete)
+                {
+                    var result = await _userManager.DeleteAsync(existingUser);
+                    if (result == IdentityResult.Success)
+                    {
+                        return true;
+                    }
+                }
+              
+            }
+            return false;
+        }
+
         catch (Exception ex)
         {
             return false;

@@ -3,6 +3,7 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Web_app_Camilla.ViewModels;
 
 namespace Web_app_Camilla.Controllers;
@@ -159,16 +160,77 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         return new AddressInfoFormViewModel();
     }
 
+  
     [HttpGet]
-   public IActionResult AccountSecurity()
+   public async Task<IActionResult> AccountSecurity()
     {
-        return View();
+        if (!_signInManager.IsSignedIn(User))
+            return RedirectToAction("SignIn", "Auth");
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            var viewModel = new AccountSecurityViewModel
+            {
+                IsExternalAccount = user.IsExternalAccount
+            };
+            viewModel.ProfileView ??= await PopulateProfileViewAsync();
+            return View(viewModel);
+        }
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpPost]
-    public IActionResult AccountSecurity()
+    public async Task<IActionResult> AccountSecurity(AccountSecurityViewModel viewModel)
     {
-        return View();
+        if (viewModel.PasswordForm.CurrentPassword != null && viewModel.PasswordForm.NewPassword != null && viewModel.PasswordForm.ConfirmPassword != null)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var passwordResult = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash!, viewModel.PasswordForm.CurrentPassword);
+                if (passwordResult == PasswordVerificationResult.Success)
+                {
+                    var result = await _accountService.UpdatePasswordAsync(user, viewModel.PasswordForm.NewPassword);
+                    if (!result)
+                    {
+                        ModelState.AddModelError("ErrorPassword", "Failed to update password");
+                        ViewData["ErrorMessage"] = "Failed to update password";
+                    }
+                    viewModel.ProfileView ??= await PopulateProfileViewAsync();
+                    return View(viewModel);
+                }  
+            }
+        }
+        ModelState.AddModelError("ErrorPassword", "Password is not correct");
+        ViewData["ErrorMessage"] = "Password is not correct";
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAccount(AccountSecurityViewModel viewModel)
+    {
+        if (viewModel.DeleteAccount.CheckDeleteAccount)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var deleteUser = await _accountService.DeleteUserAsync(user, viewModel.DeleteAccount.CheckDeleteAccount);
+                if (deleteUser)
+                {
+                    return RedirectToAction("Deleted", "Auth");
+                }
+                ModelState.AddModelError("DeleteError", "Something went wrong trying to delete the account.");
+                ViewData["ErrorMessage"] = "Something went wrong trying to delete the account.";
+                viewModel.ProfileView ??= await PopulateProfileViewAsync();
+                return View(viewModel);
+            }
+           
+        }
+        ModelState.AddModelError("DeleteError", "You must check the box before deleting you account");
+        ViewData["ErrorMessage"] = "You must check the box before deleting you account.";
+        viewModel.ProfileView ??= await PopulateProfileViewAsync();
+        return View(viewModel);
     }
 }
 

@@ -1,48 +1,95 @@
-﻿<section id="account-security">
+﻿@model AccountSecurityViewModel
+@{
+    ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
+}
+
+<section id="account-security">
     <div class="container">
         <div class="user">
             <div class="user-img">
-                <img src="images/profile-image.svg" alt="profile image">
+                <img src="~/images/@Model.ProfileView.ProfileImageUrl" alt="">
             </div>
-            <h6 class="name">John Doe</h6>
-            <p class="email">john.doe@domain.com</p>
+            <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
+            <p class="email">@Model.ProfileView?.Email</p>
             <div class="btn-user">
-                <a href=""><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
-                <a href=""><button class="button btn active"><i class="fa-light fa-lock"></i> Security</button></a>
-                <a href=""><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
-                <a href="#" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
+                <a asp-action="Index" asp-controller="Account"><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
+                <a asp-action="AccountSecurity"><button class="button btn active"><i class="fa-light fa-lock"></i> Security</button></a>
+                <a asp-action="" asp-controller="SavedItems"><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
+                <a asp-action="SignOut" asp-controller="Auth" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
             </div>
         </div>
 
         <div class="content">
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+                <div class="errormessage">
+                    @ViewData["ErrorMessage"]
+                </div>
+            }
             <div class="password-form">
                 <h2 class="title">Security</h2>
                 <h6>Password</h6>
-                <form class="form-password" method="post" asp-controller="Account" asp-action="Index">
+                <form class="form-password" method="post" asp-action="AccountSecurity" asp-controller="Account">
 
                     <div class="current-password">
                         <label for="currentPassword" class="form-label">Current password</label>
                         <div class="mb-3">
-                            <input type="password" class="form-control" id="firstName" placeholder="****">
+                            @if (Model.IsExternalAccount)
+                            {
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" disabled >
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" />
+                            }      
                         </div>
                     </div>
 
                     <div class="create-new-password">
                         <div class="new-password">
                             <label for="newPassword" class="form-label">New password</label>
-                            <input type="password" class="form-control" id="firstName" placeholder="****">
+                            @if (Model.IsExternalAccount)
+                            {
+                                <input asp-for="PasswordForm.NewPassword" type="password" class="form-control" disabled>
+                                <input asp-for="PasswordForm.NewPassword" type="password" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="PasswordForm.NewPassword" type="password" class="form-control" />
+                                <span asp-validation-for="PasswordForm.NewPassword"></span>
+                            }
                         </div>
 
                         <div class="confirm-password">
                             <label for="confirm-password" class="form-label">Confirm new password</label>
-                            <input type="password" class="form-control" id="lastName" placeholder="****">
+                            @if (Model.IsExternalAccount)
+                            {
+                                <input asp-for="PasswordForm.ConfirmPassword" type="password" class="form-control" disabled>
+                                <input asp-for="PasswordForm.ConfirmPassword" type="password" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="PasswordForm.ConfirmPassword" type="password" class="form-control" />
+                                <span asp-validation-for="PasswordForm.ConfirmPassword"></span>
+                            }
                         </div>
                     </div>
-
-                    <div class="buttons">
-                        <a href=""><button class="button btn-gray">Cancel</button></a>
-                        <a href=""><button class="button btn-theme">Change Password</button></a>
+                    @if (Model.IsExternalAccount)
+                    {
+                        <div class="buttons">
+                        <a><button type="reset" class="button btn-gray">Cancel</button></a>
+                        <a><button type="submit" class="button btn-theme">Change Password</button></a>
                     </div>
+                    }
+                    else
+                    {
+                        <div class="buttons">
+                            <a><button type="reset" class="button btn-gray">Cancel</button></a>
+                            <a><button type="submit" class="button btn-theme">Change Password</button></a>
+                        </div>
+                    }
+                    
 
                 </form>
                 <hr>
@@ -51,12 +98,12 @@
             <div class="delete-account">
                 <h6>Delete account</h6>
                 <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <form>
+                <form method="post" asp-action="DeleteAccount" asp-controller="Account">
                     <div class="checkbox-group">
-                        <input type="checkbox" />
+                        <input asp-for="DeleteAccount.CheckDeleteAccount" type="checkbox"  />
                         <label>Yes, I want to delete my account.</label>
                     </div>
-                    <a href=""><button type="submit" class="button btn-red">Delete</button></a>
+                    <a><button type="submit" class="button btn-red">Delete</button></a>
                 </form>
             </div>
         </div>
