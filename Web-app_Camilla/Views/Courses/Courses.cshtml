@@ -1,0 +1,9 @@
+﻿@model IEnumerable<CourseEntity>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+@foreach(var course in Model)
+{
+    <div>@course.Title</div>
+}

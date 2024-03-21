@@ -1,0 +1,14 @@
+﻿@model SubscriberViewModel
+
+@{
+    ViewData["Title"] = "Subscribe";
+}
+@if (Model.IsSubscribed)
+{
+    <div>You are subscribed</div>
+}
+
+ <form asp-action="Subscribe" asp-controller="Subscribe" method="post">
+     <input asp-for="@Model.Email"/>
+     <button type="submit">Subscribe</button>
+ </form>
