@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
-public class AddressRepository(DataContext context) : Repo<AddressEntity>(context)
+public class AddressRepository(DataContext context) : Repo<AddressEntity, DataContext>(context)
 {
     private readonly DataContext _context = context;
 

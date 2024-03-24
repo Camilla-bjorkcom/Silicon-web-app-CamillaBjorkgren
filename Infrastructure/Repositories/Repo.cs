@@ -1,132 +1,124 @@
-﻿using Infrastructure.Contexts;
-using Infrastructure.Factories;
-using Infrastructure.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Infrastructure.Repositories
+
+namespace Infrastructure.Repositories;
+
+public abstract class Repo<TEntity, TContext> where TEntity : class where TContext : DbContext
 {
-    public abstract class Repo<TEntity> where TEntity : class
+    private readonly TContext _context;
+
+    protected Repo(TContext context)
     {
-        private readonly DataContext _context;
+        _context = context;
+    }
 
-        protected Repo(DataContext context)
+    public virtual async Task<TEntity> CreateAsync(TEntity entity)
+    {
+        try
         {
-            _context = context;
+            _context.Set<TEntity>().Add(entity);
+           await _context.SaveChangesAsync();
+            return entity;
         }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
-        public virtual async Task<TEntity> CreateAsync(TEntity entity)
+        return null!;
+
+    }
+
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+    {
+        try
         {
-            try
+            var entities = await _context.Set<TEntity>().ToListAsync();
+            if (entities.Count != 0)
             {
-                _context.Set<TEntity>().Add(entity);
-               await _context.SaveChangesAsync();
+                return entities;
+            }
+        }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+        return null!;
+    }
+
+    public virtual async Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        try
+        {
+            var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+            if (entity != null)
+            {
                 return entity;
             }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return null!;
-
         }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        return null!;
+    }
+
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+    {
+        try
         {
-            try
+            var entityToUpdate = await _context.Set<TEntity>().FindAsync(GetKeyValues(entity));
+            if (entityToUpdate != null)
             {
-                var entities = await _context.Set<TEntity>().ToListAsync();
-                if (entities.Count != 0)
-                {
-                    return entities;
-                }
+                _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+
+                //entityToUpdate = entity;
+                //_context.Set<TEntity>().Update(entityToUpdate);
+                await _context.SaveChangesAsync();
+
+                return entityToUpdate;
             }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return null!;
         }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
-        public virtual async Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate)
+        return null!;
+    }
+
+    public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        try
         {
-            try
+            var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+            if (entity != null)
             {
-                var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-                if (entity != null)
-                {
-                    return entity;
-                }
+
+                _context.Set<TEntity>().Remove(entity);
+                await _context.SaveChangesAsync();
+
+                return true;
             }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return null!;
         }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
-        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+        return false;
+    }
+
+    public virtual async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
+    {
+        try
         {
-            try
-            {
-                var entityToUpdate = await _context.Set<TEntity>().FindAsync(GetKeyValues(entity));
-                if (entityToUpdate != null)
-                {
-                    _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+            var exisiting = await _context.Set<TEntity>().AnyAsync(predicate);
 
-                    //entityToUpdate = entity;
-                    //_context.Set<TEntity>().Update(entityToUpdate);
-                    await _context.SaveChangesAsync();
-
-                    return entityToUpdate;
-                }
-            }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return null!;
+            return exisiting;
         }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
 
-        public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        return false;
+    }
+
+    private object[] GetKeyValues(TEntity entity)
+    {
+        var keyProperties = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties;
+        var keyValues = new object[keyProperties.Count];
+        for (var i = 0; i < keyProperties.Count; i++)
         {
-            try
-            {
-                var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-                if (entity != null)
-                {
-
-                    _context.Set<TEntity>().Remove(entity);
-                    await _context.SaveChangesAsync();
-
-                    return true;
-                }
-            }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return false;
+            keyValues[i] = entity.GetType().GetProperty(keyProperties[i].Name)?.GetValue(entity);
         }
-
-        public virtual async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
-        {
-            try
-            {
-                var exisiting = await _context.Set<TEntity>().AnyAsync(predicate);
-
-                return exisiting;
-            }
-            catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
-
-            return false;
-        }
-
-        private object[] GetKeyValues(TEntity entity)
-        {
-            var keyProperties = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties;
-            var keyValues = new object[keyProperties.Count];
-            for (var i = 0; i < keyProperties.Count; i++)
-            {
-                keyValues[i] = entity.GetType().GetProperty(keyProperties[i].Name)?.GetValue(entity);
-            }
-            return keyValues;
-        }
+        return keyValues;
     }
 }

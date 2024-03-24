@@ -6,21 +6,21 @@
         padding: 40px;
         height: 100%;
         width: 100%;
-       display: grid;
-       grid-template-columns: 1fr 2fr;
-       grid-template-areas: "userinfo detailsform";
-       gap: 1rem 5rem;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "userinfo detailsform";
+        gap: 1rem 5rem;
 
-       h6 {
-        color: $theme;
-    }
+        h6 {
+            color: $theme;
+        }
 
-    .buttons {
-        display: flex;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        gap: 1rem;
-    }
+        .buttons {
+            display: flex;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
 
         .user {
             grid-area: userinfo;
@@ -32,11 +32,18 @@
             width: 100%;
 
             .btn-user {
-                width: 100%;
+                width: 70%;
                 margin-top: 1rem;
 
                 .button {
                     width: 100%;
+                    display: inline-block;
+                    text-align: left;
+                    padding: 10px;
+
+                    i {
+                        margin-right: 1rem;
+                    }
                 }
 
                 .signout {
@@ -47,7 +54,6 @@
                     margin-top: 1rem;
                     margin-left: 1rem;
                 }
-
             }
 
             .user-img {
@@ -67,8 +73,8 @@
 
         .details-form {
             grid-area: detailsform;
-            @include standard-heading;    
-            padding: 30px;  
+            @include standard-heading;
+            padding: 30px;
 
             input::placeholder {
                 color: $gray-400;
@@ -85,11 +91,11 @@
 
 
             .form-basicinfo {
-    
+
                 .name {
                     display: flex;
                     gap: 1rem;
-                    
+
                     .first-name {
                         width: 100%;
                     }
@@ -98,6 +104,7 @@
                         width: 100%;
                     }
                 }
+
                 .contact-info {
                     display: flex;
                     gap: 1rem;
@@ -110,38 +117,38 @@
                         width: 100%;
                     }
                 }
+
                 textarea {
                     resize: none;
                     height: 150px;
                 }
+
                 ::placeholder {
                     color: $gray-400;
                 }
-                
             }
         }
 
         .address {
             margin-top: 50px;
+
             .form-address {
                 width: 100%;
-     
-    
+
+
                 .postalcode-city {
                     display: flex;
-                        gap: 1rem;
-    
-                        .postalcode {
-                            width: 100%;
-                        }
-    
-                        .city {
-                            width: 100%;
-                        }
-    
+                    gap: 1rem;
+
+                    .postalcode {
+                        width: 100%;
+                    }
+
+                    .city {
+                        width: 100%;
+                    }
                 }
             }
         }
-        
     }
 }

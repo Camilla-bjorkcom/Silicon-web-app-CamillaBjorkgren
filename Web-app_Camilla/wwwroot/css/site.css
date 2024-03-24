@@ -983,47 +983,47 @@ footer .container .social-media {
   width: 50px;
   height: 42px;
 }
-.newsletter .container .sign-up-checkbox {
+.newsletter .container form .sign-up-checkbox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 3rem;
 }
 @media (min-width: 992px) {
-  .newsletter .container .sign-up-checkbox {
+  .newsletter .container form .sign-up-checkbox {
     width: 85%;
   }
 }
-.newsletter .container .sign-up-checkbox h6 {
+.newsletter .container form .sign-up-checkbox h6 {
   width: min-content;
 }
-.newsletter .container .sign-up-checkbox .grid {
+.newsletter .container form .sign-up-checkbox .grid {
   display: grid;
   gap: 0.5rem 6rem;
 }
 @media (min-width: 992px) {
-  .newsletter .container .sign-up-checkbox .grid {
+  .newsletter .container form .sign-up-checkbox .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-.newsletter .container .sign-up-checkbox .grid .checkbox {
+.newsletter .container form .sign-up-checkbox .grid .checkbox {
   gap: 5rem;
 }
-.newsletter .container .sign-up-checkbox .grid .checkbox input {
+.newsletter .container form .sign-up-checkbox .grid .checkbox input {
   accent-color: #6366F1;
 }
-.newsletter .container .sign-up {
+.newsletter .container form .sign-up {
   margin: 50px 0 0 0;
   display: flex;
   gap: 2rem 2rem;
   width: 85%;
 }
-.newsletter .container .sign-up input {
+.newsletter .container form .sign-up input {
   width: 85%;
   border-radius: 5px;
   border: 1px solid #D4D7E5;
 }
-.newsletter .container .terms {
+.newsletter .container form .terms {
   display: flex;
   line-height: 160%;
   font-weight: 400;
@@ -1107,12 +1107,13 @@ footer .container .social-media {
   align-content: center;
 }
 .sign-up .container .errormessage {
-  background: #EF4444;
+  background: #ff6b6b;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
   border-radius: 8px;
+  color: black;
 }
 .sign-up .container form {
   line-height: 160%;
@@ -1132,38 +1133,55 @@ footer .container .social-media {
 .sign-up .container form .name .name {
   display: flex;
 }
-.sign-up .container form span.field-validation-error {
-  display: inline;
+.sign-up .container form .mb-3 {
+  position: relative;
+}
+.sign-up .container form .mb-3 span.field-validation-error {
+  position: absolute;
+  top: 0;
+  right: 0;
   line-height: 160%;
   font-weight: 400;
   color: #565973;
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
   color: #EF4444;
-  text-align: right;
+  font-size: 9px;
 }
-.sign-up .container form input {
+.sign-up .container form .mb-3 input {
   padding: 1rem;
+  border-radius: 8px !important;
+  border: 1px solid #D4D7E5;
 }
-.sign-up .container form input.input-validation-errror {
-  border: 0.1rem solid #EF4444 !important;
+.sign-up .container form .mb-3 input.input-validation-error {
+  border: 2px solid #EF4444 !important;
   border-radius: 0.5rem !important;
   color: #EF4444;
 }
-.sign-up .container form input::placeholder {
+.sign-up .container form .mb-3 input::placeholder {
   color: #D4D7E5;
 }
-.sign-up .container form .form-check-label {
+.sign-up .container form .mb-3 .form-check {
+  display: flex;
+  justify-content: left;
+  align-content: center;
+  padding-left: 0;
+}
+.sign-up .container form .mb-3 .form-check .form-check-label {
   line-height: 160%;
   font-weight: 400;
   color: #565973;
   font-family: "Manrope", sans-serif;
+  margin-left: 10px;
+}
+.sign-up .container form .mb-3 .form-check .form-check-input {
+  margin: 0;
 }
 .sign-up .container form button {
   width: 100%;
 }
 
-/*https://youtu.be/IttJNH0vLJs?t=3113
+/*
     https://youtu.be/IttJNH0vLJs?t=6822
     https://youtu.be/DQ7nMT-fUek?t=3484
 */
@@ -1202,11 +1220,17 @@ footer .container .social-media {
   width: 100%;
 }
 .account-details .container .user .btn-user {
-  width: 100%;
+  width: 70%;
   margin-top: 1rem;
 }
 .account-details .container .user .btn-user .button {
   width: 100%;
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+}
+.account-details .container .user .btn-user .button i {
+  margin-right: 1rem;
 }
 .account-details .container .user .btn-user .signout {
   line-height: 160%;

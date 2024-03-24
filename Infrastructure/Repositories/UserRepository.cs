@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
-public class UserRepository(DataContext context) : Repo<UserEntity>(context)
+public class UserRepository(DataContext context) : Repo<UserEntity, DataContext>(context)
 {
     private readonly DataContext _context = context;
 

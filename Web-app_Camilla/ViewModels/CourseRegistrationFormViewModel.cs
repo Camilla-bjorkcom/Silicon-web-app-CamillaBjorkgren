@@ -9,7 +9,7 @@ public class CourseRegistrationFormViewModel
     public string Title { get; set; } = null!;
 
     [Display(Name = "ImageUrl")]
-    public string? imageURL { get; set; }
+    public string? ImageURL { get; set; }
 
     [Display(Name = "Is Bestseller")]
     public bool IsBestSeller { get; set; } = false;
@@ -21,13 +21,13 @@ public class CourseRegistrationFormViewModel
     public string? Creator { get; set; }
 
     [Display(Name = "Price")]
-    public string? Price { get; set; }
+    public decimal? Price { get; set; }
 
     [Display(Name = "Discount Price")]
-    public string? DiscountPrice { get; set; }
+    public decimal? DiscountPrice { get; set; }
 
     [Display(Name = "Hours")]
-    public string? EstimatedHours { get; set; }
+    public int? EstimatedHours { get; set; }
 
     [Display(Name = "Likes in procent (Like Parameter)")]
     public decimal? LikeParameter { get; set; }

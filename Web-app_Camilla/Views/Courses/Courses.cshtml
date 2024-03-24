@@ -1,9 +1,24 @@
-﻿@model IEnumerable<CourseEntity>
+﻿@model CourseIndexViewModel
 
 @{
     ViewData["Title"] = "Courses";
 }
-@foreach(var course in Model)
-{
-    <div>@course.Title</div>
-}
+
+@* 
+<section class="courses">
+    <div class="container">
+        <h1>Courses</h1>
+        <div class="course-list"
+        @if (Model.Courses.Count > 0)
+        {
+            @foreach (var item in Model.Courses)
+            {
+                             
+                    @if (item.IsBestSeller)
+                    {
+                       <div class="best-seller">Best Seller</div>
+                    }
+            }
+        } *@
+        @* https://youtu.be/idlXjewPqHQ?t=1600 *@
+

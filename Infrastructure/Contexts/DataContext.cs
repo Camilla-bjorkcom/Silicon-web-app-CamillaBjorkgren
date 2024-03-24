@@ -7,4 +7,6 @@ namespace Infrastructure.Contexts;
 public class DataContext(DbContextOptions<DataContext> options) : IdentityDbContext<UserEntity>(options)
 {
     public DbSet<AddressEntity> Address { get; set; }
+
+    public DbSet<SubscriberEntity> Subscribers { get; set; }
 }

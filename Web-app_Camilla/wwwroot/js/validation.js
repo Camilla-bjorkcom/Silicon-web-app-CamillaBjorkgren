@@ -23,13 +23,13 @@ const textValidator = (element, minLength = 2) => {
 }
 
 const emailValidator = (element) => {
-    const regEx = /^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$/
+    const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     formErrorMessage(element, regEx.test(element.value))
 }
 
 const passwordValidator = (element) => {
     if (element.dataset.valEqualtoOther !== undefined) {
-        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*', 'Form'))[0].value
+        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*','form'))[0].value
 
         if (element.value === password) {
             formErrorMessage(element, true)
@@ -39,7 +39,7 @@ const passwordValidator = (element) => {
         }
     }
     else {
-        const regEx = /^(?=.*[a-ö])(?=.*[A-Ö])(?=.*\\d)(?=.*[@$!%*?&])[A-Öa-ö\\d@$!%*?&]{8,}$/
+        const regEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{8,}$/
         formErrorMessage(element, regEx.test(element.value))
     }
 }

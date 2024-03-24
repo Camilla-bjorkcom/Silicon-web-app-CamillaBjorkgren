@@ -1,49 +1,89 @@
-﻿<section class="newsletter">
+﻿@model SubscriberViewModel
+
+<section class="newsletter">
     <div class="container">
         <div class="title">
             Don't Want to Miss Anything?
-            <div class="arrows"><img src="images/arrows.svg" alt="arrows"></div>
+            <div class="arrows"><img src="~/images/arrows.svg" alt="arrows"></div>
         </div>
-        <div class="sign-up-checkbox">
-            <h6>Sign up for Newsletters</h6>
-            <div class="grid">
-                <div class="checkbox">
-                    <input type="checkbox" id="Daily" name="Daily" value="Daily Newsletter">
-                    <label for="Daily">Daily Newsletter</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Advertising" name="Advertising updates" value="Advertising updates">
-                    <label for="Advertising">Advertising updates</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Week" name="Week" value="Week in Review">
-                    <label for="Week">Week in Review</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Event" name="Event Updates" value="Event Updates">
-                    <label for="Event Updates">Event Updates</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Startups" name="Startups" value="Startups">
-                    <label for="Startups">Startups Weekly</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Podcasts" name="Podcasts" value="Podcasts">
-                    <label for="Podcasts">Podcasts</label>
+        <form asp-action="Index" asp-controller="Home" method="post">
+            <div class="sign-up-checkbox">
+                <h6>Sign up for Newsletters</h6>
+                <div class="grid">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="DailyNewsletter">
+                        <label asp-for="DailyNewsletter">Daily Newsletter</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="AdvertisingUpdates">
+                        <label asp-for="AdvertisingUpdates">Advertising updates</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="WeekInReview">
+                        <label asp-for="WeekInReview">Week in Review</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="EventUpdates">
+                        <label asp-for="EventUpdates">Event Updates</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="StartupsWeekly">
+                        <label asp-for="StartupsWeekly">Startups Weekly</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="Podcasts">
+                        <label asp-for="Podcasts">Podcasts</label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="sign-up">
-            <input id="email" type="email" placeholder="Your Email">
-            <a href="#">
-                <button class="btn-theme">
+            <div class="sign-up">
+                <input asp-for="Email">
+                <button class="btn-theme" type="submit">
                     Subscribe*
                 </button>
-            </a>
-        </div>
-        <div class="terms">
-            <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a>.</p>
-        </div>
+            </div>
+
+           
+        </form>
+
+        <span class="information">
+            @if (ViewData["Status"]?.ToString() == "Success")
+            {
+               <span class="alert alert-success">
+                   You have been subscribed
+               </span>
+            }
+            else if (ViewData["Status"]?.ToString() == "AlreadyExists")
+            {
+                <span class="alert alert-warning">
+                   You have already subscribed
+                </span>
+            }
+            else if (ViewData["Status"]?.ToString() == "Invalid")
+            {
+                <span class="alert alert-danger">
+                    You must enter an valid email address
+                </span>
+            }
+            else if (ViewData["Status"]?.ToString() == "ConnectionFailed")
+            {
+                <span class="alert alert-danger">
+                    Unable to contact the server. Please try again later.
+                </span>
+            }
+            else if (ViewData["Status"]?.ToString() == "Unauthorized")
+            {
+                <span class="alert alert-danger">
+                    Unauthorized
+                </span>
+            }
+            else
+            {
+                <span class ="terms">
+                        * Yes, I agree to the <a>terms</a> and <a>privacy policy</a>.   
+                 </span>
+            }
+        </span>
     </div>
 </section>
