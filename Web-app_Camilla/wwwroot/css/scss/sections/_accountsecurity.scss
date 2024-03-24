@@ -75,15 +75,15 @@
             grid-area: content;
 
             .errormessage {
-                    background: #ff6b6b;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 15px;
-                    border-radius: 8px;
-                    color: black;
-                }
-            
+                background: #ff6b6b;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
+                border-radius: 8px;
+                color: black;
+            }
+
 
             .password-form {
                 @include standard-heading;
@@ -118,10 +118,34 @@
                                     color: $danger;
                                 }
                             }
+
+                            span {
+                                &.field-validation-error {
+                                    @include text-s;
+                                    color: $danger;
+                                }
+                            }
                         }
 
                         .confirm-password {
                             width: 100%;
+
+
+                            input {
+
+                                &.input-validation-error {
+                                    border: 2px solid $danger !important;
+                                    border-radius: 0.5rem !important;
+                                    color: $danger;
+                                }
+                            }
+
+                            span {
+                                &.field-validation-error {
+                                    @include text-s;
+                                    color: $danger;
+                                }
+                            }
                         }
                     }
                 }

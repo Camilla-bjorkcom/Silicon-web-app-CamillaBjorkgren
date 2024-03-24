@@ -76,79 +76,98 @@
             @include standard-heading;
             padding: 30px;
 
-            input::placeholder {
-                color: $gray-400;
+            span {
+                &.field-validation-error {
+                    @include text-s;
+                    color: $danger;
+                }
             }
 
-            .title {
-                @include h2;
-            }
+            input {
+                padding: 1rem;
+                border-radius: 8px !important;
+                border: 1px solid $gray-400;
 
-            .optional {
-                font-weight: 300;
-                display: inline;
-            }
-
-
-            .form-basicinfo {
-
-                .name {
-                    display: flex;
-                    gap: 1rem;
-
-                    .first-name {
-                        width: 100%;
-                    }
-
-                    .last-name {
-                        width: 100%;
-                    }
-                }
-
-                .contact-info {
-                    display: flex;
-                    gap: 1rem;
-
-                    .email {
-                        width: 100%;
-                    }
-
-                    .phone {
-                        width: 100%;
-                    }
-                }
-
-                textarea {
-                    resize: none;
-                    height: 150px;
-                }
-
-                ::placeholder {
+                input::placeholder {
                     color: $gray-400;
                 }
-            }
-        }
 
-        .address {
-            margin-top: 50px;
-
-            .form-address {
-                width: 100%;
+                &.input-validation-error {
+                    border: 2px solid $danger !important;
+                    border-radius: 0.5rem !important;
+                    color: $danger;
+                }
 
 
-                .postalcode-city {
-                    display: flex;
-                    gap: 1rem;
+                .title {
+                    @include h2;
+                }
 
-                    .postalcode {
-                        width: 100%;
+                .optional {
+                    font-weight: 300;
+                    display: inline;
+                }
+
+
+                .form-basicinfo {
+
+                    .name {
+                        display: flex;
+                        gap: 1rem;
+
+                        .first-name {
+                            width: 100%;
+                        }
+
+                        .last-name {
+                            width: 100%;
+                        }
                     }
 
-                    .city {
-                        width: 100%;
+                    .contact-info {
+                        display: flex;
+                        gap: 1rem;
+
+                        .email {
+                            width: 100%;
+                        }
+
+                        .phone {
+                            width: 100%;
+                        }
+                    }
+
+                    textarea {
+                        resize: none;
+                        height: 150px;
+                    }
+
+                    ::placeholder {
+                        color: $gray-400;
+                    }
+                }
+            }
+
+            .address {
+                margin-top: 50px;
+
+                .form-address {
+                    width: 100%;
+
+
+                    .postalcode-city {
+                        display: flex;
+                        gap: 1rem;
+
+                        .postalcode {
+                            width: 100%;
+                        }
+
+                        .city {
+                            width: 100%;
+                        }
                     }
                 }
             }
         }
     }
-}

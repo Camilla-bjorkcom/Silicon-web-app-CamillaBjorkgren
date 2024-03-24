@@ -1459,8 +1459,29 @@ footer .container .social-media {
   border-radius: 0.5rem !important;
   color: #EF4444;
 }
+#account-security .container .content .password-form .form-password .create-new-password .new-password span.field-validation-error {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: #EF4444;
+}
 #account-security .container .content .password-form .form-password .create-new-password .confirm-password {
   width: 100%;
+}
+#account-security .container .content .password-form .form-password .create-new-password .confirm-password input.input-validation-error {
+  border: 2px solid #EF4444 !important;
+  border-radius: 0.5rem !important;
+  color: #EF4444;
+}
+#account-security .container .content .password-form .form-password .create-new-password .confirm-password span.field-validation-error {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: #EF4444;
 }
 #account-security .container .content .delete-account form .checkbox-group {
   margin-bottom: 15px;
