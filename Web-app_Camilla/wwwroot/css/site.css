@@ -1146,7 +1146,6 @@ footer .container .social-media {
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
   color: #EF4444;
-  font-size: 9px;
 }
 .sign-up .container form .mb-3 input {
   padding: 1rem;
@@ -1416,6 +1415,15 @@ footer .container .social-media {
 #account-security .container .content {
   grid-area: content;
 }
+#account-security .container .content .errormessage {
+  background: #ff6b6b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  color: black;
+}
 #account-security .container .content .password-form {
   line-height: 160%;
   font-weight: 400;
@@ -1445,6 +1453,11 @@ footer .container .social-media {
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password {
   width: 100%;
+}
+#account-security .container .content .password-form .form-password .create-new-password .new-password input.input-validation-error {
+  border: 2px solid #EF4444 !important;
+  border-radius: 0.5rem !important;
+  color: #EF4444;
 }
 #account-security .container .content .password-form .form-password .create-new-password .confirm-password {
   width: 100%;

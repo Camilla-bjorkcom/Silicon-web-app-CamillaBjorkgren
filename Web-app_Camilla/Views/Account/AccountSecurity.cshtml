@@ -41,7 +41,7 @@
                             }
                             else
                             {
-                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" />
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" />                              
                             }      
                         </div>
                     </div>
@@ -109,3 +109,6 @@
         </div>
     </div>
 </section>
+
+
+@await Html.PartialAsync("_ValidationScriptsPartial")

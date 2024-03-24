@@ -16,8 +16,8 @@ public class CreateNewPasswordModel
     [ProtectedPersonalData]
     [DataType(DataType.Password)]
     [Display(Name = "New password", Prompt = "********", Order = 1)]
-    [Required(ErrorMessage = "Password is required")]
-    [RegularExpression("^(?=.*[a-ö])(?=.*[A-Ö])(?=.*\\d)(?=.*[@$!%*?&])[A-Öa-ö\\d@$!%*?&]{8,}$", ErrorMessage = "Invalid password, must be a strong password")]
+    [Required(ErrorMessage = "A strong password is required")]
+    [RegularExpression("/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{8,}$/", ErrorMessage = "Invalid password, must be a strong password")]
     public string NewPassword { get; set; } = null!;
 
     [DataType(DataType.Password)]

@@ -203,7 +203,8 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             }
         }
         ModelState.AddModelError("ErrorPassword", "Password is not correct");
-        ViewData["ErrorMessage"] = "Password is not correct";
+        ViewData["ErrorMessage"] = "Your current password is not correct";
+        viewModel.ProfileView ??= await PopulateProfileViewAsync();
         return View(viewModel);
     }
 
