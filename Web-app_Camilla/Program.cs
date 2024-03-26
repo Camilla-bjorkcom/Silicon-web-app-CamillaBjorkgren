@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Users")));
+builder.Services.AddDbContext<WebAppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Users")));
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {
     x.User.RequireUniqueEmail = true;
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
-}).AddEntityFrameworkStores<DataContext>();
+}).AddEntityFrameworkStores<WebAppDbContext>();
 builder.Services.ConfigureApplicationCookie(x =>
 {
     //webbläsaren kan inte komma åt cookien, minimerar risk för crossside-scripting

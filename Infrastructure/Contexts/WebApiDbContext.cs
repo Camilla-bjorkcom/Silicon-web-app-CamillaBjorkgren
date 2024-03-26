@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Contexts;
 
-public class CoursesDbContext(DbContextOptions<CoursesDbContext> options) : DbContext(options)
+public class WebApiDbContext(DbContextOptions<WebApiDbContext> options) : DbContext(options)
 {
     public DbSet<CourseEntity> Courses { get; set; }
+    public DbSet<UserApiEntity> UserApi { get; set; }
 }

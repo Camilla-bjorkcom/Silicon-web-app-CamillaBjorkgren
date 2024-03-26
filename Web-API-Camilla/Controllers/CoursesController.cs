@@ -9,6 +9,8 @@
 
 //[Route("api/[controller]")]
 //[ApiController]
+//[UseApiKey]
+//[Authorize]
 //public class CoursesController : ControllerBase
 //{
 //    // private readonly repository / Service

@@ -3,7 +3,7 @@ using Infrastructure.Entities;
 
 namespace Infrastructure.Repositories;
 
-public class CoursesRepository(CoursesDbContext context) : Repo<CourseEntity, CoursesDbContext>(context)
+public class CoursesRepository(WebApiDbContext context) : Repo<CourseEntity, WebApiDbContext>(context)
 {
-    private readonly CoursesDbContext _context = context;
+    private readonly WebApiDbContext _context = context;
 }

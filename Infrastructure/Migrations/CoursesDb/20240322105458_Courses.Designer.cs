@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations.CoursesDb
 {
-    [DbContext(typeof(CoursesDbContext))]
+    [DbContext(typeof(WebApiDbContext))]
     [Migration("20240322105458_Courses")]
     partial class Courses
     {

@@ -7,9 +7,9 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
-public class UserRepository(DataContext context) : Repo<UserEntity, DataContext>(context)
+public class UserRepository(WebAppDbContext context) : Repo<UserEntity, WebAppDbContext>(context)
 {
-    private readonly DataContext _context = context;
+    private readonly WebAppDbContext _context = context;
 
     public override async Task<IEnumerable<UserEntity>> GetAllAsync()
     {

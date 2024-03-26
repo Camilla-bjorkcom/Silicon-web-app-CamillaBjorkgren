@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
-public class AddressRepository(DataContext context) : Repo<AddressEntity, DataContext>(context)
+public class AddressRepository(WebAppDbContext context) : Repo<AddressEntity, WebAppDbContext>(context)
 {
-    private readonly DataContext _context = context;
+    private readonly WebAppDbContext _context = context;
 
     public override async Task<IEnumerable<AddressEntity>> GetAllAsync()
     {

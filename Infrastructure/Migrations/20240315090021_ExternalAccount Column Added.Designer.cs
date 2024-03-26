@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(WebAppDbContext))]
     [Migration("20240315090021_ExternalAccount Column Added")]
     partial class ExternalAccountColumnAdded
     {

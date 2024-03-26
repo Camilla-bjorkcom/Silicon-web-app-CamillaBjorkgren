@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Contexts;
 
-public class DataContext(DbContextOptions<DataContext> options) : IdentityDbContext<UserEntity>(options)
+public class WebAppDbContext(DbContextOptions<WebAppDbContext> options) : IdentityDbContext<UserEntity>(options)
 {
     public DbSet<AddressEntity> Address { get; set; }
 

@@ -5,6 +5,8 @@
 
 //[Route("api/[controller]")]
 //[ApiController]
+//[UseApiKey]
+//[Authorize]
 //public class SubscribersController : ControllerBase
 //{
 //    // private readonly repository 

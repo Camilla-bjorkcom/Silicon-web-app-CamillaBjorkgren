@@ -10,10 +10,12 @@ using System.Security.Claims;
 
 namespace Web_app_Camilla.Controllers;
 
-public class AuthController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager) : Controller
+public class AuthController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, HttpClient http, IConfiguration configuration) : Controller
 {
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
 
     #region Individual Account | Sign In
     [HttpGet]
@@ -36,15 +38,18 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
-                if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return Redirect(returnUrl);
+            https://youtu.be/-mNcEyL3EbU?t=4161
+                var response = await _http.PostAsync($"https://localhost:7138/api/Auth/token?key={_configuration["ApiKey:Secret"]}");
+
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    return Redirect(returnUrl);
 
                 return RedirectToAction("Index", "Account");
             }
         }
         ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
         ViewData["ErrorMessage"] = "Incorrect email or password";
-            return View(model);
+        return View(model);
     }
     #endregion
 
@@ -55,7 +60,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     {
         if (_signInManager.IsSignedIn(User))
             return RedirectToAction("Details", "Account");
-            
+
         return View();
     }
 
@@ -66,7 +71,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         if (ModelState.IsValid)
         {
             var exists = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
-                if (exists)
+            if (exists)
             {
                 ModelState.AddModelError("AlreadyExists", "User with the same email address already exists");
                 return View();
@@ -79,12 +84,12 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
                 UserName = model.Email,
                 Created = DateTime.Now,
             };
-           var result = await _userManager.CreateAsync(userEntity, model.Password); 
+            var result = await _userManager.CreateAsync(userEntity, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("SignIn");
             }
-      
+
         }
         ViewData["ErrorMessage"] = "Email and password is required";
         return View(model);
@@ -94,10 +99,10 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     #region Individual Account | Sign Out
     [HttpGet]
     [Route("/signout")]
-    public new async Task<IActionResult> SignOut() 
+    public new async Task<IActionResult> SignOut()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "Home"); 
+        return RedirectToAction("Index", "Home");
     }
     #endregion
 
