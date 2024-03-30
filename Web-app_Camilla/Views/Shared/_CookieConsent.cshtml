@@ -8,13 +8,13 @@
     </div>
     <script>
         function acceptCookieConsent() {
-            document.querySelector(#cookie-consent).style.display = 'none'
+            document.getElementById("cookie-consent").style.display = 'none'
 
             fetch('@Url.Action("CookieConsent", "SiteSettings")', {
-                method: 'post',
-                headers {
-                    'X-Requested-With: 'XMLHttpRequest'
-                }
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }               
             })
         }
     </script>
