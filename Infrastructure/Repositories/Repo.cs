@@ -86,7 +86,6 @@ public abstract class Repo<TEntity, TContext> where TEntity : class where TConte
             var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
             if (entity != null)
             {
-
                 _context.Set<TEntity>().Remove(entity);
                 await _context.SaveChangesAsync();
 

@@ -6,4 +6,6 @@ public class CourseIndexViewModel
 {
     public IEnumerable<CourseModel> Courses { get; set; } = new List<CourseModel>();
 
+    //public 
+
 }

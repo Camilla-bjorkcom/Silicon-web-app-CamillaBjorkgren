@@ -67,7 +67,7 @@ public class AuthController(WebApiDbContext webApiDbContext, IConfiguration conf
             var token = tokenHandler.CreateToken(tokenDecriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new { Token = tokenString });
+            return Ok(tokenString);
         }
         return Unauthorized();
     }

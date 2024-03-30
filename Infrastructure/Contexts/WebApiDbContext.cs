@@ -7,4 +7,5 @@ public class WebApiDbContext(DbContextOptions<WebApiDbContext> options) : DbCont
 {
     public DbSet<CourseEntity> Courses { get; set; }
     public DbSet<UserApiEntity> UserApi { get; set; }
+    public DbSet<SubscriberEntity> Subscribers { get; set; }
 }

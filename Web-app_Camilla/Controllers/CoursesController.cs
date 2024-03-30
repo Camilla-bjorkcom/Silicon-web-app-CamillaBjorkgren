@@ -3,42 +3,63 @@ using Infrastructure.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
+using Web_API_Camilla.Filters;
 using Web_app_Camilla.ViewModels;
 
 namespace Web_app_Camilla.Controllers;
 
 [Authorize]
-public class CoursesController : Controller
+[UseApiKey]
+public class CoursesController(HttpClient http, IConfiguration configuration) : Controller
 {
-    //private readonly HttpClient _http;
+    private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
 
-
+    [HttpGet]
     public async Task<IActionResult> Courses()
     {
         var viewModel = new CourseIndexViewModel();
-
-        using var http = new HttpClient();
-        var response = await http.GetAsync("https://localhost:7138/api/courses");
-        var json = await response.Content.ReadAsStringAsync();
-        viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
+        //var response = await _http.GetAsync("https://localhost:7138/api/courses");
+        //viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(await response.Content.ReadAsStringAsync())!;
+        //var viewModel = new CourseIndexViewModel();
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+        {
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.GetAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
+                return View(viewModel.Courses);
+            }
+        }
 
         return View(viewModel);
     }
 
-    public async Task<IActionResult> CourseDetails()
+    public async Task<IActionResult> CourseDetails(string id)
     {
-        using var http = new HttpClient();
-        var response = await http.GetAsync("https://localhost:7138/api/courses");
-        var json = await response.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<CourseEntity>(json);
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+        {
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.GetAsync($"https://localhost:7138/api/courses/{id}?key={_configuration["ApiKey:Secret"]}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var course = JsonConvert.DeserializeObject<CourseModel>(json)!;
+                return View(course);
+            }
+        }
 
-        return View(data);
+        return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateCourse(CourseRegistrationFormViewModel viewModel)
-    { 
+    {
         if (ModelState.IsValid)
         {
             using var http = new HttpClient();

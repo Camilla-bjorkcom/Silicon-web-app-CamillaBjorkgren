@@ -13,7 +13,7 @@
                     <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="features">Features</a>
                     @if (_signInManager.IsSignedIn(User))
                     {
-                        <a class="menu-link" asp-controller="Courses" asp-action="index" asp-fragment="features">Courses</a>
+                        <a class="menu-link" asp-controller="Courses" asp-action="courses">Courses</a>
                     }
 
 
@@ -61,7 +61,7 @@ else
                     <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="features">Features</a>
                     @if (_signInManager.IsSignedIn(User))
                     {
-                        <a class="menu-link" asp-controller="Courses" asp-action="index" asp-fragment="features">Courses</a>
+                        <a class="menu-link" asp-controller="Courses" asp-action="courses">Courses</a>
                     }
 
 

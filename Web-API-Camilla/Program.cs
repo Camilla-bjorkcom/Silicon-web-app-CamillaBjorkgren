@@ -1,4 +1,6 @@
 using Infrastructure.Contexts;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Web_API_Camilla.Configurations;
 
@@ -17,12 +19,17 @@ builder.Services.AddCors(x =>
         .AllowAnyHeader(); 
     });
 });
+
+builder.Services.RegisterSwagger();
 builder.Services.RegisterJwt(builder.Configuration);
+
+builder.Services.AddScoped<CoursesRepository>();
+builder.Services.AddScoped<CoursesService>();
 
 var app = builder.Build();
 app.UseCors("CustomOriginPolicy");
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Silicon Web Api v1"));
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

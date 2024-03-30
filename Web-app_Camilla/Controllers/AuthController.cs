@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
+using System.Text;
+using Web_API_Camilla.Filters;
 
 namespace Web_app_Camilla.Controllers;
 
@@ -29,6 +32,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         return View();
     }
 
+
     [HttpPost]
     [Route("/signin")]
     public async Task<IActionResult> SignIn(SignInModel model, string returnUrl)
@@ -37,12 +41,23 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
-            {
-            https://youtu.be/-mNcEyL3EbU?t=4161
-                var response = await _http.PostAsync($"https://localhost:7138/api/Auth/token?key={_configuration["ApiKey:Secret"]}");
+            {   
 
+                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                var response = await _http.PostAsync($"https://localhost:7138/api/Auth/token?key={_configuration["ApiKey:Secret"]}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var token = await response.Content.ReadAsStringAsync();
+                    var cookieOptions = new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.Now.AddDays(1)
+                    };
+                    Response.Cookies.Append("AccessToken", token, cookieOptions);
+                }
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    return Redirect(returnUrl);
+                    return LocalRedirect(returnUrl);
 
                 return RedirectToAction("Index", "Account");
             }
@@ -101,6 +116,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     [Route("/signout")]
     public new async Task<IActionResult> SignOut()
     {
+        Response.Cookies.Delete("AccessToken");
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }

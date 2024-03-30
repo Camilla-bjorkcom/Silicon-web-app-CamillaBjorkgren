@@ -4,21 +4,97 @@
     ViewData["Title"] = "Courses";
 }
 
-@* 
 <section class="courses">
     <div class="container">
-        <h1>Courses</h1>
-        <div class="course-list"
-        @if (Model.Courses.Count > 0)
-        {
-            @foreach (var item in Model.Courses)
+        <div class="pagnation">
+            <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="Courses">Courses</a>
+        </div>
+        <div class="upper-content">
+            <h1 class="title">Courses</h1>
+            <div class="search-categories">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        All categories
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Frontend</a></li>
+                        <li><a class="dropdown-item" href="#">Backend</a></li>
+                        <li><a class="dropdown-item" href="#">Web Development</a></li>
+                    </ul>
+                </div>
+                <input class="input-group-text" placeholder="Search categories" name="Categories" type="search"> <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="course-list">
+            @foreach (var course in Model.Courses)
             {
-                             
-                    @if (item.IsBestSeller)
-                    {
-                       <div class="best-seller">Best Seller</div>
-                    }
+                <a class="course" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="model.courses.Id">
+                    <div class="course">
+                        @if (course.IsBestSeller)
+                        {
+                            <div class="best-seller">Best Seller</div>
+
+                        }
+                        <button type="button" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
+                        <img class="course-image" src="~/images/Courses/@course.ImageName" />
+                        <div class="content">
+                            <h2 class="course-title">@course.Title</h2>
+                            <div class="course-creator">by @course.Creator</div>
+                            <div class="course-prices">
+                                @if (course.DiscountPrice != null)
+                                {
+                                    <div class="disount-price">$@course.DiscountPrice</div>
+                                    <div class="original-price discount">$@course.Price</div>
+                                }
+                                <div class="original-price">$@course.Price</div>
+                            </div>
+                            <hr />
+                            <div class="course-footer">
+                                <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
+                                <div class="course-likes">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    <span>@($"{course.LikeParameter * 100:0}%")</span>
+                                    <span>(@($"{course.UserVotes / 1000}K"))</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             }
-        } *@
-        @* https://youtu.be/idlXjewPqHQ?t=1600 *@
+            else
+            {
+            <div>No Courses Found</div>
+            }
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>
+<aside class="work-with-us">
+    <div class="container">
+        <div class="left">
+            <p>Ready to get started?</p>
+            <h2>Take Your <span class="color">Skills</span> to the Next Level</h2>
+            <button class="btn-theme">Work with us</button>
+        </div>
+        <div class="right">
+            <img src="images/illustration.svg">
+        </div>
+    </div>
+</aside>
 

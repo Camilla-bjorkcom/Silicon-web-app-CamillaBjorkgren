@@ -6,8 +6,9 @@ public class CourseCreateDto
 {
     [Required]
     public string Title { get; set; } = null!;
-    public string? ImageURL { get; set; }
+    public string? ImageName { get; set; }
     public bool IsBestSeller { get; set; } = false;
+    public bool IsDigital { get; set; } = false;
     public string? Category { get; set; }
     public string? Creator { get; set; } 
     public decimal? Price { get; set; }

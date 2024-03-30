@@ -45,6 +45,7 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<AddressRepository>();
 
 
+
 var app = builder.Build();
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error", "? statusCode ={0}");
