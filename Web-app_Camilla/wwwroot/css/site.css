@@ -1271,10 +1271,28 @@ footer .container .social-media {
   color: #0B0F19;
   padding: 30px;
 }
-.account-details .container .details-form input::placeholder {
+.account-details .container .details-form span.field-validation-error {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: #EF4444;
+}
+.account-details .container .details-form input {
+  padding: 1rem;
+  border-radius: 8px !important;
+  border: 1px solid #D4D7E5;
+}
+.account-details .container .details-form input input::placeholder {
   color: #D4D7E5;
 }
-.account-details .container .details-form .title {
+.account-details .container .details-form input.input-validation-error {
+  border: 2px solid #EF4444 !important;
+  border-radius: 0.5rem !important;
+  color: #EF4444;
+}
+.account-details .container .details-form input .title {
   line-height: 160%;
   font-weight: 400;
   color: #565973;
@@ -1283,51 +1301,51 @@ footer .container .social-media {
   color: #0B0F19;
   font-size: 32px !important;
 }
-.account-details .container .details-form .optional {
+.account-details .container .details-form input .optional {
   font-weight: 300;
   display: inline;
 }
-.account-details .container .details-form .form-basicinfo .name {
+.account-details .container .details-form input .form-basicinfo .name {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .details-form .form-basicinfo .name .first-name {
+.account-details .container .details-form input .form-basicinfo .name .first-name {
   width: 100%;
 }
-.account-details .container .details-form .form-basicinfo .name .last-name {
+.account-details .container .details-form input .form-basicinfo .name .last-name {
   width: 100%;
 }
-.account-details .container .details-form .form-basicinfo .contact-info {
+.account-details .container .details-form input .form-basicinfo .contact-info {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .details-form .form-basicinfo .contact-info .email {
+.account-details .container .details-form input .form-basicinfo .contact-info .email {
   width: 100%;
 }
-.account-details .container .details-form .form-basicinfo .contact-info .phone {
+.account-details .container .details-form input .form-basicinfo .contact-info .phone {
   width: 100%;
 }
-.account-details .container .details-form .form-basicinfo textarea {
+.account-details .container .details-form input .form-basicinfo textarea {
   resize: none;
   height: 150px;
 }
-.account-details .container .details-form .form-basicinfo ::placeholder {
+.account-details .container .details-form input .form-basicinfo ::placeholder {
   color: #D4D7E5;
 }
-.account-details .container .address {
+.account-details .container .details-form .address {
   margin-top: 50px;
 }
-.account-details .container .address .form-address {
+.account-details .container .details-form .address .form-address {
   width: 100%;
 }
-.account-details .container .address .form-address .postalcode-city {
+.account-details .container .details-form .address .form-address .postalcode-city {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .address .form-address .postalcode-city .postalcode {
+.account-details .container .details-form .address .form-address .postalcode-city .postalcode {
   width: 100%;
 }
-.account-details .container .address .form-address .postalcode-city .city {
+.account-details .container .details-form .address .form-address .postalcode-city .city {
   width: 100%;
 }
 
@@ -1632,4 +1650,181 @@ footer .container .social-media {
 .map iframe {
   width: 100%;
   max-height: max-content;
+}
+
+.courses .container .pagnation {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 5rem;
+}
+.courses .container .pagnation a {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.courses .container .pagnation a i {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.courses .container .upper-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.courses .container .upper-content .search-categories {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+}
+.courses .container .upper-content .search-categories .dropdown {
+  border: 1px solid #D4D7E5;
+  border-radius: 5px;
+}
+.courses .container .upper-content .search-categories .dropdown button {
+  background-color: transparent;
+  color: #565973;
+}
+.courses .container .upper-content .search-categories input {
+  background-color: transparent;
+  border-radius: 5px;
+  min-width: 50%;
+  text-align: left;
+}
+.courses .container .upper-content .search-categories i {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+.courses .container .course-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.courses .container .course-list a:hover {
+  text-decoration: none;
+}
+.courses .container .course-list a .course {
+  box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
+  text-decoration: none;
+  color: black;
+  position: relative;
+  max-height: min-content;
+}
+.courses .container .course-list a .course .best-seller {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #22C55E;
+  color: white !important;
+  border-radius: 5px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding: 5px;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px !important;
+}
+.courses .container .course-list a .course .saved-item {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.8rem;
+}
+.courses .container .course-list a .course .saved-item:hover {
+  border: 1px solid #6366F1;
+  background-color: #6366F1;
+  color: white;
+}
+.courses .container .course-list a .course .content {
+  padding: 15px;
+}
+.courses .container .course-list a .course .content .course-title {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 20px !important;
+  color: #33354D;
+  margin-bottom: 0;
+}
+.courses .container .course-list a .course .content .course-creator {
+  font-size: 0.8rem;
+  color: #565973;
+  margin-bottom: 1rem;
+}
+.courses .container .course-list a .course .content .course-prices {
+  display: flex;
+  gap: 20px;
+  font-weight: 900;
+}
+.courses .container .course-list a .course .content .course-prices .discount-price {
+  color: #EF4444;
+}
+.courses .container .course-list a .course .content .course-prices .original-price {
+  color: #6366F1;
+}
+.courses .container .course-list a .course .content .course-prices .discount {
+  color: #9397AD;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+.courses .container .course-list a .course .course-footer {
+  display: flex;
+  font-weight: 200;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: #9397AD;
+}
+.courses .container .course-list a .course .course-footer .course-hours i {
+  margin-right: 5px;
+}
+.courses .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.courses .pagination .page-item:active {
+  background-color: #6366F1;
+}
+.courses .pagination .page-item:hover {
+  background-color: #D4D7E5;
+}
+
+.work-with-us .container {
+  background-color: #F3F6FF;
+  display: flex;
+  justify-content: space-between;
+  padding: 100px;
+  align-items: center;
+  gap: 7rem;
+}
+.work-with-us .container .left p {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+}
+.work-with-us .container .left h2 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 40px !important;
+  max-width: 70%;
+}
+.work-with-us .container .left .color {
+  color: #6366F1;
+}
+.work-with-us .container right img {
+  max-width: fit-content;
 }

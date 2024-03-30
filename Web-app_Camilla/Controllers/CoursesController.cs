@@ -12,19 +12,16 @@ using Web_app_Camilla.ViewModels;
 namespace Web_app_Camilla.Controllers;
 
 [Authorize]
-[UseApiKey]
 public class CoursesController(HttpClient http, IConfiguration configuration) : Controller
 {
     private readonly HttpClient _http = http;
     private readonly IConfiguration _configuration = configuration;
 
     [HttpGet]
+    [Route("/Courses")]
     public async Task<IActionResult> Courses()
     {
         var viewModel = new CourseIndexViewModel();
-        //var response = await _http.GetAsync("https://localhost:7138/api/courses");
-        //viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(await response.Content.ReadAsStringAsync())!;
-        //var viewModel = new CourseIndexViewModel();
         if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
             _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -33,7 +30,7 @@ public class CoursesController(HttpClient http, IConfiguration configuration) : 
             {
                 var json = await response.Content.ReadAsStringAsync();
                 viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
-                return View(viewModel.Courses);
+                return View(viewModel);
             }
         }
 
