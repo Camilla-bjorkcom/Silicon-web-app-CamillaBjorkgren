@@ -1,6 +1,6 @@
 a {
     @include standard-text;
-    color: $theme;
+    color: var(--color-theme);
     text-decoration: none;
     transition: all 0.25s ease-in-out;
 
@@ -18,7 +18,7 @@ a {
     &:active,
     &:focus,
     .active {
-        color: $theme;
+        color: var(--color-theme);
         text-decoration: none;
     }
 }
@@ -32,7 +32,7 @@ a {
 
     i {
         @include shadow-s;
-        background: $white;
+        background-color: var(--color-white);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,10 +45,10 @@ a {
         span {
             text-decoration: underline;
         }
-        
+
         i {
-            background: $gray-800;
-            color: $white;
+            background-color: var(--color-gray-800);
+            color: var(--color-white);
         }
     }
 }

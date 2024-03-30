@@ -28,17 +28,17 @@
                 gap: 2rem;
 
                 .dropdown {
-                    border: 1px solid $gray-400;
+                    border: 1px solid var(--color-gray-400);
                     border-radius: 5px;
 
                     button {
-                        background-color: $transparent;
-                        color: $gray-700;
+                        background-color: var(--color-transparent);
+                        color: var(--color-gray-700);
                     }
                 }
 
                 input {
-                    background-color: $transparent;
+                    background-color: var(--color-transparent);
                     border-radius: 5px;
                     min-width: 50%;
                     text-align: left;
@@ -77,7 +77,7 @@
                         position: absolute;
                         top: 10px;
                         left: 10px;
-                        background-color: $success;
+                        background-color: var(--color-sucess);
                         color: white !important;
                         border-radius: 5px;
                         padding-right: 4px;
@@ -99,8 +99,8 @@
                         font-size: 0.8rem;
 
                         &:hover {
-                            border: 1px solid $theme;
-                            background-color: $theme;
+                            border: 1px solid var(--color-theme);
+                            background-color: var(--color-theme);
                             color: white;
                         }
                     }
@@ -110,13 +110,13 @@
 
                         .course-title {
                             @include h5;
-                            color: $gray-800;
+                            color: var(--color-gray-800);
                             margin-bottom: 0;
                         }
 
                         .course-creator {
                             font-size: 0.8rem;
-                            color: $gray-700;
+                            color: var(--color-gray-700);
                             margin-bottom: 1rem;
                         }
 
@@ -126,15 +126,15 @@
                             font-weight: 900;
 
                             .discount-price {
-                                color: $danger;
+                                color: var(--color-danger);
                             }
 
                             .original-price {
-                                color: $theme;
+                                color: var(--color-theme);
                             }
 
                             .discount {
-                                color: $gray-600;
+                                color: var(--color-gray-600);
                                 text-decoration: line-through;
                                 font-weight: 400;
                             }
@@ -146,7 +146,7 @@
                         font-weight: 200;
                         gap: 20px;
                         font-size: 0.8rem;
-                        color: $gray-600;
+                        color: var(--color-gray-600);
 
                         .course-hours {
                             i {
@@ -166,11 +166,11 @@
 
         .page-item {
             &:active {
-                background-color: $theme;
+                background-color: var(--color-theme);
             }
 
             &:hover {
-                background-color: $gray-400;
+                background-color: var(--color-gray-400);
             }
         }
     }
@@ -178,7 +178,7 @@
 
 .work-with-us {
     .container {
-        background-color: $gray-100;
+        background-color: var(--color-gray-100);
         display: flex;
         justify-content: space-between;
         padding: 100px;
@@ -196,7 +196,7 @@
             }
 
             .color {
-                color: $theme;
+                color: var(--color-theme);
             }
         }
 

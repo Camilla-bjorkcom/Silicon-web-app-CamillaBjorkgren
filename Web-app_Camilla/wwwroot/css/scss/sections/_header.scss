@@ -72,7 +72,7 @@ header {
     }
 }
 .background-color {
-    background-color: $gray-100;
+    background-color: var(--color-gray-100);
 
     .container {
         display: grid;

@@ -1,5 +1,5 @@
 .newsletter {
-    background-color: $gray-100;
+    background-color: var(--color-gray-100);
     padding: 60px 0;
 
     .container {
@@ -60,7 +60,7 @@
                         gap: 5rem;
 
                         input {
-                            accent-color: $theme;
+                            accent-color: var(--color-theme);
                         }
                     }
                 }
@@ -76,7 +76,7 @@
                 input {
                     width: 85%;
                     border-radius: 5px;
-                    border: 1px solid $gray-400;
+                    border: 1px solid var(--color-gray-400);
                 }
             }
 

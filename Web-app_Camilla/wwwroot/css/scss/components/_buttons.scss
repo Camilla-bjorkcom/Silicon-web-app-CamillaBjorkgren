@@ -11,14 +11,14 @@
 
 .btn-theme {
     @include button;
-    background: $theme;
-    color: $white;
+    background-color: var(--color-theme);
+    color: var(--color-white);
     border: none;
 
     &:hover {
         text-decoration: none;
-        background: $gray-700;
-        color: $white;
+        background-color: var(--color-gray-700);
+        color: var(--color-gray-000);
     }
 }
 
@@ -27,51 +27,51 @@
     border: none;
 
     &.active {
-        background: $theme;
-        color: $white;
+        background-color: var(--color-theme);
+        color: var(--color-white);
         border: none;
     }
 }
 
 .btn-red {
     @include button;
-    background: $danger;
-    color: $white;
+    background-color: var(--color-danger);
+    color: var(--color-white);
     border: none;
 
     &:hover {
         text-decoration: none;
-        background: $gray-700;
-        color: $white;
+        background-color: var(--color-gray-700);
+        color: var(--color-gray-000);
     }
 }
 
 .btn-theme-s {
     @include button;
     @include theme-shadow;
-    background: $theme;
-    color: $white;
+    background-color: var(--color-theme);
+    color: var(--color-white);
     padding-top: 10px;
     padding-bottom: 13px;
 
     &:hover {
         @include theme-secondary-shadow;
         text-decoration: none;
-        background: $gray-700;
-        color: $white;
+        background-color: var(--color-gray-700);
+        color: var(--color-gray-000);
     }
 }
 
 .btn-gray {
     @include button;
-    background: $gray-200;
-    color: $gray-800;
+    background-color: var(--color-gray-200);
+    color: var(--white);
     border: none;
 
     &:hover {
         text-decoration: none;
-        background: $gray-700;
-        color: $white;
+        background-color: var(--color-gray-700);
+        color: var(--color-gray-000);
     }
 }
 
@@ -96,16 +96,16 @@
             height: 0;
 
             &:checked + .slider {
-                background-color: $theme;
+                background-color: var(--color-theme);
             }
 
             &:focus + .slider {
-                box-shadow: 0 0 1px $theme;
+                box-shadow: 0 0 1px var(--color-theme);
             }
 
             &:checked + .slider:before {
                 transform: translateX(20px);
-                background-color: $white;
+                background-color: var(--color-white);
             }
         }
 
@@ -116,7 +116,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: $gray-700;
+            background-color: var(--color-gray-700);
             transition: .4s;
 
             &:before {
@@ -126,7 +126,7 @@
                 width: 20px;
                 left: 3px;
                 bottom: 2.7px;
-                background-color: $white;
+                background-color: var(--color-white);
                 transition: .4s;
             }
 
@@ -149,12 +149,12 @@
     border-radius: 8px;
     width: 44px;
     height: 44px;
-    background-color: $gray-200;
-    color: $gray-800;
+    background-color: var(--color-gray-200);
+    color: var(--color-gray-800);
 
     &:hover {
         text-decoration: none;
-        background: $gray-700;
-        color: $white;
+        background-color: var(--color-gray-700);
+        color: var(--color-gray-000);
     }
 }

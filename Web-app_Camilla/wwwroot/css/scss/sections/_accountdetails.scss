@@ -12,7 +12,7 @@
         gap: 1rem 5rem;
 
         h6 {
-            color: $theme;
+            color: var(--color-theme);
         }
 
         .buttons {
@@ -25,7 +25,7 @@
         .user {
             grid-area: userinfo;
             @include standard-text;
-            border-right: 1px solid $gray-200;
+            border-right: 1px solid var(--color-gray-200);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,22 +79,22 @@
             span {
                 &.field-validation-error {
                     @include text-s;
-                    color: $danger;
+                    color: var(--color-danger);
                 }
             }
 
             input {
                 border-radius: 8px !important;
-                border: 1px solid $gray-400;
+                border: 1px solid var(--color-gray-400);
 
                 input::placeholder {
-                    color: $gray-400;
+                    color: var(--color-gray-400);
                 }
 
                 &.input-validation-error {
-                    border: 2px solid $danger !important;
+                    border: 2px solid var(--color-danger)!important;
                     border-radius: 0.5rem !important;
-                    color: $danger;
+                    color: var(--color-danger);
                 }
             }
 
@@ -143,7 +143,7 @@
                 }
 
                 ::placeholder {
-                    color: $gray-400;
+                    color: var(--color-gray-400);
                 }
             }
         }

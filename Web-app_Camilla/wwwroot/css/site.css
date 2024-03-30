@@ -5,8 +5,8 @@
   --color-gray-200: #EFF2FC;
   --color-gray-300: #E2E5F1;
   --color-gray-400: #D4D7E5;
-  --color-gray-500: #B47C9;
-  --color-gray-600: #9397AD;
+  --color-gray-500: B47N7C9;
+  --color-gray-600: #9797AD;
   --color-gray-700: #565973;
   --color-gray-800: #33354D;
   --color-gray-900: #0B0F19;
@@ -49,7 +49,7 @@
 html, body {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px;
 }
@@ -57,7 +57,7 @@ html, body {
 .text-xs {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 12px !important;
 }
@@ -65,7 +65,7 @@ html, body {
 .text-s {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
 }
@@ -73,7 +73,7 @@ html, body {
 .text-m {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
 }
@@ -81,7 +81,7 @@ html, body {
 .text-lg {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 18px !important;
 }
@@ -89,7 +89,7 @@ html, body {
 .text-xl {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 20px !important;
 }
@@ -97,7 +97,7 @@ html, body {
 .text-lead {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 24px !important;
 }
@@ -105,125 +105,125 @@ html, body {
 .d1 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 80px !important;
 }
 
 .d2 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 72px !important;
 }
 
 .d3 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 64px !important;
 }
 
 .d4 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 56px !important;
 }
 
 .d5 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 48px !important;
 }
 
 .d6 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 42px !important;
 }
 
 h1, .h1 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 40px !important;
 }
 
 h2, .h2 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
 }
 
 h3, .h3 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 28px !important;
 }
 
 h4, .h4 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 24px !important;
 }
 
 h5, .h5 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 20px !important;
 }
 
 h6, .h6 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 16px !important;
 }
 
 body {
-  color: var(--color-gray-700) !important;
+  color: var(--color-gray-800) !important;
   background-color: var(--color-gray-000) !important;
 }
 
@@ -249,9 +249,9 @@ img {
 a {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
-  color: #6366F1;
+  color: var(--color-theme);
   text-decoration: none;
   transition: all 0.25s ease-in-out;
 }
@@ -262,24 +262,24 @@ a:hover {
 .menu-link {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px;
-  color: #33354D;
+  color: var(--color-gray-800);
   font-weight: 600 !important;
   text-decoration: none;
   transition: color 0.25s ease-in-out;
 }
 .menu-link:hover, .menu-link:active, .menu-link:focus,
 .menu-link .active {
-  color: #6366F1;
+  color: var(--color-theme);
   text-decoration: none;
 }
 
 .more-link {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
   display: flex;
@@ -289,7 +289,7 @@ a:hover {
 }
 .more-link i {
   box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
-  background: #FFFFFF;
+  background-color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -301,8 +301,8 @@ a:hover {
   text-decoration: underline;
 }
 .more-link:hover i {
-  background: #33354D;
-  color: #FFFFFF;
+  background-color: var(--color-gray-800);
+  color: var(--color-white);
 }
 
 .btn-theme {
@@ -314,14 +314,14 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: #6366F1;
-  color: #FFFFFF;
+  background-color: var(--color-theme);
+  color: var(--color-white);
   border: none;
 }
 .btn-theme:hover {
   text-decoration: none;
-  background: #565973;
-  color: #FFFFFF;
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-000);
 }
 
 .btn {
@@ -336,8 +336,8 @@ a:hover {
   border: none;
 }
 .btn.active {
-  background: #6366F1;
-  color: #FFFFFF;
+  background-color: var(--color-theme);
+  color: var(--color-white);
   border: none;
 }
 
@@ -350,14 +350,14 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: #EF4444;
-  color: #FFFFFF;
+  background-color: var(--color-danger);
+  color: var(--color-white);
   border: none;
 }
 .btn-red:hover {
   text-decoration: none;
-  background: #565973;
-  color: #FFFFFF;
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-000);
 }
 
 .btn-theme-s {
@@ -370,16 +370,16 @@ a:hover {
   align-items: center;
   gap: 12px;
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
-  background: #6366F1;
-  color: #FFFFFF;
+  background-color: var(--color-theme);
+  color: var(--color-white);
   padding-top: 10px;
   padding-bottom: 13px;
 }
 .btn-theme-s:hover {
   box-shadow: 0px 8px 18px -8px rgba(19, 16, 34, 0.15);
   text-decoration: none;
-  background: #565973;
-  color: #FFFFFF;
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-000);
 }
 
 .btn-gray {
@@ -391,14 +391,14 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: #EFF2FC;
-  color: #33354D;
+  background-color: var(--color-gray-200);
+  color: var(--white);
   border: none;
 }
 .btn-gray:hover {
   text-decoration: none;
-  background: #565973;
-  color: #FFFFFF;
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-000);
 }
 
 .btn-switch {
@@ -409,10 +409,10 @@ a:hover {
 .btn-switch label {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px;
-  color: #33354D;
+  color: var(--color-gray-800);
   font-weight: 600 !important;
 }
 .btn-switch .switch {
@@ -427,14 +427,14 @@ a:hover {
   height: 0;
 }
 .btn-switch .switch input:checked + .slider {
-  background-color: #6366F1;
+  background-color: var(--color-theme);
 }
 .btn-switch .switch input:focus + .slider {
-  box-shadow: 0 0 1px #6366F1;
+  box-shadow: 0 0 1px var(--color-theme);
 }
 .btn-switch .switch input:checked + .slider:before {
   transform: translateX(20px);
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
 }
 .btn-switch .switch .slider {
   position: absolute;
@@ -443,7 +443,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #565973;
+  background-color: var(--color-gray-700);
   transition: 0.4s;
 }
 .btn-switch .switch .slider:before {
@@ -453,7 +453,7 @@ a:hover {
   width: 20px;
   left: 3px;
   bottom: 2.7px;
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
   transition: 0.4s;
 }
 .btn-switch .switch .slider.round {
@@ -466,7 +466,7 @@ a:hover {
 .btn-social {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 20px !important;
   display: flex;
@@ -475,13 +475,13 @@ a:hover {
   border-radius: 8px;
   width: 44px;
   height: 44px;
-  background-color: #EFF2FC;
-  color: #33354D;
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-800);
 }
 .btn-social:hover {
   text-decoration: none;
-  background: #565973;
-  color: #FFFFFF;
+  background-color: var(--color-gray-700);
+  color: var(--color-gray-000);
 }
 
 form .form-check {
@@ -490,6 +490,19 @@ form .form-check {
 }
 form .form-check #RememberMe {
   margin-right: 15px;
+}
+form input {
+  padding: 1rem;
+  border-radius: 8px !important;
+  border: 1px solid var(--color-gray-400) !important;
+}
+form input.input-validation-error {
+  border: 2px solid var(--color-danger) !important;
+  border-radius: 0.5rem !important;
+  color: var(--color-danger);
+}
+form input::placeholder {
+  color: var(--color-gray-400) !important;
 }
 
 .alert {
@@ -606,7 +619,7 @@ header .container .btn-mobile {
 }
 
 .background-color {
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
 }
 .background-color .container {
   display: grid;
@@ -680,10 +693,10 @@ footer {
   padding: 50px 0 30px 0;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
-  color: #9397AD;
+  color: var(--color-gray-600);
 }
 footer .container {
   text-align: center;
@@ -727,20 +740,20 @@ footer .container .social-media {
 .showcase .container .content h1 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
 }
 @media (min-width: 1200px) {
   .showcase .container .content h1 {
     line-height: 160%;
     font-weight: 400;
-    color: #565973;
+    color: var(--color-gray-700);
     font-family: "Manrope", sans-serif;
     font-weight: 800;
-    color: #0B0F19;
+    color: var(--color-gray-900);
     font-size: 56px !important;
   }
 }
@@ -748,7 +761,7 @@ footer .container .social-media {
   margin: 20px 0 40px 0;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
 }
@@ -757,7 +770,7 @@ footer .container .social-media {
     margin: 40px 0 50px 0;
     line-height: 160%;
     font-weight: 400;
-    color: #565973;
+    color: var(--color-gray-700);
     font-family: "Manrope", sans-serif;
     font-size: 18px !important;
   }
@@ -789,7 +802,7 @@ footer .container .social-media {
 }
 
 .features {
-  background: #F3F6FF;
+  background-color: var(--color-gray-100);
   padding: 100px 0;
 }
 .features .container {
@@ -808,37 +821,37 @@ footer .container .social-media {
 }
 .features .container .tool-features .box {
   padding: 20px;
-  border: 1px solid #E2E5F1;
+  border: 1px solid var(--color-gray-300);
   transition: all 0.15s ease-in-out;
 }
 @media (min-width: 992px) {
   .features .container .tool-features .box:nth-child(1) {
-    border-top: 0px solid #E2E5F1;
-    border-left: 0px solid #E2E5F1;
+    border-top: 0px solid var(--color-gray-300);
+    border-left: 0px solid var(--color-gray-300);
   }
   .features .container .tool-features .box:nth-child(2) {
-    border-top: 0px solid #E2E5F1;
+    border-top: 0px solid var(--color-gray-300);
   }
   .features .container .tool-features .box:nth-child(3) {
-    border-top: 0px solid #E2E5F1;
-    border-right: 0px solid #E2E5F1;
+    border-top: 0px solid var(--color-gray-300);
+    border-right: 0px solid var(--color-gray-300);
   }
   .features .container .tool-features .box:nth-child(4) {
-    border-bottom: 0px solid #E2E5F1;
-    border-left: 0px solid #E2E5F1;
+    border-bottom: 0px solid var(--color-gray-300);
+    border-left: 0px solid var(--color-gray-300);
   }
   .features .container .tool-features .box:nth-child(5) {
-    border-bottom: 0px solid #E2E5F1;
+    border-bottom: 0px solid var(--color-gray-300);
   }
   .features .container .tool-features .box:nth-child(6) {
-    border-bottom: 0px solid #E2E5F1;
-    border-right: 0px solid #E2E5F1;
+    border-bottom: 0px solid var(--color-gray-300);
+    border-right: 0px solid var(--color-gray-300);
   }
 }
 .features .container .tool-features .box:hover {
   transition: all 0.15s ease-in-out;
   cursor: pointer;
-  background: #FFFFFF;
+  background-color: var(--color-gray-000);
   box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
 }
 .features .container .tool-features .box div {
@@ -847,29 +860,29 @@ footer .container .social-media {
 }
 .features .container .tool-features .box div img {
   padding: 10px;
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
   margin: 20px;
   border-radius: 8px;
 }
 .features .container .tool-features .box h5 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 20px !important;
 }
 .features .container .tool-features .box p {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
 }
 
 .lightanddark {
-  background-color: #0B0F19;
+  background-color: var(--color-gray-900);
 }
 .lightanddark .container {
   display: flex;
@@ -884,11 +897,11 @@ footer .container .social-media {
   padding: 50px;
 }
 .lightanddark .container .titles #darkmode-title {
-  color: #FFFFFF;
+  color: var(--color-white);
   z-index: 10;
 }
 .lightanddark .container .titles #lightmode-title {
-  color: #0B0F19;
+  color: var(--color-gray-900);
   z-index: -1;
   position: absolute;
   top: 0;
@@ -940,10 +953,10 @@ footer .container .social-media {
 .dashboard .container .right .title h1 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 40px !important;
 }
 .dashboard .container .right .checkbox {
@@ -954,7 +967,7 @@ footer .container .social-media {
 .dashboard .container .right .checkbox p {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
   margin: 0;
@@ -969,10 +982,10 @@ footer .container .social-media {
 }
 
 .download-app {
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
 }
 .download-app .container {
-  background-color: #EFF2FC;
+  background-color: var(--color-gray-200);
   padding: 50px;
   display: flex;
   justify-content: space-around;
@@ -989,10 +1002,10 @@ footer .container .social-media {
 .download-app .container .right .title h1 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
 }
 .download-app .container .right .app-store {
@@ -1052,7 +1065,7 @@ footer .container .social-media {
 }
 
 .newsletter {
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
   padding: 60px 0;
 }
 .newsletter .container {
@@ -1065,10 +1078,10 @@ footer .container .social-media {
 .newsletter .container .title {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
   display: flex;
   text-align: left;
@@ -1111,7 +1124,7 @@ footer .container .social-media {
   gap: 5rem;
 }
 .newsletter .container form .sign-up-checkbox .grid .checkbox input {
-  accent-color: #6366F1;
+  accent-color: var(--color-theme);
 }
 .newsletter .container form .sign-up {
   margin: 50px 0 0 0;
@@ -1122,13 +1135,13 @@ footer .container .social-media {
 .newsletter .container form .sign-up input {
   width: 85%;
   border-radius: 5px;
-  border: 1px solid #D4D7E5;
+  border: 1px solid var(--color-gray-400);
 }
 .newsletter .container form .terms {
   display: flex;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 12px !important;
   text-align: left;
@@ -1148,7 +1161,7 @@ footer .container .social-media {
   align-content: center;
 }
 .sign-in .container .errormessage {
-  background: #EF4444;
+  background: var(--color-danger);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1158,21 +1171,21 @@ footer .container .social-media {
 .sign-in .container form {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
 }
 .sign-in .container form input {
   padding: 1rem;
 }
 .sign-in .container form input input::placeholder {
-  color: #D4D7E5;
+  color: var(--color-gray-400);
 }
 .sign-in .container form .form-check-label {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
 }
 .sign-in .container form button {
@@ -1208,21 +1221,21 @@ footer .container .social-media {
   align-content: center;
 }
 .sign-up .container .errormessage {
-  background: #ff6b6b;
+  background-color: var(--color-danger);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
   border-radius: 8px;
-  color: black;
+  color: var(--color-black);
 }
 .sign-up .container form {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
 }
 .sign-up .container form .name {
   display: flex;
@@ -1243,23 +1256,23 @@ footer .container .social-media {
   right: 0;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 .sign-up .container form .mb-3 input {
   padding: 1rem;
   border-radius: 8px !important;
-  border: 1px solid #D4D7E5;
+  border: 1px solid var(--color-gray-400) !important;
 }
 .sign-up .container form .mb-3 input.input-validation-error {
-  border: 2px solid #EF4444 !important;
+  border: 2px solid var(--color-danger) !important;
   border-radius: 0.5rem !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 .sign-up .container form .mb-3 input::placeholder {
-  color: #D4D7E5;
+  color: var(--color-gray-400);
 }
 .sign-up .container form .mb-3 .form-check {
   display: flex;
@@ -1270,7 +1283,7 @@ footer .container .social-media {
 .sign-up .container form .mb-3 .form-check .form-check-label {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   margin-left: 10px;
 }
@@ -1281,10 +1294,6 @@ footer .container .social-media {
   width: 100%;
 }
 
-/*
-    https://youtu.be/IttJNH0vLJs?t=6822
-    https://youtu.be/DQ7nMT-fUek?t=3484
-*/
 .account-details {
   height: 100%;
   width: 100%;
@@ -1299,7 +1308,7 @@ footer .container .social-media {
   gap: 1rem 5rem;
 }
 .account-details .container h6 {
-  color: #6366F1;
+  color: var(--color-theme);
 }
 .account-details .container .buttons {
   display: flex;
@@ -1311,9 +1320,9 @@ footer .container .social-media {
   grid-area: userinfo;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
-  border-right: 1px solid #EFF2FC;
+  border-right: 1px solid var(--color-gray-200);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1335,10 +1344,10 @@ footer .container .social-media {
 .account-details .container .user .btn-user .signout {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   display: inline-block;
   width: 100%;
   text-align: left;
@@ -1353,10 +1362,10 @@ footer .container .social-media {
 .account-details .container .user .name {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 16px !important;
 }
 .account-details .container .user .email {
@@ -1366,39 +1375,39 @@ footer .container .social-media {
   grid-area: detailsform;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   padding: 30px;
 }
 .account-details .container .details-form span.field-validation-error {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 .account-details .container .details-form input {
   border-radius: 8px !important;
-  border: 1px solid #D4D7E5;
+  border: 1px solid var(--color-gray-400);
 }
 .account-details .container .details-form input input::placeholder {
-  color: #D4D7E5;
+  color: var(--color-gray-400);
 }
 .account-details .container .details-form input.input-validation-error {
-  border: 2px solid #EF4444 !important;
+  border: 2px solid var(--color-danger) !important;
   border-radius: 0.5rem !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 .account-details .container .details-form .title {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
 }
 .account-details .container .details-form .optional {
@@ -1430,7 +1439,7 @@ footer .container .social-media {
   height: 150px;
 }
 .account-details .container .details-form .form-basicinfo ::placeholder {
-  color: #D4D7E5;
+  color: var(--color-gray-400);
 }
 .account-details .container .address {
   margin-top: 50px;
@@ -1467,7 +1476,7 @@ footer .container .social-media {
   gap: 1rem 5rem;
 }
 #account-security .container h6 {
-  color: #6366F1;
+  color: var(--color-theme);
 }
 #account-security .container .buttons {
   display: flex;
@@ -1479,10 +1488,9 @@ footer .container .social-media {
   grid-area: userinfo;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
-  border-right: 1px solid #EFF2FC;
-  display: flex;
+  border-right: 1px solid var(--color-gray-200);
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -1503,10 +1511,10 @@ footer .container .social-media {
 #account-security .container .user .btn-user .signout {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   display: inline-block;
   width: 100%;
   text-align: left;
@@ -1521,10 +1529,10 @@ footer .container .social-media {
 #account-security .container .user .name {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 16px !important;
 }
 #account-security .container .user .email {
@@ -1534,7 +1542,7 @@ footer .container .social-media {
   grid-area: content;
 }
 #account-security .container .content .errormessage {
-  background: #ff6b6b;
+  background-color: var(--color-danger);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1545,21 +1553,21 @@ footer .container .social-media {
 #account-security .container .content .password-form {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
 }
 #account-security .container .content .password-form input::placeholder {
-  color: #D4D7E5;
+  color: var(--color-gray-400);
 }
 #account-security .container .content .password-form .title {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 32px !important;
 }
 #account-security .container .content .password-form .form-password .current-password {
@@ -1573,84 +1581,44 @@ footer .container .social-media {
   width: 100%;
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password input.input-validation-error {
-  border: 2px solid #EF4444 !important;
+  border: 2px solid var(--color-danger) !important;
   border-radius: 0.5rem !important;
   color: #EF4444;
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password span.field-validation-error {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 #account-security .container .content .password-form .form-password .create-new-password .confirm-password {
   width: 100%;
 }
 #account-security .container .content .password-form .form-password .create-new-password .confirm-password input.input-validation-error {
-  border: 2px solid #EF4444 !important;
+  border: 2px solid var(--color-danger) !important;
   border-radius: 0.5rem !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 #account-security .container .content .password-form .form-password .create-new-password .confirm-password span.field-validation-error {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
-  color: #EF4444;
+  color: var(--color-danger);
 }
 #account-security .container .content .delete-account form .checkbox-group {
   margin-bottom: 15px;
 }
 
 #contact {
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
 }
 #contact .container {
   display: flex;
   column-gap: 10rem;
-}
-#contact .container .left-content {
-  /* .careers {
-          display: grid;
-          grid-template-columns: min-content auto;
-          grid-template-areas: "icon title" ". text" ". link";
-          align-items: center;
-          column-gap: 1.5rem;
-          padding: 20px;
-
-          i {
-              grid-area: icon;
-              background-color: white;
-              padding: 15px;
-              border-radius: 25px;
-          }
-
-          .message {
-              @include standard-heading;
-              color: $theme;
-
-              i {
-                  background-color: transparent;
-              }
-          }
-
-          h3 {
-              grid-area: title;
-          }
-
-          p {
-              width: 60%;
-              grid-area: text;
-          }
-
-          a {
-              grid-area: link;
-          }
-      }
-  }*/
 }
 #contact .container .left-content .pagnation {
   display: inline-block;
@@ -1671,10 +1639,10 @@ footer .container .social-media {
 #contact .container .left-content h3 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 20px !important;
 }
 #contact .container .left-content .contactus {
@@ -1695,11 +1663,11 @@ footer .container .social-media {
 #contact .container .left-content .contactus .message {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
-  color: #6366F1;
+  color: var(--color-gray-900);
+  color: var(--color-theme);
   grid-area: link;
 }
 #contact .container .left-content .contactus .message i {
@@ -1713,21 +1681,21 @@ footer .container .social-media {
   width: 60%;
 }
 #contact .container .right-content form {
-  background-color: white;
+  background-color: var(--color-gray-000);
   padding: 55px;
   position: absolute;
   top: 25%;
-  border-radius: solid 0, 5px black;
+  border-radius: solid 0, 5px var(--color-gray-900);
   font-weight: 700;
   color: black;
 }
 #contact .container .right-content form h2 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 28px !important;
 }
 #contact .container .right-content form select {
@@ -1776,15 +1744,15 @@ footer .container .social-media {
   gap: 2rem;
 }
 .courses .container .upper-content .search-categories .dropdown {
-  border: 1px solid #D4D7E5;
+  border: 1px solid var(--color-gray-400);
   border-radius: 5px;
 }
 .courses .container .upper-content .search-categories .dropdown button {
-  background-color: transparent;
-  color: #565973;
+  background-color: var(--color-transparent);
+  color: var(--color-gray-700);
 }
 .courses .container .upper-content .search-categories input {
-  background-color: transparent;
+  background-color: var(--color-transparent);
   border-radius: 5px;
   min-width: 50%;
   text-align: left;
@@ -1814,7 +1782,7 @@ footer .container .social-media {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #22C55E;
+  background-color: var(--color-sucess);
   color: white !important;
   border-radius: 5px;
   padding-right: 4px;
@@ -1822,7 +1790,7 @@ footer .container .social-media {
   padding: 5px;
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 12px !important;
 }
@@ -1838,8 +1806,8 @@ footer .container .social-media {
   font-size: 0.8rem;
 }
 .courses .container .course-list a .course .saved-item:hover {
-  border: 1px solid #6366F1;
-  background-color: #6366F1;
+  border: 1px solid var(--color-theme);
+  background-color: var(--color-theme);
   color: white;
 }
 .courses .container .course-list a .course .content {
@@ -1848,17 +1816,17 @@ footer .container .social-media {
 .courses .container .course-list a .course .content .course-title {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 20px !important;
-  color: #33354D;
+  color: var(--color-gray-800);
   margin-bottom: 0;
 }
 .courses .container .course-list a .course .content .course-creator {
   font-size: 0.8rem;
-  color: #565973;
+  color: var(--color-gray-700);
   margin-bottom: 1rem;
 }
 .courses .container .course-list a .course .content .course-prices {
@@ -1867,13 +1835,13 @@ footer .container .social-media {
   font-weight: 900;
 }
 .courses .container .course-list a .course .content .course-prices .discount-price {
-  color: #EF4444;
+  color: var(--color-danger);
 }
 .courses .container .course-list a .course .content .course-prices .original-price {
-  color: #6366F1;
+  color: var(--color-theme);
 }
 .courses .container .course-list a .course .content .course-prices .discount {
-  color: #9397AD;
+  color: var(--color-gray-600);
   text-decoration: line-through;
   font-weight: 400;
 }
@@ -1882,7 +1850,7 @@ footer .container .social-media {
   font-weight: 200;
   gap: 20px;
   font-size: 0.8rem;
-  color: #9397AD;
+  color: var(--color-gray-600);
 }
 .courses .container .course-list a .course .course-footer .course-hours i {
   margin-right: 5px;
@@ -1893,14 +1861,14 @@ footer .container .social-media {
   margin-top: 2rem;
 }
 .courses .pagination .page-item:active {
-  background-color: #6366F1;
+  background-color: var(--color-theme);
 }
 .courses .pagination .page-item:hover {
-  background-color: #D4D7E5;
+  background-color: var(--color-gray-400);
 }
 
 .work-with-us .container {
-  background-color: #F3F6FF;
+  background-color: var(--color-gray-100);
   display: flex;
   justify-content: space-between;
   padding: 100px;
@@ -1910,21 +1878,21 @@ footer .container .social-media {
 .work-with-us .container .left p {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
 }
 .work-with-us .container .left h2 {
   line-height: 160%;
   font-weight: 400;
-  color: #565973;
+  color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  color: #0B0F19;
+  color: var(--color-gray-900);
   font-size: 40px !important;
   max-width: 70%;
 }
 .work-with-us .container .left .color {
-  color: #6366F1;
+  color: var(--color-theme);
 }
 .work-with-us .container right img {
   max-width: fit-content;

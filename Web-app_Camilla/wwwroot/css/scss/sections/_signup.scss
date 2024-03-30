@@ -11,13 +11,13 @@
         align-content: center;
 
         .errormessage {
-            background: #ff6b6b;
+            background-color: var(--color-danger);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 15px;
             border-radius: 8px;
-            color: black;
+            color: var(--color-black);
         }
 
 
@@ -39,29 +39,30 @@
 
             .mb-3 {
                 position: relative;
+
                 span {
                     &.field-validation-error {
                         position: absolute;
                         top: 0;
                         right: 0;
                         @include text-s;
-                        color: $danger;
+                        color: var(--color-danger);
                     }
                 }
 
                 input {
                     padding: 1rem;
                     border-radius: 8px !important;
-                    border: 1px solid $gray-400;
+                    border: 1px solid var(--color-gray-400) !important;
 
                     &.input-validation-error {
-                        border: 2px solid $danger !important;
+                        border: 2px solid var(--color-danger) !important;
                         border-radius: 0.5rem !important;
-                        color: $danger;
+                        color: var(--color-danger);
                     }
 
                     &::placeholder {
-                        color: $gray-400;
+                        color: var(--color-gray-400);
                     }
                 }
 
@@ -92,7 +93,3 @@
         }
     }
 }
-/*
-    https://youtu.be/IttJNH0vLJs?t=6822
-    https://youtu.be/DQ7nMT-fUek?t=3484
-*/
