@@ -1,4 +1,51 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+:root {
+  --color-gray-000: #FFFFFF;
+  --color-gray-100: #F3F6FF;
+  --color-gray-200: #EFF2FC;
+  --color-gray-300: #E2E5F1;
+  --color-gray-400: #D4D7E5;
+  --color-gray-500: #B47C9;
+  --color-gray-600: #9397AD;
+  --color-gray-700: #565973;
+  --color-gray-800: #33354D;
+  --color-gray-900: #0B0F19;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray: #EFF2FC;
+  --color-theme: #6366F1;
+  --color-danger: #F5D7DA;
+  --color-danger-dark: #E57E88;
+  --color-sucess: #BCF7D2;
+  --color-warning: #FFE8AD;
+  --color-info: #CFDEFD;
+  --font-standard: "Manrope", sans-serif;
+  --color-transparent: transparent;
+}
+
+:root.dark {
+  --color-gray-000: #0B0F19;
+  --color-gray-100: #33354D;
+  --color-gray-200: #565973;
+  --color-gray-300: #9797AD;
+  --color-gray-400: B47N7C9;
+  --color-gray-500: #D4D7E5;
+  --color-gray-600: #E2E5F1;
+  --color-gray-700: #EFF2FC;
+  --color-gray-800: #F3F6FF;
+  --color-gray-900: #FFFFFF;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray: #EFF2FC;
+  --color-theme: #6366F1;
+  --color-danger: #F5D7DA;
+  --color-danger-dark: #E57E88;
+  --color-sucess: #BCF7D2;
+  --color-warning: #FFE8AD;
+  --color-info: #CFDEFD;
+  --color-transparent: transparent;
+}
+
 html, body {
   line-height: 160%;
   font-weight: 400;
@@ -175,6 +222,11 @@ h6, .h6 {
   font-size: 16px !important;
 }
 
+body {
+  color: var(--color-gray-700) !important;
+  background-color: var(--color-gray-000) !important;
+}
+
 .wrapper {
   height: 100vh;
   display: grid;
@@ -185,6 +237,13 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 a {
@@ -431,6 +490,48 @@ form .form-check {
 }
 form .form-check #RememberMe {
   margin-right: 15px;
+}
+
+.alert {
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 12px 1rem;
+  display: block;
+}
+.alert .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-dark {
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-000);
+}
+
+.alert-gray {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-800);
+}
+
+.alert-info {
+  background-color: var(--color-info);
+  color: var(--color-gray-800);
+}
+
+.alert-sucess {
+  background-color: var(--color-sucess);
+  color: var(--color-gray-800);
+}
+
+.alert-warning {
+  background-color: var(--color-warning);
+  color: var(--color-gray-800);
+}
+
+.alert-danger {
+  background-color: var(--color-danger);
+  color: var(--color-gray-800);
 }
 
 header {
