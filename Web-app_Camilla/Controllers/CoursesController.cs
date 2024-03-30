@@ -39,10 +39,12 @@ public class CoursesController(HttpClient http, IConfiguration configuration) : 
 
     public async Task<IActionResult> CourseDetails(string id)
     {
+
         if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
             _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _http.GetAsync($"https://localhost:7138/api/courses/{id}?key={_configuration["ApiKey:Secret"]}");
+
+            var response = await _http.GetAsync($"https://localhost:7138/api/Courses/{id}?key={_configuration["ApiKey:Secret"]}");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();

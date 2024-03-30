@@ -28,7 +28,7 @@
         <div class="course-list">
             @foreach (var course in Model.Courses)
             {
-                <a class="course" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="model.courses.Id">
+                <a class="course" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
                     <div class="course">
                         @if (course.IsBestSeller)
                         {
@@ -41,12 +41,16 @@
                             <h2 class="course-title">@course.Title</h2>
                             <div class="course-creator">by @course.Creator</div>
                             <div class="course-prices">
-                                @if (course.DiscountPrice != null)
+                                @if (course.DiscountPrice > 0)
                                 {
-                                    <div class="disount-price">$@course.DiscountPrice</div>
+                                    <div class="discount-price">$@course.DiscountPrice</div>
                                     <div class="original-price discount">$@course.Price</div>
                                 }
-                                <div class="original-price">$@course.Price</div>
+                                else
+                                {
+                                    <div class="original-price">$@course.Price</div>
+                                }
+                                
                             </div>
                             <hr />
                             <div class="course-footer">
@@ -54,7 +58,7 @@
                                 <div class="course-likes">
                                     <i class="fa-regular fa-thumbs-up"></i>
                                     <span>@($"{course.LikeParameter * 100:0}%")</span>
-                                    <span>(@($"{course.UserVotes / 1000}K"))</span>
+                                    <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
                                 </div>
                             </div>
                         </div>
