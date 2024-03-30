@@ -61,11 +61,12 @@
             a {
                 &:hover {
                     text-decoration: none;
+                    @include shadow-l;
                 }
 
 
                 .course {
-                    @include shadow-m;
+                    @include shadow-s;
                     text-decoration: none;
                     color: black;
                     position: relative;

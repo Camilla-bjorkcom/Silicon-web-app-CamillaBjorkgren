@@ -1280,7 +1280,6 @@ footer .container .social-media {
   color: #EF4444;
 }
 .account-details .container .details-form input {
-  padding: 1rem;
   border-radius: 8px !important;
   border: 1px solid #D4D7E5;
 }
@@ -1292,7 +1291,7 @@ footer .container .social-media {
   border-radius: 0.5rem !important;
   color: #EF4444;
 }
-.account-details .container .details-form input .title {
+.account-details .container .details-form .title {
   line-height: 160%;
   font-weight: 400;
   color: #565973;
@@ -1301,51 +1300,51 @@ footer .container .social-media {
   color: #0B0F19;
   font-size: 32px !important;
 }
-.account-details .container .details-form input .optional {
+.account-details .container .details-form .optional {
   font-weight: 300;
   display: inline;
 }
-.account-details .container .details-form input .form-basicinfo .name {
+.account-details .container .details-form .form-basicinfo .name {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .details-form input .form-basicinfo .name .first-name {
+.account-details .container .details-form .form-basicinfo .name .first-name {
   width: 100%;
 }
-.account-details .container .details-form input .form-basicinfo .name .last-name {
+.account-details .container .details-form .form-basicinfo .name .last-name {
   width: 100%;
 }
-.account-details .container .details-form input .form-basicinfo .contact-info {
+.account-details .container .details-form .form-basicinfo .contact-info {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .details-form input .form-basicinfo .contact-info .email {
+.account-details .container .details-form .form-basicinfo .contact-info .email {
   width: 100%;
 }
-.account-details .container .details-form input .form-basicinfo .contact-info .phone {
+.account-details .container .details-form .form-basicinfo .contact-info .phone {
   width: 100%;
 }
-.account-details .container .details-form input .form-basicinfo textarea {
+.account-details .container .details-form .form-basicinfo textarea {
   resize: none;
   height: 150px;
 }
-.account-details .container .details-form input .form-basicinfo ::placeholder {
+.account-details .container .details-form .form-basicinfo ::placeholder {
   color: #D4D7E5;
 }
-.account-details .container .details-form .address {
+.account-details .container .address {
   margin-top: 50px;
 }
-.account-details .container .details-form .address .form-address {
+.account-details .container .address .form-address {
   width: 100%;
 }
-.account-details .container .details-form .address .form-address .postalcode-city {
+.account-details .container .address .form-address .postalcode-city {
   display: flex;
   gap: 1rem;
 }
-.account-details .container .details-form .address .form-address .postalcode-city .postalcode {
+.account-details .container .address .form-address .postalcode-city .postalcode {
   width: 100%;
 }
-.account-details .container .details-form .address .form-address .postalcode-city .city {
+.account-details .container .address .form-address .postalcode-city .city {
   width: 100%;
 }
 
@@ -1701,9 +1700,10 @@ footer .container .social-media {
 }
 .courses .container .course-list a:hover {
   text-decoration: none;
+  box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.1);
 }
 .courses .container .course-list a .course {
-  box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
+  box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
   text-decoration: none;
   color: black;
   position: relative;
