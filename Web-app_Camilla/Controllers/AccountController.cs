@@ -241,12 +241,12 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         if (result)
         {
             ViewData["ImageUpload"] = "Sucessfully updated profile image";
-            return RedirectToAction("Details", "Account");
+            return RedirectToAction("Index", "Account");
         }
         else
         {
             ViewData["ImageUpload"] = "Could not update profile image";
-            return RedirectToAction("Details", "Account");
+            return RedirectToAction("Index", "Account");
         }
       
     }

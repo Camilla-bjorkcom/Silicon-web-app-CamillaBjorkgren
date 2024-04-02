@@ -80,3 +80,4 @@ inputs.forEach(input => {
         }
     }
 })
+console.log("hej");

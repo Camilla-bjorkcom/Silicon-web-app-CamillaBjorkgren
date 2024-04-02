@@ -1,6 +1,7 @@
 ﻿@model AccountDetailsViewModel
 @{
     ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <section class="account-details">
@@ -13,7 +14,26 @@
             </div>
         }
 
-        @await Html.PartialAsync("~/Views/Shared/_ProfileInfo.cshtml")
+        @if (user != null)
+        {
+            <div class="user">
+                <div class="user-img">
+                    <img src="~/uploads/@user.ProfileImg" alt="profile image">
+                    <form enctype="multipart/form-data" method="post" asp-action="UploadImage" asp-controller="Account">
+                        <input type="file" id="uploadFile" name="file" hidden />
+                        <label for="uploadFile" class="btn btn-circle btn-circle-sm"><i class="fa-regular fa-refresh"></i></label>
+                    </form>
+                </div>
+                <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
+                <p class="email">@Model.ProfileView?.Email</p>
+                <div class="btn-user">
+                    <a asp-controller="Account" asp-action="Index"><button class="button btn active"><i class="fa-light fa-gear"></i> Account Details</button></a>
+                    <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock"></i> Security</button></a>
+                    <a asp-action="" asp-controller="SavedItems"><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
+                    <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
+                </div>
+            </div>
+        }
 
         <div class="details-form">
             <h2 class="title">Account Details</h2>
@@ -56,12 +76,12 @@
                         <div class="mb-3">
                             @if (Model.BasicInfoForm.IsExternalAccount)
                             {
-                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" disabled />
-                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" hidden />
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" disabled />
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" hidden />
                             }
                             else
                             {
-                                <input asp-for="BasicInfoForm.Email" type="text" class="form-control" />
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" />
                                 <span asp-validation-for="BasicInfoForm.Email"></span>
                             }
                         </div>
@@ -125,4 +145,4 @@
 </section>
 
 
-@await Html.PartialAsync("_ValidationScriptsPartial")
+<script defer src="~/js/validation.js"></script>

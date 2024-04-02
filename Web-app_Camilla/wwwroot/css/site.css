@@ -608,6 +608,19 @@ header .container .account-buttons {
     display: flex;
   }
 }
+header .container .account-buttons .profile {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+header .container .account-buttons .profile .image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 header .container .btn-mobile {
   grid-area: mobile;
   display: block;
@@ -1337,6 +1350,7 @@ footer .container .social-media {
   display: inline-block;
   text-align: left;
   padding: 10px;
+  color: var(--color-gray-900);
 }
 .account-details .container .user .btn-user .button i {
   margin-right: 1rem;
@@ -1356,8 +1370,26 @@ footer .container .social-media {
 }
 .account-details .container .user .user-img {
   cursor: pointer;
-  width: 80px;
+  width: 120px;
+  height: 120px;
   margin-bottom: 1rem;
+  position: relative;
+}
+.account-details .container .user .user-img img {
+  border-radius: 60px;
+  object-fit: cover;
+}
+.account-details .container .user .user-img .btn-circle-sm {
+  position: absolute;
+  top: 75px;
+  right: 15px;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+  padding: 4px;
+  border-radius: 50%;
+}
+.account-details .container .user .user-img .btn-circle-sm:hover {
+  color: var(--color-gray-500);
 }
 .account-details .container .user .name {
   line-height: 160%;
@@ -1491,6 +1523,7 @@ footer .container .social-media {
   color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   border-right: 1px solid var(--color-gray-200);
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -1504,6 +1537,7 @@ footer .container .social-media {
   display: inline-block;
   text-align: left;
   padding: 10px;
+  color: var(--color-gray-900);
 }
 #account-security .container .user .btn-user .button i {
   margin-right: 1rem;
@@ -1523,8 +1557,26 @@ footer .container .social-media {
 }
 #account-security .container .user .user-img {
   cursor: pointer;
-  width: 80px;
+  width: 120px;
+  height: 120px;
   margin-bottom: 1rem;
+  position: relative;
+}
+#account-security .container .user .user-img img {
+  border-radius: 60px;
+  object-fit: cover;
+}
+#account-security .container .user .user-img .btn-circle-sm {
+  position: absolute;
+  top: 75px;
+  right: 15px;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+  padding: 4px;
+  border-radius: 50%;
+}
+#account-security .container .user .user-img .btn-circle-sm:hover {
+  color: var(--color-gray-500);
 }
 #account-security .container .user .name {
   line-height: 160%;

@@ -31,6 +31,7 @@
             align-items: center;
             width: 100%;
 
+
             .btn-user {
                 width: 70%;
                 margin-top: 1rem;
@@ -40,6 +41,7 @@
                     display: inline-block;
                     text-align: left;
                     padding: 10px;
+                    color: var(--color-gray-900);
 
                     i {
                         margin-right: 1rem;
@@ -58,8 +60,30 @@
 
             .user-img {
                 cursor: pointer;
-                width: 80px;
+                width: 120px;
+                height: 120px;
                 margin-bottom: 1rem;
+                position: relative;
+
+                img {
+                    border-radius: 60px;
+                    object-fit: cover;
+                }
+
+
+                .btn-circle-sm {
+                    position: absolute;
+                    top: 75px;
+                    right: 15px;
+                    background-color: var(--color-gray-100);
+                    color: var(--color-gray-800);
+                    padding: 4px;
+                    border-radius: 50%;
+
+                    &:hover {
+                        color: var(--color-gray-500);
+                    }
+                }
             }
 
             .name {
@@ -92,7 +116,7 @@
                 }
 
                 &.input-validation-error {
-                    border: 2px solid var(--color-danger)!important;
+                    border: 2px solid var(--color-danger) !important;
                     border-radius: 0.5rem !important;
                     color: var(--color-danger);
                 }

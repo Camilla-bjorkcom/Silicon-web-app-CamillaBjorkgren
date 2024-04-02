@@ -22,6 +22,7 @@
 //checkScreenSize();
 
 document.addEventListener('DOMContentLoaded', function () {
+    handleProfileImageUpload()
     let switchMode = document.querySelector('#switch-mode');
 
     switchMode.addEventListener('change', function () {
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(res => {
                 if (res.ok) {
                     window.location.reload();
-                    console.log("hello wrong");
                 }
                 else {
                     console.log('something');
@@ -39,4 +39,20 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
+
+//document.addEventListener('click'), function () {
+//    handleProfileImageUpload()
+//}
+
+
+function handleProfileImageUpload() {
+
+    let uploadFile = document.getElementById('uploadFile')
+    if (uploadFile != undefined) {
+        uploadFile.addEventListener('change', function () {
+            if (this.files.length > 0)
+                this.form.submit()
+        })
+    }
+}
 
