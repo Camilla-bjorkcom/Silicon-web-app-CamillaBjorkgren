@@ -48,29 +48,35 @@ public class AuthController(WebApiDbContext webApiDbContext, IConfiguration conf
     [Route("token")]
     public IActionResult GetToken(UserLoginForm form)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]!);
-            var tokenDecriptor = new SecurityTokenDescriptor
+            if (ModelState.IsValid)
             {
-                Subject = new ClaimsIdentity(new Claim[]
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]!);
+                var tokenDecriptor = new SecurityTokenDescriptor
                 {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
                         new(ClaimTypes.Email, form.Email),
                         new(ClaimTypes.Name, form.Email)
-                }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                Issuer = _configuration["Jwt:Issuer"],
-                Audience = _configuration["Jwt:Audience"],
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDecriptor);
-            var tokenString = tokenHandler.WriteToken(token);
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    Issuer = _configuration["Jwt:Issuer"],
+                    Audience = _configuration["Jwt:Audience"],
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDecriptor);
+                var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(tokenString);
+                return Ok(tokenString);
+            }
+            return Unauthorized();
+        
         }
-        return Unauthorized();
+        catch (Exception ex) { return BadRequest(); }
     }
+
        
 }
 
