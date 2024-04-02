@@ -2,16 +2,21 @@
 using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 
 namespace Infrastructure.Services;
 
-public class AccountService(UserRepository userRepository, UserManager<UserEntity> userManager, AddressRepository addressRepository)
+public class AccountService(UserRepository userRepository, UserManager<UserEntity> userManager, AddressRepository addressRepository, IConfiguration configuration)
 {
     private readonly UserRepository _userRepository = userRepository;
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly AddressRepository _addressRepository = addressRepository;
+    private readonly IConfiguration _configuration = configuration;
 
     public async Task<UserEntity> UpdateUserAsync(UserEntity user)
     {
@@ -88,7 +93,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                 {
                     user.Modified = DateTime.Now;
                     return true;
-                }             
+                }
             }
             return false;
         }
@@ -113,7 +118,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                         return true;
                     }
                 }
-              
+
             }
             return false;
         }
@@ -122,5 +127,38 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
         {
             return false;
         }
+    }
+
+    public async Task<bool> UploadUserProfileImageAsync(ClaimsPrincipal user, IFormFile file)
+    {
+        try
+        {
+            if (user != null && file != null && file.Length != 0)
+            {
+                var userEntity = await _userManager.GetUserAsync(user);
+                if(userEntity != null)
+                {
+                    var fileName = $"p_{userEntity.Id}_{Guid.NewGuid()}_{Path.GetExtension(file.FileName)}";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileUploadPath"]!, fileName);
+
+                    using var fs = new FileStream(filePath, FileMode.Create);
+                    await file.CopyToAsync(fs);
+
+                    userEntity.ProfileImg = fileName;
+                    var result = await _userRepository.UpdateAsync(userEntity);
+                    if (result != null)
+                    {
+                        return true;
+                    }
+                    //PATH.Combine måste redan ha befintliga kataloger!!!
+                }
+            }
+            
+        }
+        catch (Exception ex)
+        { 
+            Debug.WriteLine(ex.Message);
+        }
+        return false;
     }
 }

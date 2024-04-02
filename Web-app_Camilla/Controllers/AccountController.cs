@@ -233,59 +233,22 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         viewModel.ProfileView ??= await PopulateProfileViewAsync();
         return View(viewModel);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        var result = await _accountService.UploadUserProfileImageAsync(User, file);
+        if (result)
+        {
+            ViewData["ImageUpload"] = "Sucessfully updated profile image";
+            return RedirectToAction("Details", "Account");
+        }
+        else
+        {
+            ViewData["ImageUpload"] = "Could not update profile image";
+            return RedirectToAction("Details", "Account");
+        }
+      
+    }
+        
 }
-
-//[HttpPost]
-//[Route("/account/details")]
-//public async Task<IActionResult> BasicInfo(AccountDetailsViewModel viewModel)
-//{
-
-//    var updateUser = await _accountService.UpdateUserAsync(viewModel.User);
-//    if (updateUser.StatusCode == Infrastructure.Models.StatusCode.ERROR)
-//    {
-//        ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-//        ViewData["ErrorMessage"] = "Data did not update correctly";
-
-//    }
-//    return RedirectToAction("Details", "Account", viewModel);
-//}
-
-//[HttpPost]
-//public IActionResult SaveBasicInfo(AccountDetailsViewModel viewModel)
-//{
-//    if (TryValidateModel(viewModel.BasicInfoForm))
-//    {
-//        return RedirectToAction("Index", "Home");
-//    }
-
-//    //var updateUser = await _accountService.UpdateUserAsync(viewModel.User);
-//    //if (updateUser.StatusCode == Infrastructure.Models.StatusCode.ERROR)
-//    //{
-//    //    ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-//    //    ViewData["ErrorMessage"] = "Data did not update correctly";
-
-//    //}
-//    ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-//    ViewData["ErrorMessage"] = "Data did not update correctly";
-//    return View("Index", viewModel);
-//}
-
-//[HttpPost]
-//public IActionResult SaveAddressInfo(AccountDetailsViewModel viewModel)
-//{
-//    if (TryValidateModel(viewModel.AddressInfoForm))
-//    {
-//        return RedirectToAction("Index", "Home");
-//    }
-
-//    //var updateUser = await _accountService.UpdateUserAsync(viewModel.User);
-//    //if (updateUser.StatusCode == Infrastructure.Models.StatusCode.ERROR)
-//    //{
-//    //    ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-//    //    ViewData["ErrorMessage"] = "Data did not update correctly";
-
-//    //}
-//    return View("Index", viewModel);
-//}
-
-

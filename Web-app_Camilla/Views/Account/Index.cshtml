@@ -1,4 +1,4 @@
-﻿@model AccountDetailsViewModel 
+﻿@model AccountDetailsViewModel
 @{
     ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
 }
@@ -13,19 +13,7 @@
             </div>
         }
 
-        <div class="user">
-            <div class="user-img">
-                <img src="~/images/@Model.ProfileView.ProfileImageUrl" alt="">
-            </div>
-            <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
-            <p class="email">@Model.ProfileView?.Email</p>
-            <div class="btn-user">
-                <a asp-controller="Account" asp-action="Details"><button class="button btn active"><i class="fa-light fa-gear"></i> Account Details</button></a>
-                <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock"></i> Security</button></a>
-                <a asp-action="" asp-controller="SavedItems"><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
-                <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
-            </div>
-        </div>
+        @await Html.PartialAsync("~/Views/Shared/_ProfileInfo.cshtml")
 
         <div class="details-form">
             <h2 class="title">Account Details</h2>
@@ -35,10 +23,10 @@
                     <div class="first-name">
                         <label asp-for="BasicInfoForm.FirstName" class="form-label">First name</label>
                         <div class="mb-3">
-                            @if(Model.BasicInfoForm.IsExternalAccount)
+                            @if (Model.BasicInfoForm.IsExternalAccount)
                             {
-                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" disabled/>
-                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" hidden/>
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" disabled />
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" hidden />
                                 <input asp-for="BasicInfoForm.IsExternalAccount" type="text" class="form-control" hidden />
                             }
                             else
@@ -75,7 +63,7 @@
                             {
                                 <input asp-for="BasicInfoForm.Email" type="text" class="form-control" />
                                 <span asp-validation-for="BasicInfoForm.Email"></span>
-                            }                       
+                            }
                         </div>
                     </div>
                     <div class="phone">
@@ -133,6 +121,7 @@
             </div>
 
         </div>
+    </div>
 </section>
 
 

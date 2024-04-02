@@ -10,6 +10,8 @@ public class UserEntity : IdentityUser
     [ProtectedPersonalData]
     public string LastName { get; set; } = null!;
 
+    public string? ProfileImg { get; set; } = "avatar.jpg";
+
     public bool IsExternalAccount { get; set; } = false;
 
     //Behöver inte fylla i vid create

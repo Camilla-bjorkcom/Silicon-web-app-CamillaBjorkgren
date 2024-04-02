@@ -106,6 +106,19 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
             }
 
         }
+        else if (!ModelState.IsValid) 
+        {
+            // There are validation errors in ModelState
+            // You can iterate through ModelState errors and log or handle them
+            foreach (var error in ModelState["Email"]!.Errors)
+            {
+                var errorMessage = error.ErrorMessage;
+                // Log or handle the error message appropriately
+            }
+
+            // Return to the view to display validation errors to the user
+            return View(model);
+        }
         ViewData["ErrorMessage"] = "Email and password is required";
         return View(model);
     }

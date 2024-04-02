@@ -18,14 +18,15 @@ public class SignUpModel
     [DataType(DataType.EmailAddress)]
     [Display(Name = "Email address", Prompt = "Enter your email address", Order = 2)]
     [Required(ErrorMessage = "Email is required")]
-    [RegularExpression("/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/", ErrorMessage = "Invalid email address")]
+    [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,}$", ErrorMessage = "Invalid email address")]
     public string Email { get; set; } = null!;
 
     [DataType(DataType.Password)]
     [Display(Name = "Password", Prompt = "Enter your password", Order = 3)]
     [Required(ErrorMessage = "Password is required")]
-    [RegularExpression("/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{8,}$/", ErrorMessage = "Invalid password, must be a strong password")]
+    [RegularExpression(@"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{8,}$", ErrorMessage = "Invalid password, must be a strong password")]
     public string Password { get; set; } = null!;
+
 
     [DataType(DataType.Password)]
     [Display(Name = "Confirm password", Prompt = "Confirm your password", Order = 4)]
