@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http.Headers;
 using System.Reflection;
 using Web_API_Camilla.Filters;
+using static System.Net.WebRequestMethods;
 
 namespace Web_API_Camilla.Controllers;
 
@@ -41,7 +44,7 @@ public class CoursesController(CoursesService courseService) : ControllerBase
         }
         return NotFound();
     }
-    
+
 
     [HttpPost]
     public async Task<IActionResult> CreateOne(CourseCreateDto dto)
@@ -78,23 +81,43 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCourse(CourseCreateDto dto)
+    public async Task<IActionResult> UpdateCourse(CourseUpdateDto dto)
     {
         if (ModelState.IsValid)
         {
-            var existingCourse = await _courseService.ExistsCourseAsync(dto.Title);
-            if (!existingCourse)
+            //Ändra till ID? Hur få in Id från sidan här?
+            var entity = await _courseService.GetOneAsyncTitle(dto.OldTitle);
+            if (entity != null)
             {
-                CourseEntity courseEntity = dto;
-
-                var result = await _courseService.UpdateCourseAsync(courseEntity);
+                CourseEntity course = new CourseEntity
+                {
+                    Id= entity.Id,
+                    Title = dto.Title,
+                    Price = dto.Price,
+                    DiscountPrice = dto.DiscountPrice,
+                    EstimatedHours = dto.EstimatedHours,
+                    BigImageName = dto.BigImageName,
+                    Creator = dto.Creator,
+                    ImageName = dto.ImageName,
+                    IsDigital = dto.IsDigital,
+                    LastUpdated = DateTime.Now,
+                    Created = entity.Created,
+                    IsBestSeller = dto.IsBestSeller,
+                    LikeParameter = dto.LikeParameter,
+                    UserVotes = dto.UserVotes,
+                };
+                var result = await _courseService.UpdateCourseAsync(course);
                 if (result)
                     return Ok();
-                return Problem();
+                return BadRequest();
             }
         }
         return BadRequest();
     }
+
+
+
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCourse(string title)

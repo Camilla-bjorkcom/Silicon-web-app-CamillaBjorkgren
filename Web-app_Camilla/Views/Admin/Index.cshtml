@@ -1,20 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Admin Portal";
 
 }
-<section>
+
+<section class="settings">
     <div class="container">
-        <h1>@ViewData["Title"]</h1>
+        <div class="content">
+            <div class="useradmin">
+                <h3>User Manager</h3>
+                <div class="image"><img src="~/images/Courses/Course8.svg"></div>
+                <ul>
+                    <a asp-action="RoleManager">
+                    <li>Roles</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="courseadmin">
+                <h3>Courses Manager</h3>
+                <div class="image"><img src="~/images/Courses/Course5.svg"></div>
+                <ul>
+                    <a asp-action="CreateCourse">
+                    <li>Create course</li>
+                    </a>
+                    <a asp-action="Courses" asp-controller="Courses">
+                    <li>Update courses</li>
+                    </a>
+                    <a asp-action="Courses" asp-controller="Courses">
+                    <li>Delete course</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
     </div>
-    <aside>
-        <nav>
-            @if (User.IsInRole("CIO"))
-            {
-                <a asp-action="Settings">Settings</a>
-            }
-        </nav>
-    </aside>
 </section>

@@ -350,7 +350,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background-color: var(--color-danger);
+  background-color: #EF4444;
   color: var(--color-white);
   border: none;
 }
@@ -2155,7 +2155,11 @@ footer .container .social-media {
   border: 3px solid var(--color-gray);
   border-radius: 7px;
 }
-.course-details .container .content .aside-info-admin .btn {
+.course-details .container .content .aside-info-admin .buttons {
+  display: flex;
+  gap: 2rem;
+}
+.course-details .container .content .aside-info-admin .buttons .btn {
   width: 40%;
 }
 .course-details .container .content .details {

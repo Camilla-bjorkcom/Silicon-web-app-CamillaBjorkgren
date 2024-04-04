@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<WebAppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Users")));
+builder.Services.AddDbContext<WebApiDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Users")));
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {
     x.User.RequireUniqueEmail = true;

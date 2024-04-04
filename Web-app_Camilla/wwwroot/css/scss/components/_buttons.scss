@@ -35,7 +35,7 @@
 
 .btn-red {
     @include button;
-    background-color: var(--color-danger);
+    background-color: $danger;
     color: var(--color-white);
     border: none;
 

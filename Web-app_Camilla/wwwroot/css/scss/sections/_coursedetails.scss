@@ -204,12 +204,8 @@
                     }
                 }
 
-                .buttons {
-                    display: flex; 
-                    gap: 2rem;
-                    .btn {
-                        width: 40%;
-                    }
+                .btn {
+                    width: 40%;
                 }
             }
 
@@ -224,8 +220,13 @@
                 border: 3px solid var(--color-gray);
                 border-radius: 7px;
 
-                .btn {
-                    width: 40%;
+                .buttons {
+                    display: flex;
+                    gap: 2rem;
+
+                    .btn {
+                        width: 40%;
+                    }
                 }
             }
 

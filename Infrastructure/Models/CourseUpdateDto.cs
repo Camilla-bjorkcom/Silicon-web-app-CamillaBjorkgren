@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Models;
-public class CourseInformation
+public class CourseUpdateDto
 {
-    public string Id { get; set; } = null!;
+    [Required(ErrorMessage = "Enter a title")]
+    [DataType(DataType.Text)]
+    [Display(Name = "Old Title")]
+    public string OldTitle { get; set; } = null!;
 
     [Required(ErrorMessage = "Enter a title")]
     [DataType(DataType.Text)]
@@ -27,7 +30,7 @@ public class CourseInformation
 
     [Required(ErrorMessage = "Enter a price")]
     [Display(Name = "Price")]
-    public decimal? Price { get; set; }
+    public decimal Price { get; set; }
 
     [Display(Name = "Discount price")]
     public decimal? DiscountPrice { get; set; }
@@ -36,11 +39,11 @@ public class CourseInformation
     [Display(Name = "Hours")]
     public int? EstimatedHours { get; set; }
 
-    [Required(ErrorMessage = "Enter a likes in procent")]
+    [Required(ErrorMessage = "Enter likes in procent")]
     [Display(Name = "Likes in procent (Like Parameter)")]
     public decimal? LikeParameter { get; set; }
 
-    [Required(ErrorMessage = "Enter a likes in numbers")]
+    [Required(ErrorMessage = "Enter likes in numbers")]
     [Display(Name = "Likes in numbers (User votes)")]
     public decimal? UserVotes { get; set; }
 

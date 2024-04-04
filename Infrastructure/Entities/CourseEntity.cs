@@ -41,4 +41,6 @@ public class CourseEntity
             LastUpdated = DateTime.Now,
         };
     }
+
+   
 }

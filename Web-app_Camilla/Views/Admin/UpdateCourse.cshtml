@@ -1,4 +1,6 @@
-﻿@model CourseIndexViewModel
+﻿
+@model CourseIndexViewModel
+
 
 <section>
     <div class="container">
@@ -14,61 +16,64 @@
 
         <form asp-action="UpdateCourse" asp-controller="Admin" method="post">
             <div>
-                <label asp-for="CourseInfo.Title">Title</label>
-                <input asp-for="Course.Title" disabled/>
-                <input asp-for="CourseInfo.Title" />
+                <input asp-for="UpdateDto.OldTitle" value="@Model.UpdateDto!.OldTitle" hidden/>
             </div>
             <div>
-                <label asp-for="CourseInfo.Price">Price</label>
-                <input asp-for="Course.Price" disabled />
-                <input asp-for="CourseInfo.Price" />
+                <label asp-for="UpdateDto.Title">Title</label>
+                <label>@Model.Course.Title</label>
+                <input asp-for="UpdateDto.Title" />
             </div>
             <div>
-                <label asp-for="CourseInfo.DiscountPrice">Discount price</label>
-                <input asp-for="Course.DiscountPrice" disabled />
-                <input asp-for="CourseInfo.DiscountPrice" />
+                <label asp-for="UpdateDto.Price">Price</label>
+                <label>@Model.Course.Price</label>
+                <input asp-for="UpdateDto.Price" />
             </div>
             <div>
-                <label asp-for="CourseInfo.Creator">Creator</label>
-                <input asp-for="Course.Creator" disabled />
-                <input asp-for="CourseInfo.Creator" />
+                <label asp-for="UpdateDto.DiscountPrice">Discount price</label>
+                <label>@Model.Course.DiscountPrice</label>
+                <input asp-for="UpdateDto.DiscountPrice" />
             </div>
             <div>
-                <label asp-for="CourseInfo.LikeParameter">Likes in Procent (e.g 0,91)</label>
-                <input asp-for="Course.LikeParameter" disabled />
-                <input asp-for="CourseInfo.LikeParameter" />
+                <label asp-for="UpdateDto.Creator">Creator</label>
+                <label>@Model.Course.Creator</label>
+                <input asp-for="UpdateDto.Creator" />
             </div>
             <div>
-                <label asp-for="CourseInfo.UserVotes">Likes in Numbers (e.g 2100)</label>
-                <input asp-for="Course.UserVotes" disabled />
-                <input asp-for="CourseInfo.UserVotes" />
+                <label asp-for="UpdateDto.LikeParameter">Likes in Procent (e.g 0,91)</label>
+                <label>@Model.Course.LikeParameter</label>
+                <input asp-for="UpdateDto.LikeParameter" />
             </div>
             <div>
-                <label asp-for="CourseInfo.EstimatedHours">Hours</label>
-                <input asp-for="Course.EstimatedHours" disabled />
-                <input asp-for="CourseInfo.EstimatedHours" />
+                <label asp-for="UpdateDto.UserVotes">Likes in Numbers (e.g 2100)</label>
+                <label>@Model.Course.UserVotes</label>
+                <input asp-for="UpdateDto.UserVotes" />
             </div>
             <div>
-                <label asp-for="CourseInfo.IsDigital">Is digital</label>
-                <input asp-for="Course.IsDigital" disabled />
-                <input type="checkbox" asp-for="CourseInfo.IsDigital" />
+                <label asp-for="UpdateDto.EstimatedHours">Hours</label>
+                <label>@Model.Course.EstimatedHours</label>
+                <input asp-for="UpdateDto.EstimatedHours" />
             </div>
             <div>
-                <label asp-for="CourseInfo.IsBestSeller">Is bestseller</label>
-                <input asp-for="Course.IsBestSeller" disabled />
-                <input type="checkbox" asp-for="CourseInfo.IsBestSeller" />
+                <label asp-for="UpdateDto.IsDigital">Is digital</label>
+                <label>@Model.Course.IsDigital</label>
+                <input type="checkbox" asp-for="UpdateDto.IsDigital" />
             </div>
             <div>
-                <label asp-for="CourseInfo.ImageName">Image Name (.svg)</label>
-                <input asp-for="Course.ImageName" disabled />
-                <input asp-for="CourseInfo.ImageName" />
+                <label asp-for="UpdateDto.IsBestSeller">Is bestseller</label>
+                <label>@Model.Course.IsBestSeller</label>
+                <input type="checkbox" asp-for="UpdateDto.IsBestSeller" />
             </div>
             <div>
-                <label asp-for="CourseInfo.BigImageName">Big Image Name (.svg)</label>
-                <input asp-for="Course.BigImageName" disabled />
-                <input asp-for="CourseInfo.BigImageName" />
+                <label asp-for="UpdateDto.ImageName">Image Name (.svg)</label>
+                <label>@Model.Course.ImageName</label>
+                <input asp-for="UpdateDto.ImageName" />
             </div>
-            <button type="submit">Create</button>
+            <div>
+                <label asp-for="UpdateDto.BigImageName">Big Image Name (.svg)</label>
+                <label>@Model.Course.BigImageName</label>
+                <input asp-for="UpdateDto.BigImageName" />
+            </div>
+            <button type="submit">Update course</button>
         </form>
     </div>
 </section>

@@ -96,7 +96,7 @@ public class CoursesService(CoursesRepository coursesRepository)
             var courseExisting = await _coursesRepository.GetOneAsync(x => x.Id == course.Id);
             if (courseExisting != null)
             {
-                var result = await _coursesRepository.UpdateAsync(courseExisting);
+                var result = await _coursesRepository.UpdateAsync(course);
                 if (result != null)
                     return true;
                 return false;
@@ -107,7 +107,6 @@ public class CoursesService(CoursesRepository coursesRepository)
         }
         catch (Exception)
         {
-
             return false!;
         }
     }

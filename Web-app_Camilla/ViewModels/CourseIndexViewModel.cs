@@ -8,8 +8,10 @@ public class CourseIndexViewModel
 
     public CourseCreateDto? CreateDto {  get; set; } 
 
-    public CourseInformation? CourseInfo { get; set; }
+    public CourseUpdateDto? UpdateDto { get; set; }
 
     public Course? Course { get; set; }
+
+    public CourseModel? CourseModel { get; set; }
 
 }
