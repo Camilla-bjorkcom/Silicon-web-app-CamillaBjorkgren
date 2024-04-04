@@ -134,8 +134,9 @@
         .content {
             display: grid;
             grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto;
             grid-template-areas:
-                'title aside' 'learn aside' 'details .' 'details .';
+                'title aside' 'learn aside' 'details aside-admin' 'details aside-admin';
 
             .description {
                 margin-top: 7rem;
@@ -202,6 +203,26 @@
                         color: var(--color-gray-500);
                     }
                 }
+
+                .buttons {
+                    display: flex; 
+                    gap: 2rem;
+                    .btn {
+                        width: 40%;
+                    }
+                }
+            }
+
+            .aside-info-admin {
+                grid-area: aside-admin;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-top: 7rem;
+                padding: 30px;
+                height: fit-content;
+                border: 3px solid var(--color-gray);
+                border-radius: 7px;
 
                 .btn {
                     width: 40%;

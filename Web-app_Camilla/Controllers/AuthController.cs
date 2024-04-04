@@ -83,8 +83,13 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     [Route("/signup")]
     public async Task<ActionResult> SignUp(SignUpModel model)
     {
+        var standardRole = "User";
         if (ModelState.IsValid)
         {
+            if(! await _userManager.Users.AnyAsync())
+            {
+                standardRole = "SuperAdmin";
+            }
             var exists = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
             if (exists)
             {
@@ -102,9 +107,16 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
             var result = await _userManager.CreateAsync(userEntity, model.Password);
             if (result.Succeeded)
             {
+                var roleResult = await _userManager.AddToRoleAsync(userEntity, standardRole);
+                if(standardRole == "SuperAdmin" && roleResult.Succeeded)
+                {
+                    roleResult = await _userManager.AddToRoleAsync(userEntity, "User");
+                    roleResult = await _userManager.AddToRoleAsync(userEntity, "Admin");
+                    roleResult = await _userManager.AddToRoleAsync(userEntity, "CIO");
+                }
                 return RedirectToAction("SignIn");
-            }
-
+            }    
+            
         }
         else if (!ModelState.IsValid) 
         {

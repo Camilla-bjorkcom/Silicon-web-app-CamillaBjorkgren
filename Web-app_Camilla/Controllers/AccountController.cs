@@ -15,6 +15,9 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly AccountService _accountService = accountService;
 
+
+
+
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -31,6 +34,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             return View(viewModel);
         }
         return RedirectToAction("Index", "Home");
+       
     }
 
     [HttpPost]
@@ -109,7 +113,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         viewModel.BasicInfoForm ??= await PopulateBasicInfoFormAsync();
         viewModel.AddressInfoForm ??= await PopulateAddressInfoAsync();
         viewModel.ProfileView ??= await PopulateProfileViewAsync();
-    
+
 
         return View(viewModel);
     }
@@ -160,9 +164,9 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         return new AddressInfoFormViewModel();
     }
 
-  
+
     [HttpGet]
-   public async Task<IActionResult> AccountSecurity()
+    public async Task<IActionResult> AccountSecurity()
     {
         if (!_signInManager.IsSignedIn(User))
             return RedirectToAction("SignIn", "Auth");
@@ -199,7 +203,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                     }
                     viewModel.ProfileView ??= await PopulateProfileViewAsync();
                     return View(viewModel);
-                }  
+                }
             }
         }
         ModelState.AddModelError("ErrorPassword", "Password is not correct");
@@ -226,7 +230,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                 viewModel.ProfileView ??= await PopulateProfileViewAsync();
                 return View(viewModel);
             }
-           
+
         }
         ModelState.AddModelError("DeleteError", "You must check the box before deleting you account");
         ViewData["ErrorMessage"] = "You must check the box before deleting you account.";
@@ -248,7 +252,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             ViewData["ImageUpload"] = "Could not update profile image";
             return RedirectToAction("Index", "Account");
         }
-      
+
     }
-        
+
 }

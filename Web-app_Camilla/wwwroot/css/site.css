@@ -2082,7 +2082,8 @@ footer .container .social-media {
 .course-details .container .content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-areas: "title aside" "learn aside" "details ." "details .";
+  grid-template-rows: auto;
+  grid-template-areas: "title aside" "learn aside" "details aside-admin" "details aside-admin";
 }
 .course-details .container .content .description {
   margin-top: 7rem;
@@ -2141,6 +2142,20 @@ footer .container .social-media {
   color: var(--color-gray-500);
 }
 .course-details .container .content .aside-info .btn {
+  width: 40%;
+}
+.course-details .container .content .aside-info-admin {
+  grid-area: aside-admin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 7rem;
+  padding: 30px;
+  height: fit-content;
+  border: 3px solid var(--color-gray);
+  border-radius: 7px;
+}
+.course-details .container .content .aside-info-admin .btn {
   width: 40%;
 }
 .course-details .container .content .details {
@@ -2211,4 +2226,68 @@ footer .container .social-media {
 .course-details .container .creator-info .buttons {
   display: flex;
   gap: 2rem;
+}
+
+.settings {
+  height: 100vh;
+}
+.settings .container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.settings .container .content {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "user course";
+  gap: 5rem;
+}
+.settings .container .content .image {
+  max-width: 150px;
+  max-height: 150px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.settings .container .content .image img {
+  border-radius: 15px;
+  min-width: 150px;
+  min-height: 150px;
+}
+.settings .container .content ul {
+  color: black;
+  width: fit-content;
+}
+.settings .container .content ul li {
+  color: black;
+  width: fit-content;
+}
+.settings .container .content .useradmin {
+  grid-area: user;
+  box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
+  text-decoration: none;
+  color: black;
+  position: relative;
+  max-height: min-content;
+}
+.settings .container .content .useradmin h3 {
+  text-align: center;
+}
+.settings .container .content .useradmin:hover {
+  background-color: var(--color-gray);
+}
+.settings .container .content .courseadmin {
+  grid-area: course;
+  box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
+  text-decoration: none;
+  color: black;
+  position: relative;
+  max-height: min-content;
+}
+.settings .container .content .courseadmin h3 {
+  text-align: center;
+}
+.settings .container .content .courseadmin:hover {
+  background-color: var(--color-gray);
 }

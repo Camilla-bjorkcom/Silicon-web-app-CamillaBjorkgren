@@ -1,0 +1,74 @@
+﻿@model CourseIndexViewModel
+
+<section>
+    <div class="container">
+        @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+        {
+            <div class="alert-success">@ViewData["Success"]</div>
+        }
+        @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+        {
+            <div class="alert-danger">@ViewData["Error"]</div>
+        }
+        <h1>@ViewData["Title"]</h1>
+
+        <form asp-action="UpdateCourse" asp-controller="Admin" method="post">
+            <div>
+                <label asp-for="CourseInfo.Title">Title</label>
+                <input asp-for="Course.Title" disabled/>
+                <input asp-for="CourseInfo.Title" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.Price">Price</label>
+                <input asp-for="Course.Price" disabled />
+                <input asp-for="CourseInfo.Price" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.DiscountPrice">Discount price</label>
+                <input asp-for="Course.DiscountPrice" disabled />
+                <input asp-for="CourseInfo.DiscountPrice" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.Creator">Creator</label>
+                <input asp-for="Course.Creator" disabled />
+                <input asp-for="CourseInfo.Creator" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.LikeParameter">Likes in Procent (e.g 0,91)</label>
+                <input asp-for="Course.LikeParameter" disabled />
+                <input asp-for="CourseInfo.LikeParameter" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.UserVotes">Likes in Numbers (e.g 2100)</label>
+                <input asp-for="Course.UserVotes" disabled />
+                <input asp-for="CourseInfo.UserVotes" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.EstimatedHours">Hours</label>
+                <input asp-for="Course.EstimatedHours" disabled />
+                <input asp-for="CourseInfo.EstimatedHours" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.IsDigital">Is digital</label>
+                <input asp-for="Course.IsDigital" disabled />
+                <input type="checkbox" asp-for="CourseInfo.IsDigital" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.IsBestSeller">Is bestseller</label>
+                <input asp-for="Course.IsBestSeller" disabled />
+                <input type="checkbox" asp-for="CourseInfo.IsBestSeller" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.ImageName">Image Name (.svg)</label>
+                <input asp-for="Course.ImageName" disabled />
+                <input asp-for="CourseInfo.ImageName" />
+            </div>
+            <div>
+                <label asp-for="CourseInfo.BigImageName">Big Image Name (.svg)</label>
+                <input asp-for="Course.BigImageName" disabled />
+                <input asp-for="CourseInfo.BigImageName" />
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</section>

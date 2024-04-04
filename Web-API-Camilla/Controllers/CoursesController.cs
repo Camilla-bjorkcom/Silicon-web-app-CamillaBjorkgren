@@ -1,6 +1,6 @@
-﻿using Infrastructure.Entities;
+﻿
+using Infrastructure.Entities;
 using Infrastructure.Models;
-using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -41,6 +41,7 @@ public class CoursesController(CoursesService courseService) : ControllerBase
         }
         return NotFound();
     }
+    
 
     [HttpPost]
     public async Task<IActionResult> CreateOne(CourseCreateDto dto)
@@ -50,20 +51,7 @@ public class CoursesController(CoursesService courseService) : ControllerBase
             var existingCourse = await _courseService.ExistsCourseAsync(dto.Title);
             if (!existingCourse)
             {
-                var courseEntity = new CourseEntity
-                {
-                    Title = dto.Title,
-                    Price = dto.Price,
-                    DiscountPrice = dto.DiscountPrice,
-                    EstimatedHours = dto.EstimatedHours,
-                    IsBestSeller = dto.IsBestSeller,
-                    IsDigital = dto.IsDigital,
-                    UserVotes = dto.UserVotes,
-                    LikeParameter = dto.LikeParameter,
-                    Category = dto.Category,
-                    Creator = dto.Creator,
-                    ImageName = dto.ImageName,
-                };
+                CourseEntity courseEntity = dto;
                 var result = await _courseService.CreateCourseAsync(courseEntity);
                 if (result)
                 {
@@ -77,16 +65,15 @@ public class CoursesController(CoursesService courseService) : ControllerBase
                         IsBestSeller = courseEntity.IsBestSeller,
                         UserVotes = courseEntity.UserVotes,
                         LikeParameter = courseEntity.LikeParameter,
-                        Category = courseEntity.Category,
                         Creator = courseEntity.Creator,
                     };
                     return Created("", courseModel);
                 }
-                return Problem();
+                return BadRequest();
             }
             return Conflict();
         }
-        return BadRequest();
+        return BadRequest(ModelState);
 
     }
 
@@ -98,20 +85,7 @@ public class CoursesController(CoursesService courseService) : ControllerBase
             var existingCourse = await _courseService.ExistsCourseAsync(dto.Title);
             if (!existingCourse)
             {
-                var courseEntity = new CourseEntity
-                {
-                    Title = dto.Title,
-                    Price = dto.Price,
-                    DiscountPrice = dto.DiscountPrice,
-                    EstimatedHours = dto.EstimatedHours,
-                    IsBestSeller = dto.IsBestSeller,
-                    IsDigital = dto.IsDigital,
-                    UserVotes = dto.UserVotes,
-                    LikeParameter = dto.LikeParameter,
-                    Category = dto.Category,
-                    Creator = dto.Creator,
-                    ImageName = dto.ImageName,
-                };
+                CourseEntity courseEntity = dto;
 
                 var result = await _courseService.UpdateCourseAsync(courseEntity);
                 if (result)

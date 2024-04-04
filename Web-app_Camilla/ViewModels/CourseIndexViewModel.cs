@@ -6,6 +6,10 @@ public class CourseIndexViewModel
 {
     public IEnumerable<CourseModel> Courses { get; set; } = new List<CourseModel>();
 
-    //public 
+    public CourseCreateDto? CreateDto {  get; set; } 
+
+    public CourseInformation? CourseInfo { get; set; }
+
+    public Course? Course { get; set; }
 
 }

@@ -25,6 +25,10 @@
                 <input class="input-group-text" placeholder="Search categories" name="Categories" type="search"> <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
+        @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+        {
+            <div class="alert-danger">@ViewData["Error"]</div>
+        }
         <div class="course-list">
             @foreach (var course in Model.Courses)
             {

@@ -1,0 +1,64 @@
+﻿@model CourseCreateDto
+
+<section>
+    <div class="container">
+        @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+        {
+            <div class="alert-success">@ViewData["Success"]</div>
+        }
+        @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+        {
+            <div class="alert-danger">@ViewData["Error"]</div>
+        }
+        <h1>@ViewData["Title"]</h1>
+        <form asp-action="CreateCourse" asp-controller="Admin" method="post">
+            <div>
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" />
+            </div>
+            <div>
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" />
+            </div>
+            <div>
+                <label asp-for="DiscountPrice">Discount price</label>
+                <input asp-for="DiscountPrice" />
+            </div>
+            <div>
+                <label asp-for="Creator">Creator</label>
+                <input asp-for="Creator" />
+            </div>
+            <div>
+                <label asp-for="LikeParameter">Likes in Procent (e.g 0,91)</label>
+                <input asp-for="LikeParameter" />
+            </div>
+            <div>
+                <label asp-for="UserVotes">Likes in Numbers (e.g 2100)</label>
+                <input asp-for="UserVotes" />
+            </div>
+            <div>
+                <label asp-for="EstimatedHours">Hours</label>
+                <input asp-for="EstimatedHours" />
+            </div>
+            <div>
+                <label asp-for="IsDigital">Is digital</label>
+                <input type="checkbox" asp-for="IsDigital" />
+            </div>
+            <div>
+                <label asp-for="IsBestSeller">Is bestseller</label>
+                <input type="checkbox" asp-for="IsBestSeller" />
+            </div>
+            <div>
+                <label asp-for="ImageName">Image Name (.svg)</label>
+                <input asp-for="ImageName" />
+            </div>
+            <div>
+                <label asp-for="BigImageName">Big Image Name (.svg)</label>
+                <input asp-for="BigImageName" />
+            </div>
+            <button type="submit">Create</button>
+
+
+        </form>
+    </div>
+</section>

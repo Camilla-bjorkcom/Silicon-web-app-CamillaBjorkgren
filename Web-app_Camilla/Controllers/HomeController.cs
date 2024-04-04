@@ -55,23 +55,7 @@ public class HomeController(HttpClient http) : Controller
 
     [Route("/error")]
     public IActionResult Error404(int statusCode) => View();
+
+    [Route("/denied")]
+    public IActionResult AccessDenied(int statusCode) => View();
 }
-
-//if (ModelState.IsValid)
-//{
-//    using var http = new HttpClient();
-
-//    var url = $"https://localhost:7138/api/subscribers?email={viewModel.Email}";
-//    var request = new HttpRequestMessage(HttpMethod.Post, url);
-
-
-
-//    var response = await http.SendAsync(request);
-//    if (response.IsSuccessStatusCode)
-//    {
-//        viewModel.IsSubscribed = true;
-//    }
-//}
-
-//Authorize courses-sida? 
-//https://youtu.be/OGjePJrqUa4?t=3678
