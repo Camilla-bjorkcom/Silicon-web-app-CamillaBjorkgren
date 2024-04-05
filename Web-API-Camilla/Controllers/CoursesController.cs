@@ -120,9 +120,9 @@ public class CoursesController(CoursesService courseService) : ControllerBase
 
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCourse(string title)
+    public async Task<IActionResult> DeleteCourse(string id)
     {
-        var entity = await _courseService.GetOneAsyncTitle(title);
+        var entity = await _courseService.GetOneAsyncId(id);
         if (entity != null)
         {
             var result = await _courseService.DeleteCourseAsync(entity);

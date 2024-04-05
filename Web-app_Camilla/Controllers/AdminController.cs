@@ -141,23 +141,26 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
     }
 
 
-    //private async Task<Course> PopulateCourseViewAsync()
-    //{
-    //    _http.Get
-    //    var course = await _courseService.GetOneAsyncTitle()
-
-    //    return new ProfileViewModel
-    //    {
-    //        FirstName = user!.FirstName,
-    //        LastName = user.LastName,
-    //        Email = user.Email!,
-    //    };
-    //}
+ 
 
     [Authorize(Policy = "CIO")]
     [HttpGet]
-    public IActionResult DeleteCourse()
+    public async Task<IActionResult> DeleteCourse(string id)
     {
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+        {
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _http.DeleteAsync($"https://localhost:7138/api/Courses/{id}?key={_configuration["ApiKey:Secret"]}");
+            if (response.IsSuccessStatusCode)
+            {
+                ViewData["Success"] = "Successfully deleted course";
+                return RedirectToAction("Courses", "Courses");
+            }
+        }
+        else
+        {
+            ViewData["Error"] = "Failed at deleting a new course";
+        }
         return View();
     }
 }
