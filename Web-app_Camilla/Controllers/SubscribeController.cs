@@ -1,34 +1,80 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 using Web_app_Camilla.ViewModels;
+
 
 namespace Web_app_Camilla.Controllers;
 
-public class SubscribeController : Controller
+public class SubscribeController(HttpClient http, IConfiguration configuration) : Controller
 {
-    public IActionResult Subscribe()
-    {
-        
-        return View(new SubscriberViewModel());
-    }
+    private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
+
+    //public IActionResult Subscribe()
+    //{
+
+    //    return View(new SubscriberViewModel());
+    //}
 
     [HttpPost]
-    public async Task<IActionResult> Subscribe(SubscriberViewModel viewModel)
+    public async Task<IActionResult> Subscribe(SubscriberModel model)
     {
         if (ModelState.IsValid)
         {
-            using var http = new HttpClient();
-
-            var url = $"https://localhost:7138/api/subscribers?email={viewModel.Email}";
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-
-
-
-            var response = await http.SendAsync(request);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                viewModel.IsSubscribed = true;
+                var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                var response = await _http.PostAsync($"https://localhost:7138/api/Subscribers?key={_configuration["ApiKey:Secret"]}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewData["Status"] = "Success";
+                    ViewData["Success"] = "Successfully subscribed to newsletter!";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                {
+                    ViewData["Status"] = "AlreadyExists";
+                    ViewData["ErrorMessage"] = "Failed at subscribing to newsletter! It appears as if you already have an subscription";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    ViewData["Status"] = "Unauthorized";
+                    ViewData["ErrorMessage"] = "Failed at subscribing to newsletter! Contact the web admin";
+                }
             }
+            catch { ViewData["Status"] = "ConnectionFailed"; }
         }
-        return View(viewModel);
+        else
+        {
+            ViewData["Status"] = "Invalid";
+            ViewData["ErrorMessage"] = "You must enter an valid email address";
+        }
+        return RedirectToAction("Index", "Home", "newsletter");
+    }
+
+    [HttpGet]
+    public IActionResult EndSubscription()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EndSubscription(EndSubscriptionViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var response = await _http.DeleteAsync($"https://localhost:7138/api/Subscribers/{viewModel.Email}?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                { ViewData["Status"] = "Success"; }
+            }
+            catch { ViewData["Status"] = "ConnectionFailed"; }
+        }
+        else
+        {
+            ViewData["Status"] = "Invalid";
+        }
+        return View();
     }
 }

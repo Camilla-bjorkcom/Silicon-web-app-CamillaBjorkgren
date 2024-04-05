@@ -1,13 +1,12 @@
-﻿@model SubscriberViewModel
+﻿@model SubscriberModel
 
-<section class="newsletter">
+<section class="newsletter" id="newsletter">
     <div class="container">
         <div class="title">
             Don't Want to Miss Anything?
             <div class="arrows"><img src="~/images/arrows.svg" alt="arrows"></div>
         </div>
-
-        <form asp-action="Index" asp-controller="Home" method="post">
+        <form asp-action="Subscribe" asp-controller="Subscribe" method="post">
             <div class="sign-up-checkbox">
                 <h6>Sign up for Newsletters</h6>
                 <div class="grid">

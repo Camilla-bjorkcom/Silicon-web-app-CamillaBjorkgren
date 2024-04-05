@@ -116,10 +116,6 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     }
 
 
-
-
-
-
     [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCourse(string id)

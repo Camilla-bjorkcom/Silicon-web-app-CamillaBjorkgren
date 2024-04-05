@@ -721,6 +721,10 @@ footer .container .social-media {
   gap: 20px;
   margin-bottom: 30px;
 }
+footer .container .unsubscribe {
+  font-size: 12px;
+  display: block;
+}
 
 .showcase {
   display: flex;

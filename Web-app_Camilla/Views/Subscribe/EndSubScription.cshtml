@@ -1,0 +1,15 @@
+﻿@model EndSubscriptionViewModel
+
+<section class="endsub">
+    <div class="container">
+        <div class="mb-3">
+            <form asp-action="EndSubscription" asp-controller="Subscribe" method="post">
+            <label asp-for="Email" class="form-label">Enter your email address to end your subscription</label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <button type="submit">End subscription</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@* Fixa scss *@
