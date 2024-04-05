@@ -3,10 +3,6 @@
 namespace Infrastructure.Models;
 public class CourseUpdateDto
 {
-    [Required(ErrorMessage = "Enter a title")]
-    [DataType(DataType.Text)]
-    [Display(Name = "Old Title")]
-    public string OldTitle { get; set; } = null!;
 
     [Required(ErrorMessage = "Enter a title")]
     [DataType(DataType.Text)]

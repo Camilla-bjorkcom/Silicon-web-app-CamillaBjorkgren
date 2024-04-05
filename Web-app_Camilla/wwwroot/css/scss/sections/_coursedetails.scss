@@ -33,6 +33,7 @@
 
                 a {
                     margin-right: 1rem;
+                    color: white;
 
                     i {
                         margin-right: 10px;
@@ -142,6 +143,11 @@
                 margin-top: 7rem;
                 margin-bottom: 3rem;
 
+                p {
+                    width: 80%;
+                    margin-right: 2rem;
+                }
+
                 .description-title {
                     grid-area: title;
                     margin-bottom: 3rem;
@@ -220,93 +226,109 @@
                 border: 3px solid var(--color-gray);
                 border-radius: 7px;
 
-                .buttons {
-                    display: flex;
-                    gap: 2rem;
+            }
 
-                    .btn {
-                        width: 40%;
-                    }
+            .admin-badge {
+                display: flex;
+                flex-direction: row;
+                width: fit-content;
+                height: fit-content;
+                justify-content: center;
+                align-items: center;
+                margin: 1rem 0;
+
+                .fa-id-badge {
+                    font-size: 50px;
+                    margin: 1rem;
                 }
             }
 
-            .details {
-                grid-area: details;
 
-                h2 {
-                    @include h1;
-                    margin-bottom: 3rem;
-                }
 
-                .detail {
-                    display: grid;
-                    grid-template-columns: fit-content auto;
-                    grid-template-areas:
-                        'number title' '. text';
-                    column-gap: 2rem;
-
-                    .divider {
-                        border-left: 1px solid var(--color-gray-100);
-                        margin: 0 auto;
-                    }
-
-                    .number {
-                        grid-area: number;
-                        display: inline-flex;
-                        border-radius: 50%;
-                        border: 10px solid var(--color-gray-100);
-                        width: 75px;
-                        margin: 0 auto;
-
-                        h2 {
-                            margin: 0 auto;
-                        }
-                    }
-
-                    .detail-title {
-                        grid-area: title;
-                        margin: auto 0;
-                    }
-
-                    .text {
-                        grid-area: text;
-                        width: 70%;
-                    }
-                }
-            }
-        }
-
-        .creator-info {
-            margin-top: 5rem;
-            display: grid;
-            grid-template-columns: fit-content auto;
-            grid-template-areas: 'img text';
-            position: relative;
-
-            #pattern {
-                position: absolute;
-            }
-
-            .creator-img {
-                grid-area: img;
-                z-index: 2;
-            }
-
-            .creator-text {
-                grid-area: text;
-                padding: 120px;
-                background: #0B0F19;
-                color: gray !important;
-
-                h2 {
-                    color: var(--color-white)
-                }
-            }
 
             .buttons {
                 display: flex;
-                gap: 2rem;
+                gap: 1rem;
             }
+        }
+
+        .details {
+            grid-area: details;
+
+            h2 {
+                @include h1;
+                margin-bottom: 3rem;
+            }
+
+            .detail {
+                display: grid;
+                grid-template-columns: fit-content auto;
+                grid-template-areas:
+                    'number title' '. text';
+                column-gap: 2rem;
+
+                .divider {
+                    border-left: 1px solid var(--color-gray-100);
+                    margin: 0 auto;
+                }
+
+                .number {
+                    grid-area: number;
+                    display: inline-flex;
+                    border-radius: 50%;
+                    border: 10px solid var(--color-gray-100);
+                    width: 75px;
+                    margin: 0 auto;
+
+                    h2 {
+                        margin: 0 auto;
+                    }
+                }
+
+                .detail-title {
+                    grid-area: title;
+                    margin: auto 0;
+                    width: 90%;
+                }
+
+                .text {
+                    grid-area: text;
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    .creator-info {
+        margin-top: 5rem;
+        display: grid;
+        grid-template-columns: fit-content auto;
+        grid-template-areas: 'img text';
+        position: relative;
+
+        #pattern {
+            position: absolute;
+        }
+
+        .creator-img {
+            grid-area: img;
+            z-index: 2;
+        }
+
+        .creator-text {
+            grid-area: text;
+            padding: 120px;
+            background: #0B0F19;
+            color: gray !important;
+
+            h2 {
+                color: var(--color-white)
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2rem;
         }
     }
 }

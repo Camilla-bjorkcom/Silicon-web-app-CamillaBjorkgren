@@ -1,8 +1,23 @@
-﻿
-@model CourseIndexViewModel
+﻿@model CourseIndexViewModel
+@{
+    bool digital = (Model.UpdateDto?.IsDigital ?? false); // This value can be dynamically set based on your condition
+    bool best = (Model.UpdateDto?.IsBestSeller ?? false);
+}
 
+@if (digital)
+{
+    <script>
+        document.getElementById('checkDigital').checked = true;
+    </script>
+}
+@if (best)
+{
+    <script>
+        document.getElementById('checkBest').checked = true;
+    </script>
+}
 
-<section>
+<section class="updatecourse">
     <div class="container">
         @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
         {
@@ -14,66 +29,62 @@
         }
         <h1>@ViewData["Title"]</h1>
 
-        <form asp-action="UpdateCourse" asp-controller="Admin" method="post">
-            <div>
-                <input asp-for="UpdateDto.OldTitle" value="@Model.UpdateDto!.OldTitle" hidden/>
+
+        <form method="post" class="courseform" asp-action="UpdateCourse" asp-controller="Admin">
+            <h2>Update course</h2>
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.Title">Title</label>
+                <input asp-for="UpdateDto.Title" type="text" value="@Model.Course.Title" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.Title">Title</label>
-                <label>@Model.Course.Title</label>
-                <input asp-for="UpdateDto.Title" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.Creator">Creator</label>
+                <input asp-for="UpdateDto.Creator" type="text" value="@Model.Course.Creator" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.Price">Price</label>
-                <label>@Model.Course.Price</label>
-                <input asp-for="UpdateDto.Price" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.Price">Price</label>
+                <input asp-for="UpdateDto.Price" type="text" value="@Model.Course.Price" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.DiscountPrice">Discount price</label>
-                <label>@Model.Course.DiscountPrice</label>
-                <input asp-for="UpdateDto.DiscountPrice" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.DiscountPrice">Discount price</label>
+               <input asp-for="UpdateDto.DiscountPrice" type="text" value="@Model.Course.DiscountPrice" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.Creator">Creator</label>
-                <label>@Model.Course.Creator</label>
-                <input asp-for="UpdateDto.Creator" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.EstimatedHours">Hours</label>
+                <input asp-for="UpdateDto.EstimatedHours" type="text" value="@Model.Course.EstimatedHours" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.LikeParameter">Likes in Procent (e.g 0,91)</label>
-                <label>@Model.Course.LikeParameter</label>
-                <input asp-for="UpdateDto.LikeParameter" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.LikeParameter">Likes in percent (e.g 0,92)</label>
+                <input asp-for="UpdateDto.LikeParameter" type="text" value="@Model.Course.LikeParameter" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.UserVotes">Likes in Numbers (e.g 2100)</label>
-                <label>@Model.Course.UserVotes</label>
-                <input asp-for="UpdateDto.UserVotes" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.UserVotes">Likes in numbers (e.g 3100)</label>
+                <input asp-for="UpdateDto.UserVotes" type="text" value="@Model.Course.UserVotes" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.EstimatedHours">Hours</label>
-                <label>@Model.Course.EstimatedHours</label>
-                <input asp-for="UpdateDto.EstimatedHours" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.ImageName">Image name (e.g Course1.svg)</label>
+                <input asp-for="UpdateDto.ImageName" type="text" value="@Model.Course.ImageName" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.IsDigital">Is digital</label>
-                <label>@Model.Course.IsDigital</label>
-                <input type="checkbox" asp-for="UpdateDto.IsDigital" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UpdateDto.BigImageName">Big image name (e.g Bigimagecourse1.svg)</label>
+                <input asp-for="UpdateDto.BigImageName" type="text" value="@Model.Course.BigImageName" class="form-control">
             </div>
-            <div>
-                <label asp-for="UpdateDto.IsBestSeller">Is bestseller</label>
-                <label>@Model.Course.IsBestSeller</label>
-                <input type="checkbox" asp-for="UpdateDto.IsBestSeller" />
+            <div class="checkbox-group">
+                <div class="checkbox">
+                    <input asp-for="UpdateDto.IsDigital" type="checkbox" id="checkDigital" class="form-check-input" />
+                    <label asp-for="UpdateDto.IsDigital" class="form-check-label">Is digital</label>
+                </div>
+                <div class="checkbox">
+                    <input asp-for="UpdateDto.IsBestSeller" type="checkbox" id="checkBest" class="form-check-input" />
+                    <label asp-for="UpdateDto.IsBestSeller" class="form-check-label">Is bestseller</label>
+                </div>
             </div>
-            <div>
-                <label asp-for="UpdateDto.ImageName">Image Name (.svg)</label>
-                <label>@Model.Course.ImageName</label>
-                <input asp-for="UpdateDto.ImageName" />
-            </div>
-            <div>
-                <label asp-for="UpdateDto.BigImageName">Big Image Name (.svg)</label>
-                <label>@Model.Course.BigImageName</label>
-                <input asp-for="UpdateDto.BigImageName" />
-            </div>
-            <button type="submit">Update course</button>
+            <input asp-for="@Model.Course.Id" type="text" class="form-control" hidden />
+
+
+            <a><button type="submit" class="btn-theme">Update course</button></a>
         </form>
     </div>
 </section>
+
+
+<script defer src="~/js/inputfields.js"></script>

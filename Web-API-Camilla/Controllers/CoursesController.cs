@@ -81,30 +81,30 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCourse(CourseUpdateDto dto)
+    public async Task<IActionResult> UpdateCourse(CourseIndexViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             //Ändra till ID? Hur få in Id från sidan här?
-            var entity = await _courseService.GetOneAsyncTitle(dto.OldTitle);
+            var entity = await _courseService.GetOneAsyncId(viewModel.Course.Id);
             if (entity != null)
             {
                 CourseEntity course = new CourseEntity
                 {
                     Id= entity.Id,
-                    Title = dto.Title,
-                    Price = dto.Price,
-                    DiscountPrice = dto.DiscountPrice,
-                    EstimatedHours = dto.EstimatedHours,
-                    BigImageName = dto.BigImageName,
-                    Creator = dto.Creator,
-                    ImageName = dto.ImageName,
-                    IsDigital = dto.IsDigital,
+                    Title = viewModel.UpdateDto.Title,
+                    Price = viewModel.UpdateDto.Price,
+                    DiscountPrice = viewModel.UpdateDto.DiscountPrice,
+                    EstimatedHours = viewModel.UpdateDto.EstimatedHours,
+                    BigImageName = viewModel.UpdateDto.BigImageName,
+                    Creator = viewModel.UpdateDto.Creator,
+                    ImageName = viewModel.UpdateDto.ImageName,
+                    IsDigital = viewModel.UpdateDto.IsDigital,
                     LastUpdated = DateTime.Now,
                     Created = entity.Created,
-                    IsBestSeller = dto.IsBestSeller,
-                    LikeParameter = dto.LikeParameter,
-                    UserVotes = dto.UserVotes,
+                    IsBestSeller = viewModel.UpdateDto.IsBestSeller,
+                    LikeParameter = viewModel.UpdateDto.LikeParameter,
+                    UserVotes = viewModel.UpdateDto.UserVotes,
                 };
                 var result = await _courseService.UpdateCourseAsync(course);
                 if (result)

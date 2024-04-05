@@ -2,15 +2,16 @@
 
 public class Course
 {
-    public string Title { get; set; } = null!;
+    public string Id { get; set; } = null!;
+    public string? Title { get; set; }
 
     public string? ImageName { get; set; }
 
-    public bool IsBestSeller { get; set; } = false;
+    public bool IsBestSeller { get; set; }
 
-    public bool IsDigital { get; set; } = false;
+    public bool IsDigital { get; set; }
 
-    public string Creator { get; set; } = null!;
+    public string? Creator { get; set; }
 
     public decimal? Price { get; set; }
 

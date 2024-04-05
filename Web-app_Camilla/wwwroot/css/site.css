@@ -1834,7 +1834,7 @@ footer .container .social-media {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: var(--color-sucess);
+  background-color: #22C55E;
   color: white !important;
   border-radius: 5px;
   padding-right: 4px;
@@ -1887,7 +1887,7 @@ footer .container .social-media {
   font-weight: 900;
 }
 .courses .container .course-list a .course .content .course-prices .discount-price {
-  color: var(--color-danger);
+  color: #EF4444;
 }
 .courses .container .course-list a .course .content .course-prices .original-price {
   color: var(--color-theme);
@@ -1982,6 +1982,7 @@ footer .container .social-media {
 }
 .course-details .container .text-header .pagnation a {
   margin-right: 1rem;
+  color: white;
 }
 .course-details .container .text-header .pagnation a i {
   margin-right: 10px;
@@ -2089,6 +2090,10 @@ footer .container .social-media {
   margin-top: 7rem;
   margin-bottom: 3rem;
 }
+.course-details .container .content .description p {
+  width: 80%;
+  margin-right: 2rem;
+}
 .course-details .container .content .description .description-title {
   grid-area: title;
   margin-bottom: 3rem;
@@ -2155,17 +2160,27 @@ footer .container .social-media {
   border: 3px solid var(--color-gray);
   border-radius: 7px;
 }
-.course-details .container .content .aside-info-admin .buttons {
+.course-details .container .content .admin-badge {
   display: flex;
-  gap: 2rem;
+  flex-direction: row;
+  width: fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
 }
-.course-details .container .content .aside-info-admin .buttons .btn {
-  width: 40%;
+.course-details .container .content .admin-badge .fa-id-badge {
+  font-size: 50px;
+  margin: 1rem;
 }
-.course-details .container .content .details {
+.course-details .container .content .buttons {
+  display: flex;
+  gap: 1rem;
+}
+.course-details .container .details {
   grid-area: details;
 }
-.course-details .container .content .details h2 {
+.course-details .container .details h2 {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -2175,17 +2190,17 @@ footer .container .social-media {
   font-size: 40px !important;
   margin-bottom: 3rem;
 }
-.course-details .container .content .details .detail {
+.course-details .container .details .detail {
   display: grid;
   grid-template-columns: fit-content auto;
   grid-template-areas: "number title" ". text";
   column-gap: 2rem;
 }
-.course-details .container .content .details .detail .divider {
+.course-details .container .details .detail .divider {
   border-left: 1px solid var(--color-gray-100);
   margin: 0 auto;
 }
-.course-details .container .content .details .detail .number {
+.course-details .container .details .detail .number {
   grid-area: number;
   display: inline-flex;
   border-radius: 50%;
@@ -2193,41 +2208,42 @@ footer .container .social-media {
   width: 75px;
   margin: 0 auto;
 }
-.course-details .container .content .details .detail .number h2 {
+.course-details .container .details .detail .number h2 {
   margin: 0 auto;
 }
-.course-details .container .content .details .detail .detail-title {
+.course-details .container .details .detail .detail-title {
   grid-area: title;
   margin: auto 0;
+  width: 90%;
 }
-.course-details .container .content .details .detail .text {
+.course-details .container .details .detail .text {
   grid-area: text;
   width: 70%;
 }
-.course-details .container .creator-info {
+.course-details .creator-info {
   margin-top: 5rem;
   display: grid;
   grid-template-columns: fit-content auto;
   grid-template-areas: "img text";
   position: relative;
 }
-.course-details .container .creator-info #pattern {
+.course-details .creator-info #pattern {
   position: absolute;
 }
-.course-details .container .creator-info .creator-img {
+.course-details .creator-info .creator-img {
   grid-area: img;
   z-index: 2;
 }
-.course-details .container .creator-info .creator-text {
+.course-details .creator-info .creator-text {
   grid-area: text;
   padding: 120px;
   background: #0B0F19;
   color: gray !important;
 }
-.course-details .container .creator-info .creator-text h2 {
+.course-details .creator-info .creator-text h2 {
   color: var(--color-white);
 }
-.course-details .container .creator-info .buttons {
+.course-details .creator-info .buttons {
   display: flex;
   gap: 2rem;
 }
@@ -2294,4 +2310,114 @@ footer .container .social-media {
 }
 .settings .container .content .courseadmin:hover {
   background-color: var(--color-gray);
+}
+
+.updatecourse {
+  height: 100%;
+  padding: 50px;
+}
+.updatecourse .container {
+  margin: 4rem auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.updatecourse .container .courseform {
+  width: 60%;
+}
+.updatecourse .container .courseform h2 {
+  text-align: center;
+}
+.updatecourse .container .courseform .mb-3 {
+  width: 80%;
+  margin: 0 auto;
+}
+.updatecourse .container .courseform .untouched {
+  background: var(--color-gray);
+}
+.updatecourse .container .courseform .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  width: 80%;
+  margin: 0 auto;
+}
+.updatecourse .container .courseform .checkbox {
+  display: flex;
+  width: 180px;
+  gap: 1rem;
+}
+.updatecourse .container .courseform .checkbox input {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+.updatecourse .container .courseform .checkbox label {
+  margin: 0;
+}
+.updatecourse .container .courseform a {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+.updatecourse .container .courseform a button {
+  margin-top: 2rem;
+}
+
+.createcourse {
+  height: 100%;
+  padding: 50px;
+}
+.createcourse .container {
+  margin: 4rem auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createcourse .container .courseform {
+  width: 60%;
+}
+.createcourse .container .courseform h2 {
+  text-align: center;
+}
+.createcourse .container .courseform .mb-3 {
+  width: 80%;
+  margin: 0 auto;
+}
+.createcourse .container .courseform .untouched {
+  background: var(--color-gray);
+}
+.createcourse .container .courseform .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  width: 80%;
+  margin: 0 auto;
+}
+.createcourse .container .courseform .checkbox {
+  display: flex;
+  width: 180px;
+  gap: 1rem;
+}
+.createcourse .container .courseform .checkbox input {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+.createcourse .container .courseform .checkbox label {
+  margin: 0;
+}
+.createcourse .container .courseform a {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+.createcourse .container .courseform a button {
+  margin-top: 2rem;
 }

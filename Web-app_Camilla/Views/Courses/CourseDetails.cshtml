@@ -94,7 +94,7 @@
                 <div class="info"><i class="fa-regular fa-infinity"></i>Full lifetime access</div>
                 <div class="info"><i class="fa-light fa-file-certificate"></i> Certificate of completion</div>
                 <div class="prices">
-                    @if (Model.DiscountPrice < 0)
+                    @if (Model.DiscountPrice > 0)
                     {
                         <h2 class="current-price">$@Model.DiscountPrice</h2>
                         <h4 class="original-price">$@Model.Price</h4>
@@ -109,7 +109,12 @@
             @if (User.IsInRole("CIO") && user != null)
             {
                 <div class="aside-info-admin">
-                    <h5><i class="fa-sharp fa-solid fa-id-badge"></i>Admin: @user.FirstName @user.LastName</h5>
+                    <h5>Admin panel</h5>
+                    <div class="admin-badge">
+                        <i class="fa-sharp fa-solid fa-id-badge"></i>
+                        <h5>@user.FirstName @user.LastName</h5>
+                    </div>
+                    
                     <div class="buttons">
                         <a asp-action="UpdateCourse" asp-controller="admin" asp-route-id="@Model.Id"><button class="btn btn-gray" type="button">Update Course</button></a>
                         <a asp-action="DeleteCourse" asp-controller="admin" asp-route-id="@Model.Id"><button class="btn btn-red" type="button">Delete Course</button></a>

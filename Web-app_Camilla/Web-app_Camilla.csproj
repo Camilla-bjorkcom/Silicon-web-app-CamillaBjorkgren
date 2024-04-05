@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\scss\sections\_courses.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\scss\sections\_updatecourse.scss" />
   </ItemGroup>
 
   <ItemGroup>

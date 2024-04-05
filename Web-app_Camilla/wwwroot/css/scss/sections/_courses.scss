@@ -77,7 +77,7 @@
                         position: absolute;
                         top: 10px;
                         left: 10px;
-                        background-color: var(--color-sucess);
+                        background-color: $success;
                         color: white !important;
                         border-radius: 5px;
                         padding-right: 4px;
@@ -126,7 +126,7 @@
                             font-weight: 900;
 
                             .discount-price {
-                                color: var(--color-danger);
+                                color: $danger;
                             }
 
                             .original-price {

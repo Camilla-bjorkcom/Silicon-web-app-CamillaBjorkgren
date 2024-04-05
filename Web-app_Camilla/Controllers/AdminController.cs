@@ -88,6 +88,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
                 {
                     Course = new Course
                     {
+                        Id = course.Id,
                         Title = course.Title,
                         ImageName = course.ImageName,
                         BigImageName = course.BigImageName,
@@ -108,29 +109,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
         ViewData["Error"] = "Failed at fetching course from server.";
         return View();
     }
-    //if(course != null)
-    //{
-    //    var viewModel = new CourseIndexViewModel()
-    //    {
-    //        Course = new Course
-    //        {
-    //            Title = course.Title,
-    //            ImageName = course.ImageName,
-    //            BigImageName = course.BigImageName,
-    //            IsBestSeller = course.IsBestSeller,
-    //            IsDigital = course.IsDigital,
-    //            EstimatedHours = course.EstimatedHours,
-    //            UserVotes = course.UserVotes,
-    //            LikeParameter = course.LikeParameter,
-    //            Creator = course.Creator,
-    //            DiscountPrice = course.DiscountPrice,
-    //            Price = course.Price,
-    //        }
 
-    //    };
-    //    return View(viewModel);
-    //}
-    //return View();
 
 
     [Authorize(Policy = "CIO")]
@@ -143,7 +122,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
             {
                 _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 
-                var json = JsonConvert.SerializeObject(viewModel.UpdateDto);
+                var json = JsonConvert.SerializeObject(viewModel);
                 using var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _http.PutAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}", content);
                 if (response.IsSuccessStatusCode)

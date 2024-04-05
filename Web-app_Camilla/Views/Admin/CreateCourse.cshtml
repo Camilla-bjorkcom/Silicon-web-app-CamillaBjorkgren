@@ -1,6 +1,7 @@
 ﻿@model CourseCreateDto
 
-<section>
+
+<section class="createcourse">
     <div class="container">
         @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
         {
@@ -11,54 +12,62 @@
             <div class="alert-danger">@ViewData["Error"]</div>
         }
         <h1>@ViewData["Title"]</h1>
-        <form asp-action="CreateCourse" asp-controller="Admin" method="post">
-            <div>
-                <label asp-for="Title">Title</label>
-                <input asp-for="Title" />
-            </div>
-            <div>
-                <label asp-for="Price">Price</label>
-                <input asp-for="Price" />
-            </div>
-            <div>
-                <label asp-for="DiscountPrice">Discount price</label>
-                <input asp-for="DiscountPrice" />
-            </div>
-            <div>
-                <label asp-for="Creator">Creator</label>
-                <input asp-for="Creator" />
-            </div>
-            <div>
-                <label asp-for="LikeParameter">Likes in Procent (e.g 0,91)</label>
-                <input asp-for="LikeParameter" />
-            </div>
-            <div>
-                <label asp-for="UserVotes">Likes in Numbers (e.g 2100)</label>
-                <input asp-for="UserVotes" />
-            </div>
-            <div>
-                <label asp-for="EstimatedHours">Hours</label>
-                <input asp-for="EstimatedHours" />
-            </div>
-            <div>
-                <label asp-for="IsDigital">Is digital</label>
-                <input type="checkbox" asp-for="IsDigital" />
-            </div>
-            <div>
-                <label asp-for="IsBestSeller">Is bestseller</label>
-                <input type="checkbox" asp-for="IsBestSeller" />
-            </div>
-            <div>
-                <label asp-for="ImageName">Image Name (.svg)</label>
-                <input asp-for="ImageName" />
-            </div>
-            <div>
-                <label asp-for="BigImageName">Big Image Name (.svg)</label>
-                <input asp-for="BigImageName" />
-            </div>
-            <button type="submit">Create</button>
 
 
+        <form method="post" class="courseform" asp-action="CreateCourse" asp-controller="Admin">
+            <h2>Update course</h2>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Title">Title</label>
+                <input asp-for="Title" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Creator">Creator</label>
+                <input asp-for="Creator" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Price">Price</label>
+                <input asp-for="Price" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="DiscountPrice">Discount price</label>
+               <input asp-for="DiscountPrice" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="EstimatedHours">Hours</label>
+                <input asp-for="EstimatedHours" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="LikeParameter">Likes in percent (e.g 0,92)</label>
+                <input asp-for="LikeParameter" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="UserVotes">Likes in numbers (e.g 3100)</label>
+                <input asp-for="UserVotes" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="ImageName">Image name (e.g Course1.svg)</label>
+                <input asp-for="ImageName" type="text"  class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="BigImageName">Big image name (e.g Bigimagecourse1.svg)</label>
+                <input asp-for="BigImageName" type="text"  class="form-control">
+            </div>
+            <div class="checkbox-group">
+                <div class="checkbox">
+                    <input asp-for="IsDigital" type="checkbox" value="IsDigital" class="form-check-input" />
+                    <label asp-for="IsDigital" class="form-check-label">Is digital</label>
+                </div>
+                <div class="checkbox">
+                    <input asp-for="IsBestSeller" type="checkbox" value="IsBestSeller" class="form-check-input" />
+                    <label asp-for="IsBestSeller" class="form-check-label">Is bestseller</label>
+                </div>
+            </div>
+         
+            <a><button type="submit" class="btn-theme">Create course</button></a>
         </form>
     </div>
 </section>
+
+
+<script defer src="~/js/inputfields.js"></script>
+

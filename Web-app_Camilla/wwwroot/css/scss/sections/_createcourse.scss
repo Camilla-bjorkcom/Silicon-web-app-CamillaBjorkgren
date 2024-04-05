@@ -1,0 +1,67 @@
+.createcourse {
+    height: 100%;
+    padding: 50px;
+
+    .container {
+        margin: 4rem auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .courseform {
+            width: 60%;
+
+
+            h2 {
+                text-align: center;
+            }
+
+            .mb-3 {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .untouched {
+                background: var(--color-gray);
+            }
+
+
+            .checkbox-group {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: left;
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .checkbox {
+                display: flex;
+                width: 180px;
+                gap: 1rem;
+
+                input {
+                    width: 20px;
+                    height: 20px;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                label {
+                    margin: 0;
+                }
+            }
+
+            a {
+                display: block;
+                width: fit-content;
+                margin: 0 auto;
+
+                button {
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+}
