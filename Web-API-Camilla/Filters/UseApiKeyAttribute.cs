@@ -8,7 +8,7 @@ public class UseApiKeyAttribute : Attribute, IAsyncActionFilter
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        var config = context.HttpContext.RequestServices.GetService<IConfiguration>();
+        var config = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
         var apiKey = config?["ApiKey:Secret"];
 
         if (!string.IsNullOrEmpty(apiKey) && context.HttpContext.Request.Query.TryGetValue("key", out var key))

@@ -3,21 +3,15 @@ using Infrastructure.Entities;
 using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Configuration;
-using System.Net.Http.Headers;
-using System.Reflection;
 using Web_API_Camilla.Filters;
-using static System.Net.WebRequestMethods;
 
 namespace Web_API_Camilla.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [UseApiKey]
-[Authorize]
+
 public class CoursesController(CoursesService courseService) : ControllerBase
 {
     private readonly CoursesService _courseService = courseService;
@@ -25,10 +19,13 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var result = await _courseService.GetAllAsync();
-        if (result != null)
+        if (ModelState.IsValid)
         {
-            return Ok(result);
+            var result = await _courseService.GetAllAsync();
+            if (result != null)
+            {
+                return Ok(result);
+            }
         }
         return NotFound();
     }
@@ -37,15 +34,18 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOne(string id)
     {
-        var result = await _courseService.GetOneAsyncId(id);
-        if (result != null)
+        if (ModelState.IsValid)
         {
-            return Ok(result);
+            var result = await _courseService.GetOneAsyncId(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
         }
         return NotFound();
     }
 
-
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateOne(CourseCreateDto dto)
     {
@@ -79,39 +79,39 @@ public class CoursesController(CoursesService courseService) : ControllerBase
         return BadRequest(ModelState);
 
     }
-
+    [Authorize]
     [HttpPut]
     public async Task<IActionResult> UpdateCourse(CourseIndexViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
-            //Ändra till ID? Hur få in Id från sidan här?
-            var entity = await _courseService.GetOneAsyncId(viewModel.Course.Id);
-            if (entity != null)
-            {
-                CourseEntity course = new CourseEntity
+                var entity = await _courseService.GetOneAsyncId(viewModel.Course!.Id);
+                if (entity != null)
                 {
-                    Id= entity.Id,
-                    Title = viewModel.UpdateDto.Title,
-                    Price = viewModel.UpdateDto.Price,
-                    DiscountPrice = viewModel.UpdateDto.DiscountPrice,
-                    EstimatedHours = viewModel.UpdateDto.EstimatedHours,
-                    BigImageName = viewModel.UpdateDto.BigImageName,
-                    Creator = viewModel.UpdateDto.Creator,
-                    ImageName = viewModel.UpdateDto.ImageName,
-                    IsDigital = viewModel.UpdateDto.IsDigital,
-                    LastUpdated = DateTime.Now,
-                    Created = entity.Created,
-                    IsBestSeller = viewModel.UpdateDto.IsBestSeller,
-                    LikeParameter = viewModel.UpdateDto.LikeParameter,
-                    UserVotes = viewModel.UpdateDto.UserVotes,
-                };
-                var result = await _courseService.UpdateCourseAsync(course);
-                if (result)
-                    return Ok();
-                return BadRequest();
+                    CourseEntity course = new CourseEntity
+                    {
+                        Id = entity.Id,
+                        Title = viewModel.UpdateDto.Title,
+                        Price = viewModel.UpdateDto.Price,
+                        DiscountPrice = viewModel.UpdateDto.DiscountPrice,
+                        EstimatedHours = viewModel.UpdateDto.EstimatedHours,
+                        BigImageName = viewModel.UpdateDto.BigImageName,
+                        Creator = viewModel.UpdateDto.Creator,
+                        ImageName = viewModel.UpdateDto.ImageName,
+                        IsDigital = viewModel.UpdateDto.IsDigital,
+                        LastUpdated = DateTime.Now,
+                        Created = entity.Created,
+                        IsBestSeller = viewModel.UpdateDto.IsBestSeller,
+                        LikeParameter = viewModel.UpdateDto.LikeParameter,
+                        UserVotes = viewModel.UpdateDto.UserVotes,
+                    };
+                    var result = await _courseService.UpdateCourseAsync(course);
+                    if (result)
+                    {
+                        return Ok();
+                    }              
+                }            
             }
-        }
         return BadRequest();
     }
 
@@ -119,14 +119,19 @@ public class CoursesController(CoursesService courseService) : ControllerBase
 
 
 
+
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCourse(string id)
     {
-        var entity = await _courseService.GetOneAsyncId(id);
-        if (entity != null)
+        if (ModelState.IsValid)
         {
-            var result = await _courseService.DeleteCourseAsync(entity);
-            return Ok(result);
+            var entity = await _courseService.GetOneAsyncId(id);
+            if (entity != null)
+            {
+                var result = await _courseService.DeleteCourseAsync(entity);
+                return Ok(result);
+            }
         }
         return BadRequest();
     }

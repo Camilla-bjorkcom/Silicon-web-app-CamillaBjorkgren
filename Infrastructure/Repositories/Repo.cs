@@ -66,9 +66,6 @@ public abstract class Repo<TEntity, TContext> where TEntity : class where TConte
             if (entityToUpdate != null)
             {
                 _context.Entry(entityToUpdate).CurrentValues.SetValues(entity);
-
-                //entityToUpdate = entity;
-                //_context.Set<TEntity>().Update(entityToUpdate);
                 await _context.SaveChangesAsync();
 
                 return entityToUpdate;
