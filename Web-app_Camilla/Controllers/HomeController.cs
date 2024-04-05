@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -8,9 +9,10 @@ using static System.Net.WebRequestMethods;
 
 namespace Web_app_Camilla.Controllers;
 
-public class HomeController(HttpClient http) : Controller
+public class HomeController(HttpClient http, IConfiguration configuration) : Controller
 {
     private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
 
     [HttpGet]
     [Route("/")]
@@ -27,9 +29,8 @@ public class HomeController(HttpClient http) : Controller
         {
             try
             {
-
                 var content = new StringContent(JsonConvert.SerializeObject(viewModel), Encoding.UTF8, "application/json");
-                var response = await _http.PostAsync("https://localhost:7138/api/subscribers?key=BytMig123!", content);
+                var response = await _http.PostAsync($"https://localhost:7138/api/subscribers?key={_configuration["ApiKey: Secret"]}", content);
                 if (response.IsSuccessStatusCode)
                 {
                     ViewData["Status"] = "Success";

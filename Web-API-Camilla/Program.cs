@@ -23,6 +23,8 @@ builder.Services.AddCors(x =>
 builder.Services.RegisterSwagger();
 builder.Services.RegisterJwt(builder.Configuration);
 
+builder.Services.AddScoped<SubscriberRepository>();
+builder.Services.AddScoped<SubscriberService>();
 builder.Services.AddScoped<CoursesRepository>();
 builder.Services.AddScoped<CoursesService>();
 

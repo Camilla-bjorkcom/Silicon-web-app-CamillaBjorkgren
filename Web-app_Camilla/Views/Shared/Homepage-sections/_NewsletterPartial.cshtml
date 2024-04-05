@@ -6,6 +6,7 @@
             Don't Want to Miss Anything?
             <div class="arrows"><img src="~/images/arrows.svg" alt="arrows"></div>
         </div>
+
         <form asp-action="Index" asp-controller="Home" method="post">
             <div class="sign-up-checkbox">
                 <h6>Sign up for Newsletters</h6>
@@ -36,15 +37,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="sign-up">
                 <input asp-for="Email">
                 <button class="btn-theme" type="submit">
                     Subscribe*
                 </button>
             </div>
-
-           
         </form>
 
         <span class="information">

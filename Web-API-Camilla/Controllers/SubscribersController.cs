@@ -1,98 +1,125 @@
-﻿//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Entities;
+using Infrastructure.Models;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http.Headers;
+using Web_API_Camilla.Filters;
+using static System.Net.WebRequestMethods;
 
-//namespace Web_API_Camilla.Controllers;
+namespace Web_API_Camilla.Controllers;
 
-//[Route("api/[controller]")]
-//[ApiController]
-//[UseApiKey]
-//[Authorize]
-//public class SubscribersController : ControllerBase
-//{
-//    // private readonly repository 
-
-//    [HttpPost]
-//    [UseApiKey]
-//    public async Task<IActionResult> CreateAsync(subscriber dto)
-//    {
-//        if (ModelState.IsValid)
-//        {
-//            if (!await _context.Subscribers.AnyAsync())// find by email.
-//            {
-//                try
-//                {
-//                    //var subcsriberEntity = new SubscriberEntity { Email = email };
-//                    // add. repository
-//                    // await savechangesasync
-
-//                    //return Created("",null)
-
-//                    //https://youtu.be/wRLWDB7gZF4?t=1102
-//                }
+[Route("api/[controller]")]
+[ApiController]
+public class SubscribersController(SubscriberService subscriberService, HttpClient http) : ControllerBase
+{
+    private readonly SubscriberService _subscriberService = subscriberService;
+    private readonly HttpClient _http = http;
 
 
+    [HttpPost]
+    [UseApiKey]
+    public async Task<IActionResult> CreateSubscriberAsync(SubscribeDto dto)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                if (!await _subscriberService.ExistsSubscriberAsync(dto.Email))
+                {
+                    SubscriberEntity entity = dto;
+                    var result = await _subscriberService.AddSubscriberAsync(entity);
+                    if (result)
+                    {
+                        return Created("", null);
+                    }
+                    return Problem("Unable to create subscription.");
+                }
+                return Conflict("Your email address is already subscribed");
+            }
+            return BadRequest();
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
 
-//                catch
-//                {
-//                    return Problem("Unable to create subscription.");
-//                }
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> GetAllAsync()
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+                {
+                    _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    var subscribers = await _subscriberService.GetAllAsync();
+                    if (subscribers != null)
+                    {
+                        return Ok(subscribers);
+                    }
+                    return NotFound();
+                }
+            }
+            return BadRequest();
+        }
+        catch { return BadRequest(); }
 
-//            }
-//            return Conflict("Your email address is already subscribed");
+    }
 
-//        }
-//        return BadRequest();
+    [Authorize]
+    [HttpGet("{email}")]
+    public async Task<IActionResult> GetOneAsync(string email)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var subscriber = await _subscriberService.GetOneAsyncEmail(email);
+                if (subscriber != null)
+                {
+                    return Ok(subscriber);
+                }
+                return NotFound();
+            }
+            return BadRequest();
+        }
+        catch { return BadRequest(); }
+    }
 
-//    }
+    //[HttpPut("{id}")]
+    //public async Task<IActionResult> UpdateOne(int id, string email)
+    //{
+    //    var subscriber = await _context.Subscribers.FirstOrDefaultAsync(x => x.Id == id);
+    //    if (subscriber != null)
+    //    {
+    //        subscriber.Email = email;
+    //        _context.Subscribers.Update(subscriber);
+    //        await _context.SaveChangesaAsync();
 
-//    [HttpGet]
-//    public async Task<IActionResult> GetAllAsync()
-//    {
-//        var subscribers = await _context.Subscribers.ToListAsync();
-//        if (subscribers.Any())
-//        {
-//            return Ok(subscribers);
-//        }
-//        return NotFound();
-//    }
+    //        return Ok(subscriber);
+    //    }
+    //    return Ok();
+    //}
 
-//    [HttpGet("{email}")]
-//    public async Task<IActionResult> GetOneAsync(string email)
-//    {
-//        var subscriber = await _context.Subscribers.FirstOrDefaultAsync(x => x.Email == email);
-//        if (subscriber != null)
-//        {
-//            return Ok(subscriber);
-//        }
-//        return NotFound();
-//    }
+    [UseApiKey]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(string id)
+    {
+        var subscriber = await _subscriberService.GetOneAsyncId(id);
+        if (subscriber != null)
+        {
+            var result = await _subscriberService.DeleteSubscriberAsync(subscriber);
+            if (result)
+                return Ok();
+            else return BadRequest();
+        }
+        return NotFound();
+    }
 
-//    [HttpPut("{id}")]
-//    public async Task<IActionResult> UpdateOne(int id, string email)
-//    {
-//        var subscriber = await _context.Subscribers.FirstOrDefaultAsync(x => x.Id == id);
-//        if (subscriber != null)
-//        {
-//            subscriber.Email = email;
-//            _context.Subscribers.Update(subscriber);
-//            await _context.SaveChangesaAsync();
-
-//            return Ok(subscriber);
-//        }
-//        return Ok();
-//    }
-
-//    [HttpDelete("{id}")]
-//    public async Task<IActionResult> DeleteAsync(int id)
-//    {
-//        var subscriber = await _context.Subscribers.FirstOrDefaultAsync(x => x.Id == id);
-//        if (subscriber != null)
-//        {
-//            _context.Subscriber.Delete(subscriber);
-//            await _context.SaveChangesAsync();
-//            return Ok();
-//        }
-//        return NotFound();
-//    }
-
-//}
+}

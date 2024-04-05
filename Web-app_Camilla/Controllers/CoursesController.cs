@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
-using Web_API_Camilla.Filters;
 
 
 namespace Web_app_Camilla.Controllers;
