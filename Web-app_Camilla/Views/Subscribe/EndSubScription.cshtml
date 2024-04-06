@@ -2,6 +2,18 @@
 
 <section class="endsub">
     <div class="container">
+        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+        {
+            <div class="errormessage">
+                @ViewData["ErrorMessage"]
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+        {
+            <div class="errormessage">
+                @ViewData["Success"]
+            </div>
+        }
         <div class="mb-3">
             <form asp-action="EndSubscription" asp-controller="Subscribe" method="post">
             <label asp-for="Email" class="form-label">Enter your email address to end your subscription</label>

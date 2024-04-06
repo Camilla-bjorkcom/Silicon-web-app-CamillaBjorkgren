@@ -27,6 +27,8 @@ builder.Services.AddScoped<SubscriberRepository>();
 builder.Services.AddScoped<SubscriberService>();
 builder.Services.AddScoped<CoursesRepository>();
 builder.Services.AddScoped<CoursesService>();
+builder.Services.AddScoped<ContactMessageRepository>();
+builder.Services.AddScoped<ContactMessageService>();
 
 var app = builder.Build();
 app.UseCors("CustomOriginPolicy");

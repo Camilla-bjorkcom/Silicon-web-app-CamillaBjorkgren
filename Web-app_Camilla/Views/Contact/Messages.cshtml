@@ -1,0 +1,29 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<section class="messages">
+    <div class="container">
+        <div class="message-list">
+            @foreach (var message in Model.Messages)
+            {
+                <a class="message" asp-action="MessageDetails" asp-controller="Contact" asp-route-id="@message?.Id">
+                    <div class="message-content">
+                        <div class="content">
+                            <h2 class="message-author">From @message.FullName</h2>
+                            <div class="service-option">@message?.ServiceOption</div>
+                            <hr />
+                        </div>
+                    </div>
+                </a>
+            }
+            @if (Model.Messages == null)
+            {
+                <div>No Messages Found</div>
+            }
+        </div>
+    </div>
+</section>
+
+@* SCSS *@

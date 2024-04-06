@@ -9,4 +9,6 @@ public class WebApiDbContext(DbContextOptions<WebApiDbContext> options) : DbCont
     public DbSet<UserApiEntity> UserApi { get; set; }
     public DbSet<SubscriberEntity> Subscribers { get; set; }
     public DbSet<CategoryEntity> Categories { get; set; }
+
+    public DbSet<ContactMessageEntity> ContactMessages { get; set; }
 }

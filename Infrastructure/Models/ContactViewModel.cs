@@ -1,9 +1,10 @@
 ﻿using Infrastructure.Models;
-
-namespace Web_app_Camilla.ViewModels;
+namespace Infrastructure.Models;
 
 public class ContactViewModel
 {
     public ContactFormModel ContactForm { get; set; } = null!;
+
+    public IEnumerable<ContactFormModel> Messages { get; set; } = new List<ContactFormModel>();
 
 }

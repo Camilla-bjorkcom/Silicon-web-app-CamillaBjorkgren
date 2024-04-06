@@ -11,12 +11,6 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
     private readonly HttpClient _http = http;
     private readonly IConfiguration _configuration = configuration;
 
-    //public IActionResult Subscribe()
-    //{
-
-    //    return View(new SubscriberViewModel());
-    //}
-
     [HttpPost]
     public async Task<IActionResult> Subscribe(SubscriberModel model)
     {
@@ -67,13 +61,13 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
             {
                 var response = await _http.DeleteAsync($"https://localhost:7138/api/Subscribers/{viewModel.Email}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
-                { ViewData["Status"] = "Success"; }
+                { ViewData["Success"] = "Successfully deleted your subscription to our newsletter!"; }
             }
-            catch { ViewData["Status"] = "ConnectionFailed"; }
+            catch { ViewData["ErrorMessage"] = "Failed, please try again later or contact the web admin."; }
         }
         else
         {
-            ViewData["Status"] = "Invalid";
+            ViewData["ErrorMessage"] = "Failed, please try again later or contact the web admin.";
         }
         return View();
     }

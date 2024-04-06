@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Admin Portal";
-
 }
 
 <section class="settings">
@@ -12,6 +11,9 @@
                 <ul>
                     <a asp-action="AllSubscribers">
                     <li>Subscribers list</li>
+                    </a>
+                    <a asp-action="Messages" asp-controller="Contact">
+                    <li>Contact form messages</li>
                     </a>
                 </ul>
             </div>

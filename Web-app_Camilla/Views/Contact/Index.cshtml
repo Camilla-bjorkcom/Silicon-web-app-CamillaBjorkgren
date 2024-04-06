@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="right-content">
-            <form method="post" asp-controller="Contact" asp-action="Contactform">
+            <form method="post" asp-controller="Contact" asp-action="SendContactForm">
                 <h2>Get In Contact With Us</h2>
                 <div class="mb-3">
                     <label asp-for="ContactForm.FullName" class="form-label">Full name</label>
@@ -41,22 +41,16 @@
                         <option selected disabled>Choose the service you are interested in</option>
                         <option value="Edge">Edge</option>
                         <option value="Firefox">Firefox</option>
-                        <option value="Chrome">
-                            Chrome
-                        </option>
-                        <option value="Opera">
-                            Opera
-                        </option>
-                        <option value="Safari">
-                            Safari
-                        </option>
+                        <option value="Chrome">Chrome</option>
+                        <option value="Opera">Opera</option>
+                        <option value="Safari">Safari</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label asp-for="ContactForm.Message" class="form-label">Message</label>
                     <textarea asp-for="ContactForm.Message">Enter your message here...</textarea>
                 </div>
-                <a><button type="submit" class="btn-theme">Send Contact Request</button></a>
+               <button type="submit" class="btn-theme">Send Contact Request</button>
             </form>
         </div>
     </div>

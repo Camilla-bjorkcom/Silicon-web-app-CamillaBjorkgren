@@ -4,6 +4,8 @@ namespace Infrastructure.Models;
 
 public class ContactFormModel
 {
+    public string? Id { get; set; }
+
     [Display(Name = "Full name", Prompt = "Enter your full name", Order = 0)]
     [Required(ErrorMessage = "Enter your name")]
     public string FullName { get; set; } = null!;
