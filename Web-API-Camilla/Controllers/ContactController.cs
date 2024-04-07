@@ -23,14 +23,6 @@ public class ContactController(ContactMessageService contactMessageService) : Co
                 var result = await _contactMessageService.CreateAsync(contactEntity);
                 if (result)
                 {
-                    //var contactModel = new ContactFormModel
-                    //{
-                    //    FullName = contactEntity.FullName,
-                    //    Email = contactEntity.EmailAddress,
-                    //    Message = contactEntity.Message,
-                    //    ServiceOption = contactEntity.ServiceOption,
-                       
-                    //};
                     return Created("", null);
                 }
                

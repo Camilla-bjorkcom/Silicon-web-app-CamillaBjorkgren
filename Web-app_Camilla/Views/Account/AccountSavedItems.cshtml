@@ -1,0 +1,80 @@
+﻿@Model AccountSavedItemsViewModel
+@{
+    ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
+    var user = await UserManager.GetUserAsync(User);
+}
+<section class="account-savedcourses">
+    <div class="container">
+        @if (user != null)
+        {
+            <div class="user">
+                <div class="user-img">
+                    <img src="~/uploads/@user.ProfileImg" alt="profile image">
+                    <form enctype="multipart/form-data" method="post" asp-action="UploadImage" asp-controller="Account">
+                        <input type="file" id="uploadFile" name="file" hidden />
+                        <label for="uploadFile" class="btn btn-circle btn-circle-sm"><i class="fa-regular fa-refresh"></i></label>
+                    </form>
+                </div>
+                <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
+                <p class="email">@Model.ProfileView?.Email</p>
+                <div class="btn-user">
+                    <a asp-controller="Account" asp-action="Index"><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
+                    <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock"></i> Security</button></a>
+                    <a asp-action="" asp-controller="SavedItems"><button class="button btn active"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
+                    <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
+                </div>
+            </div>
+        }
+        <div class="content">
+            <div class="title-button">
+                <h2 class="title">Saved Items</h2>
+                <a><button class="btn btn-delete"><i class="fa-light fa-trash"></i>Delete all</button></a>
+            </div>
+            <div class="course-list">
+                @foreach (var course in Model.Courses)
+                {
+                    <a class="course" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
+                        <div class="course">
+                            @if (course.IsBestSeller)
+                            {
+                                <div class="best-seller">Best Seller</div>
+
+                            }
+                            <button type="button" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
+                            <img class="course-image" src="~/images/Courses/@course.ImageName" />
+                            <div class="content">
+                                <h2 class="course-title">@course.Title</h2>
+                                <div class="course-creator">by @course.Creator</div>
+                                <div class="course-prices">
+                                    @if (course.DiscountPrice > 0)
+                                    {
+                                        <div class="discount-price">$@course.DiscountPrice</div>
+                                        <div class="original-price discount">$@course.Price</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="original-price">$@course.Price</div>
+                                    }
+
+                                </div>
+                                <hr />
+                                <div class="course-footer">
+                                    <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
+                                    <div class="course-likes">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <span>@($"{course.LikeParameter * 100:0}%")</span>
+                                        <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                @if (Model.Courses == null)
+                {
+                    <div>No Courses Found</div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,22 +1,25 @@
 ﻿using Infrastructure.Entities;
+using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Web_app_Camilla.ViewModels;
+using static System.Net.WebRequestMethods;
 
 namespace Web_app_Camilla.Controllers;
 
 [Authorize]
-public class AccountController(SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager, AccountService accountService) : Controller
+public class AccountController(SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager, AccountService accountService, HttpClient http, IConfiguration configuration) : Controller
 {
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly AccountService _accountService = accountService;
-
-
-
+    private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
 
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -34,7 +37,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             return View(viewModel);
         }
         return RedirectToAction("Index", "Home");
-       
+
     }
 
     [HttpPost]
@@ -252,7 +255,38 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             ViewData["ImageUpload"] = "Could not update profile image";
             return RedirectToAction("Index", "Account");
         }
+    }
 
+    [HttpGet]
+    public async Task<IActionResult> AccountSavedItems()
+    {
+        if (!_signInManager.IsSignedIn(User))
+            return RedirectToAction("SignIn", "Auth");
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            var viewModel = new AccountSavedItemsViewModel();
+            try
+            {
+                var response = await _http.GetAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
+                    return View(viewModel);
+                }
+
+            }
+            catch { }
+
+            ViewData["Error"] = "Failed at fetching courses from server.";
+            viewModel.ProfileView ??= await PopulateProfileViewAsync();
+            return View(viewModel);
+            
+           
+        }
+        return RedirectToAction("Index", "Home");
     }
 
 }

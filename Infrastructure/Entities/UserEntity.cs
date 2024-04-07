@@ -21,8 +21,7 @@ public class UserEntity : IdentityUser
 
     public int? AddressId { get; set; }
     public AddressEntity? Address { get; set; }
-}
 
-//Saved Items
-//UserCourses (UserId, Course Id)
-//public UserCourses? UserCourses {get; set;}
+    public ICollection<UserCoursesEntity>? UserCourses { get; set; }
+
+}

@@ -36,7 +36,7 @@ namespace Infrastructure.Migrations.WebApiDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.ContactMessageEntity", b =>
@@ -64,7 +64,7 @@ namespace Infrastructure.Migrations.WebApiDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactMessages");
+                    b.ToTable("ContactMessages", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.CourseEntity", b =>
@@ -120,7 +120,7 @@ namespace Infrastructure.Migrations.WebApiDb
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.SubscriberEntity", b =>
@@ -152,7 +152,7 @@ namespace Infrastructure.Migrations.WebApiDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("Subscribers", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.UserApiEntity", b =>
@@ -178,7 +178,7 @@ namespace Infrastructure.Migrations.WebApiDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserApi");
+                    b.ToTable("UserApi", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.CourseEntity", b =>
