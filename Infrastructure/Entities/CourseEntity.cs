@@ -21,7 +21,6 @@ public class CourseEntity
     public int? CategoryId { get; set; }
     public CategoryEntity? Category { get; set; }
 
-    public ICollection<UserCoursesEntity>? UserCourses { get; set; }
 
     public static implicit operator CourseEntity(CourseCreateDto dto)
     {

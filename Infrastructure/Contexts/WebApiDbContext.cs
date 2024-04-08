@@ -12,4 +12,6 @@ public class WebApiDbContext(DbContextOptions<WebApiDbContext> options) : DbCont
 
     public DbSet<ContactMessageEntity> ContactMessages { get; set; }
 
+
+
 }

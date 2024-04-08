@@ -104,7 +104,12 @@
                         <h2 class="current-price">$@Model.Price</h2>
                     }
                 </div>
-                <button class="btn btn-theme-s" type="submit" asp-action="JoinCourse">Join course</button>
+                <form asp-action="JoinCourse" asp-controller="Account" method="post">
+                    <input type="hidden" name="userId" value="@user!.Id" />
+                    <input type="hidden" name="courseId" value="@Model.Id" />
+                    <button class="btn btn-theme-s" type="submit">Join course</button>
+                </form>
+               @*  <button class="btn btn-theme-s" type="button" asp-action="AccountSavedItems" asp-controller="Account" asp-route-userId="@user!.Id" asp-route-courseId="@Model.Id">Join course</button> *@
             </div>
             @if (User.IsInRole("CIO") && user != null)
             {

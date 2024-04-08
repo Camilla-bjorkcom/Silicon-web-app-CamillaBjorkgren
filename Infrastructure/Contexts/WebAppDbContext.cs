@@ -16,15 +16,11 @@ public class WebAppDbContext(DbContextOptions<WebAppDbContext> options) : Identi
         base.OnModelCreating(builder);
         builder.Entity<UserCoursesEntity>()
            .HasKey(x => new { x.UserId, x.CourseId });
+        
 
         builder.Entity<UserCoursesEntity>()
-       .HasOne(uc => uc.User)
-       .WithMany(u => u.UserCourses)
-       .HasForeignKey(uc => uc.UserId);
-
-        builder.Entity<UserCoursesEntity>()
-            .HasOne(uc => uc.Course)
-            .WithMany(c => c.UserCourses)
-            .HasForeignKey(uc => uc.CourseId);
+            .HasOne(uc => uc.UserEntity) // Anger att UserCoursesEntity har en relation till UserEntity
+            .WithMany() // UserEntity kan ha flera UserCoursesEntity
+            .HasForeignKey(uc => uc.UserId); // ForeignKey för UserId
     }
 }

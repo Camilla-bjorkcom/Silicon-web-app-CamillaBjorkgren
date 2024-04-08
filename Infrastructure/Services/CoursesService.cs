@@ -1,14 +1,18 @@
-﻿using Infrastructure.Entities;
+﻿using Infrastructure.Contexts;
+using Infrastructure.Entities;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Services;
 
-public class CoursesService(CoursesRepository coursesRepository)
+public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext webApiDbContext, WebAppDbContext webAppDbContext)
 {
     private readonly CoursesRepository _coursesRepository = coursesRepository;
+    private readonly WebApiDbContext _webApiDbContext = webApiDbContext;
+    private readonly WebAppDbContext _webAppDbContext = webAppDbContext;
 
     public async Task<IEnumerable<CourseEntity>> GetAllAsync()
     {
@@ -53,6 +57,34 @@ public class CoursesService(CoursesRepository coursesRepository)
             return null!;
         }
         catch (Exception) { return null!; }
+    }
+
+    public async Task<IEnumerable<CourseEntity>> GetUserCourses(string userId)
+    {
+        try
+        {
+            var userCourses = await _webAppDbContext.UserCourses
+                .Where(uc => uc.UserId == userId)
+                .Select(uc => uc.CourseId)
+                .ToListAsync();
+            if (userCourses.Count > 0)
+            {
+                var coursesList = new List<CourseEntity>(); 
+
+
+                foreach (var courseId in userCourses)
+                {
+                    var course = await GetOneAsyncId(courseId);
+                    if (course != null) 
+                    {
+                        coursesList.Add(course); 
+                        return coursesList;
+                    }
+                }
+            }
+            return null!;
+        }
+        catch { return null!; }
     }
 
     public async Task<bool> ExistsCourseAsync(string title)
@@ -119,7 +151,7 @@ public class CoursesService(CoursesRepository coursesRepository)
             if (result)
                 return true;
             return false;
-        }                 
+        }
         catch (Exception)
         {
 

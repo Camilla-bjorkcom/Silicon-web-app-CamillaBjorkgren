@@ -1,10 +1,18 @@
-﻿@Model AccountSavedItemsViewModel
+﻿@model AccountSavedItemsViewModel
 @{
     ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
     var user = await UserManager.GetUserAsync(User);
 }
-<section class="account-savedcourses">
+<section class="account-saveditems">
     <div class="container">
+
+        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+        {
+            <div class="errormessage">
+                @ViewData["ErrorMessage"]
+            </div>
+        }
+
         @if (user != null)
         {
             <div class="user">
@@ -20,7 +28,7 @@
                 <div class="btn-user">
                     <a asp-controller="Account" asp-action="Index"><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
                     <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock"></i> Security</button></a>
-                    <a asp-action="" asp-controller="SavedItems"><button class="button btn active"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
+                    <a asp-action="AccountSavedItems" asp-controller="Account"><button class="button btn" active><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
                     <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
                 </div>
             </div>

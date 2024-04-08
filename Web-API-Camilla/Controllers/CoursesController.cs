@@ -4,6 +4,7 @@ using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Web_API_Camilla.Filters;
 
 namespace Web_API_Camilla.Controllers;
@@ -130,6 +131,24 @@ public class CoursesController(CoursesService courseService) : ControllerBase
             }
         }
         return BadRequest();
+    }
+
+    [UseApiKey]
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetUserCourses(string userId)
+    {
+
+        if (ModelState.IsValid)
+        {
+            var userCourses = await _courseService.GetUserCourses(userId);
+            if (userCourses != null)
+            {
+                return Ok(userCourses);
+            }
+        }
+        return BadRequest();
+
+
     }
 
 }

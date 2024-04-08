@@ -5,17 +5,19 @@ using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace Infrastructure.Services;
 
-public class AccountService(UserRepository userRepository, UserManager<UserEntity> userManager, AddressRepository addressRepository, IConfiguration configuration)
+public class AccountService(UserRepository userRepository, UserManager<UserEntity> userManager, AddressRepository addressRepository, IConfiguration configuration, UserCoursesRepository userCoursesRepository)
 {
     private readonly UserRepository _userRepository = userRepository;
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly AddressRepository _addressRepository = addressRepository;
+    private readonly UserCoursesRepository _userCoursesRepository = userCoursesRepository;
     private readonly IConfiguration _configuration = configuration;
 
     public async Task<UserEntity> UpdateUserAsync(UserEntity user)
@@ -60,6 +62,34 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
     }
+
+    public async Task<bool> JoinCourseAsync(string userId, string courseId)
+    {
+        try
+        {
+            if (userId != null && courseId != null)
+            {   
+                UserCoursesEntity entity = new UserCoursesEntity
+                {
+                    UserId = userId,
+                    CourseId = courseId
+                };
+                var result = await _userCoursesRepository.CreateAsync(entity);
+                if(result != null)
+                {
+                    return true;
+                    
+                }
+            }
+            return false;
+        }
+
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<bool> UpdateAddressAsync(AddressEntity address, UserEntity user)
     {
         try
@@ -136,7 +166,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             if (user != null && file != null && file.Length != 0)
             {
                 var userEntity = await _userManager.GetUserAsync(user);
-                if(userEntity != null)
+                if (userEntity != null)
                 {
                     var fileName = $"p_{userEntity.Id}_{Guid.NewGuid()}_{Path.GetExtension(file.FileName)}";
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileUploadPath"]!, fileName);
@@ -153,10 +183,10 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                     //PATH.Combine måste redan ha befintliga kataloger!!!
                 }
             }
-            
+
         }
         catch (Exception ex)
-        { 
+        {
             Debug.WriteLine(ex.Message);
         }
         return false;

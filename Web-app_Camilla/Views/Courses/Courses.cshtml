@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Courses";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <section class="courses">
@@ -39,7 +40,7 @@
                             <div class="best-seller">Best Seller</div>
 
                         }
-                        <button type="button" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
+                        <button type="submit" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
                         <img class="course-image" src="~/images/Courses/@course.ImageName" />
                         <div class="content">
                             <h2 class="course-title">@course.Title</h2>

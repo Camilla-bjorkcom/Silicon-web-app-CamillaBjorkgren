@@ -4,6 +4,7 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -215,6 +216,58 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         return View(viewModel);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> AccountSavedItems()
+    {
+        var viewModel = new AccountSavedItemsViewModel();
+        viewModel.ProfileView ??= await PopulateProfileViewAsync();
+
+        if (!_signInManager.IsSignedIn(User))
+            return RedirectToAction("SignIn", "Auth");
+
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            try
+            {
+                var response = await _http.GetAsync($"https://localhost:7138/api/courses/user/{user.Id}?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
+
+                    return View(viewModel);
+                }
+
+            }
+            catch { }
+
+            ViewData["Error"] = "Failed at fetching courses from server.";
+
+            return View(viewModel);
+
+
+        }
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> JoinCourse(string userId, string courseId)
+    {
+        if (userId != null && courseId != null)
+        {
+            var result = await _accountService.JoinCourseAsync(userId, courseId);
+            if (result)
+            {
+                return RedirectToAction("Courses", "Courses");
+                //om denna är true, ändra färg till "bokmärkt" på courses-sida?
+            }
+            
+        }
+        return RedirectToAction("Courses", "Courses");
+    }
+
+
     [HttpPost]
     public async Task<IActionResult> DeleteAccount(AccountSecurityViewModel viewModel)
     {
@@ -257,36 +310,5 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         }
     }
 
-    [HttpGet]
-    public async Task<IActionResult> AccountSavedItems()
-    {
-        if (!_signInManager.IsSignedIn(User))
-            return RedirectToAction("SignIn", "Auth");
-
-        var user = await _userManager.GetUserAsync(User);
-        if (user != null)
-        {
-            var viewModel = new AccountSavedItemsViewModel();
-            try
-            {
-                var response = await _http.GetAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
-                    return View(viewModel);
-                }
-
-            }
-            catch { }
-
-            ViewData["Error"] = "Failed at fetching courses from server.";
-            viewModel.ProfileView ??= await PopulateProfileViewAsync();
-            return View(viewModel);
-            
-           
-        }
-        return RedirectToAction("Index", "Home");
-    }
-
+    
 }

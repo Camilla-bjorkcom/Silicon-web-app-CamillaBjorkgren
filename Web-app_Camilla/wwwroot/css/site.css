@@ -2425,3 +2425,203 @@ footer .container .unsubscribe {
 .createcourse .container .courseform a button {
   margin-top: 2rem;
 }
+
+.account-saveditems {
+  height: 100%;
+  width: 100%;
+}
+.account-saveditems .container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: "userinfo courses";
+  gap: 1rem 5rem;
+  margin-top: 80px;
+}
+.account-saveditems .container h6 {
+  color: #6366F1;
+}
+.account-saveditems .container .button {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+.account-saveditems .container .user {
+  grid-area: userinfo;
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  border-right: 1px solid var(--color-gray-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.account-saveditems .container .user .btn-user {
+  width: 70%;
+  margin-top: 1rem;
+}
+.account-saveditems .container .user .btn-user .button {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+  color: var(--color-gray-900);
+}
+.account-saveditems .container .user .btn-user .button i {
+  margin-right: 1rem;
+}
+.account-saveditems .container .user .btn-user .signout {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.account-saveditems .container .user .user-img {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.account-saveditems .container .user .user-img img {
+  border-radius: 60px;
+  object-fit: cover;
+}
+.account-saveditems .container .user .user-img .btn-circle-sm {
+  position: absolute;
+  top: 75px;
+  right: 15px;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+  padding: 4px;
+  border-radius: 50%;
+}
+.account-saveditems .container .user .user-img .btn-circle-sm:hover {
+  color: var(--color-gray-500);
+}
+.account-saveditems .container .user .name {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 16px !important;
+}
+.account-saveditems .container .user .email {
+  text-align: center;
+}
+.account-saveditems .container .content .title-button {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.account-saveditems .container .content .title-button .btn-delete {
+  border: 0.5px solid red;
+  color: red;
+}
+.account-saveditems .container .content .course-list {
+  grid-area: courses;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.account-saveditems .container .content .course-list a:hover {
+  text-decoration: none;
+}
+.account-saveditems .container .content .course-list a .course {
+  box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
+  text-decoration: none;
+  color: black;
+  position: relative;
+  max-height: min-content;
+}
+.account-saveditems .container .content .course-list a .course .best-seller {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #22C55E;
+  color: white !important;
+  border-radius: 5px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding: 5px;
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 12px !important;
+}
+.account-saveditems .container .content .course-list a .course .saved-item {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.8rem;
+}
+.account-saveditems .container .content .course-list a .course .saved-item:hover {
+  border: 1px solid #6366F1;
+  background-color: #6366F1;
+  color: white;
+}
+.account-saveditems .container .content .course-list a .course .info {
+  padding: 15px;
+}
+.account-saveditems .container .content .course-list a .course .info .course-title {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 20px !important;
+  color: #33354D;
+  margin-bottom: 0;
+}
+.account-saveditems .container .content .course-list a .course .info .course-creator {
+  font-size: 0.8rem;
+  color: #565973;
+  margin-bottom: 1rem;
+}
+.account-saveditems .container .content .course-list a .course .info .course-prices {
+  display: flex;
+  gap: 20px;
+  font-weight: 900;
+}
+.account-saveditems .container .content .course-list a .course .info .course-prices .discount-price {
+  color: #EF4444;
+}
+.account-saveditems .container .content .course-list a .course .info .course-prices .original-price {
+  color: #6366F1;
+}
+.account-saveditems .container .content .course-list a .course .info .course-prices .discount {
+  color: #9397AD;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+.account-saveditems .container .content .course-list a .course .course-footer {
+  display: flex;
+  font-weight: 200;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: #9397AD;
+}
+.account-saveditems .container .content .course-list a .course .course-footer .course-hours i {
+  margin-right: 5px;
+}
