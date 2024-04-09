@@ -59,7 +59,7 @@ public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext
         catch (Exception) { return null!; }
     }
 
-    public async Task<IEnumerable<CourseEntity>> GetUserCourses(string userId)
+    public async Task<IEnumerable<CourseEntity>> GetAllSavedCourses(string userId)
     {
         try
         {
@@ -81,6 +81,23 @@ public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext
                         return coursesList;
                     }
                 }
+            }
+            return null!;
+        }
+        catch { return null!; }
+    }
+
+    public async Task<List<string>> GetAllSavedCoursesId(string userId)
+    {
+        try
+        {
+            var userCoursesId = await _webAppDbContext.UserCourses
+                .Where(uc => uc.UserId == userId)
+                .Select(uc => uc.CourseId)
+                .ToListAsync();
+            if (userCoursesId.Count > 0)
+            {
+                return userCoursesId;
             }
             return null!;
         }

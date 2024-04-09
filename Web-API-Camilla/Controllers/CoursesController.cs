@@ -140,15 +140,28 @@ public class CoursesController(CoursesService courseService) : ControllerBase
 
         if (ModelState.IsValid)
         {
-            var userCourses = await _courseService.GetUserCourses(userId);
+            var userCourses = await _courseService.GetAllSavedCourses(userId);
             if (userCourses != null)
             {
                 return Ok(userCourses);
             }
         }
         return BadRequest();
+    }
 
-
+    [UseApiKey]
+    [HttpGet("course/{userId}")]
+    public async Task<IActionResult> GetUserCoursesIds(string userId)
+    {
+        if (ModelState.IsValid)
+        {
+            var userCoursesId = await _courseService.GetAllSavedCoursesId(userId);
+            if (userCoursesId != null)
+            {
+                return Ok(userCoursesId);
+            }
+        }
+        return BadRequest();
     }
 
 }

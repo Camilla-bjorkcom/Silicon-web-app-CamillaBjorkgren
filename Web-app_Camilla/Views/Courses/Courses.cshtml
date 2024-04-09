@@ -40,7 +40,20 @@
                             <div class="best-seller">Best Seller</div>
 
                         }
-                        <button type="submit" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
+                        @{
+                            bool isBookmarked = false; 
+                            if (Model.CoursesId != null) {
+                                foreach (var courseId in Model.CoursesId)
+                                {
+                                    if (courseId!.Id == course.Id)
+                                    {
+                                        isBookmarked = true;
+                                        break; // No need to continue checking if already bookmarked
+                                    }
+                                };                                
+                            }   
+                        }
+                        <button type="button" class="saved-item " data-course-id="@course.Id"><i class="@(isBookmarked ? "fa-solid fa-bookmark filled" : "fa-light fa-bookmark")"></i></button>
                         <img class="course-image" src="~/images/Courses/@course.ImageName" />
                         <div class="content">
                             <h2 class="course-title">@course.Title</h2>
