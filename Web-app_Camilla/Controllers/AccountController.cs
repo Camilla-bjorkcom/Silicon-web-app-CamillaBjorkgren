@@ -221,6 +221,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
     {
         var viewModel = new AccountSavedItemsViewModel();
         viewModel.ProfileView ??= await PopulateProfileViewAsync();
+        ViewData["ReturnUrl"] = Url.Content("~/Account/AccountSavedItems");
 
         if (!_signInManager.IsSignedIn(User))
             return RedirectToAction("SignIn", "Auth");
@@ -269,7 +270,40 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                 return RedirectToAction("Courses", "Courses");
                 //om denna är true, ändra färg till "bokmärkt" på courses-sida?
             }
-            
+
+        }
+        return RedirectToAction("Courses", "Courses");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveCourse(string userId, string courseId, string returnUrl)
+    {
+        if (userId != null && courseId != null)
+        {
+            var result = await _accountService.RemoveCourseAsync(userId, courseId);
+            if (result)
+            {
+                if (returnUrl == "/Account/AccountSavedItems")
+                    return RedirectToAction("AccountSavedItems", "Account");
+                else
+                    return RedirectToAction("Courses", "Courses");
+            }
+
+        }
+        return RedirectToAction("Courses", "Courses");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveAllCourses(string userId)
+    {
+        if (userId != null)
+        {
+            var result = await _accountService.RemoveAllCourseAsync(userId);
+            if (result)
+            {
+                return RedirectToAction("AccountSavedItems", "Account");
+            }
+
         }
         return RedirectToAction("Courses", "Courses");
     }
@@ -317,5 +351,5 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         }
     }
 
-    
+
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
@@ -68,17 +69,67 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
         try
         {
             if (userId != null && courseId != null)
-            {   
+            {
                 UserCoursesEntity entity = new UserCoursesEntity
                 {
                     UserId = userId,
                     CourseId = courseId
                 };
                 var result = await _userCoursesRepository.CreateAsync(entity);
-                if(result != null)
+                if (result != null)
                 {
                     return true;
-                    
+
+                }
+            }
+            return false;
+        }
+
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> RemoveCourseAsync(string userId, string courseId)
+    {
+        try
+        {
+            if (userId != null && courseId != null)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {            
+                    var result = await _userCoursesRepository.DeleteAsync(x => x.UserId == userId && x.CourseId == courseId);
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> RemoveAllCourseAsync(string userId)
+    {
+        try
+        {
+            if (userId != null)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {                  
+                    var result = await _userCoursesRepository.DeleteAllAsync(x => x.UserId == userId);
+                    if (result)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -192,5 +243,5 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
         return false;
     }
 
-    
+
 }

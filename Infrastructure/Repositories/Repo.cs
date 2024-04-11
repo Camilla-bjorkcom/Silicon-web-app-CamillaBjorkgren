@@ -94,6 +94,28 @@ public abstract class Repo<TEntity, TContext> where TEntity : class where TConte
         return false;
     }
 
+    public virtual async Task<bool> DeleteAllAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        try
+        {
+            var entities = await _context.Set<TEntity>().Where(predicate).ToListAsync();
+
+            foreach (var entity in entities)
+            {
+                _context.Set<TEntity>().Remove(entity);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error :: " + ex.Message);
+            return false;
+        }
+    }
+
     public virtual async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
     {
         try

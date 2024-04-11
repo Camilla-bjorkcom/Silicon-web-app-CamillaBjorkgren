@@ -142,70 +142,77 @@
                         font-size: 12px !important;
                     }
 
-                    .saved-item {
-                        position: absolute;
-                        z-index: 5;
-                        top: 10px;
-                        right: 15px;
-                        background-color: white;
-                        border-radius: 50%;
-                        border: 1px solid white;
-                        padding-left: 0.5rem;
-                        padding-right: 0.5rem;
-                        font-size: 0.8rem;
-                        cursor: pointer;
+                    form {
+                        .saved-item {
+                            position: absolute;
+                            z-index: 5;
+                            top: 10px;
+                            right: 15px;
+                            background-color: white;
+                            border-radius: 50%;
+                            border: 1px solid white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            font-size: 0.8rem;
+                            cursor: pointer;
+                        }
                     }
+
 
                     .fa-solid {
                         color: var(--color-theme);
                     }
 
-                    .info {
-                        padding: 15px;
+                    .course-details {
+                        text-decoration: none;
 
-                        .course-title {
-                            @include h5;
-                            color: $gray-800;
-                            margin-bottom: 0;
-                        }
+                        .info {
+                            padding: 15px;
 
-                        .course-creator {
-                            font-size: 0.8rem;
-                            color: $gray-700;
-                            margin-bottom: 1rem;
-                        }
-
-                        .course-prices {
-                            display: flex;
-                            gap: 20px;
-                            font-weight: 900;
-
-                            .discount-price {
-                                color: $danger;
+                            .course-title {
+                                @include h5;
+                                color: $gray-800;
+                                margin-bottom: 0;
                             }
 
-                            .original-price {
-                                color: $theme;
+                            .course-creator {
+                                font-size: 0.8rem;
+                                color: $gray-700;
+                                margin-bottom: 1rem;
                             }
 
-                            .discount {
+                            .course-prices {
+                                display: flex;
+                                gap: 20px;
+                                font-weight: 900;
+
+                                .discount-price {
+                                    color: $danger;
+                                }
+
+                                .original-price {
+                                    color: $theme;
+                                }
+
+                                .discount {
+                                    color: $gray-600;
+                                    text-decoration: line-through;
+                                    font-weight: 400;
+                                }
+                            }
+
+
+                            .course-footer {
+                                display: flex;
+                                font-weight: 200;
+                                gap: 20px;
+                                font-size: 0.8rem;
                                 color: $gray-600;
-                                text-decoration: line-through;
-                                font-weight: 400;
-                            }
-                        }
 
-
-                        .course-footer {
-                            display: flex;
-                            font-weight: 200;
-                            gap: 20px;
-                            font-size: 0.8rem;
-                            color: $gray-600;
-
-                            .course-hours {
-                                i {
-                                    margin-right: 5px;
+                                .course-hours {
+                                    i {
+                                        margin-right: 5px;
+                                    }
                                 }
                             }
                         }

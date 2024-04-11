@@ -36,7 +36,7 @@
         <div class="content">
             <div class="title-button">
                 <h2 class="title">Saved Items</h2>
-                <a><button class="btn btn-delete"><i class="fa-light fa-trash"></i>Delete all</button></a>
+                <form asp-action="RemoveAllCourses" asp-controller="Account"><input type="hidden" name="userId" value="@user!.Id" /><button type="submit" class="btn btn-delete"><i class="fa-light fa-trash"></i>Delete all</button></form>
             </div>
             <div class="course-list">
                 @foreach (var course in Model.Courses)
@@ -59,9 +59,14 @@
                                 };
                             }
                         }
-                        <button type="button" class="saved-item" data-course-id="@course.Id" title="Remove" aria-label="Remove"><i class="@(isBookmarked ? "fa-solid fa-bookmark filled" : "fa-light fa-bookmark")"></i></button>
+                        <form asp-action="RemoveCourse" asp-controller="Account" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" method="post">
+                            <input type="hidden" name="userId" value="@user!.Id" />
+                            <input type="hidden" name="courseId" value="@course.Id" />
+                            <button type="submit" class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark"></i></button>
+                        </form>
+                        @* <a asp-action="RemoveCourse" asp-controller="Account" asp-route-id="@course.Id" asp-route-ReturnUrl="@ViewData["ReturnUrl"]"><button class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="@(isBookmarked ? "fa-solid fa-bookmark filled" : "fa-light fa-bookmark")"></i></button></a> *@
                        <div> <img class="course-image" src="~/images/Courses/@course.ImageName" /></div>
-                        @*  <a class="course-details" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id"> *@
+                      <a class="course-details" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
                         <div class="info">
                             <h2 class="course-title">@course.Title</h2>
                             <div class="course-creator">by @course.Creator</div>
@@ -88,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        @*                   </a> *@
+                                        </a>
                     </div>
 
                 }

@@ -72,7 +72,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
             {
                 var json = await response.Content.ReadAsStringAsync();
                 var course = JsonConvert.DeserializeObject<Course>(json)!;
-              
+
                 var courseModel = new CourseIndexViewModel
                 {
                     Course = new Course
@@ -108,7 +108,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
             if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
             {
                 _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                
+
                 var json = JsonConvert.SerializeObject(viewModel);
                 using var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _http.PutAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}", content);
@@ -129,7 +129,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
 
     [Authorize(Policy = "CIO")]
     [HttpGet]
-    public async Task<IActionResult> DeleteCourse(string id)
+    public async Task<IActionResult> DeleteCourse(string id, string returnUrl)
     {
         if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
@@ -137,8 +137,8 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
             var response = await _http.DeleteAsync($"https://localhost:7138/api/Courses/{id}?key={_configuration["ApiKey:Secret"]}");
             if (response.IsSuccessStatusCode)
             {
-                ViewData["Success"] = "Successfully deleted course";
-                return RedirectToAction("Courses", "Courses");
+                ViewData["Success"] = "Successfully deleted course";               
+                    return RedirectToAction("Courses", "Courses");
             }
         }
         else
@@ -175,7 +175,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
 
         ViewData["Error"] = "Failed at fetching courses from server.";
         return View();
-        
+
     }
 
     #endregion
