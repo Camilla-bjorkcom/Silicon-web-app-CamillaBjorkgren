@@ -53,10 +53,10 @@
                     }
                     @if (isBookmarked)
                     {
-                        <form asp-action="RemoveCourse" asp-controller="Account" method="post">
+                        <form asp-action="RemoveCourse" asp-controller="Account" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" method="post">
                             <input type="hidden" name="userId" value="@user!.Id" />
                             <input type="hidden" name="courseId" value="@course.Id" />
-                            <button type="submit" class="saved-item" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark"></i></button>
+                            <button type="submit" class="saved-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark"></i></button>
                         </form>
                         @* <a asp-action="RemoveCourse" asp-controller="Account" asp-route-id="@course.Id" asp-route-ReturnUrl="@ViewData["ReturnUrl"]"><button class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark filled"></i></button></a> *@
                     }
