@@ -3,24 +3,23 @@
     width: 100%;
 
     .container {
+        padding: 40px;
         height: 100%;
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 3fr;
         grid-template-areas: "userinfo courses";
         gap: 1rem 5rem;
-        margin-top: 80px;
 
         h6 {
             color: $theme;
         }
-
-        .button {
+        /*      .button {
             display: flex;
             margin-top: 2rem;
             margin-bottom: 2rem;
             gap: 1rem;
-        }
+        }*/
 
         .user {
             grid-area: userinfo;
@@ -96,6 +95,9 @@
         }
 
         .content {
+            position: relative;
+            z-index: 0;
+
             .title-button {
                 margin-bottom: 40px;
                 display: flex;
@@ -113,87 +115,86 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
+                position: relative;
+                z-index: -5;
 
-                a {
-                    &:hover {
-                        text-decoration: none;
+                .course {
+                    @include shadow-m;
+                    text-decoration: none;
+                    color: black;
+                    position: relative;
+                    z-index: 4;
+                    max-height: min-content;
+
+
+                    .best-seller {
+                        position: absolute;
+                        z-index: 5;
+                        top: 10px;
+                        left: 10px;
+                        background-color: $success;
+                        color: white !important;
+                        border-radius: 5px;
+                        padding-right: 4px;
+                        padding-left: 4px;
+                        padding: 5px;
+                        @include standard-text;
+                        font-size: 12px !important;
                     }
 
-                    .course {
-                        @include shadow-m;
-                        text-decoration: none;
-                        color: black;
-                        position: relative;
-                        max-height: min-content;
+                    .saved-item {
+                        position: absolute;
+                        z-index: 5;
+                        top: 10px;
+                        right: 15px;
+                        background-color: white;
+                        border-radius: 50%;
+                        border: 1px solid white;
+                        padding-left: 0.5rem;
+                        padding-right: 0.5rem;
+                        font-size: 0.8rem;
+                        cursor: pointer;
+                    }
 
+                    .fa-solid {
+                        color: var(--color-theme);
+                    }
 
-                        .best-seller {
-                            position: absolute;
-                            top: 10px;
-                            left: 10px;
-                            background-color: $success;
-                            color: white !important;
-                            border-radius: 5px;
-                            padding-right: 4px;
-                            padding-left: 4px;
-                            padding: 5px;
-                            @include standard-text;
-                            font-size: 12px !important;
+                    .info {
+                        padding: 15px;
+
+                        .course-title {
+                            @include h5;
+                            color: $gray-800;
+                            margin-bottom: 0;
                         }
 
-                        .saved-item {
-                            position: absolute;
-                            top: 10px;
-                            right: 15px;
-                            background-color: white;
-                            border-radius: 50%;
-                            border: 1px solid white;
-                            padding-left: 0.5rem;
-                            padding-right: 0.5rem;
+                        .course-creator {
                             font-size: 0.8rem;
+                            color: $gray-700;
+                            margin-bottom: 1rem;
+                        }
 
-                            &:hover {
-                                border: 1px solid $theme;
-                                background-color: $theme;
-                                color: white;
+                        .course-prices {
+                            display: flex;
+                            gap: 20px;
+                            font-weight: 900;
+
+                            .discount-price {
+                                color: $danger;
+                            }
+
+                            .original-price {
+                                color: $theme;
+                            }
+
+                            .discount {
+                                color: $gray-600;
+                                text-decoration: line-through;
+                                font-weight: 400;
                             }
                         }
 
-                        .info {
-                            padding: 15px;
-
-                            .course-title {
-                                @include h5;
-                                color: $gray-800;
-                                margin-bottom: 0;
-                            }
-
-                            .course-creator {
-                                font-size: 0.8rem;
-                                color: $gray-700;
-                                margin-bottom: 1rem;
-                            }
-
-                            .course-prices {
-                                display: flex;
-                                gap: 20px;
-                                font-weight: 900;
-
-                                .discount-price {
-                                    color: $danger;
-                                }
-
-                                .original-price {
-                                    color: $theme;
-                                }
-
-                                .discount {
-                                    color: $gray-600;
-                                    text-decoration: line-through;
-                                    font-weight: 400;
-                                }
-                            }
-                        }
 
                         .course-footer {
                             display: flex;

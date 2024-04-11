@@ -26,11 +26,11 @@ public class CoursesController(HttpClient http, IConfiguration configuration, Us
             var user = await _userManager.GetUserAsync(User);
             if (user != null)
             {
-                var responseCourseId = await _http.GetAsync($"https://localhost:7138/api/courses/user/{user.Id}?key={_configuration["ApiKey:Secret"]}");
+                var responseCourseId = await _http.GetAsync($"https://localhost:7138/api/courses/course/{user.Id}?key={_configuration["ApiKey:Secret"]}");
                 if (responseCourseId.IsSuccessStatusCode)
                 {
-                    var courseIds = await responseCourseId.Content.ReadAsStringAsync();
-                    viewModel.CoursesId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(courseIds)!;
+                    var json = await responseCourseId.Content.ReadAsStringAsync();
+                    viewModel.CoursesId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(json)!;  
                 }
 
                 var response = await _http.GetAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}");
@@ -44,7 +44,6 @@ public class CoursesController(HttpClient http, IConfiguration configuration, Us
             }
         }
         catch { }
-
         ViewData["Error"] = "Failed at fetching courses from server.";
         return View(viewModel);
     }
@@ -61,8 +60,6 @@ public class CoursesController(HttpClient http, IConfiguration configuration, Us
                 var course = JsonConvert.DeserializeObject<CourseModel>(json)!;
                 return View(course);
             }
-
-
         }
         catch { }
         ViewData["Error"] = "Failed at fetching course from server.";

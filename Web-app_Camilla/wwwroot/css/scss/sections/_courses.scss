@@ -98,21 +98,12 @@
                         padding-left: 0.5rem;
                         padding-right: 0.5rem;
                         font-size: 0.8rem;
-                        /*&:hover {
-                            background-color: white;
-                            color: var(--color-theme);
-                        }*/
-                    }
-
-                    i {
-                        .fa-solid {
-                            color: var(--color-theme);
-                            background-color: var(--color-theme);
-                        }
                     }
 
 
-
+                    .fa-solid {
+                        color: var(--color-theme);
+                    }
 
 
                     .content {

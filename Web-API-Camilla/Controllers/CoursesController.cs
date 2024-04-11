@@ -137,7 +137,6 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     [HttpGet("user/{userId}")]
     public async Task<IActionResult> GetUserCourses(string userId)
     {
-
         if (ModelState.IsValid)
         {
             var userCourses = await _courseService.GetAllSavedCourses(userId);

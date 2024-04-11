@@ -5,13 +5,13 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace Infrastructure.Services;
 
-public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext webApiDbContext, WebAppDbContext webAppDbContext)
+public class CoursesService(CoursesRepository coursesRepository, WebAppDbContext webAppDbContext)
 {
     private readonly CoursesRepository _coursesRepository = coursesRepository;
-    private readonly WebApiDbContext _webApiDbContext = webApiDbContext;
     private readonly WebAppDbContext _webAppDbContext = webAppDbContext;
 
     public async Task<IEnumerable<CourseEntity>> GetAllAsync()
@@ -69,25 +69,25 @@ public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext
                 .ToListAsync();
             if (userCourses.Count > 0)
             {
-                var coursesList = new List<CourseEntity>(); 
+                var coursesList = new List<CourseEntity>();
 
 
                 foreach (var courseId in userCourses)
                 {
                     var course = await GetOneAsyncId(courseId);
-                    if (course != null) 
+                    if (course != null)
                     {
-                        coursesList.Add(course); 
-                        return coursesList;
+                        coursesList.Add(course);                        
                     }
                 }
+                return coursesList;
             }
             return null!;
         }
         catch { return null!; }
     }
 
-    public async Task<List<string>> GetAllSavedCoursesId(string userId)
+    public async Task<IEnumerable<CourseIdModel>> GetAllSavedCoursesId(string userId)
     {
         try
         {
@@ -97,7 +97,8 @@ public class CoursesService(CoursesRepository coursesRepository, WebApiDbContext
                 .ToListAsync();
             if (userCoursesId.Count > 0)
             {
-                return userCoursesId;
+                var courseIdModels = userCoursesId.Select(id => new CourseIdModel { Id = id });
+                return courseIdModels;
             }
             return null!;
         }

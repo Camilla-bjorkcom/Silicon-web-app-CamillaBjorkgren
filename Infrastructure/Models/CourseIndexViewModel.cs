@@ -15,11 +15,6 @@ public class CourseIndexViewModel
 
     public CourseModel? CourseModel { get; set; }
 
-    public IEnumerable<CourseIdModel?> CoursesId { get; set; } = new List<CourseIdModel>();
+    public IEnumerable<CourseIdModel> CoursesId { get; set; } = new List<CourseIdModel>();
 
-}
-
-public class CourseIdModel
-{
-    public string Id { get; set; } = null!;
 }

@@ -230,6 +230,13 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         {
             try
             {
+                var responseCourseId = await _http.GetAsync($"https://localhost:7138/api/courses/course/{user.Id}?key={_configuration["ApiKey:Secret"]}");
+                if (responseCourseId.IsSuccessStatusCode)
+                {
+                    var courseIds = await responseCourseId.Content.ReadAsStringAsync();
+                    viewModel.CoursesId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(courseIds)!;
+                }
+
                 var response = await _http.GetAsync($"https://localhost:7138/api/courses/user/{user.Id}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
                 {

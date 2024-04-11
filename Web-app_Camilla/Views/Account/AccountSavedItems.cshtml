@@ -41,42 +41,56 @@
             <div class="course-list">
                 @foreach (var course in Model.Courses)
                 {
-                    <a class="course" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
-                        <div class="course">
-                            @if (course.IsBestSeller)
+                    <div class="course">
+                        @if (course.IsBestSeller)
+                        {
+                            <div class="best-seller">Best Seller</div>
+
+                        }@{
+                            bool isBookmarked = false;
+                            if (Model.CoursesId != null)
                             {
-                                <div class="best-seller">Best Seller</div>
-
+                                foreach (var courseId in Model.CoursesId)
+                                {
+                                    if (courseId!.Id == course.Id)
+                                    {
+                                        isBookmarked = true;
+                                    }
+                                };
                             }
-                            <button type="button" class="saved-item"><i class="fa-light fa-bookmark"></i></button>
-                            <img class="course-image" src="~/images/Courses/@course.ImageName" />
-                            <div class="content">
-                                <h2 class="course-title">@course.Title</h2>
-                                <div class="course-creator">by @course.Creator</div>
-                                <div class="course-prices">
-                                    @if (course.DiscountPrice > 0)
-                                    {
-                                        <div class="discount-price">$@course.DiscountPrice</div>
-                                        <div class="original-price discount">$@course.Price</div>
-                                    }
-                                    else
-                                    {
-                                        <div class="original-price">$@course.Price</div>
-                                    }
+                        }
+                        <button type="button" class="saved-item" data-course-id="@course.Id" title="Remove" aria-label="Remove"><i class="@(isBookmarked ? "fa-solid fa-bookmark filled" : "fa-light fa-bookmark")"></i></button>
+                       <div> <img class="course-image" src="~/images/Courses/@course.ImageName" /></div>
+                        @*  <a class="course-details" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id"> *@
+                        <div class="info">
+                            <h2 class="course-title">@course.Title</h2>
+                            <div class="course-creator">by @course.Creator</div>
+                            <div class="course-prices">
+                                @if (course.DiscountPrice > 0)
+                                {
+                                    <div class="discount-price">$@course.DiscountPrice</div>
+                                    <div class="original-price discount">$@course.Price</div>
+                                }
+                                else
+                                {
+                                    <div class="original-price">$@course.Price</div>
+                                }
 
-                                </div>
-                                <hr />
-                                <div class="course-footer">
-                                    <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
-                                    <div class="course-likes">
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                        <span>@($"{course.LikeParameter * 100:0}%")</span>
-                                        <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
-                                    </div>
+                            </div>
+                       
+                            <hr />
+                            <div class="course-footer">
+                                <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
+                                <div class="course-likes">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    <span>@($"{course.LikeParameter * 100:0}%")</span>
+                                    <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                        @*                   </a> *@
+                    </div>
+
                 }
                 @if (Model.Courses == null)
                 {
