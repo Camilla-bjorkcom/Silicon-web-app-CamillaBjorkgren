@@ -14,116 +14,30 @@
         <div class="upper-content">
             <h1 class="title">Courses</h1>
 
-            @* <div class="search-categories">
-            </div> *@
-
-            <div class="select">
-                <div class="selected">
-                    All categories
-                    <i class="fa-light fa-arrow-down"></i>
-                </div>
-                <div class="select-options">
-                    <div class="option" data-value="all">All Categories</div>
-                    @if (Model.Categories != null)
-                    {
-                        foreach (var category in Model.Categories)
+            <div class="search-categories">
+                <div class="select">
+                    <div class="selected">
+                        All categories
+                        <i class="fa-light fa-arrow-down"></i>
+                    </div>
+                    <div class="select-options d-none">
+                        <div class="option" data-value="all">All Categories</div>
+                        @if (Model.Categories != null)
                         {
-                            <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                            foreach (var category in Model.Categories)
+                            {
+                                <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                            }
                         }
-                    }
+                    </div>
+                </div>
+                <div class="input-search-group">
+                    <input id="searchQuery" name="searchQuery" class="input-group-text" placeholder="Search courses" />
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
-            <div class="input-search-group">
-                <input id="searchQuery" name="searchQuery" placeholder="Search courses" />
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
         </div>
 
-        @*  <form class="filters">
-
-        <div class="select">
-        <div class="selected">All categories</div>
-        <div class="select-options">
-        <div class="option" data-value="all">All Categories</div>
-        @if (Model.Categories != null)
-        {
-        foreach (var category in Model.Categories)
-        {
-        <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
-        }
-        }
-        </div>
-        </div>
-
-        <div class="input-search-group">
-        <input id="searchQuery" name="searchQuery" placeholder="Search courses" />
-        <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        </form>
-
-        </div> *@
-        @*  <div list="browsers" class="form-select select" id="floatingSelect">
-        <div class="selected">All categories</div>
-        <div class="select-options">
-        <option class="option" data-value="all">All Categories</option>
-        @if (Model.Categories != null)
-        {
-        foreach (var category in Model.Categories)
-        {
-        <option class="option" data-value="@category.CategoryName">@category.CategoryName</option>
-        }
-        }
-        </div>
-        </div>
-
-        <div class="input-search-group">
-        <input id="searchQuery" name="searchQuery" class="input-group-text" placeholder="Search courses" />
-        <i class="fa-solid fa-magnifying-glass"></i>
-        </div> *@
-
-        @*
-        <form class="filters">
-        <div class="select">
-        <div class="selected">All categories</div>
-        <div class="select-options">
-        <div class="option" data-value="all">All Categories</div>
-        @if (Model.Categories != null)
-        {
-        foreach (var category in Model.Categories)
-        {
-        <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
-        }
-        }
-        </div>
-        </div>
-
-        <div class="input-search-group">
-        <input id="searchQuery" name="searchQuery" class="input-group-text" placeholder="Search courses" />
-        <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        </form> *@
-
-        @*  https://youtu.be/Xx5B5WIzSV4?t=5289 *@
-
-        @*
-
-        <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        All categories
-        </button>
-        <ul class="dropdown-menu">
-        @if (Model.Categories != null)
-        {
-        foreach (var category in Model.Categories)
-        {
-        <li class="option" data-value="@category.CategoryName">@category.CategoryName</li>
-        }
-        }
-        </ul>
-        </div>
-        <input class="input-group-text" placeholder="Search categories" name="Categories" type="search"> <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        *@
 
         @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
         {
@@ -227,11 +141,11 @@
                 {
                     if (i == Model.Pagination.CurrentPage)
                     {
-                        <span class="number active">@i</span>
+                        <span class="number active page-link page-item">@i</span>
                     }
                     else
                     {
-                        <a class="number" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize})"></a>
+                        <a class="number page-link page-item" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize})"></a>
                     }
                 }
             </div>

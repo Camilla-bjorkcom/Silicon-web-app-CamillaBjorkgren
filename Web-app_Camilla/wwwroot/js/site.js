@@ -63,8 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
 function select() {      
         let select = document.querySelector('.select')
         let selected = select.querySelector('.selected')
-        let selectOptions = select.querySelector('.select-options')
-        
+    let selectOptions = select.querySelector('.select-options')
+    selected.addEventListener('click', function () {
+        selectOptions.classList.remove('d-none')
+    })
         selected.addEventListener('click', function () {
             selectOptions.style.display = (selectOptions.style.display === 'block') ? 'none' : 'block'
         })

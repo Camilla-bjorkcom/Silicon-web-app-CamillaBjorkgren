@@ -1797,78 +1797,67 @@ footer .container .unsubscribe {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /*.search-categories {
-      position: relative;
-      display: flex;
-      gap: 2rem;
-
-      .select {
-      }
-
-      .select-options {
-          .option {
-          }
-      }*/
-  /*.dropdown {
-          border: 1px solid var(--color-gray-400);
-          border-radius: 5px;
-
-          button {
-              background-color: var(--color-transparent);
-              color: var(--color-gray-700);
-          }
-      }*/
-  /*.input-search-group {
-          input {
-              background-color: var(--color-transparent);
-              border-radius: 5px;
-              min-width: 50%;
-              text-align: left;
-          }
-
-          i {
-              position: absolute;
-              top: 7px;
-              right: 10px;
-          }
-      }
-  }*/
+  margin-bottom: 3rem;
 }
-.courses .container .upper-content .select {
+.courses .container .upper-content .search-categories {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+}
+.courses .container .upper-content .search-categories .select {
   min-width: 300px;
+  position: absolute;
+  right: 15rem;
+  z-index: 9999;
 }
-.courses .container .upper-content .select .selected {
+.courses .container .upper-content .search-categories .select .selected {
   width: 100%;
   padding: 8px 16px;
-  margin-bottom: 30px;
   box-sizing: border-box;
-  background: rbga(255, 255, 255, 0.7);
   border-radius: 6px;
   border: 1px solid var(--color-gray-400);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  position: relative;
 }
-.courses .container .upper-content .select .selected i {
+.courses .container .upper-content .search-categories .select .selected i {
   width: 12px;
 }
-.courses .container .upper-content .select .select-options {
+.courses .container .upper-content .search-categories .select .select-options {
   width: 100%;
-  background: rbga(255, 255, 255, 0.7);
+  background-color: var(--color-gray-000);
   border-radius: 6px;
   overflow: hidden;
+  border: 1px solid var(--color-gray-400);
+  margin: 0;
+  padding: 8px 16px;
 }
-.courses .container .upper-content .select .select-options .option {
+.courses .container .upper-content .search-categories .select .select-options .option {
   width: 100%;
-  padding: 15px;
-  list-style: none;
+  padding: 8px 16px;
   cursor: pointer;
   box-sizing: border-box;
+  border-bottom: 1px solid var(--color-gray-400);
 }
-.courses .container .upper-content .select .select-options .option:hover {
-  background: rbga(255, 255, 255, 0.7);
+.courses .container .upper-content .search-categories .select .select-options .option:hover {
+  background-color: var(--color-gray-100);
+}
+.courses .container .upper-content .search-categories input {
+  padding: 8px 16px;
+  background-color: transparent;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid var(--color-gray-400);
+}
+.courses .container .upper-content .search-categories i {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 .courses .container .course-list {
   grid-area: courses;
@@ -1985,13 +1974,16 @@ footer .container .unsubscribe {
   justify-content: center;
   margin-top: 2rem;
 }
-.courses .pagination .page-item:active {
+.courses .pagination .number:active {
   background-color: var(--color-theme);
 }
-.courses .pagination .page-item:hover {
+.courses .pagination .number:hover {
   background-color: var(--color-gray-400);
 }
 
+.work-with-us {
+  margin-top: 20rem;
+}
 .work-with-us .container {
   background-color: var(--color-gray-100);
   display: flex;

@@ -23,86 +23,83 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 3rem;
 
-            .select {
-                min-width: 300px;
-
-                .selected {
-                    width: 100%;
-                    padding: 8px 16px;
-                    margin-bottom: 30px;
-                    box-sizing: border-box;
-                    background: rbga(255,255,255,0.7);
-                    border-radius: 6px;
-                    border: 1px solid var(--color-gray-400);
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    cursor: pointer;
-
-                    i {
-                        width: 12px;
-                    }
-                }
-
-                .select-options {
-                    width: 100%;
-                    background: rbga(255,255,255,0.7);
-                    border-radius: 6px;
-                    overflow: hidden;
-                    
-
-                    .option {
-                        width: 100%;
-                        padding: 15px;
-                        list-style: none;
-                        cursor: pointer;
-                        box-sizing: border-box;
-
-                        &:hover {
-                            background: rbga(255,255,255,0.7);
-                        }
-                    }
-                }
-            }
-            /*.search-categories {
+            .search-categories {
                 position: relative;
                 display: flex;
                 gap: 2rem;
 
+
                 .select {
+                    min-width: 300px;
+                    position: absolute;
+                    right: 15rem;
+                    z-index: 9999;
+
+
+                    .selected {
+                        width: 100%;
+                        padding: 8px 16px;
+                        box-sizing: border-box;
+                        border-radius: 6px;
+                        border: 1px solid var(--color-gray-400);
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        position: relative;
+
+                        i {
+                            width: 12px;
+                        }
+                    }
+
+                    .select-options {
+                        width: 100%;
+                        background-color: var(--color-gray-000);
+                        border-radius: 6px;
+                        overflow: hidden;
+                        border: 1px solid var(--color-gray-400);
+                        margin: 0;
+                        padding: 8px 16px;
+
+
+
+                        .option {
+                            width: 100%;
+                            padding: 8px 16px;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                            border-bottom: 1px solid var(--color-gray-400);
+
+                            &:hover {
+                                background-color: var(--color-gray-100)
+                            }
+                        }
+                    }
                 }
 
-                .select-options {
-                    .option {
-                    }
-                }*/
-            /*.dropdown {
+                input {
+                    padding: 8px 16px;
+                    background-color: $transparent;
+                    border-radius: 6px;
+                    width: 100%;
+                    text-align: left;
+                    box-sizing: border-box;
+                    position: relative;
                     border: 1px solid var(--color-gray-400);
-                    border-radius: 5px;
-
-                    button {
-                        background-color: var(--color-transparent);
-                        color: var(--color-gray-700);
-                    }
-                }*/
-            /*.input-search-group {
-                    input {
-                        background-color: var(--color-transparent);
-                        border-radius: 5px;
-                        min-width: 50%;
-                        text-align: left;
-                    }
-
-                    i {
-                        position: absolute;
-                        top: 7px;
-                        right: 10px;
-                    }
                 }
-            }*/
+
+                i {
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                }
+            }
         }
+
+
 
 
         .course-list {
@@ -237,7 +234,7 @@
         justify-content: center;
         margin-top: 2rem;
 
-        .page-item {
+        .number {
             &:active {
                 background-color: var(--color-theme);
             }
@@ -250,6 +247,7 @@
 }
 
 .work-with-us {
+    margin-top: 20rem;
     .container {
         background-color: var(--color-gray-100);
         display: flex;
