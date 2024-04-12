@@ -1,11 +1,10 @@
-﻿using Infrastructure.Models;
-
-namespace Infrastructure.Models;
+﻿namespace Infrastructure.Models;
 
 
 public class CourseIndexViewModel
 {
     public IEnumerable<CourseModel> Courses { get; set; } = new List<CourseModel>();
+    public IEnumerable<CategoryModel>? Categories { get; set; }
 
     public CourseCreateDto? CreateDto {  get; set; } 
 
@@ -16,5 +15,7 @@ public class CourseIndexViewModel
     public CourseModel? CourseModel { get; set; }
 
     public IEnumerable<CourseIdModel> CoursesId { get; set; } = new List<CourseIdModel>();
+
+    public Pagination? Pagination { get; set; }
 
 }

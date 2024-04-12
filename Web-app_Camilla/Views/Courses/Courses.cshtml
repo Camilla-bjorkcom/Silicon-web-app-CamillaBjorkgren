@@ -10,119 +10,250 @@
         <div class="pagnation">
             <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="Courses">Courses</a>
         </div>
+
         <div class="upper-content">
             <h1 class="title">Courses</h1>
-            <div class="search-categories">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        All categories
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Frontend</a></li>
-                        <li><a class="dropdown-item" href="#">Backend</a></li>
-                        <li><a class="dropdown-item" href="#">Web Development</a></li>
-                    </ul>
+
+            @* <div class="search-categories">
+            </div> *@
+
+            <div class="select">
+                <div class="selected">
+                    All categories
+                    <i class="fa-light fa-arrow-down"></i>
                 </div>
-                <input class="input-group-text" placeholder="Search categories" name="Categories" type="search"> <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="select-options">
+                    <div class="option" data-value="all">All Categories</div>
+                    @if (Model.Categories != null)
+                    {
+                        foreach (var category in Model.Categories)
+                        {
+                            <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="input-search-group">
+                <input id="searchQuery" name="searchQuery" placeholder="Search courses" />
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
+
+        @*  <form class="filters">
+
+        <div class="select">
+        <div class="selected">All categories</div>
+        <div class="select-options">
+        <div class="option" data-value="all">All Categories</div>
+        @if (Model.Categories != null)
+        {
+        foreach (var category in Model.Categories)
+        {
+        <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+        }
+        }
+        </div>
+        </div>
+
+        <div class="input-search-group">
+        <input id="searchQuery" name="searchQuery" placeholder="Search courses" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        </form>
+
+        </div> *@
+        @*  <div list="browsers" class="form-select select" id="floatingSelect">
+        <div class="selected">All categories</div>
+        <div class="select-options">
+        <option class="option" data-value="all">All Categories</option>
+        @if (Model.Categories != null)
+        {
+        foreach (var category in Model.Categories)
+        {
+        <option class="option" data-value="@category.CategoryName">@category.CategoryName</option>
+        }
+        }
+        </div>
+        </div>
+
+        <div class="input-search-group">
+        <input id="searchQuery" name="searchQuery" class="input-group-text" placeholder="Search courses" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </div> *@
+
+        @*
+        <form class="filters">
+        <div class="select">
+        <div class="selected">All categories</div>
+        <div class="select-options">
+        <div class="option" data-value="all">All Categories</div>
+        @if (Model.Categories != null)
+        {
+        foreach (var category in Model.Categories)
+        {
+        <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+        }
+        }
+        </div>
+        </div>
+
+        <div class="input-search-group">
+        <input id="searchQuery" name="searchQuery" class="input-group-text" placeholder="Search courses" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        </form> *@
+
+        @*  https://youtu.be/Xx5B5WIzSV4?t=5289 *@
+
+        @*
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        All categories
+        </button>
+        <ul class="dropdown-menu">
+        @if (Model.Categories != null)
+        {
+        foreach (var category in Model.Categories)
+        {
+        <li class="option" data-value="@category.CategoryName">@category.CategoryName</li>
+        }
+        }
+        </ul>
+        </div>
+        <input class="input-group-text" placeholder="Search categories" name="Categories" type="search"> <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        *@
+
         @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
         {
             <div class="alert-danger">@ViewData["Error"]</div>
         }
-        <div class="course-list">
-            @foreach (var course in Model.Courses)
-            {
-                <div class="course">
-                    @if (course.IsBestSeller)
-                    {
-                        <div class="best-seller">Best Seller</div>
 
-                    }@{
-                        bool isBookmarked = false;
-                        if (Model.CoursesId != null)
+        @if (Model.Courses != null)
+        {
+            <div class="course-list">
+
+                @foreach (var course in Model.Courses)
+                {
+
+
+                    <div class="course">
+                        @if (course.IsBestSeller)
                         {
-                            foreach (var courseId in Model.CoursesId)
+                            <div class="best-seller">Best Seller</div>
+
+                        }@{
+                            bool isBookmarked = false;
+                            if (Model.CoursesId != null)
                             {
-                                if (courseId!.Id == course.Id)
+                                foreach (var courseId in Model.CoursesId)
                                 {
-                                    isBookmarked = true;
-                                }
-                            };
+                                    if (courseId!.Id == course.Id)
+                                    {
+                                        isBookmarked = true;
+                                    }
+                                };
+                            }
                         }
-                    }
-                    @if (isBookmarked)
+
+
+                        @if (isBookmarked)
+                        {
+                            <form asp-action="RemoveCourse" asp-controller="Account" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" method="post">
+                                <input type="hidden" name="userId" value="@user!.Id" />
+                                <input type="hidden" name="courseId" value="@course.Id" />
+                                <button type="submit" class="saved-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark"></i></button>
+                            </form>
+                            @* <a asp-action="RemoveCourse" asp-controller="Account" asp-route-id="@course.Id" asp-route-ReturnUrl="@ViewData["ReturnUrl"]"><button class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark filled"></i></button></a> *@
+                        }
+                        else
+                        {
+                            <form asp-action="JoinCourse" asp-controller="Account" method="post">
+                                <input type="hidden" name="userId" value="@user!.Id" />
+                                <input type="hidden" name="courseId" value="@course.Id" />
+                                <button type="submit" class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Join Course"><i class="fa-light fa-bookmark"></i></button>
+                            </form>
+                        }
+
+
+
+                        <div> <img class="course-image" src="~/images/Courses/@course.ImageName" /></div>
+                        <a class="course-details" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
+                            <div class="info">
+                                <h2 class="course-title">@course.Title</h2>
+                                <p class="course-creator">by @course.Creator</p>
+                                <div class="course-prices">
+                                    @if (course.DiscountPrice > 0)
+                                    {
+                                        <div class="discount-price">$@course.DiscountPrice</div>
+                                        <div class="original-price discount">$@course.Price</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="original-price">$@course.Price</div>
+                                    }
+
+                                </div>
+
+                                <hr />
+                                <div class="course-footer">
+                                    <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
+                                    <div class="course-likes">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <span>@($"{course.LikeParameter * 100:0}%")</span>
+                                        <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+        }
+
+        else
+        {
+            <div>No Courses Found</div>
+        }
+
+
+        @if (Model.Pagination != null && Model.Pagination.TotalPages < 1)
+        {
+            <div class="pagination">
+                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                {
+                    if (i == Model.Pagination.CurrentPage)
                     {
-                        <form asp-action="RemoveCourse" asp-controller="Account" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" method="post">
-                            <input type="hidden" name="userId" value="@user!.Id" />
-                            <input type="hidden" name="courseId" value="@course.Id" />
-                            <button type="submit" class="saved-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark"></i></button>
-                        </form>
-                        @* <a asp-action="RemoveCourse" asp-controller="Account" asp-route-id="@course.Id" asp-route-ReturnUrl="@ViewData["ReturnUrl"]"><button class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove"><i class="fa-solid fa-bookmark filled"></i></button></a> *@
+                        <span class="number active">@i</span>
                     }
                     else
                     {
-                        <form asp-action="JoinCourse" asp-controller="Account" method="post">
-                            <input type="hidden" name="userId" value="@user!.Id" />
-                            <input type="hidden" name="courseId" value="@course.Id" />
-                            <button type="submit" class="saved-item" data-course-id="@course.Id" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Join Course"><i class="fa-light fa-bookmark"></i></button>
-                        </form>
+                        <a class="number" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize})"></a>
                     }
-                    <div> <img class="course-image" src="~/images/Courses/@course.ImageName" /></div>
-                    <a class="course-details" asp-action="CourseDetails" asp-controller="Courses" asp-route-id="@course.Id">
-                        <div class="info">
-                            <h2 class="course-title">@course.Title</h2>
-                            <div class="course-creator">by @course.Creator</div>
-                            <div class="course-prices">
-                                @if (course.DiscountPrice > 0)
-                                {
-                                    <div class="discount-price">$@course.DiscountPrice</div>
-                                    <div class="original-price discount">$@course.Price</div>
-                                }
-                                else
-                                {
-                                    <div class="original-price">$@course.Price</div>
-                                }
-
-                            </div>
-
-                            <hr />
-                            <div class="course-footer">
-                                <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
-                                <div class="course-likes">
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                    <span>@($"{course.LikeParameter * 100:0}%")</span>
-                                    <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            }
-            @if (Model.Courses == null)
-            {
-                <div>No Courses Found</div>
-            }
-        </div>
+                }
+            </div>
+        }
     </div>
-    <nav>
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    @*     <nav>
+    <ul class="pagination">
+    <li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+    </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+    <a class="page-link" href="#" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+    </a>
+    </li>
+    </ul>
+    </nav> *@
 </section>
 <aside class="work-with-us">
     <div class="container">
@@ -132,7 +263,7 @@
             <button class="btn-theme">Work with us</button>
         </div>
         <div class="right">
-            <img src="images/illustration.svg">
+            <img src="~/images/illustration.svg">
         </div>
     </div>
 </aside>

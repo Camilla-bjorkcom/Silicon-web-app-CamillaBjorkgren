@@ -1,36 +1,101 @@
 ﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using static System.Net.WebRequestMethods;
 
 namespace Infrastructure.Services;
 
-public class CoursesService(CoursesRepository coursesRepository, WebAppDbContext webAppDbContext)
+public class CoursesService(CoursesRepository coursesRepository, WebAppDbContext webAppDbContext, IConfiguration configuration, HttpClient http)
 {
     private readonly CoursesRepository _coursesRepository = coursesRepository;
     private readonly WebAppDbContext _webAppDbContext = webAppDbContext;
+    private readonly IConfiguration _configuration = configuration;
+    private readonly HttpClient _http = http;
 
-    public async Task<IEnumerable<CourseEntity>> GetAllAsync()
+    public async Task<CourseResult> GetCoursesAsync(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 10)
     {
         try
         {
-            var courses = await _coursesRepository.GetAllAsync();
-            if (courses != null)
+            var response = await _http.GetAsync($"{_configuration["ApiUris:Courses"]}?category={Uri.UnescapeDataString(category)}&searchQuery={Uri.UnescapeDataString(searchQuery)}&pageNumber={pageNumber}&pageSize={pageSize}&key={_configuration["ApiKey:Secret"]}");
+            if (response.IsSuccessStatusCode)
             {
-                return courses;
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<CourseResult>(json)!;
+                if (result != null && result.Success)
+                {
+                    return result;
+                }
             }
             return null!;
         }
         catch (Exception)
         {
-
             return null!;
         }
     }
+
+    public async Task<IEnumerable<CourseIdModel>> GetCoursesIdAsync(string userId)
+    {
+        try
+        {
+            var responseCourseId = await _http.GetAsync($"{_configuration["ApiUris:Courses"]}/course/{userId}?key={_configuration["ApiKey:Secret"]}");
+            if (responseCourseId.IsSuccessStatusCode)
+            {
+                var json = await responseCourseId.Content.ReadAsStringAsync();
+                var courseId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(json)!;
+                return courseId ??= null!;
+            }
+        }
+        catch { }
+        return null!;
+    }
+
+    //public async Task<IEnumerable<CourseEntity>> GetAllAsync(string category)
+    //{
+    //    try
+    //    {
+    //        var courses = await _coursesRepository.GetAllAsync(category);
+    //        if (courses != null)
+    //        {
+    //            return courses ??= null!;
+    //        }
+    //    }
+    //    catch (Exception)
+    //    {         
+    //    }
+    //    return null!;
+    //}
+
+    //public async Task<IEnumerable<CourseIdModel>> GetCourseIdsAsync()
+    //{
+    //   try
+    //    {
+    //        var user = await _userManager.GetUserAsync(User);
+    //        if (user != null)
+    //        {
+    //            var responseCourseId = await _http.GetAsync($"{_configuration["ApiUris:Courses"]}/course/{user.Id}?key={_configuration["ApiKey:Secret"]}");
+    //            if (responseCourseId.IsSuccessStatusCode)
+    //            {
+    //                var json = await responseCourseId.Content.ReadAsStringAsync();
+    //                var result = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(json)!;
+    //                return result;
+    //            }
+    //        }
+    //    }
+    //    catch { }
+    //    return null!;
+
+    //}
 
     public async Task<CourseEntity> GetOneAsyncId(string id)
     {
@@ -77,7 +142,7 @@ public class CoursesService(CoursesRepository coursesRepository, WebAppDbContext
                     var course = await GetOneAsyncId(courseId);
                     if (course != null)
                     {
-                        coursesList.Add(course);                        
+                        coursesList.Add(course);
                     }
                 }
                 return coursesList;

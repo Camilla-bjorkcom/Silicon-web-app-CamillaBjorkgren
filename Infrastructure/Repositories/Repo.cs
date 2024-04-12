@@ -43,6 +43,21 @@ public abstract class Repo<TEntity, TContext> where TEntity : class where TConte
         return null!;
     }
 
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync(string category)
+    {
+        try
+        {
+            var entities = await _context.Set<TEntity>().ToListAsync();
+            if (entities.Count != 0)
+            {
+                return entities;
+            }
+        }
+        catch (Exception ex) { Debug.WriteLine("Error :: " + ex.Message); }
+
+        return null!;
+    }
+
     public virtual async Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> predicate)
     {
         try

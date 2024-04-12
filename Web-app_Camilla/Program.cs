@@ -59,6 +59,10 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<UserCoursesRepository>();
+builder.Services.AddScoped<CategoriesService>();
+builder.Services.AddScoped<CategoriesRepository>();
+builder.Services.AddScoped<CoursesRepository>();
+builder.Services.AddScoped<CoursesService>();
 
 var app = builder.Build();
 app.UseHsts();

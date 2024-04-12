@@ -8,6 +8,7 @@ using Web_API_Camilla.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WebApiDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Courses")));
 builder.Services.AddDbContext<WebAppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDatabase_Users")));
@@ -31,6 +32,8 @@ builder.Services.AddScoped<CoursesRepository>();
 builder.Services.AddScoped<CoursesService>();
 builder.Services.AddScoped<ContactMessageRepository>();
 builder.Services.AddScoped<ContactMessageService>();
+builder.Services.AddScoped<CategoriesRepository>();
+builder.Services.AddScoped<CategoriesService>();
 
 var app = builder.Build();
 app.UseCors("CustomOriginPolicy");

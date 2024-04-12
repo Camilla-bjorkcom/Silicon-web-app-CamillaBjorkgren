@@ -1,11 +1,14 @@
 ﻿
+using Infrastructure.Contexts;
 using Infrastructure.Entities;
+using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Web_API_Camilla.Filters;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Web_API_Camilla.Controllers;
 
@@ -13,20 +16,38 @@ namespace Web_API_Camilla.Controllers;
 [ApiController]
 [UseApiKey]
 
-public class CoursesController(CoursesService courseService) : ControllerBase
+public class CoursesController(CoursesService courseService, WebApiDbContext context) : ControllerBase
 {
     private readonly CoursesService _courseService = courseService;
+    private readonly WebApiDbContext _context = context;
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 10)
     {
         if (ModelState.IsValid)
         {
-            var result = await _courseService.GetAllAsync();
-            if (result != null)
+            var query = _context.Courses.Include(i => i.Category).AsQueryable();
+
+            if (!string.IsNullOrEmpty(category) && category != "all")
             {
-                return Ok(result);
+                query = query.Where(x => x.Category!.CategoryName == category);
             }
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(x => x.Title.Contains(searchQuery) || x.Creator.Contains(searchQuery));
+            }
+            query = query.OrderByDescending(o => o.LastUpdated);
+
+            var courses = await query.ToListAsync();
+
+            var response = new CourseResult
+            {
+                Success = true,
+                TotalItems = await query.CountAsync()
+            };
+            response.TotalPages = (int)Math.Ceiling(response.TotalItems / (double)pageSize);
+            response.Courses = CourseFactory.Create(await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync());
+            return Ok(response);
         }
         return NotFound();
     }
@@ -86,33 +107,33 @@ public class CoursesController(CoursesService courseService) : ControllerBase
     {
         if (ModelState.IsValid)
         {
-                var entity = await _courseService.GetOneAsyncId(viewModel.Course!.Id);
-                if (entity != null)
+            var entity = await _courseService.GetOneAsyncId(viewModel.Course!.Id);
+            if (entity != null)
+            {
+                CourseEntity course = new CourseEntity
                 {
-                    CourseEntity course = new CourseEntity
-                    {
-                        Id = entity.Id,
-                        Title = viewModel.UpdateDto.Title,
-                        Price = viewModel.UpdateDto.Price,
-                        DiscountPrice = viewModel.UpdateDto.DiscountPrice,
-                        EstimatedHours = viewModel.UpdateDto.EstimatedHours,
-                        BigImageName = viewModel.UpdateDto.BigImageName,
-                        Creator = viewModel.UpdateDto.Creator,
-                        ImageName = viewModel.UpdateDto.ImageName,
-                        IsDigital = viewModel.UpdateDto.IsDigital,
-                        LastUpdated = DateTime.Now,
-                        Created = entity.Created,
-                        IsBestSeller = viewModel.UpdateDto.IsBestSeller,
-                        LikeParameter = viewModel.UpdateDto.LikeParameter,
-                        UserVotes = viewModel.UpdateDto.UserVotes,
-                    };
-                    var result = await _courseService.UpdateCourseAsync(course);
-                    if (result)
-                    {
-                        return Ok();
-                    }              
-                }            
+                    Id = entity.Id,
+                    Title = viewModel.UpdateDto.Title,
+                    Price = viewModel.UpdateDto.Price,
+                    DiscountPrice = viewModel.UpdateDto.DiscountPrice,
+                    EstimatedHours = viewModel.UpdateDto.EstimatedHours,
+                    BigImageName = viewModel.UpdateDto.BigImageName,
+                    Creator = viewModel.UpdateDto.Creator,
+                    ImageName = viewModel.UpdateDto.ImageName,
+                    IsDigital = viewModel.UpdateDto.IsDigital,
+                    LastUpdated = DateTime.Now,
+                    Created = entity.Created,
+                    IsBestSeller = viewModel.UpdateDto.IsBestSeller,
+                    LikeParameter = viewModel.UpdateDto.LikeParameter,
+                    UserVotes = viewModel.UpdateDto.UserVotes,
+                };
+                var result = await _courseService.UpdateCourseAsync(course);
+                if (result)
+                {
+                    return Ok();
+                }
             }
+        }
         return BadRequest();
     }
 

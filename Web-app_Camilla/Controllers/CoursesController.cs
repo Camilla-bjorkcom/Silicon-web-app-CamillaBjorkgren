@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Models;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,43 +10,45 @@ using Newtonsoft.Json;
 namespace Web_app_Camilla.Controllers;
 
 [Authorize]
-public class CoursesController(HttpClient http, IConfiguration configuration, UserManager<UserEntity> userManager) : Controller
+public class CoursesController(HttpClient http, IConfiguration configuration, UserManager<UserEntity> userManager, CategoriesService categoriesService, CoursesService coursesService) : Controller
 {
     private readonly HttpClient _http = http;
     private readonly IConfiguration _configuration = configuration;
     private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly CategoriesService _categoriesService = categoriesService;
+    private readonly CoursesService _coursesService = coursesService;
 
 
     [HttpGet]
-    [Route("/Courses")]
-    public async Task<IActionResult> Courses()
+    //[Route("/Courses")]
+    public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
-        var viewModel = new CourseIndexViewModel();
         try
         {
             var user = await _userManager.GetUserAsync(User);
             if (user != null)
             {
-                var responseCourseId = await _http.GetAsync($"https://localhost:7138/api/courses/course/{user.Id}?key={_configuration["ApiKey:Secret"]}");
-                if (responseCourseId.IsSuccessStatusCode)
+                var courseResult = await _coursesService.GetCoursesAsync(category, searchQuery, pageNumber, pageSize);
+              
+                var viewModel = new CourseIndexViewModel
                 {
-                    var json = await responseCourseId.Content.ReadAsStringAsync();
-                    viewModel.CoursesId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(json)!;  
-                }
-
-                var response = await _http.GetAsync($"https://localhost:7138/api/Courses?key={_configuration["ApiKey:Secret"]}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
-                    return View(viewModel);
-                }
-
+                    Categories = await _categoriesService.GetCategoriesAsync(),
+                    CoursesId = await _coursesService.GetCoursesIdAsync(user.Id),
+                    Courses = courseResult.Courses!,
+                    Pagination = new Pagination
+                    {
+                        PageSize = pageSize,
+                        CurrentPage = pageNumber,
+                        TotalPages = courseResult.TotalPages,
+                        TotalItems = courseResult.TotalItems
+                    }
+                };
+                return View(viewModel);
             }
         }
         catch { }
         ViewData["Error"] = "Failed at fetching courses from server.";
-        return View(viewModel);
+        return View();
     }
 
 
@@ -53,7 +56,7 @@ public class CoursesController(HttpClient http, IConfiguration configuration, Us
     {
         try
         {
-            var response = await _http.GetAsync($"https://localhost:7138/api/Courses/{id}?key={_configuration["ApiKey:Secret"]}");
+            var response = await _http.GetAsync($"{_configuration["ApiUris:Courses"]}/{id}?key={_configuration["ApiKey:Secret"]}");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();

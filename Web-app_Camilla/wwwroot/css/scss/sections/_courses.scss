@@ -24,12 +24,61 @@
             align-items: center;
             justify-content: space-between;
 
-            .search-categories {
+            .select {
+                min-width: 300px;
+
+                .selected {
+                    width: 100%;
+                    padding: 8px 16px;
+                    margin-bottom: 30px;
+                    box-sizing: border-box;
+                    background: rbga(255,255,255,0.7);
+                    border-radius: 6px;
+                    border: 1px solid var(--color-gray-400);
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+
+                    i {
+                        width: 12px;
+                    }
+                }
+
+                .select-options {
+                    width: 100%;
+                    background: rbga(255,255,255,0.7);
+                    border-radius: 6px;
+                    overflow: hidden;
+                    
+
+                    .option {
+                        width: 100%;
+                        padding: 15px;
+                        list-style: none;
+                        cursor: pointer;
+                        box-sizing: border-box;
+
+                        &:hover {
+                            background: rbga(255,255,255,0.7);
+                        }
+                    }
+                }
+            }
+            /*.search-categories {
                 position: relative;
                 display: flex;
                 gap: 2rem;
 
-                .dropdown {
+                .select {
+                }
+
+                .select-options {
+                    .option {
+                    }
+                }*/
+            /*.dropdown {
                     border: 1px solid var(--color-gray-400);
                     border-radius: 5px;
 
@@ -37,21 +86,22 @@
                         background-color: var(--color-transparent);
                         color: var(--color-gray-700);
                     }
-                }
+                }*/
+            /*.input-search-group {
+                    input {
+                        background-color: var(--color-transparent);
+                        border-radius: 5px;
+                        min-width: 50%;
+                        text-align: left;
+                    }
 
-                input {
-                    background-color: var(--color-transparent);
-                    border-radius: 5px;
-                    min-width: 50%;
-                    text-align: left;
+                    i {
+                        position: absolute;
+                        top: 7px;
+                        right: 10px;
+                    }
                 }
-
-                i {
-                    position: absolute;
-                    top: 7px;
-                    right: 10px;
-                }
-            }
+            }*/
         }
 
 

@@ -1797,30 +1797,78 @@ footer .container .unsubscribe {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /*.search-categories {
+      position: relative;
+      display: flex;
+      gap: 2rem;
+
+      .select {
+      }
+
+      .select-options {
+          .option {
+          }
+      }*/
+  /*.dropdown {
+          border: 1px solid var(--color-gray-400);
+          border-radius: 5px;
+
+          button {
+              background-color: var(--color-transparent);
+              color: var(--color-gray-700);
+          }
+      }*/
+  /*.input-search-group {
+          input {
+              background-color: var(--color-transparent);
+              border-radius: 5px;
+              min-width: 50%;
+              text-align: left;
+          }
+
+          i {
+              position: absolute;
+              top: 7px;
+              right: 10px;
+          }
+      }
+  }*/
 }
-.courses .container .upper-content .search-categories {
-  position: relative;
-  display: flex;
-  gap: 2rem;
+.courses .container .upper-content .select {
+  min-width: 300px;
 }
-.courses .container .upper-content .search-categories .dropdown {
+.courses .container .upper-content .select .selected {
+  width: 100%;
+  padding: 8px 16px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  background: rbga(255, 255, 255, 0.7);
+  border-radius: 6px;
   border: 1px solid var(--color-gray-400);
-  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
-.courses .container .upper-content .search-categories .dropdown button {
-  background-color: var(--color-transparent);
-  color: var(--color-gray-700);
+.courses .container .upper-content .select .selected i {
+  width: 12px;
 }
-.courses .container .upper-content .search-categories input {
-  background-color: var(--color-transparent);
-  border-radius: 5px;
-  min-width: 50%;
-  text-align: left;
+.courses .container .upper-content .select .select-options {
+  width: 100%;
+  background: rbga(255, 255, 255, 0.7);
+  border-radius: 6px;
+  overflow: hidden;
 }
-.courses .container .upper-content .search-categories i {
-  position: absolute;
-  top: 7px;
-  right: 10px;
+.courses .container .upper-content .select .select-options .option {
+  width: 100%;
+  padding: 15px;
+  list-style: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.courses .container .upper-content .select .select-options .option:hover {
+  background: rbga(255, 255, 255, 0.7);
 }
 .courses .container .course-list {
   grid-area: courses;

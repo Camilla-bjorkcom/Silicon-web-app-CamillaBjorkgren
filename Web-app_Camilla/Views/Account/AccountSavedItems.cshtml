@@ -46,7 +46,7 @@
                         {
                             <div class="best-seller">Best Seller</div>
 
-                        }@{
+                        }@* @{
                             bool isBookmarked = false;
                             if (Model.CoursesId != null)
                             {
@@ -58,7 +58,7 @@
                                     }
                                 };
                             }
-                        }
+                        } *@
                         <form asp-action="RemoveCourse" asp-controller="Account" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" method="post">
                             <input type="hidden" name="userId" value="@user!.Id" />
                             <input type="hidden" name="courseId" value="@course.Id" />
