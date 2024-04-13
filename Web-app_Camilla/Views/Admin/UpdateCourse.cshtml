@@ -30,7 +30,7 @@
         <h1>@ViewData["Title"]</h1>
 
 
-        <form method="post" class="courseform" asp-action="UpdateCourse" asp-controller="Admin">
+        <form method="post" class="courseform" asp-action="UpdateCourse" asp-controller="Admin" novalidate>
             <h2>Update course</h2>
             <div class="mb-3">
                 <label class="form-label" asp-for="UpdateDto.Title">Title</label>
@@ -88,3 +88,4 @@
 
 
 <script defer src="~/js/inputfields.js"></script>
+<script defer src="~/js/validation.js"></script>

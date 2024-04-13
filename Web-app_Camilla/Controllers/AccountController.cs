@@ -196,22 +196,24 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             var user = await _userManager.GetUserAsync(User);
             if (user != null)
             {
-                var passwordResult = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash!, viewModel.PasswordForm.CurrentPassword);
+                var passwordResult = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash!, viewModel.PasswordForm!.CurrentPassword);
                 if (passwordResult == PasswordVerificationResult.Success)
                 {
                     var result = await _accountService.UpdatePasswordAsync(user, viewModel.PasswordForm.NewPassword);
                     if (!result)
                     {
                         ModelState.AddModelError("ErrorPassword", "Failed to update password");
-                        ViewData["ErrorMessage"] = "Failed to update password";
+                        ViewData["Message"] = "Failed to update password";
                     }
                     viewModel.ProfileView ??= await PopulateProfileViewAsync();
+                    ViewData["Message"] = "Successfully changed the password";
                     return View(viewModel);
                 }
+                ViewData["Message"] = "Your current password is not correct";
             }
         }
         ModelState.AddModelError("ErrorPassword", "Password is not correct");
-        ViewData["ErrorMessage"] = "Your current password is not correct";
+        ViewData["Message"] = "Something went wrong, please try again";
         viewModel.ProfileView ??= await PopulateProfileViewAsync();
         return View(viewModel);
     }

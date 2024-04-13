@@ -20,7 +20,6 @@ public class CoursesController(HttpClient http, IConfiguration configuration, Us
 
 
     [HttpGet]
-    //[Route("/Courses")]
     public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
         try

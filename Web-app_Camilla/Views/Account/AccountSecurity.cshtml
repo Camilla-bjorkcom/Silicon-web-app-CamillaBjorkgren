@@ -22,7 +22,7 @@
                 <p class="email">@Model.ProfileView?.Email</p>
                 <div class="btn-user">
                     <a asp-controller="Account" asp-action="Index"><button class="button btn"><i class="fa-light fa-gear"></i> Account Details</button></a>
-                    <a asp-action="AccountSecurity"><button class="button btn" active><i class="fa-light fa-lock"></i> Security</button></a>
+                    <a asp-action="AccountSecurity"><button class="button btn active"><i class="fa-light fa-lock"></i> Security</button></a>
                     <a asp-action="AccountSavedItems" asp-controller="Account"><button class="button btn"><i class="fa-light fa-bookmark"></i> Saved Courses</button></a>
                     <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
                 </div>
@@ -30,35 +30,37 @@
         }
 
         <div class="content">
-            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            @if (!string.IsNullOrEmpty(ViewData["Message"]?.ToString()))
             {
-                <div class="errormessage">
-                    @ViewData["ErrorMessage"]
+                <div class="message">
+                    @ViewData["Message"]
                 </div>
             }
             <div class="password-form">
                 <h2 class="title">Security</h2>
                 <h6>Password</h6>
-                <form class="form-password" method="post" asp-action="AccountSecurity" asp-controller="Account">
+
+                <form class="form-password" method="post" asp-action="AccountSecurity" asp-controller="Account" novalidate>
 
                     <div class="current-password">
-                        <label for="currentPassword" class="form-label">Current password</label>
+                        <label asp-for="PasswordForm.CurrentPassword" class="form-label">Current password</label>
                         <div class="mb-3">
                             @if (Model.IsExternalAccount)
                             {
-                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" disabled >
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" disabled>
                                 <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" hidden />
                             }
                             else
                             {
-                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" />                              
-                            }      
+                                <input asp-for="PasswordForm.CurrentPassword" type="password" class="form-control" />
+                                <span asp-validation-for="PasswordForm.CurrentPassword"></span>
+                            }
                         </div>
                     </div>
 
                     <div class="create-new-password">
                         <div class="new-password">
-                            <label for="newPassword" class="form-label">New password</label>
+                            <label asp-for="PasswordForm.NewPassword" class="form-label">New password</label>
                             @if (Model.IsExternalAccount)
                             {
                                 <input asp-for="PasswordForm.NewPassword" type="password" class="form-control" disabled>
@@ -66,13 +68,13 @@
                             }
                             else
                             {
-                                <input asp-for="PasswordForm.NewPassword" type="password" class="form-control" />
-                                <span asp-validation-for="PasswordForm.NewPassword"></span>
+                                <input asp-for="PasswordForm.NewPassword" id="new-password" type="password" class="form-control" />
+                                <span asp-validation-for="PasswordForm.NewPassword" id="password-error"></span>
                             }
                         </div>
 
                         <div class="confirm-password">
-                            <label for="confirm-password" class="form-label">Confirm new password</label>
+                            <label asp-for="PasswordForm.ConfirmPassword" class="form-label">Confirm new password</label>
                             @if (Model.IsExternalAccount)
                             {
                                 <input asp-for="PasswordForm.ConfirmPassword" type="password" class="form-control" disabled>
@@ -88,9 +90,9 @@
                     @if (Model.IsExternalAccount)
                     {
                         <div class="buttons">
-                        <a><button type="reset" class="button btn-gray">Cancel</button></a>
-                        <a><button type="submit" class="button btn-theme">Change Password</button></a>
-                    </div>
+                            <a><button type="reset" class="button btn-gray">Cancel</button></a>
+                            <a><button type="submit" class="button btn-theme">Change Password</button></a>
+                        </div>
                     }
                     else
                     {
@@ -99,9 +101,8 @@
                             <a><button type="submit" class="button btn-theme">Change Password</button></a>
                         </div>
                     }
-                    
-
                 </form>
+
                 <hr>
             </div>
 
@@ -110,7 +111,7 @@
                 <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
                 <form method="post" asp-action="DeleteAccount" asp-controller="Account">
                     <div class="checkbox-group">
-                        <input asp-for="DeleteAccount.CheckDeleteAccount" type="checkbox"  />
+                        <input asp-for="DeleteAccount!.CheckDeleteAccount" type="checkbox" />
                         <label>Yes, I want to delete my account.</label>
                     </div>
                     <a><button type="submit" class="button btn-red">Delete</button></a>
@@ -121,4 +122,4 @@
 </section>
 
 
-@await Html.PartialAsync("_ValidationScriptsPartial")
+<script defer src="~/js/validation.js"></script>

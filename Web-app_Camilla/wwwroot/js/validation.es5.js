@@ -2,6 +2,7 @@
 
 var formErrorMessage = function formErrorMessage(element, validationResult) {
     var spanElement = document.querySelector('[data-valmsg-for="' + element.name + '"]');
+
     if (validationResult) {
         element.classList.remove('input-validation-error');
         spanElement.classList.remove('field-validation-error');
@@ -50,31 +51,31 @@ var checkboxValidator = function checkboxValidator(element) {
 };
 
 var forms = document.querySelectorAll('form');
-var inputs = forms[0].querySelectorAll('input');
+forms.forEach(function (form) {
+    var inputs = form.querySelectorAll('input');
 
-inputs.forEach(function (input) {
-    if (input.dataset.val === 'true') {
-
-        if (input.type === 'checkbox') {
-            input.addEventListener('change', function (e) {
-                checkboxValidator(e.target);
-            });
-        } else {
-            input.addEventListener('keyup', function (e) {
-                switch (e.target.type) {
-                    case 'text':
-                        textValidator(e.target);
-                        break;
-                    case 'email':
-                        emailValidator(e.target);
-                        break;
-                    case 'password':
-                        passwordValidator(e.target);
-                        break;
-                }
-            });
+    inputs.forEach(function (input) {
+        if (input.dataset.val === 'true') {
+            if (input.type === 'checkbox') {
+                input.addEventListener('change', function (e) {
+                    checkboxValidator(e.target);
+                });
+            } else {
+                input.addEventListener('keyup', function (e) {
+                    switch (e.target.type) {
+                        case 'text':
+                            textValidator(e.target);
+                            break;
+                        case 'email':
+                            emailValidator(e.target);
+                            break;
+                        case 'password':
+                            passwordValidator(e.target);
+                            break;
+                    }
+                });
+            }
         }
-    }
+    });
 });
-console.log("hej");
 

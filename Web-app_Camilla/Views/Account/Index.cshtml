@@ -38,7 +38,7 @@
         <div class="details-form">
             <h2 class="title">Account Details</h2>
             <h6>Basic info</h6>
-            <form class="form-basicinfo" method="post" asp-controller="Account" asp-action="Index">
+            <form class="form-basicinfo" method="post" asp-controller="Account" asp-action="Index" novalidate>
                 <div class="name">
                     <div class="first-name">
                         <label asp-for="BasicInfoForm.FirstName" class="form-label">First name</label>
@@ -106,7 +106,7 @@
 
             <div class="address">
                 <h6>Address</h6>
-                <form class="form-address" method="post" asp-controller="Account" asp-action="Index">
+                <form class="form-address" method="post" asp-controller="Account" asp-action="Index" novalidate>
                     <label asp-for="AddressInfoForm.AddressLine_1" class="form-label">Address line 1</label>
                     <div class="mb-3">
                         <input asp-for="AddressInfoForm.AddressLine_1" type="text" class="form-control" id="address" placeholder="Enter your address line">

@@ -1384,6 +1384,10 @@ footer .container .unsubscribe {
 .account-details .container .user .btn-user .button i {
   margin-right: 1rem;
 }
+.account-details .container .user .btn-user .active {
+  background-color: var(--color-theme);
+  color: var(--color-white);
+}
 .account-details .container .user .btn-user .signout {
   line-height: 160%;
   font-weight: 400;
@@ -1571,6 +1575,10 @@ footer .container .unsubscribe {
 #account-security .container .user .btn-user .button i {
   margin-right: 1rem;
 }
+#account-security .container .user .btn-user .active {
+  background-color: var(--color-theme);
+  color: var(--color-white);
+}
 #account-security .container .user .btn-user .signout {
   line-height: 160%;
   font-weight: 400;
@@ -1622,8 +1630,8 @@ footer .container .unsubscribe {
 #account-security .container .content {
   grid-area: content;
 }
-#account-security .container .content .errormessage {
-  background-color: var(--color-danger);
+#account-security .container .content .message {
+  background-color: var(--color-gray);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1660,6 +1668,14 @@ footer .container .unsubscribe {
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password {
   width: 100%;
+}
+#account-security .container .content .password-form .form-password .create-new-password .new-password #password-error {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: var(--color-danger);
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password input.input-validation-error {
   border: 2px solid var(--color-danger) !important;
@@ -2592,6 +2608,10 @@ footer .container .unsubscribe {
 }
 .account-saveditems .container .user .btn-user .button i {
   margin-right: 1rem;
+}
+.account-saveditems .container .user .btn-user .active {
+  background-color: var(--color-theme);
+  color: var(--color-white);
 }
 .account-saveditems .container .user .btn-user .signout {
   line-height: 160%;

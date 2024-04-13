@@ -15,7 +15,7 @@
             </div>
         }
         <div class="mb-3">
-            <form asp-action="EndSubscription" asp-controller="Subscribe" method="post">
+            <form asp-action="EndSubscription" asp-controller="Subscribe" method="post" novalidate>
             <label asp-for="Email" class="form-label">Enter your email address to end your subscription</label>
             <input asp-for="Email" type="email" class="form-control" />
             <button type="submit">End subscription</button>
@@ -24,4 +24,4 @@
     </div>
 </section>
 
-@* Fixa scss *@
+<script defer src="~/js/validation.js"></script>

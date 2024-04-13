@@ -47,6 +47,10 @@
                         margin-right: 1rem;
                     }
                 }
+                .active {
+                    background-color: var(--color-theme);
+                    color: var(--color-white);
+                }
 
                 .signout {
                     @include standard-heading;

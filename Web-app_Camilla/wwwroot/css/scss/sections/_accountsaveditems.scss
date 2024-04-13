@@ -47,6 +47,12 @@
                     }
                 }
 
+                .active {
+                    background-color: var(--color-theme);
+                    color: var(--color-white);
+                }
+
+
                 .signout {
                     @include standard-heading;
                     display: inline-block;

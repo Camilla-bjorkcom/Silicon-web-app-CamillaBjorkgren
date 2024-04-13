@@ -14,5 +14,9 @@
   {
     "outputFile": "wwwroot/js/validation.es5.js",
     "inputFile": "wwwroot/js/validation.js"
+  },
+  {
+    "outputFile": "wwwroot/js/FilterCourse.es5.js",
+    "inputFile": "wwwroot/js/FilterCourse.js"
   }
 ]

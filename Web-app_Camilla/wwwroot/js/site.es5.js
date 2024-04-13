@@ -56,56 +56,6 @@ function handleProfileImageUpload() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    select();
-});
-function select() {
-    var select = document.querySelector('.select');
-    var selected = select.querySelector('.selected');
-    var selectOptions = select.querySelector('.select-options');
-
-    selected.addEventListener('click', function () {
-        selectOptions.style.display = selectOptions.style.display === 'block' ? 'none' : 'block';
-    });
-
-    var options = selectOptions.querySelectorAll('.option');
-    options.forEach(function (option) {
-        option.addEventListener('click', function () {
-            selected.innerHTML = this.textContent;
-            selectOptions.style.display = 'none';
-            var category = this.getAttribute('data-value');
-            selected.setAttribute('data-value', category);
-            updateCourseByFilter();
-        });
-    });
-}
-
-function updateCourseByFilter() {
-    var category = document.querySelector('.select .selected').getAttribute('data-value') || 'all';
-    var searchQuery = document.querySelector('#searchQuery').value;
-
-    var url = '/Courses?category=' + encodeURIComponent(category) + '&searchQuery=' + encodeURIComponent(searchQuery);
-
-    fetch(url).then(function (res) {
-        return res.text();
-    }).then(function (data) {
-        var parser = new DOMParser();
-        var dom = parser.parseFromString(data, 'text/html');
-
-        var courseList = document.querySelector('.course-list');
-        var newCourseListContent = dom.querySelector('.course-list').innerHTML;
-
-        if (courseList && newCourseListContent) {
-            courseList.innerHTML = newCourseListContent;
-        } else {
-            console.error("Failed to update course list: element or content not found.");
-        }
-
-        var pagination = dom.querySelector('.pagination') ? dom.querySelector('.pagination').innerHTML : '';
-        document.querySelector('.pagination').innerHTML = pagination;
-    });
-}
-
 var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 var tooltipList = [].concat(_toConsumableArray(tooltipTriggerList)).map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
