@@ -899,43 +899,68 @@ footer .container .unsubscribe {
 }
 
 .lightanddark {
-  background-color: var(--color-gray-900);
+  position: relative;
+  width: 100%;
+  height: 80vh;
 }
-.lightanddark .container {
+.lightanddark .dark {
+  background-color: #0B0F19;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+}
+.lightanddark .dark .container {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
-.lightanddark .container .titles {
+.lightanddark .dark .container .title {
   position: relative;
   margin: 0 auto;
+  color: var(--color-white);
 }
-.lightanddark .container .titles h1 {
+.lightanddark .dark .container .title h1 {
   padding: 50px;
 }
-.lightanddark .container .titles #darkmode-title {
-  color: var(--color-white);
-  z-index: 10;
+.lightanddark .dark .container .title #darkmode-title {
+  color: #FFFFFF;
 }
-.lightanddark .container .titles #lightmode-title {
-  color: var(--color-gray-900);
-  z-index: -1;
-  position: absolute;
-  top: 0;
-}
-.lightanddark .container .images {
-  position: relative;
+.lightanddark .dark .container .image {
   margin: auto;
   padding-bottom: 80px;
 }
-.lightanddark .container .images .darkmode-img {
-  z-index: 10;
-}
-.lightanddark .container .images .lightmode-img {
-  width: 100%;
+.lightanddark .light {
+  background-color: white;
   position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
-  z-index: -1;
+  left: 0;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+.lightanddark .light .container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.lightanddark .light .container .title {
+  position: relative;
+  margin: 0 auto;
+  color: #0B0F19;
+}
+.lightanddark .light .container .title h1 {
+  padding: 50px;
+}
+.lightanddark .light .container .title #lightmode-title {
+  color: #0B0F19;
+}
+.lightanddark .light .container .image {
+  margin: auto;
+  padding-bottom: 80px;
+  height: 720px;
 }
 
 .dashboard {
