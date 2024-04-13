@@ -1809,6 +1809,11 @@ footer .container .unsubscribe {
   position: absolute;
   right: 15rem;
   z-index: 9999;
+  background-color: var(--color-gray-000);
+  border: 0.5px solid var(--color-gray-100);
+  color: var(--color-gray-900);
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 .courses .container .upper-content .search-categories .select .selected {
   width: 100%;
@@ -1846,13 +1851,20 @@ footer .container .unsubscribe {
 }
 .courses .container .upper-content .search-categories input {
   padding: 8px 16px;
-  background-color: transparent;
+  background-color: var(--color-gray-000);
+  border: 0.5px solid var(--color-gray-100);
+  color: var(--color-gray-900);
   border-radius: 6px;
   width: 100%;
   text-align: left;
   box-sizing: border-box;
   position: relative;
-  border: 1px solid var(--color-gray-400);
+}
+.courses .container .upper-content .search-categories input::placeholder {
+  color: var(--color-gray-900);
+}
+.courses .container .upper-content .search-categories input:focus {
+  outline: none;
 }
 .courses .container .upper-content .search-categories i {
   position: absolute;
@@ -1926,6 +1938,8 @@ footer .container .unsubscribe {
 }
 .courses .container .course-list .course .course-details .info {
   padding: 15px;
+  background-color: var(--color-gray-000);
+  border: 0.5px solid var(--color-gray-100);
 }
 .courses .container .course-list .course .course-details .info .course-title {
   line-height: 160%;
@@ -1935,7 +1949,7 @@ footer .container .unsubscribe {
   font-weight: 800;
   color: var(--color-gray-900);
   font-size: 20px !important;
-  color: #33354D;
+  color: var(--color-gray-800);
   margin-bottom: 0;
 }
 .courses .container .course-list .course .course-details .info .course-creator {
@@ -1969,16 +1983,35 @@ footer .container .unsubscribe {
 .courses .container .course-list .course .course-details .info .course-footer .course-hours i {
   margin-right: 5px;
 }
-.courses .pagination {
+.courses nav {
+  margin-bottom: 5rem;
+}
+.courses nav .pagination {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
 }
-.courses .pagination .number:active {
-  background-color: var(--color-theme);
+.courses nav .pagination .number {
+  border: 1px solid var(--color-gray-100);
+  border-radius: 6px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  color: var(--color-gray-900);
+  text-align: center;
 }
-.courses .pagination .number:hover {
-  background-color: var(--color-gray-400);
+.courses nav .pagination .number:hover {
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-100);
+}
+.courses nav .pagination .active {
+  background-color: #6366F1;
+  color: white;
+  box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
 }
 
 .work-with-us {

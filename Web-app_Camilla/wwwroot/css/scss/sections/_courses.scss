@@ -36,7 +36,11 @@
                     position: absolute;
                     right: 15rem;
                     z-index: 9999;
-
+                    background-color: var(--color-gray-000);
+                    border: 0.5px solid var(--color-gray-100);
+                    color: var(--color-gray-900);
+                    border-radius: 6px;
+                    box-sizing: border-box;
 
                     .selected {
                         width: 100%;
@@ -82,13 +86,22 @@
 
                 input {
                     padding: 8px 16px;
-                    background-color: $transparent;
+                    background-color: var(--color-gray-000);
+                    border: 0.5px solid var(--color-gray-100);
+                    color: var(--color-gray-900);
                     border-radius: 6px;
                     width: 100%;
                     text-align: left;
                     box-sizing: border-box;
                     position: relative;
-                    border: 1px solid var(--color-gray-400);
+
+                    &::placeholder {
+                        color: var(--color-gray-900);
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
 
                 i {
@@ -176,10 +189,12 @@
 
                     .info {
                         padding: 15px;
+                        background-color: var(--color-gray-000);
+                        border: 0.5px solid var(--color-gray-100);
 
                         .course-title {
                             @include h5;
-                            color: $gray-800;
+                            color: var(--color-gray-800);
                             margin-bottom: 0;
                         }
 
@@ -229,18 +244,37 @@
         }
     }
 
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
+    nav {
+        margin-bottom: 5rem;
 
-        .number {
-            &:active {
-                background-color: var(--color-theme);
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+
+            .number {
+                border: 1px solid var(--color-gray-100);
+                border-radius: 6px;
+                padding: 10px;
+                width: 40px;
+                height: 40px;
+                box-sizing: border-box;
+                color: var(--color-gray-900);
+                text-align: center;
+
+                &:hover {
+                    background-color: var(--color-gray-800);
+                    color: var(--color-gray-100);
+                }
             }
 
-            &:hover {
-                background-color: var(--color-gray-400);
+            .active {
+                background-color: $theme;
+                color: white;
+                @include shadow-m;
             }
         }
     }

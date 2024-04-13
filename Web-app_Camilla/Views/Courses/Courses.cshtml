@@ -16,9 +16,9 @@
 
             <div class="search-categories">
                 <div class="select">
+                    <i class="fa-light fa-arrow-down"></i>
                     <div class="selected">
                         All categories
-                        <i class="fa-light fa-arrow-down"></i>
                     </div>
                     <div class="select-options d-none">
                         <div class="option" data-value="all">All Categories</div>
@@ -126,6 +126,24 @@
 
             </div>
 
+            @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+            {
+                <nav>
+                    <div class="pagination">
+                        @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                        {
+                            if (i == Model.Pagination.CurrentPage)
+                            {
+                                <span class="number active page-item">@i</span>
+                            }
+                            else
+                            {
+                                <a class="number page-item" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize})">@i</a>
+                            }
+                        }
+                    </div>
+                </nav>
+            }
         }
 
         else
@@ -134,22 +152,6 @@
         }
 
 
-        @if (Model.Pagination != null && Model.Pagination.TotalPages < 1)
-        {
-            <div class="pagination">
-                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
-                {
-                    if (i == Model.Pagination.CurrentPage)
-                    {
-                        <span class="number active page-link page-item">@i</span>
-                    }
-                    else
-                    {
-                        <a class="number page-link page-item" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize})"></a>
-                    }
-                }
-            </div>
-        }
     </div>
     @*     <nav>
     <ul class="pagination">
