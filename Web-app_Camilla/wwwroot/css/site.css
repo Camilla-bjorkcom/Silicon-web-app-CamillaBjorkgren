@@ -553,17 +553,13 @@ header {
 header .container {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "logo mobile";
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
+  width: 100%;
 }
 @media (min-width: 992px) {
-  header .container {
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas: "logo switch mobile";
-  }
-}
-@media (min-width: 1200px) {
   header .container {
     grid-template-columns: auto 1fr auto auto;
     grid-template-areas: "logo menu switch buttons";
@@ -593,7 +589,7 @@ header .container .btn-switch {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   header .container .btn-switch {
     display: block;
   }
@@ -603,7 +599,7 @@ header .container .account-buttons {
   display: none;
   gap: 15px;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   header .container .account-buttons {
     display: flex;
   }
@@ -625,10 +621,67 @@ header .container .btn-mobile {
   grid-area: mobile;
   display: block;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   header .container .btn-mobile {
     display: none;
   }
+}
+header .container .mobile-menu {
+  display: none;
+}
+header .container .show {
+  grid-area: mobile-menu;
+  display: block;
+  width: 100%;
+}
+header .container .show ul {
+  list-style: none;
+  color: var(--color-gray-900);
+  text-decoration: none;
+  color: var(--color-gray-900);
+  background-color: var(--color-gray-200);
+  text-align: center;
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  width: 70%;
+  margin: 0 auto;
+  padding: 15px 0;
+  border-radius: 6px;
+}
+header .container .show ul .image {
+  margin-top: 2rem;
+}
+header .container .show ul .image p {
+  text-decoration: none;
+  color: var(--color-gray-900);
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  font-weight: 800;
+}
+header .container .show ul .image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+header .container .show ul li {
+  margin-bottom: 0.5rem;
+}
+header .container .show ul li a {
+  color: var(--color-gray-900);
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 5px 5px;
+}
+header .container .show ul li a:hover {
+  background-color: #6366F1;
+  color: var(--color-gray-100);
 }
 
 .background-color {
@@ -637,17 +690,13 @@ header .container .btn-mobile {
 .background-color .container {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "logo mobile";
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
+  width: 100%;
 }
 @media (min-width: 992px) {
-  .background-color .container {
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas: "logo switch mobile";
-  }
-}
-@media (min-width: 1200px) {
   .background-color .container {
     grid-template-columns: auto 1fr auto auto;
     grid-template-areas: "logo menu switch buttons";
@@ -664,7 +713,7 @@ header .container .btn-mobile {
   grid-area: menu;
   display: none;
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .background-color .container #menu {
     display: block;
   }
@@ -677,7 +726,7 @@ header .container .btn-mobile {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .background-color .container .btn-switch {
     display: block;
   }
@@ -687,19 +736,52 @@ header .container .btn-mobile {
   display: none;
   gap: 15px;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .background-color .container .account-buttons {
     display: flex;
   }
+}
+.background-color .container .account-buttons .profile {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.background-color .container .account-buttons .profile .image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .background-color .container .btn-mobile {
   grid-area: mobile;
   display: block;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .background-color .container .btn-mobile {
     display: none;
   }
+}
+.background-color .container .mobile-menu {
+  display: none;
+}
+.background-color .container .show {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+}
+.background-color .container .show ul {
+  list-style: none;
+}
+.background-color .container .show ul li a {
+  color: var(--color-gray-900);
+  text-decoration: none;
 }
 
 footer {

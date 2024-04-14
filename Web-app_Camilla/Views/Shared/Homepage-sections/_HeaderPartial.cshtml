@@ -27,7 +27,7 @@
                             <a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a>
                         }
                     }
-                    <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>           
+                    <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
                 </nav>
             </div>
 
@@ -63,9 +63,46 @@
                 }
             </div>
 
-            <button onclick="toggleMenu()" class="btn-mobile">
-                <i class="fa-regular fa-bars"></i>
+            <button type="button" onclick="toggleMenu()" class="btn-mobile">
+                <i class="fa fa-bars"></i>
             </button>
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>
+                    @if (!_signInManager.IsSignedIn(User) && user == null)
+                    {
+                        <li><a asp-controller="Auth" asp-action="SignIn">Sign In</a></li>
+                        <li><a asp-controller="Auth" asp-action="SignUp">Sign Up</a></li>
+                    }
+                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    @if (_signInManager.IsSignedIn(User) && user != null)
+                    {
+                        <li><a asp-controller="Courses" asp-action="courses">Courses</a></li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a></li>
+                        }
+                    }
+                    @if (_signInManager.IsSignedIn(User) && user != null)
+                    {
+                        <div class="profile">
+                            <div class="image">
+                                <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
+                                @if (user.ProfileImg != null)
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
+                                }
+                                else
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </ul>
+
+            </nav>
         </div>
     </header>
 }
@@ -125,9 +162,46 @@ else
                 }
             </div>
 
-            <button onclick="toggleMenu()" class="btn-mobile">
-                <i class="fa-regular fa-bars"></i>
+            <button type="button" onclick="toggleMenu()" class="btn-mobile">
+                <i class="fa fa-bars"></i>
             </button>
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>
+                    @if (!_signInManager.IsSignedIn(User) && user == null)
+                    {
+                        <li><a asp-controller="Auth" asp-action="SignIn">Sign In</a></li>
+                        <li><a asp-controller="Auth" asp-action="SignUp">Sign Up</a></li>
+                    }
+                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    @if (_signInManager.IsSignedIn(User) && user != null)
+                    {
+                        <li><a asp-controller="Courses" asp-action="courses">Courses</a></li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a></li>
+                        }
+                    }
+                    @if (_signInManager.IsSignedIn(User) && user != null)
+                    {
+                        <div class="profile">
+                            <div class="image">
+                               <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
+                                @if (user.ProfileImg != null)
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
+                                }
+                                else
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </ul>
+               
+            </nav>
         </div>
     </header>
 }

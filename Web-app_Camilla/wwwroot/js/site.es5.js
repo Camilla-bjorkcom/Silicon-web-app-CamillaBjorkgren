@@ -2,9 +2,18 @@
 //    document.getElementById('menu').classList.toggle('hide');
 //    document.getElementsByClassName('account-buttons').classList.toggle('hide');
 //}
-//
+
+'use strict';
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
+function toggleMenu() {
+    var menu = document.querySelector('.mobile-menu');
+    menu.classList.toggle('show');
+}
+
 //const checkScreenSize = () => {
-//    if (window.innerWidth >= 1200) {
+//    if (window.innerWidth >= 900) {
 //        document.getElementById('menu').classList.remove('hide');
 //        document.getElementsByClassName('account-buttons').classList.remove('hide');
 //    }
@@ -17,13 +26,9 @@
 //        }
 //    }
 //};
-//
+
 //window.addEventListener('resize', checkScreenSize);
 //checkScreenSize();
-
-'use strict';
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
 document.addEventListener('DOMContentLoaded', function () {
     handleProfileImageUpload();
@@ -41,10 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-//document.addEventListener('click'), function () {
-//    handleProfileImageUpload()
-//}
 
 function handleProfileImageUpload() {
 
