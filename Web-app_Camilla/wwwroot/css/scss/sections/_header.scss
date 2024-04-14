@@ -108,12 +108,14 @@ header {
 
                 .image {
                     margin-top: 2rem;
+
                     p {
                         text-decoration: none;
                         color: var(--color-gray-900);
                         @include text-s;
                         font-weight: 800;
                     }
+
                     img {
                         width: 60px;
                         height: 60px;
@@ -286,3 +288,4 @@ header {
             }
         }
     }
+}

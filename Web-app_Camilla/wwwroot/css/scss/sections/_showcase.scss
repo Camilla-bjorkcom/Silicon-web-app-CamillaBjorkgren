@@ -6,7 +6,7 @@
     position: relative;
     margin-bottom: 100px;
     height: fit-content;
- 
+
 
     .background-image {
         position: absolute;
@@ -15,12 +15,12 @@
     }
 
     .container {
-       display: flex;
+        display: flex;
 
         .content {
             margin-top: 0px;
             width: 100%;
-            text-align: center;
+            text-align: left;
 
             @include xl {
                 margin-top: 100px;
@@ -31,7 +31,14 @@
 
 
             h1 {
-                @include h2;
+                @include h3;
+                width: 50vw;
+
+           
+
+                @include md {
+                    @include h1;
+                }
 
                 @include xl {
                     @include d4;
@@ -41,6 +48,14 @@
             p {
                 margin: 20px 0 40px 0;
                 @include text-m;
+
+                @include sm {
+                    width: 50vw;
+                }
+
+                @include md {
+                    width: 50vw;
+                }
 
                 @include lg {
                     margin: 40px 0 50px 0;
@@ -56,18 +71,18 @@
                 margin: 150px 0 30px 0;
                 display: none;
 
-                @include xl{
+                @include xl {
                     margin: 100px 0 30px 0;
                     display: flex;
                 }
             }
 
             .brands {
-                display: none; 
-                gap: 30px; 
+                display: none;
+                gap: 30px;
 
                 @include xl {
-                    display: flex; 
+                    display: flex;
                 }
 
                 img {
