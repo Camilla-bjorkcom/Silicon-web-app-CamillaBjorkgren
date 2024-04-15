@@ -104,27 +104,7 @@
             @include standard-heading;
             padding: 30px;
 
-            span {
-                &.field-validation-error {
-                    @include text-s;
-                    color: var(--color-danger);
-                }
-            }
-
-            input {
-                border-radius: 8px !important;
-                border: 1px solid var(--color-gray-400);
-
-                input::placeholder {
-                    color: var(--color-gray-400);
-                }
-
-                &.input-validation-error {
-                    border: 2px solid var(--color-danger) !important;
-                    border-radius: 0.5rem !important;
-                    color: var(--color-danger);
-                }
-            }
+            
 
 
             .title {

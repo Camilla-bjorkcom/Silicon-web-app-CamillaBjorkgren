@@ -146,6 +146,7 @@ header {
 
 .background-color {
     background-color: var(--color-gray-100);
+    padding: 15px 0;
 
     .container {
         display: grid;
@@ -174,7 +175,7 @@ header {
             grid-area: menu;
             display: none;
 
-            @include md {
+            @include xl {
                 display: block;
             }
 

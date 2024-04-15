@@ -1,6 +1,8 @@
 :root {
     --color-gray-000: #FFFFFF;
+    --color-gray-050: #FFFFFF;
     --color-gray-100: #F3F6FF;
+    --color-gray-150: #565973;
     --color-gray-200: #EFF2FC;
     --color-gray-300: #E2E5F1;
     --color-gray-400: #D4D7E5;
@@ -24,7 +26,10 @@
 
 :root.dark {
     --color-gray-000: #0B0F19;
-    --color-gray-100: #33354D;
+    --color-gray-050: #161922;
+    --color-gray-100: #161922;
+    /* --color-gray-100: #33354D;*/
+    --color-gray-150: #565973;
     --color-gray-200: #565973;
     --color-gray-300: #9797AD;
     --color-gray-400: B47N7C9;
