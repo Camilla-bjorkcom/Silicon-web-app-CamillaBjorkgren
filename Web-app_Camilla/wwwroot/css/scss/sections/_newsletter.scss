@@ -5,20 +5,29 @@
     .container {
         display: flex;
         flex-direction: column;
-        padding: 50px;
         align-items: center;
         justify-content: center;
+
+        @include md {
+            padding: 50px;
+        }
 
 
 
         .title {
-            @include h2;
+            @include h4;
             display: flex;
-            text-align: left;
+            text-align: center;
             padding: 35px 0;
-            gap: 1.5rem;
+            
 
-            @include lg {
+            @include md {
+                @include h2;
+                text-align: left;
+                gap: 1.5rem;
+            }
+
+            @include xl {
                 width: 85%;
             }
 
@@ -27,29 +36,53 @@
                 img {
                     width: 50px;
                     height: 42px;
+                    display: none;
+                    @include md {
+                        display: block;
+                    }
                 }
             }
         }
 
         form {
+            @include xl {
+                width: 85%;
+            }
 
             .sign-up-checkbox {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 3rem;
+                width: fit-content;
+                margin: 0 auto;
 
-                @include lg {
+
+
+                @include md {
+                    display: flex;
+                    align-items: center;
+                    justify-content: unset;
+                    width: 100%;
+                }
+
+                @include xl {
                     width: 85%;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 3rem;
+                    width: 100%;
                 }
 
                 h6 {
                     width: min-content;
+                    grid-area: title;
+
+                    @include md {
+                        margin-right: 2rem;
+                    }
                 }
 
                 .grid {
                     display: grid;
                     gap: 0.5rem 6rem;
+                    grid-area: checkbox;
 
                     @include lg {
                         grid-template-columns: repeat(3, 1fr);
@@ -68,24 +101,34 @@
 
             .sign-up {
                 margin: 50px 0 0 0;
-                display: flex;
                 gap: 2rem 2rem;
-                width: 85%;
+                width: 100%;
+                grid-area: input;
+
+                @include lg {
+                    display: flex;
+                }
+
+                button {
+                    margin: 2rem auto;
+
+                    @include lg {
+                        margin: 0;
+                    }
+                }
 
 
                 input {
-                    width: 85%;
+                    width: 100%;
                     border-radius: 5px;
                     border: 1px solid var(--color-gray-400);
                 }
             }
 
-
             .terms {
-                display: flex;
                 @include text-xs;
                 text-align: left;
-                width: 85%;
+                width: fit-content;
             }
         }
     }

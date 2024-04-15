@@ -33,6 +33,7 @@
 
             &:hover {
                 @include shadow-l;
+                border: 1px solid var(--color-gray-100);
             }
         }
        }

@@ -1274,9 +1274,25 @@ footer .container .unsubscribe {
 }
 .download-app .container {
   background-color: var(--color-gray-200);
-  padding: 50px;
+  padding: 20px;
   display: flex;
   justify-content: space-around;
+}
+@media (min-width: 992px) {
+  .download-app .container {
+    padding: 50px;
+  }
+}
+.download-app .container .left {
+  display: none;
+}
+@media (min-width: 768px) {
+  .download-app .container .left {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .download-app .container .right {
   display: flex;
@@ -1285,7 +1301,7 @@ footer .container .unsubscribe {
   row-gap: 20px;
 }
 .download-app .container .right .title {
-  width: 60%;
+  width: fit-content;
 }
 .download-app .container .right .title h1 {
   line-height: 160%;
@@ -1294,20 +1310,86 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  font-size: 32px !important;
+  font-size: 20px !important;
+}
+@media (min-width: 992px) {
+  .download-app .container .right .title h1 {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 32px !important;
+  }
+}
+@media (min-width: 992px) {
+  .download-app .container .right .title {
+    width: 60%;
+  }
 }
 .download-app .container .right .app-store {
   display: flex;
-  gap: 50px;
+  gap: 10px;
   align-items: end;
+}
+@media (min-width: 992px) {
+  .download-app .container .right .app-store {
+    gap: 50px;
+  }
+}
+.download-app .container .right .app-store h3 {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 16px !important;
+}
+@media (min-width: 992px) {
+  .download-app .container .right .app-store h3 {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 28px !important;
+  }
 }
 .download-app .container .right .app-store p {
   margin: 0;
 }
 .download-app .container .right .google-play {
   display: flex;
-  gap: 50px;
   align-items: end;
+  gap: 10px;
+}
+@media (min-width: 992px) {
+  .download-app .container .right .google-play {
+    gap: 50px;
+  }
+}
+.download-app .container .right .google-play h3 {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 16px !important;
+}
+@media (min-width: 992px) {
+  .download-app .container .right .google-play h3 {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 28px !important;
+  }
 }
 .download-app .container .right .google-play p {
   margin: 0;
@@ -1350,6 +1432,7 @@ footer .container .unsubscribe {
 }
 .work-tools .container .grid .work-tool:hover {
   box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.1);
+  border: 1px solid var(--color-gray-100);
 }
 
 .newsletter {
@@ -1359,9 +1442,13 @@ footer .container .unsubscribe {
 .newsletter .container {
   display: flex;
   flex-direction: column;
-  padding: 50px;
   align-items: center;
   justify-content: center;
+}
+@media (min-width: 768px) {
+  .newsletter .container {
+    padding: 50px;
+  }
 }
 .newsletter .container .title {
   line-height: 160%;
@@ -1370,13 +1457,25 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  font-size: 32px !important;
+  font-size: 24px !important;
   display: flex;
-  text-align: left;
+  text-align: center;
   padding: 35px 0;
-  gap: 1.5rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
+  .newsletter .container .title {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 32px !important;
+    text-align: left;
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 1200px) {
   .newsletter .container .title {
     width: 85%;
   }
@@ -1384,24 +1483,52 @@ footer .container .unsubscribe {
 .newsletter .container .title .arrows img {
   width: 50px;
   height: 42px;
+  display: none;
+}
+@media (min-width: 768px) {
+  .newsletter .container .title .arrows img {
+    display: block;
+  }
+}
+@media (min-width: 1200px) {
+  .newsletter .container form {
+    width: 85%;
+  }
 }
 .newsletter .container form .sign-up-checkbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 3rem;
+  width: fit-content;
+  margin: 0 auto;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
+  .newsletter .container form .sign-up-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: unset;
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
   .newsletter .container form .sign-up-checkbox {
     width: 85%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
   }
 }
 .newsletter .container form .sign-up-checkbox h6 {
   width: min-content;
+  grid-area: title;
+}
+@media (min-width: 768px) {
+  .newsletter .container form .sign-up-checkbox h6 {
+    margin-right: 2rem;
+  }
 }
 .newsletter .container form .sign-up-checkbox .grid {
   display: grid;
   gap: 0.5rem 6rem;
+  grid-area: checkbox;
 }
 @media (min-width: 992px) {
   .newsletter .container form .sign-up-checkbox .grid {
@@ -1416,24 +1543,36 @@ footer .container .unsubscribe {
 }
 .newsletter .container form .sign-up {
   margin: 50px 0 0 0;
-  display: flex;
   gap: 2rem 2rem;
-  width: 85%;
+  width: 100%;
+  grid-area: input;
+}
+@media (min-width: 992px) {
+  .newsletter .container form .sign-up {
+    display: flex;
+  }
+}
+.newsletter .container form .sign-up button {
+  margin: 2rem auto;
+}
+@media (min-width: 992px) {
+  .newsletter .container form .sign-up button {
+    margin: 0;
+  }
 }
 .newsletter .container form .sign-up input {
-  width: 85%;
+  width: 100%;
   border-radius: 5px;
   border: 1px solid var(--color-gray-400);
 }
 .newsletter .container form .terms {
-  display: flex;
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 12px !important;
   text-align: left;
-  width: 85%;
+  width: fit-content;
 }
 
 .sign-in {
