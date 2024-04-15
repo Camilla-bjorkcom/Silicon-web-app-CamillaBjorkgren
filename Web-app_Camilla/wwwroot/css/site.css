@@ -252,6 +252,12 @@ img {
 }
 
 form {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
   background-color: var(--color-gray-000);
   border-radius: 6px;
   font-weight: 700;
@@ -265,6 +271,7 @@ form .form-control {
   border-radius: 8px !important;
   border: 1px solid var(--color-gray-400);
   color: var(--color-gray-150);
+  padding: 1rem;
 }
 form .form-control input::placeholder {
   color: var(--color-gray);
@@ -291,6 +298,24 @@ form span.field-validation-error {
   font-family: "Manrope", sans-serif;
   font-size: 14px !important;
   color: #EF4444;
+}
+form .form-check-label {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  margin-left: 1rem;
+}
+form .form-check {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  display: inline-flex;
+  align-items: center;
+}
+form .form-check-input {
+  margin: 0;
 }
 
 a {
@@ -1643,26 +1668,6 @@ footer .container .unsubscribe {
   padding: 15px;
   border-radius: 8px;
 }
-.sign-in .container form {
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-  color: var(--color-gray-900);
-}
-.sign-in .container form input {
-  padding: 1rem;
-}
-.sign-in .container form input input::placeholder {
-  color: var(--color-gray-400);
-}
-.sign-in .container form .form-check-label {
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-}
 .sign-in .container form button {
   width: 100%;
 }
@@ -1682,18 +1687,22 @@ footer .container .unsubscribe {
   display: flex;
 }
 
-/*https://youtu.be/IttJNH0vLJs?t=3113*/
 .sign-up {
   height: 100%;
 }
 .sign-up .container {
-  padding: 40px;
+  padding: 15px;
   max-width: fit-content;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
+}
+@media (min-width: 768px) {
+  .sign-up .container {
+    padding: 40px;
+  }
 }
 .sign-up .container .errormessage {
   background-color: var(--color-danger);
@@ -1712,9 +1721,11 @@ footer .container .unsubscribe {
   font-weight: 800;
   color: var(--color-gray-900);
 }
-.sign-up .container form .name {
-  display: flex;
-  gap: 1rem;
+@media (min-width: 768px) {
+  .sign-up .container form .name {
+    display: flex;
+    gap: 1rem;
+  }
 }
 .sign-up .container form .name .label-name {
   display: flex;
@@ -1724,46 +1735,6 @@ footer .container .unsubscribe {
 }
 .sign-up .container form .mb-3 {
   position: relative;
-}
-.sign-up .container form .mb-3 span.field-validation-error {
-  position: absolute;
-  top: 0;
-  right: 0;
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-  font-size: 14px !important;
-  color: var(--color-danger);
-}
-.sign-up .container form .mb-3 input {
-  padding: 1rem;
-  border-radius: 8px !important;
-  border: 1px solid var(--color-gray-400) !important;
-}
-.sign-up .container form .mb-3 input.input-validation-error {
-  border: 2px solid var(--color-danger) !important;
-  border-radius: 0.5rem !important;
-  color: var(--color-danger);
-}
-.sign-up .container form .mb-3 input::placeholder {
-  color: var(--color-gray-400);
-}
-.sign-up .container form .mb-3 .form-check {
-  display: flex;
-  justify-content: left;
-  align-content: center;
-  padding-left: 0;
-}
-.sign-up .container form .mb-3 .form-check .form-check-label {
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-  margin-left: 10px;
-}
-.sign-up .container form .mb-3 .form-check .form-check-input {
-  margin: 0;
 }
 .sign-up .container form button {
   width: 100%;

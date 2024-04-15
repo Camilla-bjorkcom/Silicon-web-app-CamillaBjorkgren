@@ -100,6 +100,7 @@ img {
 }
 
 form {
+    @include standard-heading;
     background-color: var(--color-gray-000);
     border-radius: 6px;
     font-weight: 700;
@@ -114,6 +115,7 @@ form {
         border-radius: 8px !important;
         border: 1px solid var(--color-gray-400);
         color: var(--color-gray-150);
+        padding: 1rem;
 
         input::placeholder {
             color: var(--color-gray);
@@ -145,5 +147,20 @@ form {
             @include text-s;
             color: $danger;
         }
+    }
+
+    .form-check-label {
+        @include standard-text;
+        margin-left: 1rem;
+    }
+
+    .form-check {
+        @include standard-text;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .form-check-input {
+        margin: 0;
     }
 }
