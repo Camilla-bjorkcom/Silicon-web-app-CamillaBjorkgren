@@ -39,7 +39,7 @@
   --color-gray-700: #EFF2FC;
   --color-gray-800: #F3F6FF;
   --color-gray-900: #FFFFFF;
-  --color-white: #FFFFFF;
+  --color-white: #0B0F19;
   --color-black: #000000;
   --color-gray: #EFF2FC;
   --color-theme: #6366F1;
@@ -262,7 +262,6 @@ img {
   border-radius: 6px;
   font-weight: 700;
   color: var(--color-gray-900);
-  padding: 20px;
   margin-top: 2rem;
 }
 .form .form-control {
@@ -648,7 +647,7 @@ header .container #menu {
   grid-area: menu;
   display: none;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   header .container #menu {
     display: block;
   }
@@ -656,6 +655,7 @@ header .container #menu {
 header .container #menu nav {
   display: flex;
   gap: 15px;
+  margin-bottom: 0;
 }
 header .container .btn-switch {
   grid-area: switch;
@@ -786,7 +786,7 @@ header .container .show ul li a:hover {
   grid-area: menu;
   display: none;
 }
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .background-color .container #menu {
     display: block;
   }
@@ -794,6 +794,7 @@ header .container .show ul li a:hover {
 .background-color .container #menu nav {
   display: flex;
   gap: 15px;
+  margin-bottom: 0;
 }
 .background-color .container .btn-switch {
   grid-area: switch;
@@ -1826,12 +1827,12 @@ footer .container .unsubscribe {
   padding: 10px;
   color: var(--color-gray-900);
 }
-.account-details .container .user .btn-user .button i {
+.account-details .container .user .btn-user .button .i {
   margin-right: 1rem;
   display: none;
 }
 @media (min-width: 768px) {
-  .account-details .container .user .btn-user .button i {
+  .account-details .container .user .btn-user .button .i {
     display: inline-block;
   }
 }
@@ -1993,13 +1994,22 @@ footer .container .unsubscribe {
   width: 100%;
 }
 #account-security .container {
-  padding: 40px;
+  padding: 20px;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-areas: "userinfo content";
-  gap: 1rem 5rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "userinfo" "content";
+  row-gap: 2rem;
+}
+@media (min-width: 992px) {
+  #account-security .container {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "userinfo content";
+    gap: 1rem 5rem;
+    padding: 40px;
+  }
 }
 #account-security .container h6 {
   color: var(--color-theme);
@@ -2018,13 +2028,45 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   border-right: 1px solid var(--color-gray-200);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   width: 100%;
+  gap: 1.5rem;
+  justify-content: center;
+  background-color: var(--color-gray);
+  border-radius: 6px;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  #account-security .container .user {
+    justify-content: space-around;
+  }
+}
+@media (min-width: 992px) {
+  #account-security .container .user {
+    justify-content: flex-start;
+    background-color: var(--color-white);
+    padding: 0;
+    flex-direction: column;
+  }
+}
+#account-security .container .user .info {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  #account-security .container .user .info {
+    display: block;
+  }
 }
 #account-security .container .user .btn-user {
-  width: 70%;
+  width: 40%;
   margin-top: 1rem;
+}
+@media (min-width: 992px) {
+  #account-security .container .user .btn-user {
+    width: 70%;
+  }
 }
 #account-security .container .user .btn-user .button {
   width: 100%;
@@ -2033,8 +2075,14 @@ footer .container .unsubscribe {
   padding: 10px;
   color: var(--color-gray-900);
 }
-#account-security .container .user .btn-user .button i {
+#account-security .container .user .btn-user .button .i {
   margin-right: 1rem;
+  display: none;
+}
+@media (min-width: 768px) {
+  #account-security .container .user .btn-user .button .i {
+    display: inline-block;
+  }
 }
 #account-security .container .user .btn-user .active {
   background-color: var(--color-theme);
@@ -2124,8 +2172,12 @@ footer .container .unsubscribe {
   width: 50%;
 }
 #account-security .container .content .password-form .form-password .create-new-password {
-  display: flex;
   gap: 1rem;
+}
+@media (min-width: 768px) {
+  #account-security .container .content .password-form .form-password .create-new-password {
+    display: flex;
+  }
 }
 #account-security .container .content .password-form .form-password .create-new-password .new-password {
   width: 100%;
@@ -2313,24 +2365,29 @@ footer .container .unsubscribe {
   position: relative;
   z-index: 0;
 }
-.courses .container .pagination {
+.courses .container .bread-crumbs {
   display: block;
   margin-top: 25px;
   margin-bottom: 5rem;
 }
-.courses .container .pagination a {
+.courses .container .bread-crumbs a {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.courses .container .pagination a i {
+.courses .container .bread-crumbs a i {
   margin-left: 1rem;
   margin-right: 1rem;
 }
 .courses .container .upper-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 3rem;
+  display: block;
+}
+@media (min-width: 992px) {
+  .courses .container .upper-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
 }
 .courses .container .upper-content .search-categories {
   position: relative;
@@ -2360,9 +2417,6 @@ footer .container .unsubscribe {
   align-items: center;
   position: relative;
 }
-.courses .container .upper-content .search-categories .select .selected i {
-  width: 12px;
-}
 .courses .container .upper-content .search-categories .select .select-options {
   width: 100%;
   background-color: var(--color-gray-000);
@@ -2382,7 +2436,10 @@ footer .container .unsubscribe {
 .courses .container .upper-content .search-categories .select .select-options .option:hover {
   background-color: var(--color-gray-100);
 }
-.courses .container .upper-content .search-categories input {
+.courses .container .upper-content .search-categories .input-search-group {
+  position: relative;
+}
+.courses .container .upper-content .search-categories .input-search-group input {
   padding: 8px 16px;
   background-color: var(--color-gray-000);
   border: 0.5px solid var(--color-gray-100);
@@ -2393,13 +2450,13 @@ footer .container .unsubscribe {
   box-sizing: border-box;
   position: relative;
 }
-.courses .container .upper-content .search-categories input::placeholder {
+.courses .container .upper-content .search-categories .input-search-group input::placeholder {
   color: var(--color-gray-900);
 }
-.courses .container .upper-content .search-categories input:focus {
+.courses .container .upper-content .search-categories .input-search-group input:focus {
   outline: none;
 }
-.courses .container .upper-content .search-categories i {
+.courses .container .upper-content .search-categories .input-search-group i {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -2407,10 +2464,15 @@ footer .container .unsubscribe {
 .courses .container .course-list {
   grid-area: courses;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   position: relative;
   z-index: -5;
+}
+@media (min-width: 992px) {
+  .courses .container .course-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .courses .container .course-list .course {
   box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
@@ -2516,10 +2578,11 @@ footer .container .unsubscribe {
 .courses .container .course-list .course .course-details .info .course-footer .course-hours i {
   margin-right: 5px;
 }
-.courses nav {
+
+nav {
   margin-bottom: 5rem;
 }
-.courses nav .pagination {
+nav .pagination {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
@@ -2527,7 +2590,7 @@ footer .container .unsubscribe {
   gap: 1rem;
   font-size: 0.8rem;
 }
-.courses nav .pagination .number {
+nav .pagination .number {
   border: 1px solid var(--color-gray-100);
   border-radius: 6px;
   padding: 10px;
@@ -2537,11 +2600,11 @@ footer .container .unsubscribe {
   color: var(--color-gray-900);
   text-align: center;
 }
-.courses nav .pagination .number:hover {
+nav .pagination .number:hover {
   background-color: var(--color-gray-800);
   color: var(--color-gray-100);
 }
-.courses nav .pagination .active {
+nav .pagination .active {
   background-color: #6366F1;
   color: white;
   box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
@@ -3062,15 +3125,18 @@ footer .container .unsubscribe {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas: "userinfo courses";
-  gap: 1rem 5rem;
-  /*      .button {
-      display: flex;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      gap: 1rem;
-  }*/
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "userinfo" "courses";
+  row-gap: 2rem;
+}
+@media (min-width: 992px) {
+  .account-saveditems .container {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "userinfo courses";
+    gap: 1rem 5rem;
+    padding: 40px;
+  }
 }
 .account-saveditems .container h6 {
   color: #6366F1;
@@ -3083,13 +3149,45 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   border-right: 1px solid var(--color-gray-200);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   width: 100%;
+  gap: 1.5rem;
+  justify-content: center;
+  background-color: var(--color-gray);
+  border-radius: 6px;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  .account-saveditems .container .user {
+    justify-content: space-around;
+  }
+}
+@media (min-width: 992px) {
+  .account-saveditems .container .user {
+    justify-content: flex-start;
+    background-color: var(--color-white);
+    padding: 0;
+    flex-direction: column;
+  }
+}
+.account-saveditems .container .user .info-user {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  .account-saveditems .container .user .info-user {
+    display: block;
+  }
 }
 .account-saveditems .container .user .btn-user {
-  width: 70%;
+  width: 40%;
   margin-top: 1rem;
+}
+@media (min-width: 992px) {
+  .account-saveditems .container .user .btn-user {
+    width: 70%;
+  }
 }
 .account-saveditems .container .user .btn-user .button {
   width: 100%;
@@ -3098,8 +3196,14 @@ footer .container .unsubscribe {
   padding: 10px;
   color: var(--color-gray-900);
 }
-.account-saveditems .container .user .btn-user .button i {
+.account-saveditems .container .user .btn-user .button .i {
   margin-right: 1rem;
+  display: none;
+}
+@media (min-width: 768px) {
+  .account-saveditems .container .user .btn-user .button .i {
+    display: inline-block;
+  }
 }
 .account-saveditems .container .user .btn-user .active {
   background-color: var(--color-theme);
@@ -3167,13 +3271,22 @@ footer .container .unsubscribe {
   border: 0.5px solid red;
   color: red;
 }
+.account-saveditems .container .content .title-button .btn-delete:hover {
+  background-color: red;
+  color: white;
+}
 .account-saveditems .container .content .course-list {
   grid-area: courses;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  position: relative;
-  z-index: -5;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .account-saveditems .container .content .course-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    position: relative;
+    z-index: -5;
+  }
 }
 .account-saveditems .container .content .course-list .course {
   box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);

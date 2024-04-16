@@ -28,13 +28,14 @@ header {
             grid-area: menu;
             display: none;
 
-            @include xl {
+            @include lg {
                 display: block;
             }
 
             nav {
                 display: flex;
                 gap: 15px;
+                margin-bottom: 0;
             }
         }
 
@@ -175,13 +176,14 @@ header {
             grid-area: menu;
             display: none;
 
-            @include xl {
+            @include lg {
                 display: block;
             }
 
             nav {
                 display: flex;
                 gap: 15px;
+                margin-bottom: 0;
             }
         }
 
