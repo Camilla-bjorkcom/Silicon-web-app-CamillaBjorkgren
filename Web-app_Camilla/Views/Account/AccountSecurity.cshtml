@@ -40,7 +40,7 @@
                 <h2 class="title">Security</h2>
                 <h6>Password</h6>
 
-                <form class="form-password" method="post" asp-action="AccountSecurity" asp-controller="Account" novalidate>
+                <form class="form-password form" method="post" asp-action="AccountSecurity" asp-controller="Account" novalidate>
 
                     <div class="current-password">
                         <label asp-for="PasswordForm.CurrentPassword" class="form-label">Current password</label>
@@ -109,7 +109,7 @@
             <div class="delete-account">
                 <h6>Delete account</h6>
                 <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <form method="post" asp-action="DeleteAccount" asp-controller="Account">
+                <form class="form" method="post" asp-action="DeleteAccount" asp-controller="Account">
                     <div class="checkbox-group">
                         <input asp-for="DeleteAccount!.CheckDeleteAccount" type="checkbox" />
                         <label>Yes, I want to delete my account.</label>

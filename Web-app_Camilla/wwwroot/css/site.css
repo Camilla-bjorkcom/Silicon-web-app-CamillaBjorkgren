@@ -251,7 +251,7 @@ img {
   right: 0;
 }
 
-form {
+.form {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -265,7 +265,7 @@ form {
   padding: 20px;
   margin-top: 2rem;
 }
-form .form-control {
+.form .form-control {
   background: var(--color-gray-050);
   border: 1px solid var(--color-gray);
   border-radius: 8px !important;
@@ -273,25 +273,25 @@ form .form-control {
   color: var(--color-gray-150);
   padding: 1rem;
 }
-form .form-control input::placeholder {
+.form .form-control input::placeholder {
   color: var(--color-gray);
 }
-form .form-control.input-validation-error {
+.form .form-control.input-validation-error {
   border: 2px solid #EF4444 !important;
   border-radius: 0.5rem !important;
   color: #EF4444;
 }
-form .form-select {
+.form .form-select {
   background: var(--color-gray-050);
   border: 1px solid var(--color-gray);
   color: var(--color-gray-150);
 }
-form textarea {
+.form textarea {
   background: var(--color-gray-050);
   border: 1px solid var(--color-gray);
   color: var(--color-gray-150);
 }
-form span.field-validation-error {
+.form span.field-validation-error {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -299,14 +299,14 @@ form span.field-validation-error {
   font-size: 14px !important;
   color: #EF4444;
 }
-form .form-check-label {
+.form .form-check-label {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   margin-left: 1rem;
 }
-form .form-check {
+.form .form-check {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -314,7 +314,7 @@ form .form-check {
   display: inline-flex;
   align-items: center;
 }
-form .form-check-input {
+.form .form-check-input {
   margin: 0;
 }
 
@@ -1745,13 +1745,22 @@ footer .container .unsubscribe {
   width: 100%;
 }
 .account-details .container {
-  padding: 40px;
+  padding: 20px;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-areas: "userinfo detailsform";
-  gap: 1rem 5rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "userinfo" "detailsform";
+  row-gap: 2rem;
+}
+@media (min-width: 992px) {
+  .account-details .container {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "userinfo detailsform";
+    gap: 1rem 5rem;
+    padding: 40px;
+  }
 }
 .account-details .container h6 {
   color: var(--color-theme);
@@ -1770,13 +1779,45 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   border-right: 1px solid var(--color-gray-200);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   width: 100%;
+  gap: 1.5rem;
+  justify-content: center;
+  background-color: var(--color-gray);
+  border-radius: 6px;
+  padding: 10px;
+}
+@media (min-width: 768px) {
+  .account-details .container .user {
+    justify-content: space-around;
+  }
+}
+@media (min-width: 992px) {
+  .account-details .container .user {
+    justify-content: flex-start;
+    background-color: var(--color-white);
+    padding: 0;
+    flex-direction: column;
+  }
+}
+.account-details .container .user .info {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  .account-details .container .user .info {
+    display: block;
+  }
 }
 .account-details .container .user .btn-user {
-  width: 70%;
+  width: 40%;
   margin-top: 1rem;
+}
+@media (min-width: 992px) {
+  .account-details .container .user .btn-user {
+    width: 70%;
+  }
 }
 .account-details .container .user .btn-user .button {
   width: 100%;
@@ -1787,6 +1828,12 @@ footer .container .unsubscribe {
 }
 .account-details .container .user .btn-user .button i {
   margin-right: 1rem;
+  display: none;
+}
+@media (min-width: 768px) {
+  .account-details .container .user .btn-user .button i {
+    display: inline-block;
+  }
 }
 .account-details .container .user .btn-user .active {
   background-color: var(--color-theme);
@@ -1848,7 +1895,12 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  padding: 30px;
+  padding: 10px;
+}
+@media (min-width: 992px) {
+  .account-details .container .details-form {
+    padding: 30px;
+  }
 }
 .account-details .container .details-form .title {
   line-height: 160%;
@@ -1857,15 +1909,31 @@ footer .container .unsubscribe {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  font-size: 32px !important;
+  font-size: 24px !important;
+}
+@media (min-width: 992px) {
+  .account-details .container .details-form .title {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 32px !important;
+  }
 }
 .account-details .container .details-form .optional {
   font-weight: 300;
   display: inline;
 }
 .account-details .container .details-form .form-basicinfo .name {
-  display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .account-details .container .details-form .form-basicinfo .name {
+    display: flex;
+  }
 }
 .account-details .container .details-form .form-basicinfo .name .first-name {
   width: 100%;
@@ -1874,8 +1942,13 @@ footer .container .unsubscribe {
   width: 100%;
 }
 .account-details .container .details-form .form-basicinfo .contact-info {
-  display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .account-details .container .details-form .form-basicinfo .contact-info {
+    display: flex;
+  }
 }
 .account-details .container .details-form .form-basicinfo .contact-info .email {
   width: 100%;
@@ -1897,8 +1970,12 @@ footer .container .unsubscribe {
   width: 100%;
 }
 .account-details .container .address .form-address .postalcode-city {
-  display: flex;
   gap: 1rem;
+}
+@media (min-width: 768px) {
+  .account-details .container .address .form-address .postalcode-city {
+    display: flex;
+  }
 }
 .account-details .container .address .form-address .postalcode-city .postalcode {
   width: 100%;
@@ -2236,16 +2313,16 @@ footer .container .unsubscribe {
   position: relative;
   z-index: 0;
 }
-.courses .container .pagnation {
+.courses .container .pagination {
   display: block;
   margin-top: 25px;
   margin-bottom: 5rem;
 }
-.courses .container .pagnation a {
+.courses .container .pagination a {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.courses .container .pagnation a i {
+.courses .container .pagination a i {
   margin-left: 1rem;
   margin-right: 1rem;
 }

@@ -99,7 +99,7 @@ img {
     right: 0;
 }
 
-form {
+.form {
     @include standard-heading;
     background-color: var(--color-gray-000);
     border-radius: 6px;

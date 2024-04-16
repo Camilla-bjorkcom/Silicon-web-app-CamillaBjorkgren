@@ -3,13 +3,22 @@
     width: 100%;
 
     .container {
-        padding: 40px;
+        padding: 20px;
         height: 100%;
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-areas: "userinfo detailsform";
-        gap: 1rem 5rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "userinfo" "detailsform";
+        row-gap: 2rem;
+
+        @include lg {
+            grid-template-columns: 1fr 2fr;
+            grid-template-areas: "userinfo detailsform";
+            gap: 1rem 5rem;
+            padding: 40px;
+        }
+
 
         h6 {
             color: var(--color-theme);
@@ -27,14 +36,43 @@
             @include standard-text;
             border-right: 1px solid var(--color-gray-200);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             width: 100%;
+            gap: 1.5rem;
+            justify-content: center;
+            background-color: var(--color-gray);
+            border-radius: 6px;
+            padding: 10px;
 
+            @include md {
+                justify-content: space-around;
+            }
+
+            @include lg {
+                justify-content: flex-start;
+                background-color: var(--color-white);
+                padding: 0;
+                flex-direction: column;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+
+                @include lg {
+                    display: block;
+                }
+               
+            }
 
             .btn-user {
-                width: 70%;
+                width: 40%;
                 margin-top: 1rem;
+
+                @include lg {
+                    width: 70%;
+                }
 
                 .button {
                     width: 100%;
@@ -42,11 +80,18 @@
                     text-align: left;
                     padding: 10px;
                     color: var(--color-gray-900);
+                  
 
                     i {
                         margin-right: 1rem;
+                        display: none;
+                        @include md {
+                            display: inline-block;
+                          
+                        }
                     }
                 }
+
                 .active {
                     background-color: var(--color-theme);
                     color: var(--color-white);
@@ -102,13 +147,18 @@
         .details-form {
             grid-area: detailsform;
             @include standard-heading;
-            padding: 30px;
+            padding: 10px;
 
-            
-
+            @include lg {
+                padding: 30px;
+            }
 
             .title {
-                @include h2;
+                @include h4;
+
+                @include lg {
+                    @include h2;
+                }
             }
 
             .optional {
@@ -120,8 +170,12 @@
             .form-basicinfo {
 
                 .name {
-                    display: flex;
                     gap: 1rem;
+                    margin-bottom: 1rem;
+
+                    @include md {
+                        display: flex;
+                    }
 
                     .first-name {
                         width: 100%;
@@ -133,8 +187,12 @@
                 }
 
                 .contact-info {
-                    display: flex;
                     gap: 1rem;
+                    margin-bottom: 1rem;
+
+                    @include md {
+                        display: flex;
+                    }
 
                     .email {
                         width: 100%;
@@ -164,8 +222,12 @@
 
 
                 .postalcode-city {
-                    display: flex;
+             
                     gap: 1rem;
+
+                    @include md {
+                        display:flex;
+                    }
 
                     .postalcode {
                         width: 100%;
