@@ -22,7 +22,6 @@
         .upper-content {
             display: block;
 
-
             @include lg {
                 display: flex;
                 align-items: center;
@@ -30,22 +29,50 @@
                 margin-bottom: 3rem;
             }
 
+            .title {
+                @include h3;
+
+                @include lg {
+                    @include h1;
+                }
+            }
+
             .search-categories {
                 position: relative;
-                display: flex;
-                gap: 2rem;
+                display: block;
+
+                @include lg {
+                    display: flex;
+                    gap: 2rem;
+                }
 
 
                 .select {
                     min-width: 300px;
-                    position: absolute;
-                    right: 15rem;
-                    z-index: 9999;
                     background-color: var(--color-gray-000);
-                    border: 0.5px solid var(--color-gray-100);
+                    border: 2px solid var(--color-gray-200);
                     color: var(--color-gray-900);
                     border-radius: 6px;
                     box-sizing: border-box;
+
+                    @include md {
+                        position: absolute;
+                        right: 0;
+                        top: -0.5rem;
+                        z-index: 9999;
+                    }
+
+                    @include lg {
+                        right: 15rem;
+                        top: 0;
+                    }
+
+
+                    i {
+                        position: absolute;
+                        right: 10px;
+                        top: 12px;
+                    }
 
                     .selected {
                         width: 100%;
@@ -56,7 +83,7 @@
                         cursor: pointer;
                         display: flex;
                         justify-content: space-between;
-                        align-items: center;     
+                        align-items: center;
                         position: relative;
                     }
 
@@ -69,8 +96,6 @@
                         border: 1px solid var(--color-gray-400);
                         margin: 0;
                         padding: 8px 16px;
-
-
 
                         .option {
                             width: 100%;
@@ -86,20 +111,28 @@
                     }
                 }
 
-
                 .input-search-group {
                     position: relative;
+                    display: block;
+                    width: fit-content;
 
                     input {
                         padding: 8px 16px;
                         background-color: var(--color-gray-000);
-                        border: 0.5px solid var(--color-gray-100);
+                        border: 2px solid var(--color-gray-200);
                         color: var(--color-gray-900);
                         border-radius: 6px;
-                        width: 100%;
                         text-align: left;
                         box-sizing: border-box;
-                        position: relative;
+                        margin-top: 15px;
+                        margin-bottom: 0.8rem;
+
+                        @include md {
+                            margin-top: 0;
+                        }
+                        @include lg {
+                            margin-bottom: 0;
+                        }
 
 
                         &::placeholder {
@@ -127,10 +160,14 @@
         .course-list {
             grid-area: courses;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 1rem;
             position: relative;
             z-index: -5;
+
+            @include md {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
             @include lg {
                 grid-template-columns: repeat(3, 1fr);

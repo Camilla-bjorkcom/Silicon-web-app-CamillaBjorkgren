@@ -42,6 +42,109 @@
                 <label>Dark</label>
             </div>
 
+
+            <div class="account-buttons hide">
+                @if (_signInManager.IsSignedIn(User) && user != null)
+                {
+                    <div class="profile">
+                        <div class="image">
+                            @if (user.ProfileImg != null)
+                            {
+                                <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
+                            }
+                            else
+                            {
+                                <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                    <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-light fa-user"></i>Sign up</a>
+                }
+            </div>
+
+            <button type="button" onclick="toggleMenu()" class="btn-mobile">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>
+                    @if (!_signInManager.IsSignedIn(User) && user == null)
+                    {
+                        <li><a asp-controller="Auth" asp-action="SignIn">Sign In</a></li>
+                        <li><a asp-controller="Auth" asp-action="SignUp">Sign Up</a></li>
+                    }
+                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    @if (_signInManager.IsSignedIn(User) && user != null)
+                    {                 
+                        <li><a asp-controller="Courses" asp-action="courses">Courses</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a></li>
+                        }
+                        <div class="profile">
+                            <div class="image">
+                                <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
+                                @if (user.ProfileImg != null)
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
+                                }
+                                else
+                                {
+                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                    ´
+
+                   
+                  
+             
+                </ul>
+
+
+            </nav>
+        </div>
+    </header>
+}
+else
+{
+    <header>
+        <div class="container">
+            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/silicon-logo.svg" alt="Logotype for Silicon"></a>
+
+            <div id="menu" class="hide">
+                <nav>
+                    <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="overview">Overview</a>
+                    <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="features">Features</a>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a class="menu-link" asp-controller="Courses" asp-action="courses">Courses</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a>
+                        }
+                    }
+
+
+                    <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
+                </nav>
+            </div>
+
+            <div id="theme-switch" class="btn-switch">
+                <label>Light</label>
+                <label class="switch" for="switch-mode">
+                    <input type="checkbox" id="switch-mode" checked="@isDark" />
+                    <span class="slider round"></span>
+                </label>
+                <label>Dark</label>
+            </div>
+
+            
             <div class="account-buttons hide">
                 @if (_signInManager.IsSignedIn(User) && user != null)
                 {
@@ -102,107 +205,10 @@
                             </div>
                         </div>
                     }
+              
+                  
                 </ul>
 
-            </nav>
-        </div>
-    </header>
-}
-else
-{
-    <header>
-        <div class="container">
-            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/silicon-logo.svg" alt="Logotype for Silicon"></a>
-
-            <div id="menu" class="hide">
-                <nav>
-                    <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="overview">Overview</a>
-                    <a class="menu-link" asp-controller="home" asp-action="index" asp-fragment="features">Features</a>
-                    @if (_signInManager.IsSignedIn(User))
-                    {
-                        <a class="menu-link" asp-controller="Courses" asp-action="courses">Courses</a>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a>
-                        }
-                    }
-
-
-                    <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
-                </nav>
-            </div>
-
-            <div id="theme-switch" class="btn-switch">
-                <label>Light</label>
-                <label class="switch" for="switch-mode">
-                    <input type="checkbox" id="switch-mode" checked="@isDark" />
-                    <span class="slider round"></span>
-                </label>
-                <label>Dark</label>
-            </div>
-
-            <div class="account-buttons hide">
-                @if (_signInManager.IsSignedIn(User) && user != null)
-                {
-                    <div class="profile">
-                        <div class="image">
-                            @if (user.ProfileImg != null)
-                            {
-                                <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
-                            }
-                            else
-                            {
-                                <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
-                            }
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                    <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-light fa-user"></i>Sign up</a>
-                }
-            </div>
-
-            <button type="button" onclick="toggleMenu()" class="btn-mobile">
-                <i class="fa fa-bars"></i>
-            </button>
-            <nav class="mobile-menu">
-                <ul>
-                    <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>
-                    @if (!_signInManager.IsSignedIn(User) && user == null)
-                    {
-                        <li><a asp-controller="Auth" asp-action="SignIn">Sign In</a></li>
-                        <li><a asp-controller="Auth" asp-action="SignUp">Sign Up</a></li>
-                    }
-                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
-                    @if (_signInManager.IsSignedIn(User) && user != null)
-                    {
-                        <li><a asp-controller="Courses" asp-action="courses">Courses</a></li>
-
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li><a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a></li>
-                        }
-                    }
-                    @if (_signInManager.IsSignedIn(User) && user != null)
-                    {
-                        <div class="profile">
-                            <div class="image">
-                               <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
-                                @if (user.ProfileImg != null)
-                                {
-                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/@user!.ProfileImg" alt="Profile image" /></a>
-                                }
-                                else
-                                {
-                                    <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
-                                }
-                            </div>
-                        </div>
-                    }
-                </ul>
-               
             </nav>
         </div>
     </header>

@@ -626,7 +626,7 @@ header .container {
   align-items: center;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
+  grid-template-areas: "logo . mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
   width: 100%;
 }
@@ -661,7 +661,7 @@ header .container .btn-switch {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   header .container .btn-switch {
     display: block;
   }
@@ -688,6 +688,11 @@ header .container .account-buttons .profile .image img {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+}
+header .container .account-buttons .profile .image img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
 }
 header .container .btn-mobile {
   grid-area: mobile;
@@ -742,6 +747,11 @@ header .container .show ul .image img {
   border-radius: 50%;
   object-fit: cover;
 }
+header .container .show ul .image img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
+}
 header .container .show ul li {
   margin-bottom: 0.5rem;
 }
@@ -765,7 +775,7 @@ header .container .show ul li a:hover {
   align-items: center;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
+  grid-template-areas: "logo . mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
   width: 100%;
 }
@@ -800,7 +810,7 @@ header .container .show ul li a:hover {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .background-color .container .btn-switch {
     display: block;
   }
@@ -827,6 +837,11 @@ header .container .show ul li a:hover {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+}
+.background-color .container .account-buttons .profile .image img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
 }
 .background-color .container .btn-mobile {
   grid-area: mobile;
@@ -880,6 +895,11 @@ header .container .show ul li a:hover {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+}
+.background-color .container .show ul .image img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
 }
 .background-color .container .show ul li {
   margin-bottom: 0.5rem;
@@ -2389,21 +2409,62 @@ footer .container .unsubscribe {
     margin-bottom: 3rem;
   }
 }
+.courses .container .upper-content .title {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 28px !important;
+}
+@media (min-width: 992px) {
+  .courses .container .upper-content .title {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 40px !important;
+  }
+}
 .courses .container .upper-content .search-categories {
   position: relative;
-  display: flex;
-  gap: 2rem;
+  display: block;
+}
+@media (min-width: 992px) {
+  .courses .container .upper-content .search-categories {
+    display: flex;
+    gap: 2rem;
+  }
 }
 .courses .container .upper-content .search-categories .select {
   min-width: 300px;
-  position: absolute;
-  right: 15rem;
-  z-index: 9999;
   background-color: var(--color-gray-000);
-  border: 0.5px solid var(--color-gray-100);
+  border: 2px solid var(--color-gray-200);
   color: var(--color-gray-900);
   border-radius: 6px;
   box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .courses .container .upper-content .search-categories .select {
+    position: absolute;
+    right: 0;
+    top: -0.5rem;
+    z-index: 9999;
+  }
+}
+@media (min-width: 992px) {
+  .courses .container .upper-content .search-categories .select {
+    right: 15rem;
+    top: 0;
+  }
+}
+.courses .container .upper-content .search-categories .select i {
+  position: absolute;
+  right: 10px;
+  top: 12px;
 }
 .courses .container .upper-content .search-categories .select .selected {
   width: 100%;
@@ -2438,17 +2499,29 @@ footer .container .unsubscribe {
 }
 .courses .container .upper-content .search-categories .input-search-group {
   position: relative;
+  display: block;
+  width: fit-content;
 }
 .courses .container .upper-content .search-categories .input-search-group input {
   padding: 8px 16px;
   background-color: var(--color-gray-000);
-  border: 0.5px solid var(--color-gray-100);
+  border: 2px solid var(--color-gray-200);
   color: var(--color-gray-900);
   border-radius: 6px;
-  width: 100%;
   text-align: left;
   box-sizing: border-box;
-  position: relative;
+  margin-top: 15px;
+  margin-bottom: 0.8rem;
+}
+@media (min-width: 768px) {
+  .courses .container .upper-content .search-categories .input-search-group input {
+    margin-top: 0;
+  }
+}
+@media (min-width: 992px) {
+  .courses .container .upper-content .search-categories .input-search-group input {
+    margin-bottom: 0;
+  }
 }
 .courses .container .upper-content .search-categories .input-search-group input::placeholder {
   color: var(--color-gray-900);
@@ -2464,10 +2537,15 @@ footer .container .unsubscribe {
 .courses .container .course-list {
   grid-area: courses;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
   position: relative;
   z-index: -5;
+}
+@media (min-width: 768px) {
+  .courses .container .course-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (min-width: 992px) {
   .courses .container .course-list {
