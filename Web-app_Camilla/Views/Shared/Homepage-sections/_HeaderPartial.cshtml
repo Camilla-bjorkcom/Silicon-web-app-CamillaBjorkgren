@@ -85,7 +85,7 @@
                         {
                             <li><a class="menu-link" asp-controller="Admin" asp-action="Index">Admin Portal</a></li>
                         }
-                        <div class="profile">
+                        <li class="profile">
                             <div class="image">
                                 <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
                                 @if (user.ProfileImg != null)
@@ -97,16 +97,9 @@
                                     <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
                                 }
                             </div>
-                        </div>
-                    }
-                    ´
-
-                   
-                  
-             
+                        </li>
+                    }                               
                 </ul>
-
-
             </nav>
         </div>
     </header>
@@ -191,7 +184,7 @@ else
                     }
                     @if (_signInManager.IsSignedIn(User) && user != null)
                     {
-                        <div class="profile">
+                        <li class="profile">
                             <div class="image">
                                 <a asp-action="index" asp-controller="account"> <p>@user.FirstName @user.LastName</p></a>
                                 @if (user.ProfileImg != null)
@@ -203,7 +196,7 @@ else
                                     <a asp-action="index" asp-controller="account"><img src="~/uploads/avatar.jpg" alt="Profile image" /></a>
                                 }
                             </div>
-                        </div>
+                        </li>
                     }
               
                   

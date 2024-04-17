@@ -728,30 +728,6 @@ header .container .show ul {
   padding: 15px 0;
   border-radius: 6px;
 }
-header .container .show ul .image {
-  margin-top: 2rem;
-}
-header .container .show ul .image p {
-  text-decoration: none;
-  color: var(--color-gray-900);
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-  font-size: 14px !important;
-  font-weight: 800;
-}
-header .container .show ul .image img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-header .container .show ul .image img:hover {
-  cursor: pointer;
-  width: 64px;
-  height: 64px;
-}
 header .container .show ul li {
   margin-bottom: 0.5rem;
 }
@@ -762,8 +738,34 @@ header .container .show ul li a {
   padding: 5px 5px;
 }
 header .container .show ul li a:hover {
-  background-color: #6366F1;
-  color: var(--color-gray-100);
+  color: var(--color-gray-400);
+}
+header .container .show ul .profile {
+  margin-top: 2rem;
+}
+header .container .show ul .profile p {
+  text-decoration: none;
+  color: var(--color-gray-900);
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  font-weight: 800;
+}
+header .container .show ul .profile p:hover {
+  color: var(--color-gray-400);
+}
+header .container .show ul .profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+header .container .show ul .profile img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
 }
 
 .background-color {
@@ -877,30 +879,6 @@ header .container .show ul li a:hover {
   padding: 15px 0;
   border-radius: 6px;
 }
-.background-color .container .show ul .image {
-  margin-top: 2rem;
-}
-.background-color .container .show ul .image p {
-  text-decoration: none;
-  color: var(--color-gray-900);
-  line-height: 160%;
-  font-weight: 400;
-  color: var(--color-gray-700);
-  font-family: "Manrope", sans-serif;
-  font-size: 14px !important;
-  font-weight: 800;
-}
-.background-color .container .show ul .image img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.background-color .container .show ul .image img:hover {
-  cursor: pointer;
-  width: 64px;
-  height: 64px;
-}
 .background-color .container .show ul li {
   margin-bottom: 0.5rem;
 }
@@ -911,8 +889,34 @@ header .container .show ul li a:hover {
   padding: 5px 5px;
 }
 .background-color .container .show ul li a:hover {
-  background-color: #6366F1;
-  color: var(--color-gray-100);
+  color: var(--color-gray-400);
+}
+.background-color .container .show ul .profile {
+  margin-top: 2rem;
+}
+.background-color .container .show ul .profile p {
+  text-decoration: none;
+  color: var(--color-gray-900);
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  font-weight: 800;
+}
+.background-color .container .show ul .profile p:hover {
+  color: var(--color-gray-400);
+}
+.background-color .container .show ul .profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.background-color .container .show ul .profile img:hover {
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
 }
 
 footer {
@@ -2746,20 +2750,21 @@ nav .pagination .active {
   position: absolute;
   top: 0;
 }
-.course-details .container .text-header .pagnation {
+.course-details .container .text-header .bread-crumbs {
   display: inline-block;
   margin-top: 25px;
   color: var(--color-gray);
   margin-bottom: 2rem;
+  text-decoration: none;
 }
-.course-details .container .text-header .pagnation a {
+.course-details .container .text-header .bread-crumbs a {
   margin-right: 1rem;
   color: white;
 }
-.course-details .container .text-header .pagnation a i {
+.course-details .container .text-header .bread-crumbs a i {
   margin-right: 10px;
 }
-.course-details .container .text-header .pagnation i {
+.course-details .container .text-header .bread-crumbs i {
   margin-right: 10px;
 }
 .course-details .container .text-header .title-description {
@@ -2805,8 +2810,20 @@ nav .pagination .active {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  font-size: 32px !important;
+  font-size: 28px !important;
   color: var(--color-white);
+}
+@media (min-width: 768px) {
+  .course-details .container .text-header .title-description .title {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 32px !important;
+    color: var(--color-white);
+  }
 }
 .course-details .container .text-header .title-description .text {
   color: var(--color-gray) !important;
@@ -2829,8 +2846,13 @@ nav .pagination .active {
   grid-template-columns: fit-content;
   grid-template-areas: "img p" "img c";
   width: fit-content;
-  margin-top: 10rem;
+  margin-top: 2rem;
   color: var(--color-gray) !important;
+}
+@media (min-width: 992px) {
+  .course-details .container .text-header .title-description .creator {
+    margin-top: 10rem;
+  }
 }
 .course-details .container .text-header .title-description .creator img {
   grid-area: img;
@@ -2876,9 +2898,14 @@ nav .pagination .active {
 }
 .course-details .container .content .description .learn .learnlist {
   display: flex;
-  gap: 5px;
+  gap: 20px;
   align-items: center;
   margin-bottom: 10px;
+}
+@media (min-width: 992px) {
+  .course-details .container .content .description .learn .learnlist {
+    gap: 5px;
+  }
 }
 .course-details .container .content .description .learn .learnlist p {
   margin: 0;
@@ -2987,6 +3014,24 @@ nav .pagination .active {
   grid-area: title;
   margin: auto 0;
   width: 90%;
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  font-size: 20px !important;
+}
+@media (min-width: 992px) {
+  .course-details .container .details .detail .detail-title {
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 28px !important;
+  }
 }
 .course-details .container .details .detail .text {
   grid-area: text;
@@ -3004,7 +3049,13 @@ nav .pagination .active {
 }
 .course-details .creator-info .creator-img {
   grid-area: img;
-  z-index: 2;
+  display: none;
+}
+@media (min-width: 1200px) {
+  .course-details .creator-info .creator-img {
+    display: block;
+    z-index: 2;
+  }
 }
 .course-details .creator-info .creator-text {
   grid-area: text;

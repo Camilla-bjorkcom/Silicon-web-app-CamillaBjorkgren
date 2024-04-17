@@ -25,11 +25,12 @@
             position: absolute;
             top: 0;
 
-            .pagnation {
+            .bread-crumbs {
                 display: inline-block;
                 margin-top: 25px;
                 color: var(--color-gray);
                 margin-bottom: 2rem;
+                text-decoration: none;
 
                 a {
                     margin-right: 1rem;
@@ -79,8 +80,13 @@
                 }
 
                 .title {
-                    @include h2;
+                    @include h3;
                     color: var(--color-white);
+
+                    @include md {
+                        @include h2;
+                        color: var(--color-white);
+                    }
                 }
 
                 .text {
@@ -108,8 +114,12 @@
                     grid-template-columns: fit-content;
                     grid-template-areas: 'img p' 'img c';
                     width: fit-content;
-                    margin-top: 10rem;
+                    margin-top: 2rem;
                     color: var(--color-gray) !important;
+
+                    @include lg {
+                        margin-top: 10rem;
+                    }
 
                     img {
                         grid-area: img;
@@ -159,9 +169,13 @@
 
                     .learnlist {
                         display: flex;
-                        gap: 5px;
+                        gap: 20px;
                         align-items: center;
                         margin-bottom: 10px;
+
+                        @include lg {
+                            gap: 5px;
+                        }
 
                         p {
                             margin: 0;
@@ -225,7 +239,6 @@
                 height: fit-content;
                 border: 3px solid var(--color-gray);
                 border-radius: 7px;
-
             }
 
             .admin-badge {
@@ -242,10 +255,6 @@
                     margin: 1rem;
                 }
             }
-
-
-
-
             .buttons {
                 display: flex;
                 gap: 1rem;
@@ -289,6 +298,11 @@
                     grid-area: title;
                     margin: auto 0;
                     width: 90%;
+                    @include h5;
+
+                    @include lg {
+                        @include h3;
+                    }
                 }
 
                 .text {
@@ -312,7 +326,12 @@
 
         .creator-img {
             grid-area: img;
-            z-index: 2;
+            display: none;
+
+            @include xl {
+                display: block;
+                z-index: 2;
+            }
         }
 
         .creator-text {
