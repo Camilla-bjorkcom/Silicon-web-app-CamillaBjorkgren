@@ -43,9 +43,17 @@
                 </button>
             </div>
             <span class="information">
-                @if (ViewData["Status"]?.ToString() == "Success")
+                @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
                 {
-                    <span class="alert alert-success">
+                    <div class="alert-success-pop">@ViewData["Success"]</div>
+                }
+                @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+                {
+                    <div class="alert-danger-pop">@ViewData["Error"]</div>
+                }
+                @* @if (ViewData["Status"]?.ToString() == "Success")
+                {
+                    <span class="alert-success-pop">
                         You have been subscribed
                     </span>
                 }
@@ -57,7 +65,7 @@
                 }
                 else if (ViewData["Status"]?.ToString() == "Invalid")
                 {
-                    <span class="alert alert-danger">
+                    <span class="alert-danger">
                         You must enter an valid email address
                     </span>
                 }
@@ -72,7 +80,7 @@
                     <span class="alert alert-danger">
                         Unauthorized
                     </span>
-                }
+                } *@
                 else
                 {
                     <span class="terms">

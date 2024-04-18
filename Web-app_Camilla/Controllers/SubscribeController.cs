@@ -28,12 +28,12 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
                 else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                 {
                     ViewData["Status"] = "AlreadyExists";
-                    ViewData["ErrorMessage"] = "Failed at subscribing to newsletter! It appears as if you already have an subscription";
+                    ViewData["Error"] = "Failed at subscribing to newsletter! It appears as if you already have an subscription";
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     ViewData["Status"] = "Unauthorized";
-                    ViewData["ErrorMessage"] = "Failed at subscribing to newsletter! Contact the web admin";
+                    ViewData["Error"] = "Failed at subscribing to newsletter! Contact the web admin";
                 }
             }
             catch { ViewData["Status"] = "ConnectionFailed"; }
@@ -41,8 +41,9 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
         else
         {
             ViewData["Status"] = "Invalid";
-            ViewData["ErrorMessage"] = "You must enter an valid email address";
+            ViewData["Error"] = "You must enter an valid email address";
         }
+
         return RedirectToAction("Index", "Home", "newsletter");
     }
 
@@ -61,13 +62,21 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
             {
                 var response = await _http.DeleteAsync($"https://localhost:7138/api/Subscribers/{viewModel.Email}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
-                { ViewData["Success"] = "Successfully deleted your subscription to our newsletter!"; }
+                { ViewData["Success"] = "Successfully deleted your subscription to our newsletter!";
+                    return View();
+                }
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound) 
+                {
+                    ViewData["Error"] = "Failed. Could not delete your email because it was not found.";
+                    return View();
+                }
+                ViewData["Error"] = "Failed, please try again later or contact the web admin.";
             }
-            catch { ViewData["ErrorMessage"] = "Failed, please try again later or contact the web admin."; }
+            catch { ViewData["Error"] = "Failed, please try again later or contact the web admin."; }
         }
         else
         {
-            ViewData["ErrorMessage"] = "Failed, please try again later or contact the web admin.";
+            ViewData["Error"] = "Failed, please try again later or contact the web admin.";
         }
         return View();
     }

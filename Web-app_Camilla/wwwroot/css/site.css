@@ -18,7 +18,7 @@
   --color-theme: #6366F1;
   --color-danger: #F5D7DA;
   --color-danger-dark: #E57E88;
-  --color-sucess: #BCF7D2;
+  --color-success: #BCF7D2;
   --color-warning: #FFE8AD;
   --color-info: #CFDEFD;
   --font-standard: "Manrope", sans-serif;
@@ -45,7 +45,7 @@
   --color-theme: #6366F1;
   --color-danger: #F5D7DA;
   --color-danger-dark: #E57E88;
-  --color-sucess: #BCF7D2;
+  --color-success: #BCF7D2;
   --color-warning: #FFE8AD;
   --color-info: #CFDEFD;
   --color-transparent: transparent;
@@ -315,6 +315,24 @@ img {
 }
 .form .form-check-input {
   margin: 0;
+}
+
+.alert-success-pop {
+  background-color: var(--color-success);
+  width: 70%;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+.alert-danger-pop {
+  background-color: var(--color-danger);
+  padding: 1rem;
+  width: 70%;
+  text-align: center;
+  border-radius: 6px;
+  margin: 0 auto;
 }
 
 a {
@@ -626,7 +644,7 @@ header .container {
   align-items: center;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "logo . mobile" "mobile-menu mobile-menu mobile-menu ";
+  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
   width: 100%;
 }
@@ -659,12 +677,6 @@ header .container #menu nav {
 }
 header .container .btn-switch {
   grid-area: switch;
-  display: none;
-}
-@media (min-width: 992px) {
-  header .container .btn-switch {
-    display: block;
-  }
 }
 header .container .account-buttons {
   grid-area: buttons;
@@ -777,7 +789,7 @@ header .container .show ul .profile img:hover {
   align-items: center;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "logo . mobile" "mobile-menu mobile-menu mobile-menu ";
+  grid-template-areas: "logo switch mobile" "mobile-menu mobile-menu mobile-menu ";
   gap: 40px;
   width: 100%;
 }
@@ -810,12 +822,6 @@ header .container .show ul .profile img:hover {
 }
 .background-color .container .btn-switch {
   grid-area: switch;
-  display: none;
-}
-@media (min-width: 992px) {
-  .background-color .container .btn-switch {
-    display: block;
-  }
 }
 .background-color .container .account-buttons {
   grid-area: buttons;
@@ -3075,7 +3081,7 @@ nav .pagination .active {
   height: 100vh;
 }
 .settings .container {
-  height: 100vh;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3083,9 +3089,16 @@ nav .pagination .active {
 .settings .container .content {
   width: 70%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "user course";
-  gap: 5rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "user" "course";
+  gap: 2rem;
+}
+@media (min-width: 992px) {
+  .settings .container .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "user course";
+    gap: 5rem;
+  }
 }
 .settings .container .content .image {
   max-width: 150px;
@@ -3099,40 +3112,42 @@ nav .pagination .active {
   min-height: 150px;
 }
 .settings .container .content ul {
-  color: black;
+  color: var(--color-gray-900);
   width: fit-content;
 }
 .settings .container .content ul li {
-  color: black;
+  color: var(--color-gray-900);
   width: fit-content;
 }
 .settings .container .content .useradmin {
   grid-area: user;
   box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
   text-decoration: none;
-  color: black;
+  color: var(--color-gray-000);
   position: relative;
   max-height: min-content;
+  background-color: var(--color-gray-100);
 }
 .settings .container .content .useradmin h3 {
   text-align: center;
 }
 .settings .container .content .useradmin:hover {
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-300);
 }
 .settings .container .content .courseadmin {
   grid-area: course;
   box-shadow: 0px 2px 6.4px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 12px -1px rgba(19, 16, 34, 0.06);
   text-decoration: none;
-  color: black;
+  color: var(--color-gray-000);
   position: relative;
   max-height: min-content;
+  background-color: var(--color-gray-100);
 }
 .settings .container .content .courseadmin h3 {
   text-align: center;
 }
 .settings .container .content .courseadmin:hover {
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-300);
 }
 
 .updatecourse {
@@ -3140,14 +3155,12 @@ nav .pagination .active {
   padding: 50px;
 }
 .updatecourse .container {
-  margin: 4rem auto;
+  margin: 0 auto;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .updatecourse .container .courseform {
   width: 60%;
+  margin: 0 auto;
 }
 .updatecourse .container .courseform h2 {
   text-align: center;
@@ -3157,7 +3170,14 @@ nav .pagination .active {
   margin: 0 auto;
 }
 .updatecourse .container .courseform .untouched {
-  background: var(--color-gray);
+  background: var(--color-gray-300);
+}
+.updatecourse .container .courseform .form-select {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  margin-bottom: 1rem;
+  border: 1px solid var(--color-gray-300);
 }
 .updatecourse .container .courseform .checkbox-group {
   display: flex;
@@ -3195,14 +3215,12 @@ nav .pagination .active {
   padding: 50px;
 }
 .createcourse .container {
-  margin: 4rem auto;
+  margin: 0 auto;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .createcourse .container .courseform {
   width: 60%;
+  margin: 0 auto;
 }
 .createcourse .container .courseform h2 {
   text-align: center;
@@ -3212,7 +3230,14 @@ nav .pagination .active {
   margin: 0 auto;
 }
 .createcourse .container .courseform .untouched {
-  background: var(--color-gray);
+  background: var(--color-gray-300);
+}
+.createcourse .container .courseform .form-select {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  margin-bottom: 1rem;
+  border: 1px solid var(--color-gray-300);
 }
 .createcourse .container .courseform .checkbox-group {
   display: flex;
@@ -3463,6 +3488,8 @@ nav .pagination .active {
 }
 .account-saveditems .container .content .course-list .course .course-details .info {
   padding: 15px;
+  background-color: var(--color-gray-000);
+  border: 0.5px solid var(--color-gray-100);
 }
 .account-saveditems .container .content .course-list .course .course-details .info .course-title {
   line-height: 160%;
@@ -3472,7 +3499,7 @@ nav .pagination .active {
   font-weight: 800;
   color: var(--color-gray-900);
   font-size: 20px !important;
-  color: #33354D;
+  color: var(--color-gray-800);
   margin-bottom: 0;
 }
 .account-saveditems .container .content .course-list .course .course-details .info .course-creator {

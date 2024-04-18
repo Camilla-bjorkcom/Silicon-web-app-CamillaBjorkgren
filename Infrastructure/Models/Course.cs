@@ -23,4 +23,8 @@ public class Course
 
     public decimal? UserVotes { get; set; }
     public string? BigImageName { get; set; }
+
+    public int CategoryId { get; set; }
+
+    public string? CategoryName { get; set; }
 }

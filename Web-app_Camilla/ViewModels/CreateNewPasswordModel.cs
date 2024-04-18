@@ -1,6 +1,4 @@
-﻿using Infrastructure.Entities;
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Web_app_Camilla.ViewModels;
 

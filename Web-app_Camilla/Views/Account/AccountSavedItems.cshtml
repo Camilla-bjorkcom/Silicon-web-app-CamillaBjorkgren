@@ -4,14 +4,16 @@
     var user = await UserManager.GetUserAsync(User);
 }
 <section class="account-saveditems">
+    @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+    {
+        <div class="alert-success-pop">@ViewData["Success"]</div>
+    }
+    @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+    {
+        <div class="alert-danger-pop">@ViewData["Error"]</div>
+    }
     <div class="container">
-
-        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
-        {
-            <div class="errormessage">
-                @ViewData["ErrorMessage"]
-            </div>
-        }
+ 
 
         @if (user != null)
         {

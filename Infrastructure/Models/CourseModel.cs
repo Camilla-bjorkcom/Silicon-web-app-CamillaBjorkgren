@@ -15,4 +15,5 @@ public class CourseModel
     public int? EstimatedHours { get; set; }
     public decimal? LikeParameter { get; set; }
     public decimal? UserVotes { get; set; }
+    public string CategoryName { get; set; } = null!;
 }

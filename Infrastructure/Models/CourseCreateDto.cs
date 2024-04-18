@@ -39,6 +39,9 @@ public class CourseCreateDto
 
     [Display(Name = "Big image name")]
     public string? BigImageName { get; set; }
-  
+
+    [Display(Name = "Category name")]
+    public int CategoryId { get; set; }
+
 }
 

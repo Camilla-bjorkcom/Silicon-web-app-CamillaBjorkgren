@@ -6,8 +6,16 @@
 
 
 <section id="account-security">
+    @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+    {
+        <div class="alert-success-pop">@ViewData["Success"]</div>
+    }
+    @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+    {
+        <div class="alert-danger-pop">@ViewData["Error"]</div>
+    }
     <div class="container">
-
+       
         @if (user != null)
         {
             <div class="user">
@@ -93,8 +101,8 @@
                     @if (Model.IsExternalAccount)
                     {
                         <div class="buttons">
-                            <a><button type="reset" class="button btn-gray">Cancel</button></a>
-                            <a><button type="submit" class="button btn-theme">Change Password</button></a>
+                            <a><button type="reset" disabled class="button btn-gray">Cancel</button></a>
+                            <a><button type="submit" disabled class="button btn-theme">Change Password</button></a>
                         </div>
                     }
                     else

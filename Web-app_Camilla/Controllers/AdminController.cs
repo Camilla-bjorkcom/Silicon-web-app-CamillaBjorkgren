@@ -1,5 +1,4 @@
-﻿using Infrastructure.Entities;
-using Infrastructure.Models;
+﻿using Infrastructure.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -47,7 +46,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
                 if (response.IsSuccessStatusCode)
                 {
                     ViewData["Success"] = "Successfully created a new course";
-                    return RedirectToAction("Index");
+                    return View();
                 }
             }
             ViewData["Error"] = "Failed at creating a new course";
@@ -56,7 +55,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
         {
             ViewData["Error"] = "Failed at creating a new course";
         }
-        return RedirectToAction("Settings");
+        return RedirectToAction("Index");
     }
 
     [Authorize(Policy = "CIO")]
@@ -72,6 +71,8 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
             {
                 var json = await response.Content.ReadAsStringAsync();
                 var course = JsonConvert.DeserializeObject<Course>(json)!;
+
+               
 
                 var courseModel = new CourseIndexViewModel
                 {
@@ -89,6 +90,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
                         Creator = course.Creator,
                         DiscountPrice = course.DiscountPrice,
                         Price = course.Price,
+                        CategoryId = course.CategoryId          
                     }
 
                 };
@@ -115,7 +117,7 @@ public class AdminController(IConfiguration configuration, HttpClient http) : Co
                 if (response.IsSuccessStatusCode)
                 {
                     ViewData["Success"] = "Successfully updated course";
-                    return RedirectToAction("Courses", "Courses");
+                    return View(viewModel);
                 }
             }
             ViewData["Error"] = "Failed at creating a new course";

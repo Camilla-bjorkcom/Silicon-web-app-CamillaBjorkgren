@@ -1,17 +1,11 @@
 ﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
-using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using static System.Net.WebRequestMethods;
+
 
 namespace Infrastructure.Services;
 
@@ -59,43 +53,6 @@ public class CoursesService(CoursesRepository coursesRepository, WebAppDbContext
         catch { }
         return null!;
     }
-
-    //public async Task<IEnumerable<CourseEntity>> GetAllAsync(string category)
-    //{
-    //    try
-    //    {
-    //        var courses = await _coursesRepository.GetAllAsync(category);
-    //        if (courses != null)
-    //        {
-    //            return courses ??= null!;
-    //        }
-    //    }
-    //    catch (Exception)
-    //    {         
-    //    }
-    //    return null!;
-    //}
-
-    //public async Task<IEnumerable<CourseIdModel>> GetCourseIdsAsync()
-    //{
-    //   try
-    //    {
-    //        var user = await _userManager.GetUserAsync(User);
-    //        if (user != null)
-    //        {
-    //            var responseCourseId = await _http.GetAsync($"{_configuration["ApiUris:Courses"]}/course/{user.Id}?key={_configuration["ApiKey:Secret"]}");
-    //            if (responseCourseId.IsSuccessStatusCode)
-    //            {
-    //                var json = await responseCourseId.Content.ReadAsStringAsync();
-    //                var result = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(json)!;
-    //                return result;
-    //            }
-    //        }
-    //    }
-    //    catch { }
-    //    return null!;
-
-    //}
 
     public async Task<CourseEntity> GetOneAsyncId(string id)
     {

@@ -4,12 +4,8 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Web_app_Camilla.ViewModels;
-using static System.Net.WebRequestMethods;
 
 namespace Web_app_Camilla.Controllers;
 
@@ -64,7 +60,11 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                     if (!result.Succeeded)
                     {
                         ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-                        ViewData["ErrorMessage"] = "Data did not update basic information correctly";
+                        ViewData["Error"] = "Data did not update basic information correctly";
+                    }
+                    else
+                    {
+                        ViewData["Success"] = "Successfully updated basic information";
                     }
                 }
             }
@@ -89,7 +89,11 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                         if (!result)
                         {
                             ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-                            ViewData["ErrorMessage"] = "Data did not update address information correctly";
+                            ViewData["Error"] = "Data did not update address information correctly";
+                        }
+                        else
+                        {
+                            ViewData["Success"] = "Successfully updated address information";
                         }
                     }
                     else
@@ -106,13 +110,16 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                         if (!result)
                         {
                             ModelState.AddModelError("ErrorUpdating", "Data did not update correctly");
-                            ViewData["ErrorMessage"] = "Data did not update address information correctly";
+                            ViewData["Error"] = "Data did not update address information correctly";
+                        }
+                        else
+                        {
+                            ViewData["Success"] = "Successfully updated address information";
                         }
                     }
                 }
             }
         }
-        ////uppdaterar informationen
 
         viewModel.BasicInfoForm ??= await PopulateBasicInfoFormAsync();
         viewModel.AddressInfoForm ??= await PopulateAddressInfoAsync();
@@ -191,7 +198,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
     [HttpPost]
     public async Task<IActionResult> AccountSecurity(AccountSecurityViewModel viewModel)
     {
-        if (viewModel.PasswordForm.CurrentPassword != null && viewModel.PasswordForm.NewPassword != null && viewModel.PasswordForm.ConfirmPassword != null)
+        if (ModelState.IsValid)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user != null)
@@ -238,8 +245,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                 {
                     var courseIds = await responseCourseId.Content.ReadAsStringAsync();
                     viewModel.CoursesId = JsonConvert.DeserializeObject<IEnumerable<CourseIdModel>>(courseIds)!;
-                }
-
+                }             
                 var response = await _http.GetAsync($"https://localhost:7138/api/courses/user/{user.Id}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
                 {
@@ -247,6 +253,11 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
                     viewModel.Courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json)!;
 
                     return View(viewModel);
+                }
+                else
+                {
+                    ViewData["Error"] = "No courses found on your account";
+                    return View(viewModel); 
                 }
 
             }
@@ -270,7 +281,7 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
             if (result)
             {
                 return RedirectToAction("Courses", "Courses");
-                //om denna är true, ändra färg till "bokmärkt" på courses-sida?
+                
             }
 
         }
@@ -343,12 +354,12 @@ public class AccountController(SignInManager<UserEntity> signInManager, UserMana
         var result = await _accountService.UploadUserProfileImageAsync(User, file);
         if (result)
         {
-            ViewData["ImageUpload"] = "Sucessfully updated profile image";
+            ViewData["Success"] = "Sucessfully updated profile image";
             return RedirectToAction("Index", "Account");
         }
         else
         {
-            ViewData["ImageUpload"] = "Could not update profile image";
+            ViewData["Error"] = "Could not update profile image";
             return RedirectToAction("Index", "Account");
         }
     }

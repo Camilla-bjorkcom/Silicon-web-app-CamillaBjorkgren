@@ -5,23 +5,23 @@
     <div class="container">
         @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
         {
-            <div class="alert-success">@ViewData["Success"]</div>
+            <div class="alert-success-pop">@ViewData["Success"]</div>
         }
         @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
         {
-            <div class="alert-danger">@ViewData["Error"]</div>
+            <div class="alert-danger-pop">@ViewData["Error"]</div>
         }
         <h1>@ViewData["Title"]</h1>
 
 
         <form method="post" class="courseform form" asp-action="CreateCourse" asp-controller="Admin" novalidate>
-            <h2>Update course</h2>
+            <h2>Create course</h2>
             <div class="mb-3">
-                <label class="form-label" asp-for="Title">Title</label>
+                <label class="form-label" asp-for="Title">Title *</label>
                 <input asp-for="Title" type="text" class="form-control">
             </div>
             <div class="mb-3">
-                <label class="form-label" asp-for="Creator">Creator</label>
+                <label class="form-label" asp-for="Creator">Creator *</label>
                 <input asp-for="Creator" type="text"  class="form-control">
             </div>
             <div class="mb-3">
@@ -52,6 +52,12 @@
                 <label class="form-label" asp-for="BigImageName">Big image name (e.g Bigimagecourse1.svg)</label>
                 <input asp-for="BigImageName" type="text"  class="form-control">
             </div>
+            <select asp-for="CategoryId" list="browsers" class="form-select" id="floatingSelect" aria-label="Choose category">
+                <option selected disabled>Choose a category *</option>
+                <option value="1">App Development</option>
+                <option value="2">Frontend Development</option>
+                <option value="3">Backend Devlopment</option>              
+            </select>
             <div class="checkbox-group">
                 <div class="checkbox">
                     <input asp-for="IsDigital" type="checkbox" class="form-check-input" />

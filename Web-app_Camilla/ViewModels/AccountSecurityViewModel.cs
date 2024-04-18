@@ -6,11 +6,11 @@ public class AccountSecurityViewModel
 {
     public UserEntity? User { get; set; }
 
-    public CreateNewPasswordModel PasswordForm { get; set; } = null!;
+    public CreateNewPasswordModel? PasswordForm { get; set; }
 
-    public DeleteAccountModel DeleteAccount { get; set; } = null!;
+    public DeleteAccountModel? DeleteAccount { get; set; }
 
-    public ProfileViewModel ProfileView { get; set; } = null!;
+    public ProfileViewModel? ProfileView { get; set; } 
 
     public bool IsExternalAccount { get; set; }
 }

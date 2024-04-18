@@ -1,7 +1,23 @@
 ﻿@model CourseIndexViewModel
 @{
-    bool digital = (Model.UpdateDto?.IsDigital ?? false); // This value can be dynamically set based on your condition
+    bool digital = (Model.UpdateDto?.IsDigital ?? false);
     bool best = (Model.UpdateDto?.IsBestSeller ?? false);
+
+    switch (Model.Course.CategoryId)
+    {
+        case 1:
+            Model.Course.CategoryName = "App Development";
+            break;
+        case 2:
+            Model.Course.CategoryName = "Frontend Development";
+            break;
+        case 3:
+            Model.Course.CategoryName = "Backend Devlopment";
+            break;
+        default:
+            Model.Course.CategoryName = "";
+            break;
+    }
 }
 
 @if (digital)
@@ -68,6 +84,12 @@
                 <label class="form-label" asp-for="UpdateDto.BigImageName">Big image name (e.g Bigimagecourse1.svg)</label>
                 <input asp-for="UpdateDto.BigImageName" type="text" value="@Model.Course.BigImageName" class="form-control">
             </div>
+            <select asp-for="UpdateDto.CategoryId" list="browsers" class="form-select" id="floatingSelect" aria-label="Choose category">
+                <option selected disabled>@Model.Course.CategoryName</option>              
+                <option value="1">App Development</option>
+                <option value="2">Frontend Development</option>
+                <option value="3">Backend Devlopment</option>
+            </select>
             <div class="checkbox-group">
                 <div class="checkbox">
                     <input asp-for="UpdateDto.IsDigital" type="checkbox" id="checkDigital" class="form-check-input" />

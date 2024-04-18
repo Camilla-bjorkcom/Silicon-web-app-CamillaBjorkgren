@@ -2,15 +2,15 @@
 
 <section class="endsub">
     <div class="container">
-        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+        @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
         {
-            <div class="errormessage">
-                @ViewData["ErrorMessage"]
+            <div class="alert-danger-pop">
+                @ViewData["Error"]
             </div>
         }
         @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
         {
-            <div class="errormessage">
+            <div class="alert-success-pop">
                 @ViewData["Success"]
             </div>
         }

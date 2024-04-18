@@ -39,17 +39,20 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
             query = query.OrderByDescending(o => o.LastUpdated);
 
             var courses = await query.ToListAsync();
-
-            var response = new CourseResult
+            if (courses != null)
             {
-                Success = true,
-                TotalItems = await query.CountAsync()
-            };
-            response.TotalPages = (int)Math.Ceiling(response.TotalItems / (double)pageSize);
-            response.Courses = CourseFactory.Create(await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync());
-            return Ok(response);
+                var response = new CourseResult
+                {
+                    Success = true,
+                    TotalItems = await query.CountAsync()
+                };
+                response.TotalPages = (int)Math.Ceiling(response.TotalItems / (double)pageSize);
+                response.Courses = CourseFactory.Create(await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync());
+                return Ok(response);
+            }
+            return NotFound();
         }
-        return NotFound();
+        return BadRequest();       
     }
 
 
@@ -63,8 +66,9 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
             {
                 return Ok(result);
             }
+            return NotFound();
         }
-        return NotFound();
+        return BadRequest();
     }
 
     [Authorize]
@@ -91,6 +95,7 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
                         UserVotes = courseEntity.UserVotes,
                         LikeParameter = courseEntity.LikeParameter,
                         Creator = courseEntity.Creator,
+                        
                     };
                     return Created("", courseModel);
                 }
@@ -126,6 +131,7 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
                     IsBestSeller = viewModel.UpdateDto.IsBestSeller,
                     LikeParameter = viewModel.UpdateDto.LikeParameter,
                     UserVotes = viewModel.UpdateDto.UserVotes,
+                    CategoryId = viewModel.UpdateDto.CategoryId,
                 };
                 var result = await _courseService.UpdateCourseAsync(course);
                 if (result)

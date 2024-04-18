@@ -40,6 +40,7 @@ public class CourseEntity
             UserVotes = dto.UserVotes,
             Created = DateTime.Now,
             LastUpdated = DateTime.Now,
+            CategoryId = dto.CategoryId,
         };
     }
 
