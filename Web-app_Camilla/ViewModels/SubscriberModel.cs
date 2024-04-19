@@ -15,7 +15,7 @@ public class SubscriberModel
     [Display(Name = "Week in Review")]
     public bool WeekInReview { get; set; } = false;
 
-    [Display(Name = "Posdcasts")]
+    [Display(Name = "Podcasts")]
     public bool Podcasts { get; set; } = false;
 
     [Display(Name = "Startups Weekly")]

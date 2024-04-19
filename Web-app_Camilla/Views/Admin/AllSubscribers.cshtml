@@ -1,1 +1,37 @@
-﻿
+﻿@model SubscriberViewModel
+
+<section class="subscribers">
+    <div class="container">
+        @foreach (var subscribe in Model.Subscribers)
+        {
+            <h4>@subscribe.Email</h4>
+            <p>Is Subscribed to:</p>
+            <ul>
+                @if (subscribe.Podcasts)
+                {
+                    <li>Podcasts</li>
+                }
+                @if (subscribe.StartupsWeekly)
+                {
+                    <li>Startups Weekly</li>
+                }
+                @if (subscribe.EventUpdates)
+                {
+                    <li>Event Updates</li>
+                }
+                @if (subscribe.WeekInReview)
+                {
+                    <li>Week in Review</li>
+                }
+                @if (subscribe.DailyNewsletter)
+                {
+                    <li>Daily Newsletter</li>
+                }
+                @if (subscribe.AdvertisingUpdates)
+                {
+                    <li>Advertising Updates</li>
+                }
+            </ul>
+        }
+    </div>
+</section>

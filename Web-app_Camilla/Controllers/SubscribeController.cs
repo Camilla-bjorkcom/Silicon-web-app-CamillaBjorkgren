@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 using Web_app_Camilla.ViewModels;
 
@@ -21,7 +23,7 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
                 var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
                 var response = await _http.PostAsync($"https://localhost:7138/api/Subscribers?key={_configuration["ApiKey:Secret"]}", content);
                 if (response.IsSuccessStatusCode)
-                {             
+                {
                     TempData["Success"] = "Successfully subscribed to newsletter!";
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
@@ -44,6 +46,35 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
     }
 
     [HttpGet]
+    public async Task<IActionResult> AllSubscribers(SubscriberViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+                {
+                    _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    var subscribers = await _http.GetAsync($"{_configuration["ApiUris:Subscribers"]}?key={_configuration["ApiKey:Secret"]}");
+                    if (subscribers.IsSuccessStatusCode)
+                    {
+                        var json = await subscribers.Content.ReadAsStringAsync();
+                        viewModel.Subscribers = JsonConvert.DeserializeObject<IEnumerable<SubscriberModel>>(json)!;
+                        return View(viewModel);
+                    }
+                }
+            }
+            catch { TempData["Status"] = "ConnectionFailed"; }
+        }
+        else
+        {
+            TempData["Error"] = "You must enter an valid email address";
+        }
+
+        return View(viewModel);
+    }
+
+    [HttpGet]
     public IActionResult EndSubscription()
     {
         return View();
@@ -58,10 +89,11 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
             {
                 var response = await _http.DeleteAsync($"https://localhost:7138/api/Subscribers/{viewModel.Email}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
-                { ViewData["Success"] = "Successfully deleted your subscription to our newsletter!";
+                {
+                    ViewData["Success"] = "Successfully deleted your subscription to our newsletter!";
                     return View();
                 }
-                if (response.StatusCode == System.Net.HttpStatusCode.NotFound) 
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     ViewData["Error"] = "Failed. Could not delete your email because it was not found.";
                     return View();

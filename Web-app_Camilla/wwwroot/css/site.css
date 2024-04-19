@@ -1241,7 +1241,7 @@ footer .container .unsubscribe {
 .lightanddark .dark .container .image img {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .lightanddark .dark .container .image img {
     display: block;
     object-fit: contain;
@@ -1319,7 +1319,7 @@ footer .container .unsubscribe {
 .lightanddark .light .container .image img {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .lightanddark .light .container .image img {
     display: block;
     object-fit: contain;
