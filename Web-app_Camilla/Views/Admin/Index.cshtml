@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Admin Portal";
+}
+
+<section class="settings">
+    <div class="container">
+        <div class="content">
+            <div class="useradmin">
+                <h3>User Manager</h3>
+                <div class="image"><img src="~/images/Courses/Course8.svg"></div>
+                <ul>
+                    <a asp-action="AllSubscribers">
+                    <li>Subscribers list</li>
+                    </a>
+                    <a asp-action="Messages" asp-controller="Contact">
+                    <li>Contact form messages</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="courseadmin">
+                <h3>Courses Manager</h3>
+                <div class="image"><img src="~/images/Courses/Course5.svg"></div>
+                <ul>
+                    <a asp-action="CreateCourse">
+                    <li>Create course</li>
+                    </a>
+                    <a asp-action="Courses" asp-controller="Courses">
+                    <li>Update courses</li>
+                    </a>
+                    <a asp-action="Courses" asp-controller="Courses">
+                    <li>Delete course</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

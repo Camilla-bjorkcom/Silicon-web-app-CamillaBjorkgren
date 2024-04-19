@@ -1,54 +1,69 @@
-﻿
-@{
-}
+﻿@model SubscriberModel
 
-
-<section class="newsletter">
+<section class="newsletter" id="newsletter">
     <div class="container">
         <div class="title">
             Don't Want to Miss Anything?
-            <div class="arrows"><img src="images/arrows.svg" alt="arrows"></div>
+            <div class="arrows"><img src="~/images/arrows.svg" alt="arrows"></div>
         </div>
-        <div class="sign-up-checkbox">
-            <h6>Sign up for Newsletters</h6>
-            <div class="grid">
-                <div class="checkbox">
-                    <input type="checkbox" id="Daily" name="Daily" value="Daily Newsletter">
-                    <label for="Daily">Daily Newsletter</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Advertising" name="Advertising updates" value="Advertising updates">
-                    <label for="Advertising">Advertising updates</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Week" name="Week" value="Week in Review">
-                    <label for="Week">Week in Review</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Event" name="Event Updates" value="Event Updates">
-                    <label for="Event Updates">Event Updates</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Startups" name="Startups" value="Startups">
-                    <label for="Startups">Startups Weekly</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" id="Podcasts" name="Podcasts" value="Podcasts">
-                    <label for="Podcasts">Podcasts</label>
+        <form  asp-action="Subscribe" asp-controller="Subscribe" method="post" novalidate>
+            <div class="sign-up-checkbox">
+                <h6>Sign up for Newsletters</h6>
+                <div class="grid">
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="DailyNewsletter">
+                        <label asp-for="DailyNewsletter">Daily Newsletter</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="AdvertisingUpdates">
+                        <label asp-for="AdvertisingUpdates">Advertising updates</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="WeekInReview">
+                        <label asp-for="WeekInReview">Week in Review</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="EventUpdates">
+                        <label asp-for="EventUpdates">Event Updates</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="StartupsWeekly">
+                        <label asp-for="StartupsWeekly">Startups Weekly</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" asp-for="Podcasts">
+                        <label asp-for="Podcasts">Podcasts</label>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="sign-up">
-            <input id="email" type="email" placeholder="Your Email">
-            <a href="#">
-                <button class="btn-theme">
+            <div class="sign-up">
+                <input asp-for="Email">
+                
+                <button class="btn-theme" type="submit">
                     Subscribe*
                 </button>
-            </a>
-        </div>
-        <div class="terms">
-            <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a>.</p>
-        </div>
+            </div>
+            
+            <span class="information">
+                @if (!string.IsNullOrEmpty(TempData["Success"]?.ToString()))
+                {
+                    <div class="alert-success-pop">@TempData["Success"]</div>
+                }
+                else if (!string.IsNullOrEmpty(TempData["Error"]?.ToString()))
+                {
+                    <div class="alert-danger-pop">@TempData["Error"]</div>
+                }                          
+                else
+                {
+                    <span class="terms">
+                        * Yes, I agree to the <a asp-action="TermsPolicy" asp-controller="Home">terms and privacy policy</a>.
+                    </span>
+                }
+                <span class="validation" asp-validation-for="Email"></span>
+            </span>
+        </form>
+
+       
     </div>
 </section>
+<script defer src="~/js/validation.js"></script>

@@ -1,52 +1,107 @@
-﻿@{
-    ViewData["Title"] = "Account";
+﻿@model AccountDetailsViewModel
+@{
+    ViewData["Title"] = $"{Model.ProfileView.FirstName} {Model.ProfileView.LastName}";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <section class="account-details">
+
+    @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+    {
+        <div class="alert-success-pop">@ViewData["Success"]</div>
+    }
+    @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+    {
+        <div class="alert-danger-pop">@ViewData["Error"]</div>
+    }
+
     <div class="container">
-        <div class="user">
-            <div class="user-img">
-                <img src="@Model.BasicInfo.ProfileImage" alt="@($"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}")">
+
+        @if (user != null)
+        {
+            <div class="user">
+                <div class="info">
+                <div class="user-img">
+                    <img src="~/uploads/@user.ProfileImg" alt="profile image">
+                    <form enctype="multipart/form-data" method="post" asp-action="UploadImage" asp-controller="Account">
+                        <input type="file" id="uploadFile" name="file" hidden />
+                        <label for="uploadFile" class="btn btn-circle btn-circle-sm"><i class="fa-regular fa-refresh"></i></label>
+                    </form>
+                </div>
+                
+                <h6 class="name">@Model.ProfileView.FirstName @Model.ProfileView.LastName</h6>
+                <p class="email">@Model.ProfileView?.Email</p>
+                </div>
+                <div class="btn-user">
+                    <a asp-controller="Account" asp-action="Index"><button class="button btn active"><i class="fa-light fa-gear i"></i> Account Details</button></a>
+                    <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock i"></i> Security</button></a>
+                    <a asp-action="AccountSavedItems" asp-controller="Account"><button class="button btn"><i class="fa-light fa-bookmark i"></i> Saved Courses</button></a>
+                    <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket i"></i> Sign Out</a>
+                </div>
             </div>
-            <h6 class="name">@($"{Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}")</h6>
-            <p class="email">@Model.BasicInfo.Email</p>
-            <div class="btn-user">
-                <a asp-controller="Account" asp-action="Details"><button class="button btn-theme"><i class="fa-light fa-gear"></i> Account Details</button></a>
-                <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket"></i> Sign Out</a>
-            </div>
-        </div>
+        }
 
         <div class="details-form">
             <h2 class="title">Account Details</h2>
             <h6>Basic info</h6>
-            <form class="form-basicinfo" method="post" asp-controller="Account" asp-action="Basicinfo">
+            <form class="form-basicinfo form" method="post" asp-controller="Account" asp-action="Index" novalidate>
                 <div class="name">
                     <div class="first-name">
-                        <label asp-for="UserEntity.FirstName" class="form-label">First name</label>
+                        <label asp-for="BasicInfoForm.FirstName" class="form-label">First name</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfo.FirstName" type="text" class="form-control" id="firstName" placeholder="John">
+                            @if (Model.BasicInfoForm.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" disabled />
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" hidden />
+                                <input asp-for="BasicInfoForm.IsExternalAccount" type="text" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfoForm.FirstName" type="text" class="form-control" />
+                                <span asp-validation-for="BasicInfoForm.FirstName"></span>
+                            }
                         </div>
                     </div>
                     <div class="last-name">
-                        <label asp-for="BasicInfo.LastName" class="form-label">Last name</label>
-                        <input asp-for="BasicInfo.LastName" type="text" class="form-control" id="lastName" placeholder="Doe">
+                        <label asp-for="BasicInfoForm.LastName" class="form-label">Last name</label>
+                        @if (Model.BasicInfoForm.IsExternalAccount)
+                        {
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" disabled />
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" hidden />
+                        }
+                        else
+                        {
+                            <input asp-for="BasicInfoForm.LastName" type="text" class="form-control" />
+                            <span asp-validation-for="BasicInfoForm.LastName"></span>
+                        }
                     </div>
                 </div>
                 <div class="contact-info">
                     <div class="email">
-                        <label asp-for="BasicInfo.Email" class="form-label">Email address</label>
+                        <label asp-for="BasicInfoForm.Email" class="form-label">Email address</label>
                         <div class="mb-3">
-                            <input asp-for="BasicInfo.Email" type="text" class="form-control" id="email" placeholder="john.doe@domain.com">
+                            @if (Model.BasicInfoForm.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" disabled />
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" hidden />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfoForm.Email" type="email" class="form-control" />
+                                <span asp-validation-for="BasicInfoForm.Email"></span>
+                            }
                         </div>
                     </div>
                     <div class="phone">
-                        <label asp-for="BasicInfo.Phone" class="form-label">Phone</label>
-                        <input asp-for="BasicInfo.Phone" type="text" class="form-control" id="phone" placeholder="Enter your phone">
+                        <label asp-for="BasicInfoForm.Phone" class="form-label">Phone<div class="optional">(optional) </div></label>
+                        <input asp-for="BasicInfoForm.Phone" type="text" class="form-control">
+                        <span asp-validation-for="BasicInfoForm.Phone"></span>
                     </div>
                 </div>
                 <div class="bio">
-                    <label asp-for="BasicInfo.Biography" class="form-label">Bio <div class="optional">(optional) </div></label>
-                    <textarea asp-for="BasicInfo.Biography" type="text" class="form-control" id="bio" placeholder="Add a short bio..."></textarea>
+                    <label asp-for="BasicInfoForm.Bio" class="form-label">Bio <div class="optional">(optional) </div></label>
+                    <textarea asp-for="BasicInfoForm.Bio" type="text" class="form-control"></textarea>
+                    <span asp-validation-for="BasicInfoForm.Bio"></span>
                 </div>
                 <div class="buttons">
                     <a><button type="reset" class="button btn-gray">Cancel</button></a>
@@ -57,26 +112,30 @@
 
             <div class="address">
                 <h6>Address</h6>
-                <form class="form-address" method="post" asp-controller="Account" asp-action="Addressinfo">
-                    <label asp-for="AddressInfo.AddressLine_1" class="form-label">Address line 1</label>
+                <form class="form-address form" method="post" asp-controller="Account" asp-action="Index" novalidate>
+                    <label asp-for="AddressInfoForm.AddressLine_1" class="form-label">Address line 1</label>
                     <div class="mb-3">
-                        <input asp-for="AddressInfo.AddressLine_1" type="text" class="form-control" id="address" placeholder="Enter your address line">
+                        <input asp-for="AddressInfoForm.AddressLine_1" type="text" class="form-control" id="address" placeholder="Enter your address line">
+                        <span asp-validation-for="AddressInfoForm.AddressLine_1"></span>
                     </div>
-                    <label asp-for="AddressInfo.AddressLine_2" class="form-label">Address line 2 <div class="optional">(optional) </div></label>
+                    <label asp-for="AddressInfoForm.AddressLine_2" class="form-label">Address line 2 <div class="optional">(optional) </div></label>
                     <div class="mb-3">
-                        <input asp-for="AddressInfo.AddressLine_2" type="text" class="form-control" id="address2" placeholder="Enter your second address line">
+                        <input asp-for="AddressInfoForm.AddressLine_2" type="text" class="form-control" id="address2" placeholder="Enter your second address line">
+                        <span asp-validation-for="AddressInfoForm.AddressLine_2"></span>
                     </div>
                     <div class="postalcode-city">
                         <div class="postalcode">
-                            <label asp-for="AddressInfo.PostalCode" class="form-label">Postal code</label>
+                            <label asp-for="AddressInfoForm.PostalCode" class="form-label">Postal code</label>
                             <div class="mb-3">
-                                <input asp-for="AddressInfo.PostalCode" type="text" class="form-control" id="postalcode" placeholder="Enter your postal code">
+                                <input asp-for="AddressInfoForm.PostalCode" type="text" class="form-control" id="postalcode" placeholder="Enter your postal code">
+                                <span asp-validation-for="AddressInfoForm.PostalCode"></span>
                             </div>
                         </div>
                         <div class="city">
-                            <label asp-for="AddressInfo.City" class="form-label">City</label>
+                            <label asp-for="AddressInfoForm.City" class="form-label">City</label>
                             <div class="mb-3">
-                                <input asp-for="AddressInfo.City" type="text" class="form-control" id="city" placeholder="Enter your city">
+                                <input asp-for="AddressInfoForm.City" type="text" class="form-control" id="city" placeholder="Enter your city">
+                                <span asp-validation-for="AddressInfoForm.City"></span>
                             </div>
                         </div>
                     </div>
@@ -84,10 +143,12 @@
                         <a><button type="reset" class="button btn-gray">Cancel</button></a>
                         <a><button type="submit" class="button btn-theme">Save changes</button></a>
                     </div>
-
-
                 </form>
             </div>
 
         </div>
+    </div>
 </section>
+
+
+<script defer src="~/js/validation.js"></script>

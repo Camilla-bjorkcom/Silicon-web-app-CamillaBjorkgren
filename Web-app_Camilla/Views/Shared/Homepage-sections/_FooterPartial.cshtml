@@ -1,16 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<footer>
+﻿<footer>
     <div class="container">
-        <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth") ? "d-none socialmedia" : "social-media")">
-            <a class="btn-social" href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-youtube"></i></a>
+        <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth" || ViewContext.RouteData.Values["Controller"]!.ToString() == "Admin") ? "d-none socialmedia" : "social-media")">
+            <a class="btn-social" ><i class="fa-brands fa-facebook"></i></a>
+            <a class="btn-social"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a class="btn-social" ><i class="fa-brands fa-instagram"></i></a>
+            <a class="btn-social"><i class="fa-brands fa-youtube"></i></a>
         </div>
+        @if (!User.IsInRole("Admin"))
+        {
+            <a class="unsubscribe" asp-action="EndSubscription" asp-controller="Subscribe">Unsubscribe Email</a>
+        }
         <p>&copy; @DateTime.Now.Year Silicon. All rights reserved. Pulvinar urna condimentum amet tempor, ornare integer. Lorem odio justo malesuada suspendisse viverra aliquet quisque turpis non. Feugiat in odio non nunc ornare consectetur.</p>
     </div>
 </footer>

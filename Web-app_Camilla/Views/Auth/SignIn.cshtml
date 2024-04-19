@@ -1,0 +1,48 @@
+﻿@model SignInModel
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<section class="sign-in">
+    <div class="container">
+        <div class="title">
+            <h1>Welcome Back</h1>
+            <p>Don't have an account yet? <a asp-controller="auth" asp-action="signup">Sign up here.</a></p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+        {
+            <div class="errormessage">
+                @ViewData["ErrorMessage"]
+            </div>
+        }
+
+        <form method="post" asp-controller="Auth" class="form" asp-action="Signin" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+            </div>
+            <button type="submit" class="button btn-theme">Sign in</button>
+            <div class="form-text"><a asp-controller="Home" asp-action="UnderConstruct">Forgot your password?</a></div>
+
+            <div class="external-providers">
+                <h6>Or sign in with your social account</h6>
+                <div class="providers">
+                    <a class="btn-gray" asp-action="Google" asp-controller="Auth"><i class="fa-brands fa-google"></i>Google</a>
+                    <a class="btn-gray" asp-action="Facebook" asp-controller="Auth"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+<script defer src="~/js/validation.js"></script>

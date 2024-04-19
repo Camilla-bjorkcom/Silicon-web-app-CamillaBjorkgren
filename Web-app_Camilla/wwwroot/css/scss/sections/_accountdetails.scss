@@ -3,40 +3,104 @@
     width: 100%;
 
     .container {
-        padding: 40px;
+        padding: 20px;
         height: 100%;
         width: 100%;
-       display: grid;
-       grid-template-columns: 1fr 2fr;
-       grid-template-areas: "userinfo detailsform";
-       gap: 1rem 5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "userinfo" "detailsform";
+        row-gap: 2rem;
 
-       h6 {
-        color: $theme;
-    }
+        @include lg {
+            grid-template-columns: 1fr 2fr;
+            grid-template-areas: "userinfo detailsform";
+            gap: 1rem 5rem;
+            padding: 40px;
+        }
 
-    .buttons {
-        display: flex;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        gap: 1rem;
-    }
+
+        h6 {
+            color: var(--color-theme);
+        }
+
+        .buttons {
+            display: flex;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
 
         .user {
             grid-area: userinfo;
             @include standard-text;
-            border-right: 1px solid $gray-200;
+            border-right: 1px solid var(--color-gray-200);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             width: 100%;
+            gap: 1.5rem;
+            justify-content: center;
+            background-color: var(--color-gray);
+            border-radius: 6px;
+            padding: 10px;
+
+            @include md {
+                justify-content: space-around;
+            }
+
+            @include lg {
+                justify-content: flex-start;
+                background-color: var(--color-white);
+                padding: 0;
+                flex-direction: column;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+
+                @include lg {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
 
             .btn-user {
-                width: 100%;
+                width: 40%;
                 margin-top: 1rem;
+
+                @include lg {
+                    width: 70%;
+                }
 
                 .button {
                     width: 100%;
+                    display: inline-block;
+                    text-align: left;
+                    padding: 10px;
+                    color: var(--color-gray-900);
+                    border: 1px solid transparent;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        border: 1px solid var(--color-gray-700);
+                    }
+
+                    .i {
+                        margin-right: 1rem;
+                        display: none;
+
+                        @include md {
+                            display: inline-block;
+                        }
+                    }
+                }
+
+                .active {
+                    background-color: var(--color-theme);
+                    color: var(--color-white);
                 }
 
                 .signout {
@@ -47,13 +111,35 @@
                     margin-top: 1rem;
                     margin-left: 1rem;
                 }
-
             }
 
             .user-img {
                 cursor: pointer;
-                width: 80px;
+                width: 120px;
+                height: 120px;
                 margin-bottom: 1rem;
+                position: relative;
+
+                img {
+                    border-radius: 60px;
+                    object-fit: cover;
+                }
+
+
+                .btn-circle-sm {
+                    position: absolute;
+                    top: 85px;
+                    right: 2px;
+                    background-color: var(--color-gray-100);
+                    color: var(--color-gray-800);
+                    padding: 4px;
+                    border-radius: 50%;
+
+                    &:hover {
+                        color: var(--color-gray-100);
+                        background-color: var(--color-gray-700);
+                    }
+                }
             }
 
             .name {
@@ -67,15 +153,19 @@
 
         .details-form {
             grid-area: detailsform;
-            @include standard-heading;    
-            padding: 30px;  
+            @include standard-heading;
+            padding: 10px;
 
-            input::placeholder {
-                color: $gray-400;
+            @include lg {
+                padding: 30px;
             }
 
             .title {
-                @include h2;
+                @include h4;
+
+                @include lg {
+                    @include h2;
+                }
             }
 
             .optional {
@@ -85,11 +175,15 @@
 
 
             .form-basicinfo {
-    
+
                 .name {
-                    display: flex;
                     gap: 1rem;
-                    
+                    margin-bottom: 1rem;
+
+                    @include md {
+                        display: flex;
+                    }
+
                     .first-name {
                         width: 100%;
                     }
@@ -98,9 +192,14 @@
                         width: 100%;
                     }
                 }
+
                 .contact-info {
-                    display: flex;
                     gap: 1rem;
+                    margin-bottom: 1rem;
+
+                    @include md {
+                        display: flex;
+                    }
 
                     .email {
                         width: 100%;
@@ -110,38 +209,41 @@
                         width: 100%;
                     }
                 }
+
                 textarea {
                     resize: none;
                     height: 150px;
                 }
+
                 ::placeholder {
-                    color: $gray-400;
+                    color: var(--color-gray-400);
                 }
-                
             }
         }
 
         .address {
             margin-top: 50px;
+
             .form-address {
                 width: 100%;
-     
-    
+
+
                 .postalcode-city {
-                    display: flex;
-                        gap: 1rem;
-    
-                        .postalcode {
-                            width: 100%;
-                        }
-    
-                        .city {
-                            width: 100%;
-                        }
-    
+                    gap: 1rem;
+
+                    @include md {
+                        display: flex;
+                    }
+
+                    .postalcode {
+                        width: 100%;
+                    }
+
+                    .city {
+                        width: 100%;
+                    }
                 }
             }
         }
-        
     }
 }

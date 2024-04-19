@@ -10,29 +10,17 @@
         justify-content: center;
         align-content: center;
 
-        .errormessage{
-            background: $danger;
+        .errormessage {
+            background: var(--color-danger);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 15px;
             border-radius: 8px;
+            color: black;
         }
-            
-            form {
-            @include standard-heading;
 
-            input {
-                padding: 1rem;
-
-                input::placeholder {
-                    color: $gray-400;
-                }
-            }
-
-            .form-check-label {
-                @include standard-text;
-            }
+        form {
 
             button {
                 width: 100%;
@@ -41,8 +29,22 @@
             .form-text {
                 text-align: center;
             }
+
+            
+
+            .external-providers {
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+
+                .providers {
+                    gap: 15px;
+                    display: flex;
+                }
+            }
         }
     }
 }
-
-/*https://youtu.be/IttJNH0vLJs?t=3113*/

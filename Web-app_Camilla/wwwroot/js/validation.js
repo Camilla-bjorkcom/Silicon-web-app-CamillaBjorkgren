@@ -1,5 +1,6 @@
 const formErrorMessage = (element, validationResult) => {
     let spanElement = document.querySelector(`[data-valmsg-for="${element.name}"]`)
+
     if (validationResult) {
         element.classList.remove('input-validation-error')
         spanElement.classList.remove('field-validation-error')
@@ -22,14 +23,23 @@ const textValidator = (element, minLength = 2) => {
     }
 }
 
+
+const messageValidator = (element, minLength = 5) => {
+    if (element.value.length >= minLength)
+        formErrorMessage(element, true)
+    else {
+        formErrorMessage(element, false)
+    }
+}
+
 const emailValidator = (element) => {
-    const regEx = /^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$/
+    const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     formErrorMessage(element, regEx.test(element.value))
 }
 
 const passwordValidator = (element) => {
     if (element.dataset.valEqualtoOther !== undefined) {
-        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*', 'Form'))[0].value
+        let password = document.getElementsByName(element.dataset.valEqualtoOther.replace('*', 'form'))[0].value
 
         if (element.value === password) {
             formErrorMessage(element, true)
@@ -39,7 +49,7 @@ const passwordValidator = (element) => {
         }
     }
     else {
-        const regEx = /^(?=.*[a-ö])(?=.*[A-Ö])(?=.*\\d)(?=.*[@$!%*?&])[A-Öa-ö\\d@$!%*?&]{8,}$/
+        const regEx = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{8,}$/
         formErrorMessage(element, regEx.test(element.value))
     }
 }
@@ -53,30 +63,39 @@ const checkboxValidator = (element) => {
 }
 
 let forms = document.querySelectorAll('form')
-let inputs = forms[0].querySelectorAll('input')
 
-inputs.forEach(input => {
-    if (input.dataset.val === 'true') {
+forms.forEach(form => {
+    let inputs = form.querySelectorAll('input');
+    let textareas = form.querySelectorAll('textarea');
 
-        if (input.type === 'checkbox') {
-            input.addEventListener('change', (e) => {
-                checkboxValidator(e.target)
-            })
+    inputs.forEach(input => {
+        if (input.dataset.val === 'true') {
+            if (input.type === 'checkbox') {
+                input.addEventListener('change', (e) => {
+                    checkboxValidator(e.target);
+                });
+            }
+            else {
+                input.addEventListener('keyup', (e) => {
+                    switch (e.target.type) {
+                        case 'text':
+                            textValidator(e.target);
+                            break;
+                        case 'email':
+                            emailValidator(e.target);
+                            break;
+                        case 'password':
+                            passwordValidator(e.target);
+                            break;
+                    }
+                });
+            }
         }
-        else {
-            input.addEventListener('keyup', (e) => {
-                switch (e.target.type) {
-                    case 'text':
-                        textValidator(e.target)
-                        break;
-                    case 'email':
-                        emailValidator(e.target)
-                        break;
-                    case 'password':
-                        passwordValidator(e.target)
-                        break;
-                }
-            })
-        }
-    }
-})
+    });
+
+    textareas.forEach(textarea => {
+        textarea.addEventListener('keyup', (e) => {
+            messageValidator(e.target);
+        });
+    });
+});

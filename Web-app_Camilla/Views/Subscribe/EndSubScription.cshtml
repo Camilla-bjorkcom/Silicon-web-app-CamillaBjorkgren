@@ -1,0 +1,31 @@
+﻿@model EndSubscriptionViewModel
+
+<section class="endsub">
+   
+    <div class="container">
+        <div class="pagination">
+            <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="EndSubscription" asp-controller="Subscribe">End subscription</a>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
+        {
+            <div class="alert-danger-pop">
+                @ViewData["Error"]
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
+        {
+            <div class="alert-success-pop">
+                @ViewData["Success"]
+            </div>
+        }
+        <div class="mb-3">
+            <form class="form" asp-action="EndSubscription" asp-controller="Subscribe" method="post" novalidate>
+            <label asp-for="Email" class="form-label">Enter your email address to end your subscription</label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <button type="submit">End subscription</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script defer src="~/js/validation.js"></script>
