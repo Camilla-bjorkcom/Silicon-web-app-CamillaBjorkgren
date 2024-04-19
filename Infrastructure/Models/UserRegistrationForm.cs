@@ -24,5 +24,3 @@ public class UserRegistrationForm
     [Required(ErrorMessage = "Password is required")]
     public string Password { get; set; } = null!;
 }
-
-//https://youtu.be/-mNcEyL3EbU?t=2182

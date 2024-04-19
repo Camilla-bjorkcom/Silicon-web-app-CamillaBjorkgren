@@ -17,9 +17,6 @@ namespace Web_API_Camilla.Controllers;
 [ApiController]
 public class AuthController(WebApiDbContext webApiDbContext, IConfiguration configuration) : ControllerBase
 {
-
-    //Skapa en repository
-
     private readonly WebApiDbContext _webApiDbContext = webApiDbContext;
     private readonly IConfiguration _configuration = configuration;
 
@@ -74,7 +71,7 @@ public class AuthController(WebApiDbContext webApiDbContext, IConfiguration conf
             return Unauthorized();
         
         }
-        catch (Exception ex) { return BadRequest(); }
+        catch { return BadRequest(); }
     }
 
        

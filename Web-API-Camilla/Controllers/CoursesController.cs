@@ -156,6 +156,7 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
                 var result = await _courseService.DeleteCourseAsync(entity);
                 return Ok(result);
             }
+            return NotFound();
         }
         return BadRequest();
     }
@@ -171,6 +172,7 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
             {
                 return Ok(userCourses);
             }
+            return NotFound();
         }
         return BadRequest();
     }
@@ -186,6 +188,7 @@ public class CoursesController(CoursesService courseService, WebApiDbContext con
             {
                 return Ok(userCoursesId);
             }
+            return NotFound();
         }
         return BadRequest();
     }

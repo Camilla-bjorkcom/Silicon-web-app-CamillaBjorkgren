@@ -28,4 +28,6 @@ public class HomeController : Controller
     public IActionResult AccessDenied(int statusCode) => View();
 
     public IActionResult TermsPolicy () => View();
+
+    public IActionResult UnderConstruct() => View();
 }

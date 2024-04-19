@@ -61,9 +61,10 @@
                 flex-direction: column;
 
                 @include lg {
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
-               
             }
 
             .btn-user {
@@ -80,14 +81,19 @@
                     text-align: left;
                     padding: 10px;
                     color: var(--color-gray-900);
-                  
+                    border: 1px solid transparent;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        border: 1px solid var(--color-gray-700);
+                    }
 
                     .i {
                         margin-right: 1rem;
                         display: none;
+
                         @include md {
                             display: inline-block;
-                          
                         }
                     }
                 }
@@ -122,15 +128,16 @@
 
                 .btn-circle-sm {
                     position: absolute;
-                    top: 75px;
-                    right: 15px;
+                    top: 85px;
+                    right: 2px;
                     background-color: var(--color-gray-100);
                     color: var(--color-gray-800);
                     padding: 4px;
                     border-radius: 50%;
 
                     &:hover {
-                        color: var(--color-gray-500);
+                        color: var(--color-gray-100);
+                        background-color: var(--color-gray-700);
                     }
                 }
             }
@@ -222,11 +229,10 @@
 
 
                 .postalcode-city {
-             
                     gap: 1rem;
 
                     @include md {
-                        display:flex;
+                        display: flex;
                     }
 
                     .postalcode {

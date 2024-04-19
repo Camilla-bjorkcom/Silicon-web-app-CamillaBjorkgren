@@ -6,6 +6,14 @@
     var isDark = (themeMode == "dark") ? true : false;
 
     var user = await UserManager.GetUserAsync(User);
+
+    var image = "silicon-logo.svg";
+
+    if (isDark)
+    {
+        image = "outline-darkmode.svg";
+    }
+   
 }
 
 
@@ -13,7 +21,7 @@
 {
     <header class="background-color">
         <div class="container">
-            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/silicon-logo.svg" alt="Logotype for Silicon"></a>
+            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/@image" alt="Logotype for Silicon"></a>
 
             <div id="menu" class="hide">
                 <nav>
@@ -66,9 +74,9 @@
                 }
             </div>
 
-            <button type="button" onclick="toggleMenu()" class="btn-mobile">
+            <a type="button" onclick="toggleMenu()" class="btn-mobile">
                 <i class="fa-solid fa-bars"></i>
-            </button>
+            </a>
             <nav class="mobile-menu">
                 <ul>
                     <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>
@@ -108,7 +116,7 @@ else
 {
     <header>
         <div class="container">
-            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/silicon-logo.svg" alt="Logotype for Silicon"></a>
+            <a id="logo" asp-controller="home" asp-action="index"><img src="~/images/logo/@image" alt="Logotype for Silicon"></a>
 
             <div id="menu" class="hide">
                 <nav>
@@ -161,9 +169,9 @@ else
                 }
             </div>
 
-            <button type="button" onclick="toggleMenu()" class="btn-mobile">
-                <i class="fa fa-bars"></i>
-            </button>
+            <a type="button" onclick="toggleMenu()" class="btn-mobile">
+                <i class="fa-solid fa-bars"></i>
+            </a>
             <nav class="mobile-menu">
                 <ul>
                     <li><a asp-controller="home" asp-action="index" asp-fragment="overview">Home</a></li>

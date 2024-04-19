@@ -1,6 +1,4 @@
-﻿using Infrastructure.Models;
-
-namespace Web_app_Camilla.ViewModels;
+﻿namespace Web_app_Camilla.ViewModels;
 
 public class SubscriberViewModel
 {

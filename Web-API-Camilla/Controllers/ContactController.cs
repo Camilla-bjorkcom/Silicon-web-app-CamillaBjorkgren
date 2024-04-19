@@ -19,14 +19,13 @@ public class ContactController(ContactMessageService contactMessageService) : Co
     {
         if (ModelState.IsValid)
         {
-                ContactMessageEntity contactEntity = model;
-                var result = await _contactMessageService.CreateAsync(contactEntity);
-                if (result)
-                {
-                    return Created("", null);
-                }
-               
+            ContactMessageEntity contactEntity = model;
+            var result = await _contactMessageService.CreateAsync(contactEntity);
+            if (result)
+            {
+                return Created("", null);
             }
+        }
         return BadRequest();
     }
 
@@ -41,8 +40,9 @@ public class ContactController(ContactMessageService contactMessageService) : Co
             {
                 return Ok(result);
             }
+            return NotFound();
         }
-        return NotFound();
+        return BadRequest();
     }
 
 
@@ -57,8 +57,8 @@ public class ContactController(ContactMessageService contactMessageService) : Co
             {
                 return Ok(result);
             }
+            return NotFound();
         }
-        return NotFound();
+        return BadRequest();
     }
-
 }

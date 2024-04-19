@@ -19,8 +19,8 @@ public class WebAppDbContext(DbContextOptions<WebAppDbContext> options) : Identi
         
 
         builder.Entity<UserCoursesEntity>()
-            .HasOne(uc => uc.UserEntity) // Anger att UserCoursesEntity har en relation till UserEntity
-            .WithMany() // UserEntity kan ha flera UserCoursesEntity
-            .HasForeignKey(uc => uc.UserId); // ForeignKey för UserId
+            .HasOne(uc => uc.UserEntity)
+            .WithMany()
+            .HasForeignKey(uc => uc.UserId); 
     }
 }

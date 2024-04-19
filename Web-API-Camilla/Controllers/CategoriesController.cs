@@ -7,15 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace Web_API_Camilla.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-public class CategoriesController(CategoriesService categoriesService, CategoriesRepository categoriesRepository) : ControllerBase
+public class CategoriesController(CategoriesService categoriesService) : ControllerBase
 {
     private readonly CategoriesService _categoriesService = categoriesService;
-    private readonly CategoriesRepository _categoriesRepository = categoriesRepository;
+
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         var categories = await _categoriesService.GetAllAsync();
-        return Ok(CategoryFactory.Create(categories));
+        if (categories != null)
+        {
+            return Ok(CategoryFactory.Create(categories));
+        }
+        return NotFound();
     }
 }

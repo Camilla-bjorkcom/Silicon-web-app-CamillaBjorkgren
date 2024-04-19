@@ -5,10 +5,7 @@ using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace Infrastructure.Services;
@@ -23,19 +20,32 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
 
     public async Task<UserEntity> UpdateUserAsync(UserEntity user)
     {
-        var existingUser = await _userManager.FindByEmailAsync(user.Email!);
-        if (existingUser != null)
+        try
         {
-            var result = await _userRepository.UpdateAsync(user);
-            return result;
+            var existingUser = await _userManager.FindByEmailAsync(user.Email!);
+            if (existingUser != null)
+            {
+                var result = await _userRepository.UpdateAsync(user);
+                return result;
+            }
+            return null!;
         }
-        return null!;
+        catch { return null!; }
     }
 
     public async Task<AddressEntity> GetAddressAsync(string userId)
     {
-        var addressEntity = await _addressRepository.GetOneAsync(x => x.UserId == userId);
-        return addressEntity!;
+        try
+        {
+            var addressEntity = await _addressRepository.GetOneAsync(x => x.UserId == userId);
+            if (addressEntity != null)
+            {
+                return addressEntity!;
+            }
+            return null!;
+        }
+     
+        catch { return null!; }
     }
 
 
@@ -58,7 +68,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
 
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -85,7 +95,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
 
-        catch (Exception ex)
+        catch 
         {
             return false;
         }
@@ -110,7 +120,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
 
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -135,7 +145,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             return false;
         }
 
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -156,7 +166,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             }
             return false;
         }
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -178,7 +188,7 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
             }
             return false;
         }
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -199,12 +209,10 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                         return true;
                     }
                 }
-
             }
             return false;
         }
-
-        catch (Exception ex)
+        catch
         {
             return false;
         }
@@ -231,10 +239,8 @@ public class AccountService(UserRepository userRepository, UserManager<UserEntit
                     {
                         return true;
                     }
-                    //PATH.Combine måste redan ha befintliga kataloger!!!
                 }
             }
-
         }
         catch (Exception ex)
         {

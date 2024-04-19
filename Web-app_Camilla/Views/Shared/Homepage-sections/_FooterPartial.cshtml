@@ -1,10 +1,10 @@
 ﻿<footer>
     <div class="container">
         <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth" || ViewContext.RouteData.Values["Controller"]!.ToString() == "Admin") ? "d-none socialmedia" : "social-media")">
-            <a class="btn-social" href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a class="btn-social" href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a class="btn-social" ><i class="fa-brands fa-facebook"></i></a>
+            <a class="btn-social"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a class="btn-social" ><i class="fa-brands fa-instagram"></i></a>
+            <a class="btn-social"><i class="fa-brands fa-youtube"></i></a>
         </div>
         @if (!User.IsInRole("Admin"))
         {

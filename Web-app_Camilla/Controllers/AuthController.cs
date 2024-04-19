@@ -251,8 +251,4 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     }
     #endregion
 
-    public IActionResult ForgotPassword()
-    {
-        return View();
-    }
 }

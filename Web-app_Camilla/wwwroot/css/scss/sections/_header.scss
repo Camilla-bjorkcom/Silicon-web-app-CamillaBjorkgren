@@ -81,6 +81,7 @@ header {
         .btn-mobile {
             grid-area: mobile;
             display: block;
+            font-size: 25px;
 
             @include lg {
                 display: none;
@@ -200,7 +201,6 @@ header {
 
         .btn-switch {
             grid-area: switch;
-           
         }
 
         .account-buttons {
@@ -239,6 +239,7 @@ header {
         .btn-mobile {
             grid-area: mobile;
             display: block;
+            font-size: 25px;
 
             @include lg {
                 display: none;

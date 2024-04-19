@@ -730,6 +730,7 @@ header .container .account-buttons .profile .image img:hover {
 header .container .btn-mobile {
   grid-area: mobile;
   display: block;
+  font-size: 25px;
 }
 @media (min-width: 992px) {
   header .container .btn-mobile {
@@ -875,6 +876,7 @@ header .container .show ul .profile img:hover {
 .background-color .container .btn-mobile {
   grid-area: mobile;
   display: block;
+  font-size: 25px;
 }
 @media (min-width: 992px) {
   .background-color .container .btn-mobile {
@@ -1875,7 +1877,9 @@ footer .container .unsubscribe {
 }
 @media (min-width: 992px) {
   .account-details .container .user .info {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .account-details .container .user .btn-user {
@@ -1893,6 +1897,11 @@ footer .container .unsubscribe {
   text-align: left;
   padding: 10px;
   color: var(--color-gray-900);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+.account-details .container .user .btn-user .button:hover {
+  border: 1px solid var(--color-gray-700);
 }
 .account-details .container .user .btn-user .button .i {
   margin-right: 1rem;
@@ -1920,6 +1929,9 @@ footer .container .unsubscribe {
   margin-top: 1rem;
   margin-left: 1rem;
 }
+.account-details .container .user .btn-user .signout:hover {
+  text-decoration: underline;
+}
 .account-details .container .user .user-img {
   cursor: pointer;
   width: 120px;
@@ -1933,15 +1945,16 @@ footer .container .unsubscribe {
 }
 .account-details .container .user .user-img .btn-circle-sm {
   position: absolute;
-  top: 75px;
-  right: 15px;
+  top: 85px;
+  right: 2px;
   background-color: var(--color-gray-100);
   color: var(--color-gray-800);
   padding: 4px;
   border-radius: 50%;
 }
 .account-details .container .user .user-img .btn-circle-sm:hover {
-  color: var(--color-gray-500);
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-700);
 }
 .account-details .container .user .name {
   line-height: 160%;
@@ -2123,7 +2136,9 @@ footer .container .unsubscribe {
 }
 @media (min-width: 992px) {
   #account-security .container .user .info {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 #account-security .container .user .btn-user {
@@ -2141,6 +2156,11 @@ footer .container .unsubscribe {
   text-align: left;
   padding: 10px;
   color: var(--color-gray-900);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+#account-security .container .user .btn-user .button:hover {
+  border: 1px solid var(--color-gray-700);
 }
 #account-security .container .user .btn-user .button .i {
   margin-right: 1rem;
@@ -2181,15 +2201,16 @@ footer .container .unsubscribe {
 }
 #account-security .container .user .user-img .btn-circle-sm {
   position: absolute;
-  top: 75px;
-  right: 15px;
+  top: 85px;
+  right: 2px;
   background-color: var(--color-gray-100);
   color: var(--color-gray-800);
   padding: 4px;
   border-radius: 50%;
 }
 #account-security .container .user .user-img .btn-circle-sm:hover {
-  color: var(--color-gray-500);
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-700);
 }
 #account-security .container .user .name {
   line-height: 160%;
@@ -3354,7 +3375,9 @@ nav .pagination .active {
 }
 @media (min-width: 992px) {
   .account-saveditems .container .user .info-user {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .account-saveditems .container .user .btn-user {
@@ -3372,6 +3395,11 @@ nav .pagination .active {
   text-align: left;
   padding: 10px;
   color: var(--color-gray-900);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+.account-saveditems .container .user .btn-user .button:hover {
+  border: 1px solid var(--color-gray-700);
 }
 .account-saveditems .container .user .btn-user .button .i {
   margin-right: 1rem;
@@ -3412,15 +3440,16 @@ nav .pagination .active {
 }
 .account-saveditems .container .user .user-img .btn-circle-sm {
   position: absolute;
-  top: 75px;
-  right: 15px;
+  top: 85px;
+  right: 2px;
   background-color: var(--color-gray-100);
   color: var(--color-gray-800);
   padding: 4px;
   border-radius: 50%;
 }
 .account-saveditems .container .user .user-img .btn-circle-sm:hover {
-  color: var(--color-gray-500);
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-700);
 }
 .account-saveditems .container .user .name {
   line-height: 160%;

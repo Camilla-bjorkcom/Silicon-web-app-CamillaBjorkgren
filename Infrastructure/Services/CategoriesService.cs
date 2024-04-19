@@ -19,19 +19,36 @@ public class CategoriesService(CategoriesRepository categoriesRepository, HttpCl
 
     public async Task<IEnumerable<CategoryEntity>> GetAllAsync()
     {
-        var categories = await _categoriesRepository.GetAllAsync();
-        categories.OrderBy(o => o.CategoryName).ToList();
-        return categories;
+       try
+        {
+            var categories = await _categoriesRepository.GetAllAsync();
+            if (categories != null)
+            {
+                categories.OrderBy(o => o.CategoryName).ToList();
+                return categories;
+            }
+            return null!;
+        }
+        catch { return null!; }
+       
     }
     public async Task<IEnumerable<CategoryModel>> GetCategoriesAsync()
     {
-        var response = await _http.GetAsync(_configuration["ApiUris:Categories"]);
-        if (response.IsSuccessStatusCode)
+        try
         {
-            var categories = JsonConvert.DeserializeObject<IEnumerable<CategoryModel>>(await response.Content.ReadAsStringAsync());
-            return categories ??= null!;
+            var response = await _http.GetAsync(_configuration["ApiUris:Categories"]);
+            if (response.IsSuccessStatusCode)
+            {
+                var categories = JsonConvert.DeserializeObject<IEnumerable<CategoryModel>>(await response.Content.ReadAsStringAsync());
+                if (categories != null)
+                {
+                    return categories;
+                }
+               
+            }
+            return null!;
         }
-        return null!;
+        catch { return null!; }
     }
 }
 
