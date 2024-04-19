@@ -18,6 +18,7 @@ public class ContactFormModel
     [Display(Name = "Service", Prompt = "Choose the service you are interested in", Order = 2)]
     public string? ServiceOption { get; set; }
 
+    [DataType(DataType.MultilineText)]
     [Display(Name = "Full name", Prompt = "Enter your message here...", Order = 3)]
     [Required(ErrorMessage = "Enter your message")]
     public string Message { get; set; } = null!;

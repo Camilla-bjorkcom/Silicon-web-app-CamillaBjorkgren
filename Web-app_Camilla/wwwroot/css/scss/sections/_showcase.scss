@@ -34,7 +34,7 @@
                 @include h3;
                 width: 50vw;
 
-           
+
 
                 @include md {
                     @include h1;
@@ -48,17 +48,11 @@
             p {
                 margin: 20px 0 40px 0;
                 @include text-m;
-
-                @include sm {
-                    width: 50vw;
-                }
-
-                @include md {
-                    width: 50vw;
-                }
+                width: 50vw;
 
                 @include lg {
                     margin: 40px 0 50px 0;
+                    width: 30vw;
                     @include text-lg
                 }
             }

@@ -5,62 +5,66 @@
 }
 
 <section id="contact">
-    <div class="pagination">
-        <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="Index" asp-controller="Contact">Contact</a>
-    </div>
-    @if (!string.IsNullOrEmpty(ViewData["Success"]?.ToString()))
-    {
-        <div class="alert-success-pop">@ViewData["Success"]</div>
-    }
-    @if (!string.IsNullOrEmpty(ViewData["Error"]?.ToString()))
-    {
-        <div class="alert-danger-pop">@ViewData["Error"]</div>
-    }
     <div class="container">
-        
-        <div class="left-content">
-            
-            <h1 class="title">Contact Us</h1>
-            <div class="contactus">
-                <i class="fa-sharp fa-light fa-envelope"></i>
-                <h3>Email us</h3>
-                <p class="t">Please feel free to drop us a line. We will respond as soon as possible.</p>
-                <div class ="message">Leave a message<i class="fa-sharp fa-light fa-arrow-right"></i></div>
-            </div>
-            <div class="contactus">
-                <i class="fa-light fa-user-plus"></i>
-                <h3>Careers</h3>
-                <p class="t">Sit ac ipsum leo lorem magna nunc mattis maecenas non vestibulum.</p>
-                <div class="message">Send an application<i class="fa-sharp fa-light fa-arrow-right"></i></div>
-            </div>
+        <div class="pagination">
+            <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="Index" asp-controller="Contact">Contact</a>
         </div>
-        <div class="right-content">
-            <form class="form" method="post" asp-controller="Contact" asp-action="SendContactForm" novalidate>
-                <h2>Get In Contact With Us</h2>
-                <div class="mb-3">
-                    <label asp-for="ContactForm.FullName" class="form-label">Full name</label>
-                    <input asp-for="ContactForm.FullName" type="text" class="form-control">
+        @if (!string.IsNullOrEmpty(TempData["Success"]?.ToString()))
+        {
+            <div class="alert-success-pop">@TempData["Success"]</div>
+        }
+        @if (!string.IsNullOrEmpty(TempData["Error"]?.ToString()))
+        {
+            <div class="alert-danger-pop">@TempData["Error"]</div>
+        }
+        <div class="content">
+            <div class="left-content">
+
+                <h1 class="title">Contact Us</h1>
+                <div class="contactus">
+                    <i class="fa-sharp fa-light fa-envelope"></i>
+                    <h3>Email us</h3>
+                    <p class="t">Please feel free to drop us a line. We will respond as soon as possible.</p>
+                    <div class="message">Leave a message<i class="fa-sharp fa-light fa-arrow-right"></i></div>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="ContactForm.Email" class="form-label">Email address</label>
-                    <input asp-for="ContactForm.Email" type="email" class="form-control">
+                <div class="contactus">
+                    <i class="fa-light fa-user-plus"></i>
+                    <h3>Careers</h3>
+                    <p class="t">Sit ac ipsum leo lorem magna nunc mattis maecenas non vestibulum.</p>
+                    <div class="message">Send an application<i class="fa-sharp fa-light fa-arrow-right"></i></div>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="ContactForm.ServiceOption" class="form-label">Service (optional)</label>
-                    <select asp-for="ContactForm.ServiceOption" list="browsers" class="form-select" id="floatingSelect" aria-label="Choose the service you are interested in">
-                        <option selected disabled>Choose the service you are interested in</option>
-                        <option value="Courses">Courses</option>
-                        <option value="Support">Support</option>
-                        <option value="Pricing">Pricing</option>
-                        <option value="Silicon App">Silicon App</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="ContactForm.Message" class="form-label">Message</label>
-                    <textarea asp-for="ContactForm.Message">Enter your message here...</textarea>
-                </div>
-               <button type="submit" class="btn-theme">Send Contact Request</button>
-            </form>
+            </div>
+            <div class="right-content">
+                <form class="form" method="post" asp-controller="Contact" asp-action="SendContactForm" novalidate>
+                    <h2>Get In Contact With Us</h2>
+                    <div class="mb-3">
+                        <label asp-for="ContactForm.FullName" class="form-label">Full name</label>
+                        <span class="validation" asp-validation-for="ContactForm.FullName"></span>
+                        <input asp-for="ContactForm.FullName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ContactForm.Email" class="form-label">Email address</label>
+                        <span class="validation" asp-validation-for="ContactForm.Email"></span>
+                        <input asp-for="ContactForm.Email" type="email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ContactForm.ServiceOption" class="form-label">Service (optional)</label>
+                        <select asp-for="ContactForm.ServiceOption" list="browsers" class="form-select" id="floatingSelect" aria-label="Choose the service you are interested in">
+                            <option selected disabled>Choose the service you are interested in</option>
+                            <option value="Courses">Courses</option>
+                            <option value="Support">Support</option>
+                            <option value="Pricing">Pricing</option>
+                            <option value="Silicon App">Silicon App</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ContactForm.Message" class="form-label">Message</label>
+                        <span class="validation" asp-validation-for="ContactForm.Message"></span>
+                        <textarea asp-for="ContactForm.Message">Enter your message here...</textarea>
+                    </div>
+                    <button type="submit" class="btn-theme">Send Contact Request</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>

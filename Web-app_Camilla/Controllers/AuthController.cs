@@ -41,7 +41,7 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
-            {   
+            {
 
                 var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
                 var response = await _http.PostAsync($"https://localhost:7138/api/Auth/token?key={_configuration["ApiKey:Secret"]}", content);
@@ -84,56 +84,49 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     public async Task<ActionResult> SignUp(SignUpModel model)
     {
         var standardRole = "User";
+
         if (ModelState.IsValid)
         {
-            if(! await _userManager.Users.AnyAsync())
+            try
             {
-                standardRole = "SuperAdmin";
-            }
-            var exists = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
-            if (exists)
-            {
-                ModelState.AddModelError("AlreadyExists", "User with the same email address already exists");
-                return View();
-            }
-            var userEntity = new UserEntity
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                UserName = model.Email,
-                Created = DateTime.Now,
-            };
-            var result = await _userManager.CreateAsync(userEntity, model.Password);
-            if (result.Succeeded)
-            {
-                var roleResult = await _userManager.AddToRoleAsync(userEntity, standardRole);
-                if(standardRole == "SuperAdmin" && roleResult.Succeeded)
+                if (!await _userManager.Users.AnyAsync())
                 {
-                    roleResult = await _userManager.AddToRoleAsync(userEntity, "User");
-                    roleResult = await _userManager.AddToRoleAsync(userEntity, "Admin");
-                    roleResult = await _userManager.AddToRoleAsync(userEntity, "CIO");
+                    standardRole = "SuperAdmin";
                 }
-                return RedirectToAction("SignIn");
-            }    
-            
-        }
-        else if (!ModelState.IsValid) 
-        {
-            // There are validation errors in ModelState
-            // You can iterate through ModelState errors and log or handle them
-            foreach (var error in ModelState["Email"]!.Errors)
-            {
-                var errorMessage = error.ErrorMessage;
-                // Log or handle the error message appropriately
+                var exists = await _userManager.Users.AnyAsync(x => x.Email == model.Email);
+                if (exists)
+                {
+                    ModelState.AddModelError("AlreadyExists", "User with the same email address already exists");
+                    return View();
+                }
+                var userEntity = new UserEntity
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    UserName = model.Email,
+                    Created = DateTime.Now,
+                };
+                var result = await _userManager.CreateAsync(userEntity, model.Password);
+                if (result.Succeeded)
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(userEntity, standardRole);
+                    if (standardRole == "SuperAdmin" && roleResult.Succeeded)
+                    {
+                        roleResult = await _userManager.AddToRoleAsync(userEntity, "User");
+                        roleResult = await _userManager.AddToRoleAsync(userEntity, "Admin");
+                        roleResult = await _userManager.AddToRoleAsync(userEntity, "CIO");
+                    }
+                    return RedirectToAction("SignIn");
+                }
             }
+            catch { ViewData["ErrorMessage"] = "Email and password is required"; }
 
-            // Return to the view to display validation errors to the user
-            return View(model);
         }
         ViewData["ErrorMessage"] = "Email and password is required";
         return View(model);
     }
+
     #endregion
 
     #region Individual Account | Sign Out
@@ -257,4 +250,9 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         return RedirectToAction("SignIn", "Auth");
     }
     #endregion
+
+    public IActionResult ForgotPassword()
+    {
+        return View();
+    }
 }

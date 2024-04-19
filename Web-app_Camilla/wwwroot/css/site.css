@@ -303,7 +303,7 @@ img {
   font-weight: 400;
   color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 .form .form-check {
   line-height: 160%;
@@ -312,8 +312,12 @@ img {
   font-family: "Manrope", sans-serif;
   display: inline-flex;
   align-items: center;
+  padding: 0;
 }
-.form .form-check-input {
+.form .form-check #RememberMe {
+  margin: 0;
+}
+.form .form-check .form-check-input {
   margin: 0;
 }
 
@@ -324,6 +328,7 @@ img {
   text-align: center;
   border-radius: 6px;
   margin: 0 auto;
+  color: black;
 }
 
 .alert-danger-pop {
@@ -333,6 +338,22 @@ img {
   text-align: center;
   border-radius: 6px;
   margin: 0 auto;
+  color: black;
+}
+
+.pagination {
+  display: inline-block;
+  margin-top: 25px;
+  width: 100%;
+}
+.pagination a {
+  margin-right: 1rem;
+}
+.pagination a i {
+  margin-right: 0.5rem;
+}
+.pagination i {
+  margin-right: 2rem;
 }
 
 a {
@@ -1016,20 +1037,12 @@ footer .container .unsubscribe {
   color: var(--color-gray-700);
   font-family: "Manrope", sans-serif;
   font-size: 16px !important;
-}
-@media (min-width: 425px) {
-  .showcase .container .content p {
-    width: 50vw;
-  }
-}
-@media (min-width: 768px) {
-  .showcase .container .content p {
-    width: 50vw;
-  }
+  width: 50vw;
 }
 @media (min-width: 992px) {
   .showcase .container .content p {
     margin: 40px 0 50px 0;
+    width: 30vw;
     line-height: 160%;
     font-weight: 400;
     color: var(--color-gray-700);
@@ -1669,7 +1682,7 @@ footer .container .unsubscribe {
   border-radius: 5px;
   border: 1px solid var(--color-gray-400);
 }
-.newsletter .container form .terms {
+.newsletter .container form .information {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -1677,6 +1690,29 @@ footer .container .unsubscribe {
   font-size: 12px !important;
   text-align: left;
   width: fit-content;
+}
+.newsletter .container form .information .alert-success-pop {
+  margin: 0;
+  width: fit-content;
+  margin-top: 1rem;
+}
+.newsletter .container form .information .alert-danger-pop {
+  margin: 0;
+  width: fit-content;
+  margin-top: 1rem;
+}
+.newsletter .container form .information .terms {
+  line-height: 160%;
+  font-weight: 400;
+  color: var(--color-gray-700);
+  font-family: "Manrope", sans-serif;
+  font-size: 12px !important;
+  text-align: left;
+  width: fit-content;
+}
+.newsletter .container form .information .validation {
+  color: red;
+  margin-left: 3rem;
 }
 
 .sign-in {
@@ -1698,6 +1734,7 @@ footer .container .unsubscribe {
   align-items: center;
   padding: 15px;
   border-radius: 8px;
+  color: black;
 }
 .sign-in .container form button {
   width: 100%;
@@ -1742,7 +1779,7 @@ footer .container .unsubscribe {
   align-items: center;
   padding: 15px;
   border-radius: 8px;
-  color: var(--color-black);
+  color: black;
 }
 .sign-up .container form {
   line-height: 160%;
@@ -2256,37 +2293,23 @@ footer .container .unsubscribe {
 #contact {
   background-color: var(--color-gray-100);
 }
-#contact .pagination {
-  display: inline-block;
-  margin-top: 25px;
-  width: 100%;
-  margin-left: 15%;
-}
-#contact .pagination a {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-#contact .pagination a i {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-#contact .container {
+#contact .container .content {
   display: flex;
 }
-#contact .container .left-content {
+#contact .container .content .left-content {
   display: none;
 }
 @media (min-width: 768px) {
-  #contact .container .left-content {
+  #contact .container .content .left-content {
     display: block;
     margin-right: 2rem;
   }
 }
-#contact .container .left-content .title {
+#contact .container .content .left-content .title {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-#contact .container .left-content h3 {
+#contact .container .content .left-content h3 {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -2295,7 +2318,7 @@ footer .container .unsubscribe {
   color: var(--color-gray-900);
   font-size: 20px !important;
 }
-#contact .container .left-content .contactus {
+#contact .container .content .left-content .contactus {
   display: grid;
   grid-template-columns: min-content auto;
   grid-template-areas: "icon title" ". text" ". link";
@@ -2305,18 +2328,18 @@ footer .container .unsubscribe {
   padding: 20px;
   width: 100%;
 }
-#contact .container .left-content .contactus i {
+#contact .container .content .left-content .contactus i {
   grid-area: icon;
   background-color: var(--color-gray-000);
   padding: 15px;
   border-radius: 25px;
   color: #6366F1;
 }
-#contact .container .left-content .contactus .t {
+#contact .container .content .left-content .contactus .t {
   width: 100%;
   grid-area: text;
 }
-#contact .container .left-content .contactus .message {
+#contact .container .content .left-content .contactus .message {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -2327,34 +2350,34 @@ footer .container .unsubscribe {
   grid-area: link;
   width: 100%;
 }
-#contact .container .left-content .contactus .message i {
+#contact .container .content .left-content .contactus .message i {
   background-color: transparent;
 }
-#contact .container .left-content .contactus h3 {
+#contact .container .content .left-content .contactus h3 {
   grid-area: title;
 }
-#contact .container .right-content {
+#contact .container .content .right-content {
   position: relative;
   width: 100%;
 }
-#contact .container .right-content form {
+#contact .container .content .right-content form {
   padding: 20px;
   margin-top: 2rem;
 }
 @media (min-width: 768px) {
-  #contact .container .right-content form {
+  #contact .container .content .right-content form {
     position: absolute;
     top: 15%;
     right: 10%;
   }
 }
 @media (min-width: 992px) {
-  #contact .container .right-content form {
+  #contact .container .content .right-content form {
     top: 25%;
     padding: 55px;
   }
 }
-#contact .container .right-content form h2 {
+#contact .container .content .right-content form h2 {
   line-height: 160%;
   font-weight: 400;
   color: var(--color-gray-700);
@@ -2364,7 +2387,7 @@ footer .container .unsubscribe {
   font-size: 20px !important;
 }
 @media (min-width: 992px) {
-  #contact .container .right-content form h2 {
+  #contact .container .content .right-content form h2 {
     line-height: 160%;
     font-weight: 400;
     color: var(--color-gray-700);
@@ -2374,7 +2397,7 @@ footer .container .unsubscribe {
     font-size: 28px !important;
   }
 }
-#contact .container .right-content form textarea {
+#contact .container .content .right-content form textarea {
   display: block;
   width: 100%;
   box-sizing: border-box;

@@ -26,4 +26,6 @@ public class HomeController : Controller
 
     [Route("/denied")]
     public IActionResult AccessDenied(int statusCode) => View();
+
+    public IActionResult TermsPolicy () => View();
 }

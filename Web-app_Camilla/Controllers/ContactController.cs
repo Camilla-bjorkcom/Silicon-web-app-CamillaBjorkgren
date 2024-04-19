@@ -86,13 +86,13 @@ public class ContactController(HttpClient http, IConfiguration configuration) : 
                 var response = await _http.PostAsync($"https://localhost:7138/api/Contact?key={_configuration["ApiKey:Secret"]}", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    ViewData["Success"] = "Thank you for your message. We will get back at you as soon as possible.";
+                    TempData["Success"] = "Thank you for your message. We will get back at you as soon as possible.";
                     return RedirectToAction("Index");
                 }
             }
-            catch { ViewData["Error"] = "Failed sending message. Please try again"; return RedirectToAction("Index"); }
+            catch { TempData["Error"] = "Failed sending message. Please try again"; return RedirectToAction("Index"); }
         }
-        ViewData["Error"] = "Something went wrong, please try again.";
+        TempData["Error"] = "Something went wrong, please try again.";
         return RedirectToAction("Index");
     }
 

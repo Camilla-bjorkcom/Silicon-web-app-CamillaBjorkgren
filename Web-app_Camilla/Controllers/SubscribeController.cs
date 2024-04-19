@@ -21,27 +21,23 @@ public class SubscribeController(HttpClient http, IConfiguration configuration) 
                 var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
                 var response = await _http.PostAsync($"https://localhost:7138/api/Subscribers?key={_configuration["ApiKey:Secret"]}", content);
                 if (response.IsSuccessStatusCode)
-                {
-                    ViewData["Status"] = "Success";
-                    ViewData["Success"] = "Successfully subscribed to newsletter!";
+                {             
+                    TempData["Success"] = "Successfully subscribed to newsletter!";
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                 {
-                    ViewData["Status"] = "AlreadyExists";
-                    ViewData["Error"] = "Failed at subscribing to newsletter! It appears as if you already have an subscription";
+                    TempData["Error"] = "You are already subscribed";
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    ViewData["Status"] = "Unauthorized";
-                    ViewData["Error"] = "Failed at subscribing to newsletter! Contact the web admin";
+                    TempData["Error"] = "Failed at subscribing to newsletter! Contact the web admin";
                 }
             }
-            catch { ViewData["Status"] = "ConnectionFailed"; }
+            catch { TempData["Status"] = "ConnectionFailed"; }
         }
         else
         {
-            ViewData["Status"] = "Invalid";
-            ViewData["Error"] = "You must enter an valid email address";
+            TempData["Error"] = "You must enter an valid email address";
         }
 
         return RedirectToAction("Index", "Home", "newsletter");

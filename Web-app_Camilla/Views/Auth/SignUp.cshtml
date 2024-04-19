@@ -12,13 +12,13 @@ https://youtu.be/mhe49sLUb78?t=3970 *@
             <h1>Create Account</h1>
             <p>Already have an account? <a asp-controller="auth" asp-action="SignIn">Sign in here.</a></p>
         </div>
-@* 
+
         @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
         {
             <div class="errormessage">
                 @ViewData["ErrorMessage"]
             </div>
-        } *@
+        }
 
         <form class="form" method="post" asp-controller="Auth" asp-action="SignUp" novalidate>
             <div class="name">

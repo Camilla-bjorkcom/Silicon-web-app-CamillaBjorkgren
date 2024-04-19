@@ -24,6 +24,14 @@ var textValidator = function textValidator(element) {
     }
 };
 
+var messageValidator = function messageValidator(element) {
+    var minLength = arguments.length <= 1 || arguments[1] === undefined ? 5 : arguments[1];
+
+    if (element.value.length >= minLength) formErrorMessage(element, true);else {
+        formErrorMessage(element, false);
+    }
+};
+
 var emailValidator = function emailValidator(element) {
     var regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     formErrorMessage(element, regEx.test(element.value));
@@ -51,8 +59,10 @@ var checkboxValidator = function checkboxValidator(element) {
 };
 
 var forms = document.querySelectorAll('form');
+
 forms.forEach(function (form) {
     var inputs = form.querySelectorAll('input');
+    var textareas = form.querySelectorAll('textarea');
 
     inputs.forEach(function (input) {
         if (input.dataset.val === 'true') {
@@ -76,6 +86,12 @@ forms.forEach(function (form) {
                 });
             }
         }
+    });
+
+    textareas.forEach(function (textarea) {
+        textarea.addEventListener('keyup', function (e) {
+            messageValidator(e.target);
+        });
     });
 });
 

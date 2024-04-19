@@ -4,7 +4,7 @@ namespace Web_app_Camilla.ViewModels;
 
 public class SubscriberModel
 {
-    [Required]
+    [Required(ErrorMessage ="You must enter a valid email.")]
     [Display(Name = "Subscribe", Prompt ="Enter your email address")]
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;

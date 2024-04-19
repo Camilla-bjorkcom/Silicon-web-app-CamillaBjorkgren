@@ -150,17 +150,21 @@ img {
 
     .form-check-label {
         @include standard-text;
-        margin-left: 1rem;
+        margin-left: 0.5rem;
     }
 
     .form-check {
         @include standard-text;
         display: inline-flex;
         align-items: center;
-    }
+        padding: 0;
 
-    .form-check-input {
-        margin: 0;
+        #RememberMe {
+            margin: 0;
+        }
+        .form-check-input {
+            margin: 0;
+        }
     }
 }
 
@@ -171,6 +175,7 @@ img {
     text-align: center;
     border-radius: 6px;
     margin: 0 auto;
+    color: black;
 }
 
 .alert-danger-pop {
@@ -180,4 +185,24 @@ img {
     text-align: center;
     border-radius: 6px;
     margin: 0 auto;
+    color: black;
+}
+
+.pagination {
+    display: inline-block;
+    margin-top: 25px;
+    width: 100%;
+
+
+    a {
+        margin-right: 1rem;
+
+        i {
+            margin-right: 0.5rem;
+        }
+    }
+
+    i {
+        margin-right: 2rem;
+    }
 }

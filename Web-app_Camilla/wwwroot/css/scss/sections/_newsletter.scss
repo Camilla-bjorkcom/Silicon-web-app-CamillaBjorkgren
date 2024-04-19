@@ -19,7 +19,7 @@
             display: flex;
             text-align: center;
             padding: 35px 0;
-            
+
 
             @include md {
                 @include h2;
@@ -37,6 +37,7 @@
                     width: 50px;
                     height: 42px;
                     display: none;
+
                     @include md {
                         display: block;
                     }
@@ -125,10 +126,32 @@
                 }
             }
 
-            .terms {
+            .information {
                 @include text-xs;
                 text-align: left;
                 width: fit-content;
+
+                .alert-success-pop {
+                    margin: 0;
+                    width: fit-content;
+                    margin-top: 1rem;
+                }
+
+                .alert-danger-pop {
+                    margin: 0;
+                    width: fit-content;
+                    margin-top: 1rem;
+                }
+
+                .terms {
+                    @include text-xs;
+                    text-align: left;
+                    width: fit-content;
+                }
+                .validation {
+                    color: red;
+                    margin-left: 3rem;
+                }
             }
         }
     }
