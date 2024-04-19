@@ -1241,7 +1241,7 @@ footer .container .unsubscribe {
 .lightanddark .dark .container .image img {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .lightanddark .dark .container .image img {
     display: block;
     object-fit: contain;
@@ -1319,7 +1319,7 @@ footer .container .unsubscribe {
 .lightanddark .light .container .image img {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .lightanddark .light .container .image img {
     display: block;
     object-fit: contain;
@@ -1854,7 +1854,7 @@ footer .container .unsubscribe {
   width: 100%;
   gap: 1.5rem;
   justify-content: center;
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-200);
   border-radius: 6px;
   padding: 10px;
 }
@@ -1928,9 +1928,6 @@ footer .container .unsubscribe {
   text-align: left;
   margin-top: 1rem;
   margin-left: 1rem;
-}
-.account-details .container .user .btn-user .signout:hover {
-  text-decoration: underline;
 }
 .account-details .container .user .user-img {
   cursor: pointer;
@@ -2113,7 +2110,7 @@ footer .container .unsubscribe {
   width: 100%;
   gap: 1.5rem;
   justify-content: center;
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-200);
   border-radius: 6px;
   padding: 10px;
 }
@@ -3352,7 +3349,7 @@ nav .pagination .active {
   width: 100%;
   gap: 1.5rem;
   justify-content: center;
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-200);
   border-radius: 6px;
   padding: 10px;
 }

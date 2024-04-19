@@ -68,7 +68,7 @@
                 img {
                     display: none;
 
-                    @include md {
+                    @include lg {
                         display: block;
                         object-fit: contain;
                         width: 30vw;
@@ -138,8 +138,7 @@
                 img {
                     display: none;
 
-
-                    @include md {
+                    @include lg {
                         display: block;
                         object-fit: contain;
                         width: 30vw;
