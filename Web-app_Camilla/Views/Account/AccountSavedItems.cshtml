@@ -31,17 +31,17 @@
                     <p class="email">@Model.ProfileView?.Email</p>
                 </div>
                 <div class="btn-user">
-                    <a asp-controller="Account" asp-action="Index"><button class="button btn"><i class="fa-light fa-gear i"></i> Account Details</button></a>
-                    <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-light fa-lock i"></i> Security</button></a>
-                    <a asp-action="AccountSavedItems" asp-controller="Account"><button class="button btn active"><i class="fa-light fa-bookmark i"></i> Saved Courses</button></a>
-                    <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-light fa-right-from-bracket i"></i> Sign Out</a>
+                    <a asp-controller="Account" asp-action="Index"><button class="button btn"><i class="fa-solid fa-gear"></i> Account Details</button></a>
+                    <a asp-action="AccountSecurity"><button class="button btn"><i class="fa-solid fa-lock"></i> Security</button></a>
+                    <a asp-action="AccountSavedItems" asp-controller="Account"><button class="button btn active"><i class="fa-solid fa-bookmark"></i> Saved Courses</button></a>
+                    <a asp-controller="Auth" asp-action="signout" class="signout"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
                 </div>
             </div>
         }
         <div class="content">
             <div class="title-button">
                 <h2 class="title">Saved Items</h2>
-                <form asp-action="RemoveAllCourses" asp-controller="Account"><input type="hidden" name="userId" value="@user!.Id" /><button type="submit" class="btn btn-delete"><i class="fa-light fa-trash"></i>Delete all</button></form>
+                <form asp-action="RemoveAllCourses" asp-controller="Account"><input type="hidden" name="userId" value="@user!.Id" /><button type="submit" class="btn btn-delete"><i class="fa-solid fa-trash"></i>Delete all</button></form>
             </div>
             <div class="course-list">
                 @foreach (var course in Model.Courses)
@@ -79,9 +79,9 @@
 
                                 <hr />
                                 <div class="course-footer">
-                                    <div class="course-hours"><i class="fa-regular fa-clock"></i> @course.EstimatedHours</div>
+                                    <div class="course-hours"><i class="fa-solid fa-clock"></i> @course.EstimatedHours</div>
                                     <div class="course-likes">
-                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <i class="fa-solid fa-thumbs-up"></i>
                                         <span>@($"{course.LikeParameter * 100:0}%")</span>
                                         <span>(@($"{(decimal)(course.UserVotes ?? 0) / 1000:0.#}K"))</span>
                                     </div>

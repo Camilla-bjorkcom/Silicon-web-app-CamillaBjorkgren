@@ -23,7 +23,6 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
 
 builder.Services.ConfigureApplicationCookie(x =>
 {
-    //webbläsaren kan inte komma åt cookien, minimerar risk för crossside-scripting
     x.Cookie.HttpOnly = true;
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     x.LoginPath = "/signin";
@@ -80,16 +79,16 @@ using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     string[] roles = ["SuperAdmin", "CIO", "Admin", "User"];
-    foreach(var role in roles)
+    foreach (var role in roles)
     {
-        if(!await roleManager.RoleExistsAsync(role))
+        if (!await roleManager.RoleExistsAsync(role))
         {
             await roleManager.CreateAsync(new IdentityRole(role));
         }
     }
 }
 
-    app.MapControllerRoute(
+app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();

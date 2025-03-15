@@ -16,7 +16,7 @@
         <div class="text-header">
 
             <div class="bread-crumbs">
-                <a asp-action="Index" asp-controller="Home"><i class="fa-light fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="courses">Courses</a><i class="fa-solid fa-angles-right"></i><a asp-route-id="@Model.Id">@Model.Title</a>
+                <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house"></i>Home</a><i class="fa-solid fa-angles-right"></i><a asp-action="courses">Courses</a><i class="fa-solid fa-angles-right"></i><a asp-route-id="@Model.Id">@Model.Title</a>
             </div>
             <div class="title-description">
                 <div class="labels">
@@ -41,12 +41,12 @@
                         <i class="fa-solid fa-star" style="color: #FFBA08;"></i>
                         <i class="fa-solid fa-star" style="color: #FFBA08;"></i>
                         <i class="fa-solid fa-star" style="color: #FFBA08;"></i>
-                        <i class="fa-regular fa-star" style="color: #B4B7C9;"></i>
+                        <i class="fa-solid fa-star" style="color: #B4B7C9;"></i>
                     </div>
                     <div class="thumbs">
-                        <i class="fa-light fa-thumbs-up" style="color: #B4B7C9;"></i> <span>@($"{(decimal)(Model.UserVotes ?? 0) / 1000:0.#}K Likes")</span>
+                        <i class="fa-solid fa-thumbs-up" style="color: #B4B7C9;"></i> <span>@($"{(decimal)(Model.UserVotes ?? 0) / 1000:0.#}K Likes")</span>
                     </div>
-                    <div class="hours"><i class="fa-regular fa-clock" style="color: #B4B7C9;"></i> <span>@Model.EstimatedHours hours</span></div>
+                    <div class="hours"><i class="fa-solid fa-clock" style="color: #B4B7C9;"></i> <span>@Model.EstimatedHours hours</span></div>
                 </div>
                 <div class="creator">
                     <img src="~/images/profile-image.svg" alt="">
@@ -65,34 +65,34 @@
                 <div class="learn">
                     <h3>What you'll learn</h3>
                     <div class="learnlist">
-                        <i class="fa-regular fa-circle-check" style="color: #6366f1;"></i>
+                        <i class="fa-solid fa-circle-check" style="color: #6366f1;"></i>
                         <p>Sed lectus donec amet eu turpis interdum.</p>
                     </div>
                     <div class="learnlist">
-                        <i class="fa-regular fa-circle-check" style="color: #6366f1;"></i>
+                        <i class="fa-solid fa-circle-check" style="color: #6366f1;"></i>
                         <p>Nulla at consectetur vitae dignissim porttitor.</p>
                     </div>
                     <div class="learnlist">
-                        <i class="fa-regular fa-circle-check" style="color: #6366f1;"></i>
+                        <i class="fa-solid fa-circle-check" style="color: #6366f1;"></i>
                         <p>Phasellus id vitae dui aliquet mi.</p>
                     </div>
                     <div class="learnlist">
-                        <i class="fa-regular fa-circle-check" style="color: #6366f1;"></i>
+                        <i class="fa-solid fa-circle-check" style="color: #6366f1;"></i>
                         <p>Integer cursus vitae, odio feugiat iaculis aliquet diam, et purus.</p>
                     </div>
                     <div class="learnlist">
-                        <i class="fa-regular fa-circle-check" style="color: #6366f1;"></i>
+                        <i class="fa-solid fa-circle-check" style="color: #6366f1;"></i>
                         <p>In aenean dolor diam tortor orci eu.</p>
                     </div>
                 </div>
             </div>
             <div class="aside-info">
                 <h4>This course includes:</h4>
-                <div class="info"><i class="fa-regular fa-display"></i><p>148 hours on-demand video</p></div>
-                <div class="info"><i class="fa-light fa-newspaper"></i>18 articles</div>
-                <div class="info"><i class="fa-regular fa-download"></i>25 downloadable resources</div>
-                <div class="info"><i class="fa-regular fa-infinity"></i>Full lifetime access</div>
-                <div class="info"><i class="fa-light fa-file-certificate"></i> Certificate of completion</div>
+                <div class="info"><i class="fa-solid fa-display"></i><p>148 hours on-demand video</p></div>
+                <div class="info"><i class="fa-solid fa-newspaper"></i>18 articles</div>
+                <div class="info"><i class="fa-solid fa-download"></i>25 downloadable resources</div>
+                <div class="info"><i class="fa-solid fa-infinity"></i>Full lifetime access</div>
+                <div class="info"><i class="fa-solid fa-certificate"></i> Certificate of completion</div>
                 <div class="prices">
                     @if (Model.DiscountPrice > 0)
                     {
