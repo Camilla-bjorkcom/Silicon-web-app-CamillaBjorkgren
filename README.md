@@ -1,82 +1,53 @@
 # Silicon Web App
+A web application built with ASP.NET Core MVC – my first project using this technology! In this application, users can register, log in, change their profile picture, update their password, and join courses. There is also an administrator account with the ability to create and manage courses.
 
-En webbapplikation byggd med **ASP.NET Core MVC** – mitt första projekt med den teknologin! I denna applikation kan användare registrera sig, logga in, byta profilbild, ändra lösenord och gå med i kurser. Det finns även ett administratörskonto med möjligheter att skapa och hantera kurser.
+## Features
+- User Management
+- Create a new account (registration)
+- Log in and log out
+- Change profile picture
+- Update password
+- Course Administration
+- Users can join existing courses
+- Administrators can create and manage courses
 
-## Funktioner
+### Tools and Technologies
+This project utilizes several modern tools and frameworks, including:
+- ASP.NET Core MVC – To build the server-based application using the MVC architecture.
+- Entity Framework Core – For database access and ORM.
+- Visual Studio – The primary development tool for the project.
+- C# – The main programming language for backend development.
+- HTML, CSS, and SCSS – For structuring and styling the user interface.
+- JavaScript – To handle client-side interactivity.
 
-### Användarhantering
-- Skapa nytt konto (registrering)
-- Inloggning och utloggning
-- Ändra profilbild
-- Uppdatera lösenord
+### Project Structure
+The project is divided into several folders to keep the code organized:
 
-### Kursadministration
-- Användare kan gå med i befintliga kurser
-- Administratörer kan skapa och hantera kurser
+### Infrastructure
+Contains database models, migrations, and configurations related to Entity Framework Core.
 
-## Verktyg och Teknologier
+### Web-API-Camilla
+Exposes API endpoints used by the web application. (If the API is used to handle asynchronous requests or integrations.)
 
-Projektet använder ett flertal moderna verktyg och ramverk, bland annat:
+### Web-app_Camilla
+The ASP.NET Core MVC application itself, including controllers, views, and models.
 
-- **ASP.NET Core MVC** – För att bygga den serverbaserade applikationen med MVC-arkitektur.
-- **Entity Framework Core** – För att hantera databasåtkomst och ORM.
-- **Visual Studio** – Huvudsakligt utvecklingsverktyg för projektet.
-- **C#** – Huvudspråket för backend-utvecklingen.
-- **HTML, CSS och SCSS** – För att strukturera och styla användargränssnittet.
-- **JavaScript** – För att hantera interaktivitet på klientsidan.
+Other Files
+Uppgifter_ASPNET.sln – The solution file for Visual Studio.
+.gitignore and .gitattributes – For managing version control and code formatting.
+README.md – This file.
+Installation and Setup
+Follow these steps to run the project locally:
 
-## Projektstruktur
+### Configure the Database
+Ensure that your database connection is correctly set in appsettings.json or Web.config (depending on the project version). If using LocalDB, make sure the connection string points to the correct file path.
 
-Projektet är uppdelat i flera mappar för att hålla koden organiserad:
+### Usage
+User Account
+Register a new account or log in with an existing one. After logging in, you can update your profile, change your profile picture, or update your password.
 
-- **Infrastructure**  
-  Innehåller databasmodeller, migrations och konfigurationer relaterade till Entity Framework Core.
+### Course Participation
+Explore available courses and join the ones you are interested in.
 
-- **Web-API-Camilla**  
-  Exponerar API-endpoints som används av webbapplikationen. (Om API:et används för att hantera asynkrona anrop eller integrationer.)
-
-- **Web-app_Camilla**  
-  Själva ASP.NET Core MVC-applikationen med controllers, views och modeller.
-
-### Övriga filer
-
-- `Uppgifter_ASPNET.sln` – Lösningsfilen för Visual Studio.
-- `.gitignore` och `.gitattributes` – För att hantera versionskontroll och kodformattering.
-- `README.md` – Denna fil.
-
-## Installation och Uppstart
-
-Följ dessa steg för att köra projektet lokalt:
-
-### Kloning av repository
-
-Klona projektet från GitHub:
-
-```bash
-git clone https://github.com/Camilla-bjorkcom/Silicon-web-app-CamillaBjorkgren.git
-
-Öppna lösningen
-Öppna Uppgifter_ASPNET.sln i Visual Studio.
-
-Återställ NuGet-paket
-Visual Studio bör automatiskt återställa de nödvändiga NuGet-paketen. Om inte, högerklicka på lösningen och välj "Restore NuGet Packages".
-
-Konfigurera databas
-Se till att din databasanslutning är korrekt inställd i appsettings.json eller Web.config (beroende på projektets version). Om du använder LocalDB, kontrollera att din connection string pekar på rätt filväg.
-
-Kör applikationen
-Starta applikationen genom att köra projektet i Visual Studio (F5 eller Ctrl+F5).
-
-Användning
-Användarkonto
-Registrera ett nytt konto eller logga in med ett befintligt konto. Efter inloggning kan du uppdatera din profil, byta profilbild eller ändra lösenord.
-Kursdeltagande
-Utforska tillgängliga kurser och gå med i de kurser du är intresserad av.
-Administratör
-Logga in som administratör för att skapa nya kurser och hantera existerande kurser.
-Vidare Utveckling
-Här finns möjlighet att utveckla applikationen vidare, till exempel genom att:
-
-Implementera fler användarroller.
-Utöka API:et för mer komplex funktionalitet.
-Förbättra UI/UX med hjälp av moderna frontend-ramverk.
+### Administrator
+Log in as an administrator to create new courses and manage existing ones.
